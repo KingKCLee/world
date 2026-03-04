@@ -399,15 +399,17 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-map-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:0 0 6px;}
 .lp-map-sub{text-align:center;font-size:14px;color:#888;margin-bottom:16px;letter-spacing:-.5px;}
 .lp-map-wrap{border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);border:1px solid #e5e0cc;}
-.lp-map-wrap iframe{width:100%;height:400px;border:0;display:block;}
 .lp-map-info{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#faf8ef;border-top:1px solid #e5e0cc;}
 .lp-map-info-item{padding:14px 10px;text-align:center;border-right:1px solid #e5e0cc;}
 .lp-map-info-item:last-child{border-right:none;}
 .lp-map-info-label{font-size:11px;color:#999;margin-bottom:2px;}
 .lp-map-info-value{font-size:14px;font-weight:700;color:#222;letter-spacing:-.5px;}
+/* ✅ 카카오맵 반응형 */
+.lp-map-wrap .root_daum_roughmap{width:100%!important;max-width:100%!important;}
+.lp-map-wrap .root_daum_roughmap .wrap_map{width:100%!important;height:400px!important;}
 @media(max-width:1023px){
   .lp-map-title{font-size:22px;}
-  .lp-map-wrap iframe{height:280px;}
+  .lp-map-wrap .root_daum_roughmap .wrap_map{height:260px!important;}
   .lp-map-info{grid-template-columns:repeat(2,1fr);}
   .lp-map-info-item:nth-child(2){border-right:none;}
   .lp-map-info-item:nth-child(1),.lp-map-info-item:nth-child(2){border-bottom:1px solid #e5e0cc;}
@@ -504,7 +506,7 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   .menu .btn-util .btn2{display:none;}
   .lp-reserve-wrap{padding:30px 18px 22px;margin:28px auto;}
   .lp-reserve-title{font-size:28px;}
-  .lp-body{padding-top:0!important;}  /* ✅ 이 한 줄만 맨 아래에 추가 */
+  .lp-body{padding-top:0!important;}
 }
 @media(max-width:420px){
   .menu .btn-util .btn3{font-size:1.2rem;}
@@ -651,7 +653,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
     </div>
   </div>
 
-  <!-- ===== ✅ 추가: 핵심 혜택 카드 (유튜브 아래, 이미지 위) ===== -->
+  <!-- ===== ✅ 추가: 핵심 혜택 카드 ===== -->
   <section class="lp-benefits" data-aos="fade-up">
     <h2 class="lp-benefits-title">월드메르디앙 송도 PREMIUM 6</h2>
     <p class="lp-benefits-sub">송도 1공구 핵심 입지, 6가지 프리미엄</p>
@@ -706,14 +708,13 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
     <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner2.gif" alt="송도 월드메르디앙 에클라 방문예약 배너 ☎1533-9077"></a></div>
   </section>
 
-  <!-- ===== ✅ 추가: 위치/교통 지도 ===== -->
+  <!-- ===== ✅ 카카오맵으로 교체: 위치/교통 지도 ===== -->
   <section class="lp-map-section" data-aos="fade-up">
     <h2 class="lp-map-title">오시는 길</h2>
     <p class="lp-map-sub">인천광역시 연수구 송도동 21-16 (신송로 165-17)</p>
     <div class="lp-map-wrap">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.5!2d126.6458!3d37.3970!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b7d4e4e4e4e4f%3A0x0!2z7Iug7Iah66GcIDE2NS0xNw!5e0!3m2!1sko!2skr!4v1709000000000!5m2!1sko!2skr"
-        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        title="송도 월드메르디앙 에클라 위치 지도"></iframe>
+      <!-- ✅ 카카오맵 - 지도퍼가기 -->
+      <div id="daumRoughmapContainer1772630746853" class="root_daum_roughmap root_daum_roughmap_landing"></div>
       <div class="lp-map-info">
         <div class="lp-map-info-item">
           <div class="lp-map-info-label">인천대입구역</div>
@@ -882,8 +883,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
       ※ 본 홈페이지에 사용된 투시도, 조감도, CG, 이미지 및 내용, 문구 등은 소비자의 이해를 돕기 위해 제작 또는 표현된 것으로 실제와 차이가 있을 수 있습니다.<br>
       ※ 본 홈페이지 상의 개발 및 교통계획에 대한 사항은 추후 관계기관의 사정에 따라 변경 및 취소 될 수 있으며, 이는 당사와 무관함을 알려드립니다.<br>
       ※ 본 홈페이지의 내용은 시행사 및 시공사 및 관계기관에 의해 변경될 수 있습니다.<br>
-온라인마케팅 대행 :  더블유부동산   대표자 : 이광철   사업자등록번호 : 589-24-01721 
-
+온라인마케팅 대행 :  더블유부동산   대표자 : 이광철   사업자등록번호 : 589-24-01721
     </div>
     <div class="lp-footer-copy">Copyright 2026 월드메르디앙 송도. ALL RIGHTS RESERVED.</div>
   </div>
@@ -971,6 +971,19 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
     </button>
   </div>
 </div>
+
+<!-- ✅ 카카오맵 설치 스크립트 (1번만) -->
+<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+
+<!-- ✅ 카카오맵 실행 스크립트 -->
+<script charset="UTF-8">
+  new daum.roughmap.Lander({
+    "timestamp" : "1772630746853",
+    "key" : "iq8g2yphy9h",
+    "mapWidth" : "640",
+    "mapHeight" : "360"
+  }).render();
+</script>
 
 <script>
 /* ===== 전화번호 포맷 ===== */

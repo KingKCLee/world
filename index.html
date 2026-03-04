@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+<!-- ✅ SEO FIX: Referrer-Policy meta 추가 -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
 <!-- ===== SEO 개선: Primary Meta Tags ===== -->
 <title>송도 월드메르디앙 에클라 | 6억대 신축 특별분양</title>
 <meta name="description" content="송도 1공구 신축 아파트 월드메르디앙 에클라. 전용 78·83·84㎡, 6억대 특별분양. 즉시입주 가능. 방문예약 1533-9077">
@@ -301,7 +304,8 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 
 .lp-privacy-layer{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;justify-content:center;align-items:center;z-index:9999;}
 .lp-privacy-inner{width:90%;max-width:500px;max-height:80vh;background:#fff;border-radius:10px;padding:18px 16px;overflow:auto;position:relative;}
-.lp-privacy-inner h3{margin:0 0 10px;font-size:17px;}
+/* ✅ SEO FIX: .privacy-title 스타일 추가 (h3→h2 변경 대응) */
+.privacy-title{font-size:17px;font-weight:700;margin:0 0 10px;}
 .lp-privacy-close{position:absolute;right:14px;top:10px;cursor:pointer;font-size:18px;}
 
 .lp-footer{border-top:1px solid #eee;padding:60px 16px 100px;background:#fafafa;color:#222;}
@@ -595,7 +599,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
   <div class="lp-privacy-layer" id="lpPrivacyLayer">
     <div class="lp-privacy-inner">
       <div class="lp-privacy-close" id="lpPrivacyClose">&times;</div>
-      <h3>개인정보 수집·이용 동의</h3>
+      <!-- ✅ SEO FIX: h3 → h2 변경 (제목 태그 계층 구조 H1→H3 건너뜀 해결) -->
+      <h2 class="privacy-title">개인정보 수집·이용 동의</h2>
       <p style="font-size:13px;line-height:1.6;">
         <b>[필수] 개인정보 수집·이용 동의</b><br><br>
         <b>1. 개인정보 수집 주체</b><br>당사(분양 시행사 및 분양대행사)<br><br>
@@ -649,7 +654,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
         src="https://www.youtube.com/embed/ZQXgPeGzwW4?si=_GjwR6COHyJd1bfG&amp;controls=0&amp;mute=1&amp;loop=1&amp;playlist=ZQXgPeGzwW4&amp;playsinline=1&amp;enablejsapi=1"
         title="송도 월드메르디앙 에클라 홍보 영상" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+        loading="lazy"></iframe><!-- ✅ SEO FIX: lazy loading 추가 -->
     </div>
   </div>
 
@@ -692,20 +698,21 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
   </section>
 
   <!-- 본문 이미지 -->
+  <!-- ✅ SEO FIX: 스크롤 아래 이미지에 loading="lazy" 추가 -->
   <section class="section-images">
-    <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner1.gif" alt="송도 월드메르디앙 에클라 전화상담 배너 ☎1533-9077"></a></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_1_1771463628.webp" alt="송도 월드메르디앙 에클라 단지 배치도 및 사업 개요"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_2_1771463628.webp" alt="송도 월드메르디앙 에클라 입지 환경 - 인천대입구역 도보 15분, GTX-B 수혜"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_3_1771463628.webp" alt="송도 월드메르디앙 에클라 교육 환경 - 채드윅 국제학교 도보권, 1공구 학원가"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_4_1771463628.webp" alt="송도 월드메르디앙 에클라 생활 인프라 - 센트럴파크, 대형마트 인접"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_5_1771463628.webp" alt="송도 월드메르디앙 에클라 78㎡ 평면도 - 30평대 남향 4베이"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_6_1771463628.webp" alt="송도 월드메르디앙 에클라 83㎡ 평면도 - 31평대 남향 4베이"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_7_1771463629.webp" alt="송도 월드메르디앙 에클라 84㎡ 평면도 - 32평대 남향 4베이"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_8_1771463629.webp" alt="송도 월드메르디앙 에클라 인테리어 - 신축 아파트 내부 마감"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_9_1771463629.webp" alt="송도 월드메르디앙 에클라 커뮤니티 시설 및 단지 편의시설"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_10_1771463629.webp" alt="송도 월드메르디앙 에클라 분양 혜택 - 입주지원금 1억 이상, 발코니 확장 무상"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_11_1771463629.webp" alt="송도 월드메르디앙 에클라 오시는 길 - 인천광역시 연수구 송도동 신송로 165-17"></div>
-    <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner2.gif" alt="송도 월드메르디앙 에클라 방문예약 배너 ☎1533-9077"></a></div>
+    <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner1.gif" alt="송도 월드메르디앙 에클라 전화상담 배너 ☎1533-9077" loading="lazy"></a></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_1_1771463628.webp" alt="송도 월드메르디앙 에클라 단지 배치도 및 사업 개요" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_2_1771463628.webp" alt="송도 월드메르디앙 에클라 입지 환경 - 인천대입구역 도보 15분, GTX-B 수혜" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_3_1771463628.webp" alt="송도 월드메르디앙 에클라 교육 환경 - 채드윅 국제학교 도보권, 1공구 학원가" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_4_1771463628.webp" alt="송도 월드메르디앙 에클라 생활 인프라 - 센트럴파크, 대형마트 인접" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_5_1771463628.webp" alt="송도 월드메르디앙 에클라 78㎡ 평면도 - 30평대 남향 4베이" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_6_1771463628.webp" alt="송도 월드메르디앙 에클라 83㎡ 평면도 - 31평대 남향 4베이" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_7_1771463629.webp" alt="송도 월드메르디앙 에클라 84㎡ 평면도 - 32평대 남향 4베이" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_8_1771463629.webp" alt="송도 월드메르디앙 에클라 인테리어 - 신축 아파트 내부 마감" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_9_1771463629.webp" alt="송도 월드메르디앙 에클라 커뮤니티 시설 및 단지 편의시설" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_10_1771463629.webp" alt="송도 월드메르디앙 에클라 분양 혜택 - 입주지원금 1억 이상, 발코니 확장 무상" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_11_1771463629.webp" alt="송도 월드메르디앙 에클라 오시는 길 - 인천광역시 연수구 송도동 신송로 165-17" loading="lazy"></div>
+    <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner2.gif" alt="송도 월드메르디앙 에클라 방문예약 배너 ☎1533-9077" loading="lazy"></a></div>
   </section>
 
   <!-- ===== ✅ 카카오맵으로 교체: 위치/교통 지도 ===== -->
@@ -870,7 +877,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
 <!-- 푸터 -->
 <footer class="lp-footer">
   <div class="lp-footer-inner">
-    <div class="lp-footer-logo"><a href="https://viphome.kr/"><img src="7349-2343_1771463555_4457.webp" alt="송도 월드메르디앙 에클라 로고"></a></div>
+    <!-- ✅ SEO FIX: 푸터 로고에 loading="lazy" 추가 -->
+    <div class="lp-footer-logo"><a href="https://viphome.kr/"><img src="7349-2343_1771463555_4457.webp" alt="송도 월드메르디앙 에클라 로고" loading="lazy"></a></div>
     <div class="lp-footer-info">
       <div class="lp-footer-info-row"><span class="label">현장명</span><span>|</span><span>송도 월드메르디앙</span></div>
       <div class="lp-footer-info-row"><span class="label">현장주소</span><span>|</span><span>인천광역시 연수구 송도동 21-16 (신송로 165-17)</span></div>
@@ -903,7 +911,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
 <!-- 플로팅 예약폼 -->
 <div class="lp-float-form" id="lpFloatForm">
   <button type="button" class="lp-float-close" id="lpFloatClose">×</button>
-  <h3 class="lp-float-title" style="color:#b39b00">방문예약신청</h3>
+  <!-- ✅ SEO FIX: h3 → h2 변경 (플로팅 폼도 계층 구조 통일) -->
+  <h2 class="lp-float-title" style="color:#b39b00">방문예약신청</h2>
   <form action="https://docs.google.com/forms/d/e/1FAIpQLScfHQY82AJ9EHuOlm4zS_dtRN_2ZbP9qDIC2KGLfNYDhvv2Rw/formResponse"
         method="POST" target="hidden_iframe" onsubmit="return validateForm('float');">
     <div class="lp-float-inner-row">
@@ -930,7 +939,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
   <div class="lp-slide-popup-container">
     <div class="lp-slide-popup-inner lp-popup-card" data-has-link="0">
       <button type="button" class="lp-slide-popup-close lp-popup-card-close">×</button>
-      <a href="#" class="lp-popup-link"><img src="popup.gif" alt="송도 월드메르디앙 에클라 특별분양 이벤트 팝업"></a>
+      <a href="#" class="lp-popup-link"><img src="popup.gif" alt="송도 월드메르디앙 에클라 특별분양 이벤트 팝업" loading="lazy"></a>
       <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk"> 오늘 하루 보지 않기</label></div>
     </div>
   </div>
@@ -1151,6 +1160,15 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     });
   });
 })();
+
+/* ✅ SEO FIX: Mixed Content 해결 - 카카오맵 http 링크를 https로 강제 변환 */
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){
+    document.querySelectorAll('a[href^="http://map.kakao.com"]').forEach(function(a){
+      a.href = a.href.replace('http://','https://');
+    });
+  }, 2000);
+});
 </script>
 </body>
 </html>

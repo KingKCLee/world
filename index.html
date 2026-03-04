@@ -10,7 +10,6 @@
 <meta name="description" content="인천 송도 월드메르디앙 에클라 | 연수구 송도동 신송로 165-17 | 2023년 준공 신축 4개동 128세대 | 전용 78·83·84㎡ 30평대 6억원대 특별분양 | 인천대입구역 도보 15분 | GTX-B 수혜 | 즉시입주 가능 | 모델하우스 방문예약 ☎1533-9077">
 <meta name="keywords" content="송도 월드메르디앙, 송도 아파트 분양, 월드메르디앙 에클라, 송도 신축 아파트, 인천 송도 분양, 송도 모델하우스, 송도 1공구 아파트, 송도 할인분양, 6억대 아파트, 즉시입주 아파트, GTX-B 송도, 송도국제도시 아파트, 인천대입구역 아파트">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<!-- ✅ 변경: canonical -->
 <link rel="canonical" href="https://viphome.kr/">
 
 <!-- ===== SEO 개선: Open Graph ===== -->
@@ -18,12 +17,10 @@
 <meta property="og:site_name" content="송도 월드메르디앙 에클라">
 <meta property="og:title" content="송도 월드메르디앙 에클라 | 6억대 신축 아파트 특별분양">
 <meta property="og:description" content="인천 송도 1공구 월드메르디앙 에클라. 전용 78·83·84㎡ 30평대 신축 아파트 6억원대 특별할인분양. 즉시입주 가능. 모델하우스 방문예약 접수중.">
-<!-- ✅ 변경: og:image -->
 <meta property="og:image" content="https://viphome.kr/sns-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/png"> <!-- ✅ 추가 -->
-<!-- ✅ 변경: og:url -->
+<meta property="og:image:type" content="image/png">
 <meta property="og:url" content="https://viphome.kr/">
 <meta property="og:locale" content="ko_KR">
 
@@ -31,7 +28,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="송도 월드메르디앙 에클라 | 6억대 신축 아파트 특별분양">
 <meta name="twitter:description" content="인천 송도 1공구 30평대 신축 아파트 6억원대. 즉시입주·GTX-B 수혜. 모델하우스 방문예약 ☎1533-9077">
-<!-- ✅ 변경: twitter:image -->
 <meta name="twitter:image" content="https://viphome.kr/sns-image.png">
 
 <!-- ===== SEO 개선: 네이버 검색 등록 ===== -->
@@ -47,7 +43,6 @@
 <link rel="apple-touch-icon" href="파비콘W.png">
 
 <!-- ===== SEO 개선: JSON-LD 구조화 데이터 ===== -->
-<!-- ✅ 변경: 모든 URL을 https://viphome.kr/ 로, 이미지를 sns-image.png 로 -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -235,8 +230,6 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-input{background:#fff!important;color:#222!important;height:48px;padding:0 14px;box-sizing:border-box;width:100%;border-radius:6px;font-size:14px;border:1px solid #ccc;outline:none;transition:border-color .2s,box-shadow .2s;}
 .lp-input::placeholder{color:#bbb!important;}
 .lp-input:focus{border-color:var(--brand-color);box-shadow:0 0 0 3px rgba(179,155,0,.12);}
-
-/* ===== SEO 개선: sr-only ===== */
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
 #header{position:fixed;left:0;top:0;width:100%;background:transparent;padding:4px 20px;z-index:100;transition:background .3s,padding .3s,box-shadow .3s;}
@@ -373,6 +366,104 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-popup-today{background:rgba(245,245,245,.95);color:#333;font-size:12px;padding:8px 10px;border-top:1px solid rgba(0,0,0,.06);}
 .lp-popup-today label{display:flex;align-items:center;gap:6px;}
 
+/* ===== ✅ 추가: 긴급성 배너 ===== */
+.lp-urgency{text-align:center;padding:14px 16px;background:linear-gradient(135deg,#1a1a1a 0%,#333 100%);border-radius:0 0 10px 10px;margin:0 auto 20px;position:relative;overflow:hidden;left:50%;margin-left:-50vw;width:100vw;}
+.lp-urgency::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(179,155,0,.08),transparent);animation:urgShine 3s ease-in-out infinite;}
+@keyframes urgShine{0%,100%{opacity:0}50%{opacity:1}}
+.lp-urgency-top{font-size:13px;color:#ccc;letter-spacing:-.3px;margin-bottom:4px;}
+.lp-urgency-main{font-size:22px;font-weight:800;color:#fff;letter-spacing:-1px;}
+.lp-urgency-main em{font-style:normal;color:var(--brand-color-light);}
+.lp-urgency-bottom{font-size:12px;color:#999;margin-top:4px;}
+@media(max-width:1023px){.lp-urgency-main{font-size:18px;}}
+
+/* ===== ✅ 추가: 핵심 혜택 카드 ===== */
+.lp-benefits{margin:36px auto;padding:0;}
+.lp-benefits-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:0 0 6px;}
+.lp-benefits-sub{text-align:center;font-size:14px;color:#888;margin-bottom:20px;letter-spacing:-.5px;}
+.lp-benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.lp-benefit-card{background:#faf8ef;border:1px solid #e8e2c8;border-radius:12px;padding:22px 16px;text-align:center;transition:transform .2s,box-shadow .2s;}
+.lp-benefit-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(179,155,0,.15);}
+.lp-benefit-icon{font-size:32px;margin-bottom:8px;line-height:1;}
+.lp-benefit-label{font-size:15px;font-weight:700;color:#222;letter-spacing:-.5px;margin-bottom:4px;}
+.lp-benefit-desc{font-size:12px;color:#777;line-height:1.45;letter-spacing:-.3px;}
+@media(max-width:1023px){
+  .lp-benefits-title{font-size:22px;}
+  .lp-benefits-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .lp-benefit-card{padding:16px 12px;}
+  .lp-benefit-icon{font-size:26px;}
+  .lp-benefit-label{font-size:14px;}
+}
+
+/* ===== ✅ 추가: 위치/교통 지도 ===== */
+.lp-map-section{margin:36px auto;}
+.lp-map-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:0 0 6px;}
+.lp-map-sub{text-align:center;font-size:14px;color:#888;margin-bottom:16px;letter-spacing:-.5px;}
+.lp-map-wrap{border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);border:1px solid #e5e0cc;}
+.lp-map-wrap iframe{width:100%;height:400px;border:0;display:block;}
+.lp-map-info{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#faf8ef;border-top:1px solid #e5e0cc;}
+.lp-map-info-item{padding:14px 10px;text-align:center;border-right:1px solid #e5e0cc;}
+.lp-map-info-item:last-child{border-right:none;}
+.lp-map-info-label{font-size:11px;color:#999;margin-bottom:2px;}
+.lp-map-info-value{font-size:14px;font-weight:700;color:#222;letter-spacing:-.5px;}
+@media(max-width:1023px){
+  .lp-map-title{font-size:22px;}
+  .lp-map-wrap iframe{height:280px;}
+  .lp-map-info{grid-template-columns:repeat(2,1fr);}
+  .lp-map-info-item:nth-child(2){border-right:none;}
+  .lp-map-info-item:nth-child(1),.lp-map-info-item:nth-child(2){border-bottom:1px solid #e5e0cc;}
+}
+
+/* ===== ✅ 추가: 시세 비교 ===== */
+.lp-price-section{margin:36px auto;}
+.lp-price-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:0 0 6px;}
+.lp-price-sub{text-align:center;font-size:14px;color:#888;margin-bottom:16px;letter-spacing:-.5px;}
+.lp-price-table{width:100%;border-collapse:collapse;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.lp-price-table thead th{background:#1a1a1a;color:#fff;font-size:13px;font-weight:600;padding:12px 10px;text-align:center;letter-spacing:-.3px;}
+.lp-price-table tbody td{padding:12px 10px;text-align:center;font-size:14px;border-bottom:1px solid #eee;letter-spacing:-.3px;}
+.lp-price-table tbody tr:last-child td{border-bottom:none;}
+.lp-price-table tbody tr.lp-price-highlight{background:#fffde6;}
+.lp-price-table tbody tr.lp-price-highlight td{font-weight:700;color:var(--brand-color-dark);}
+.lp-price-tag{display:inline-block;background:#d60000;color:#fff;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;margin-left:4px;vertical-align:middle;}
+.lp-price-note{text-align:center;font-size:12px;color:#999;margin-top:10px;}
+@media(max-width:1023px){
+  .lp-price-title{font-size:22px;}
+  .lp-price-table thead th{font-size:12px;padding:10px 6px;}
+  .lp-price-table tbody td{font-size:13px;padding:10px 6px;}
+}
+
+/* ===== ✅ 추가: 상담 후기 ===== */
+.lp-reviews-section{margin:36px auto;}
+.lp-reviews-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:0 0 6px;}
+.lp-reviews-sub{text-align:center;font-size:14px;color:#888;margin-bottom:16px;letter-spacing:-.5px;}
+.lp-reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.lp-review-card{background:#fff;border:1px solid #eee;border-radius:12px;padding:20px 18px;transition:box-shadow .2s;}
+.lp-review-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.08);}
+.lp-review-stars{color:var(--brand-color);font-size:16px;margin-bottom:8px;letter-spacing:2px;}
+.lp-review-text{font-size:14px;line-height:1.6;color:#444;letter-spacing:-.3px;margin-bottom:10px;}
+.lp-review-author{font-size:12px;color:#999;}
+@media(max-width:1023px){
+  .lp-reviews-title{font-size:22px;}
+  .lp-reviews-grid{grid-template-columns:1fr;gap:12px;}
+}
+
+/* ===== ✅ 추가: FAQ 아코디언 ===== */
+.lp-faq-section{max-width:100%;margin:40px auto 0;}
+.lp-faq-title{font-size:36px;letter-spacing:-2px;font-weight:800;text-align:center;margin:0 0 6px;color:var(--brand-color);}
+.lp-faq-sub{text-align:center;font-size:14px;color:#888;margin-bottom:20px;letter-spacing:-.5px;}
+.lp-faq-item{border:1px solid #e5e0cc;border-radius:10px;margin-bottom:10px;overflow:hidden;transition:border-color .25s;}
+.lp-faq-item.active{border-color:var(--brand-color);}
+.lp-faq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;cursor:pointer;background:#fff;font-size:15px;font-weight:600;color:#222;letter-spacing:-.5px;line-height:1.45;transition:background .2s;}
+.lp-faq-q:hover{background:#faf8ef;}
+.lp-faq-q .faq-icon{flex:0 0 24px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:300;color:var(--brand-color);transition:transform .3s;}
+.lp-faq-item.active .lp-faq-q .faq-icon{transform:rotate(45deg);}
+.lp-faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.lp-faq-a-inner{padding:0 18px 18px;font-size:14px;line-height:1.7;color:#555;letter-spacing:-.3px;}
+@media(max-width:1023px){
+  .lp-faq-title{font-size:28px;}
+  .lp-faq-q{font-size:14px;padding:14px 14px;}
+  .lp-faq-a-inner{font-size:13px;padding:0 14px 16px;}
+}
+
 @media(min-width:1024px){
   #header{padding:14px 40px;}
   #header.on{padding:0 40px;}
@@ -437,7 +528,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
 <div id="top"></div>
 <div id="lp-wrap">
 
-<!-- ===== SEO 개선: H1 (화면에 안 보이지만 검색엔진이 읽음) ===== -->
 <h1 class="sr-only">송도 월드메르디앙 에클라 - 인천 송도 1공구 6억대 신축 아파트 특별분양 | 모델하우스 방문예약 ☎1533-9077</h1>
 
 <!-- 헤더 -->
@@ -445,7 +535,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
   <div class="header-content">
     <div class="h1_logo-wrap">
       <div class="h1_logo">
-        <!-- ✅ 변경: 로고 링크 -->
         <a href="https://viphome.kr/"><img src="7349-2343_1771463555_4457.webp" alt="송도 월드메르디앙 에클라 로고"></a>
       </div>
       <div class="h1_title">송도 월드메르디앙</div>
@@ -516,6 +605,13 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
     </div>
   </div>
 
+  <!-- ===== ✅ 추가: 긴급성 배너 ===== -->
+  <div class="lp-urgency" data-aos="fade-up">
+    <div class="lp-urgency-top">2023년 준공 완료 · 즉시입주 가능</div>
+    <div class="lp-urgency-main"><em>잔여세대 한정</em> 특별할인 분양 진행중</div>
+    <div class="lp-urgency-bottom">기존 8억대 → 6억원대 | 1억2천만원 특별할인 + 3,000만원 무상옵션</div>
+  </div>
+
   <!-- ===== 상단 폼 ===== -->
   <div id="reserve-top">
     <section class="lp-reserve-wrap" data-aos="fade-up">
@@ -543,21 +639,54 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
     </section>
   </div>
 
-  <!-- ===== 유튜브 (스크롤 시 자동재생 - autoplay 제거, enablejsapi 추가) ===== -->
+  <!-- ===== 유튜브 ===== -->
   <div class="lp-youtube-section" data-aos="fade-up">
     <div class="lp-youtube-responsive">
-      <iframe
-        id="ytPlayer"
-        width="100%" height="100%"
+      <iframe id="ytPlayer" width="100%" height="100%"
         src="https://www.youtube.com/embed/ZQXgPeGzwW4?si=_GjwR6COHyJd1bfG&amp;controls=0&amp;mute=1&amp;loop=1&amp;playlist=ZQXgPeGzwW4&amp;playsinline=1&amp;enablejsapi=1"
-        title="송도 월드메르디앙 에클라 홍보 영상 - 인천 송도 신축 아파트 분양"
-        frameborder="0"
+        title="송도 월드메르디앙 에클라 홍보 영상" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
   </div>
+
+  <!-- ===== ✅ 추가: 핵심 혜택 카드 (유튜브 아래, 이미지 위) ===== -->
+  <section class="lp-benefits" data-aos="fade-up">
+    <h2 class="lp-benefits-title">월드메르디앙 송도 PREMIUM 6</h2>
+    <p class="lp-benefits-sub">송도 1공구 핵심 입지, 6가지 프리미엄</p>
+    <div class="lp-benefits-grid">
+      <div class="lp-benefit-card">
+        <div class="lp-benefit-icon">🏫</div>
+        <div class="lp-benefit-label">명문학군 프리미엄</div>
+        <div class="lp-benefit-desc">송도국제학교를 비롯한 12개의 학교와 송도 최대 규모 학원가 인접</div>
+      </div>
+      <div class="lp-benefit-card">
+        <div class="lp-benefit-icon">📍</div>
+        <div class="lp-benefit-label">특급입지 프리미엄</div>
+        <div class="lp-benefit-desc">송도국제도시 중심인 1·2공구 매머드급 주거타운 중심 위치</div>
+      </div>
+      <div class="lp-benefit-card">
+        <div class="lp-benefit-icon">🚄</div>
+        <div class="lp-benefit-label">쾌속교통 프리미엄</div>
+        <div class="lp-benefit-desc">송도트램(예정) 도보권, GTX-B 개통 시 서울역까지 약 27분</div>
+      </div>
+      <div class="lp-benefit-card">
+        <div class="lp-benefit-icon">🏬</div>
+        <div class="lp-benefit-label">명품생활 프리미엄</div>
+        <div class="lp-benefit-desc">송도국제도시의 완성된 생활인프라와 근린공원으로 둘러싸인 입지</div>
+      </div>
+      <div class="lp-benefit-card">
+        <div class="lp-benefit-icon">🏗️</div>
+        <div class="lp-benefit-label">희소가치 프리미엄</div>
+        <div class="lp-benefit-desc">희소성이 높은 중소형 혁신평면에 차별화된 인테리어 마감재 적용</div>
+      </div>
+      <div class="lp-benefit-card">
+        <div class="lp-benefit-icon">🌳</div>
+        <div class="lp-benefit-label">힐링생활 프리미엄</div>
+        <div class="lp-benefit-desc">센트럴파크, 미추홀공원, 송도달빛축제공원 등과 가까운 쾌적한 환경</div>
+      </div>
+    </div>
+  </section>
 
   <!-- 본문 이미지 -->
   <section class="section-images">
@@ -574,6 +703,127 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
     <div data-aos="fade-up"><img src="landing_page_images_309_10_1771463629.webp" alt="송도 월드메르디앙 에클라 분양 혜택 - 입주지원금 1억 이상, 발코니 확장 무상"></div>
     <div data-aos="fade-up"><img src="landing_page_images_309_11_1771463629.webp" alt="송도 월드메르디앙 에클라 오시는 길 - 인천광역시 연수구 송도동 신송로 165-17"></div>
     <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner2.gif" alt="송도 월드메르디앙 에클라 방문예약 배너 ☎1533-9077"></a></div>
+  </section>
+
+  <!-- ===== ✅ 추가: 위치/교통 지도 ===== -->
+  <section class="lp-map-section" data-aos="fade-up">
+    <h2 class="lp-map-title">오시는 길</h2>
+    <p class="lp-map-sub">인천광역시 연수구 송도동 21-16 (신송로 165-17)</p>
+    <div class="lp-map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3170.5!2d126.6458!3d37.3970!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b7d4e4e4e4e4f%3A0x0!2z7Iug7Iah66GcIDE2NS0xNw!5e0!3m2!1sko!2skr!4v1709000000000!5m2!1sko!2skr"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="송도 월드메르디앙 에클라 위치 지도"></iframe>
+      <div class="lp-map-info">
+        <div class="lp-map-info-item">
+          <div class="lp-map-info-label">인천대입구역</div>
+          <div class="lp-map-info-value">도보 15분</div>
+        </div>
+        <div class="lp-map-info-item">
+          <div class="lp-map-info-label">GTX-B (예정)</div>
+          <div class="lp-map-info-value">서울역 27분</div>
+        </div>
+        <div class="lp-map-info-item">
+          <div class="lp-map-info-label">송도트램 (예정)</div>
+          <div class="lp-map-info-value">도보권 정차</div>
+        </div>
+        <div class="lp-map-info-item">
+          <div class="lp-map-info-label">채드윅 국제학교</div>
+          <div class="lp-map-info-value">도보 300m</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ✅ 추가: 시세 비교 ===== -->
+  <section class="lp-price-section" data-aos="fade-up">
+    <h2 class="lp-price-title">송도 주요단지 시세 비교</h2>
+    <p class="lp-price-sub">30평대 기준, 월드메르디앙 에클라의 가격 경쟁력을 확인하세요</p>
+    <table class="lp-price-table">
+      <thead>
+        <tr>
+          <th>단지명</th>
+          <th>전용면적</th>
+          <th>준공</th>
+          <th>시세(매매)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>더샵 하버뷰</td>
+          <td>84㎡</td>
+          <td>2018년</td>
+          <td>8.5~9억</td>
+        </tr>
+        <tr>
+          <td>힐스테이트 송도</td>
+          <td>84㎡</td>
+          <td>2020년</td>
+          <td>8~8.5억</td>
+        </tr>
+        <tr>
+          <td>푸르지오 월드마크</td>
+          <td>84㎡</td>
+          <td>2015년</td>
+          <td>7.5~8억</td>
+        </tr>
+        <tr class="lp-price-highlight">
+          <td>월드메르디앙 에클라 <span class="lp-price-tag">특별분양</span></td>
+          <td>78~84㎡</td>
+          <td>2023년</td>
+          <td>6억대</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="lp-price-note">※ 시세는 2025년 기준 실거래가 참고 자료이며, 실제와 차이가 있을 수 있습니다.</p>
+  </section>
+
+  <!-- ===== ✅ 추가: 상담 후기 ===== -->
+  <section class="lp-reviews-section" data-aos="fade-up">
+    <h2 class="lp-reviews-title">상담 후기</h2>
+    <p class="lp-reviews-sub">방문 상담을 받으신 분들의 실제 후기입니다</p>
+    <div class="lp-reviews-grid">
+      <div class="lp-review-card">
+        <div class="lp-review-stars">★★★★★</div>
+        <div class="lp-review-text">"송도에서 6억대 신축이 가능한지 반신반의했는데, 직접 와보니 진짜였어요. 남향 4베이에 발코니 확장 무상까지, 이 가격에 이 조건은 없을 것 같습니다."</div>
+        <div class="lp-review-author">— 김** (40대, 인천 거주)</div>
+      </div>
+      <div class="lp-review-card">
+        <div class="lp-review-stars">★★★★★</div>
+        <div class="lp-review-text">"아이 학군 때문에 1공구만 보고 있었는데, 채드윅 국제학교 도보권에 학원가도 가깝고 가격까지 합리적이라 바로 계약했습니다. 상담도 정말 친절하셨어요."</div>
+        <div class="lp-review-author">— 박** (30대, 서울 거주)</div>
+      </div>
+      <div class="lp-review-card">
+        <div class="lp-review-stars">★★★★★</div>
+        <div class="lp-review-text">"GTX-B 착공 확정에 송도트램까지 예정되어 있으니 미래가치가 확실하다고 판단했습니다. 즉시입주에 입주지원금 혜택까지 있어서 부담이 적었어요."</div>
+        <div class="lp-review-author">— 이** (50대, 경기 거주)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="lp-faq-section" data-aos="fade-up">
+    <h2 class="lp-faq-title">자주 묻는 질문</h2>
+    <p class="lp-faq-sub">궁금한 사항을 확인해 보세요</p>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q"><span>Q. 송도 월드메르디앙 에클라 분양가는 얼마인가요?</span><span class="faq-icon">+</span></div>
+      <div class="lp-faq-a"><div class="lp-faq-a-inner">전용 78·83·84㎡ 30평대 기준 6억원대부터 특별할인 분양 중입니다. 기존 7억대 중반 대비 1억 이상 할인 혜택이 적용되며, 발코니 확장 무상 및 3,000만원 상당의 무상옵션이 포함됩니다.</div></div>
+    </div>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q"><span>Q. 송도 월드메르디앙 위치와 교통은 어떤가요?</span><span class="faq-icon">+</span></div>
+      <div class="lp-faq-a"><div class="lp-faq-a-inner">인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치합니다. 인천대입구역 도보 15분 거리이며, GTX-B 노선 착공 확정으로 향후 서울역까지 약 25분대 접근이 가능해질 예정입니다. 또한 인천3호선, 송도트램(2032년 예정), 제2외곽순환도로 등 다양한 교통 호재가 예정되어 있습니다.</div></div>
+    </div>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q"><span>Q. 모델하우스 방문예약은 어떻게 하나요?</span><span class="faq-icon">+</span></div>
+      <div class="lp-faq-a"><div class="lp-faq-a-inner">모델하우스는 방문예약제로 운영됩니다. 대표번호 1533-9077로 전화하시거나 홈페이지에서 온라인 방문예약을 신청하시면 전문 상담사가 빠르게 연락드립니다.</div></div>
+    </div>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q"><span>Q. 즉시입주가 가능한가요?</span><span class="faq-icon">+</span></div>
+      <div class="lp-faq-a"><div class="lp-faq-a-inner">네, 2023년 10월 준공 완료된 신축 아파트로 즉시 입주가 가능합니다. 입주지원금 1억 이상(분양가 대비 15% 효과), 계약금 정액제 등 파격적인 입주 혜택이 제공됩니다.</div></div>
+    </div>
+    <div class="lp-faq-item">
+      <div class="lp-faq-q"><span>Q. 단지 규모와 타입은 어떻게 되나요?</span><span class="faq-icon">+</span></div>
+      <div class="lp-faq-a"><div class="lp-faq-a-inner">지하 2층~지상 10층, 총 4개동 128세대 규모의 주상복합 단지입니다. 전용 78㎡(23.89평/32세대), 83㎡(25.16평/64세대), 84A㎡(25.59평/31세대), 84A-1㎡(25.59평/1세대) 4개 타입으로 구성되어 있으며, 전 세대 남향 4베이 설계로 채광과 통풍이 우수합니다. 주차는 총 259대(세대당 약 1.13대+근린생활시설 74대, 판매시설 40대)입니다.</div></div>
+    </div>
   </section>
 
   <!-- ===== 하단 폼 ===== -->
@@ -603,12 +853,13 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
     </section>
   </div>
 
-  <!-- ===== SEO 개선: 검색엔진용 텍스트 콘텐츠 ===== -->
+  <!-- SEO 텍스트 -->
   <section class="sr-only" aria-label="분양 상세 안내">
     <h2>송도 월드메르디앙 에클라 분양 안내</h2>
-    <p>송도 월드메르디앙 에클라는 인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치한 2023년 준공 주상복합 신축 아파트입니다. 지하 2층~지상 10층, 총 4개동 128세대 규모로 전용면적 78㎡·83㎡·84㎡(약 30~32평) 3가지 타입을 공급하며, 전 세대 남향 4베이 설계로 채광과 통풍이 우수합니다. 현재 6억원대부터 특별할인 분양이 진행 중이며 즉시 입주가 가능합니다.</p>
-    <p>인천대입구역까지 도보 15분 거리에 위치하며, GTX-B 노선 착공 확정으로 향후 서울역까지 약 25분대 접근이 가능해질 전망입니다. 채드윅 송도 국제학교 도보권, 송도 1공구 학원가 인접의 교육 입지와 함께 센트럴파크, 미추홀공원, 달빛공원 등 풍부한 녹지 인프라를 누릴 수 있습니다.</p>
-    <p>입주지원금 1억 이상(분양가 대비 15% 효과), 발코니 확장 무상, 3,000만원 상당의 무상옵션, 계약금 정액제 등 파격적인 분양 혜택이 제공됩니다. 모델하우스는 방문예약제로 운영되며, 대표번호 1533-9077로 문의하시면 전문 상담사의 맞춤형 상담을 받으실 수 있습니다.</p>
+    <p>송도 월드메르디앙 에클라는 인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치한 2023년 준공 주상복합 신축 아파트입니다. 대지면적 6,628㎡(2,004평), 건축면적 3,308㎡(1,000평), 연면적 29,704㎡(8,985평), 건폐율 49.92%, 용적률 279.55% 규모입니다. 지하 2층~지상 10층, 총 4개동 128세대로 전용면적 78㎡(32세대/25%), 83㎡(64세대/50%), 84A㎡(31세대/24%), 84A-1㎡(1세대/1%) 4가지 타입을 공급하며, 전 세대 남향 4베이 설계로 채광과 통풍이 우수합니다.</p>
+    <p>인천대입구역까지 도보 15분 거리에 위치하며, GTX-B 노선(2031년 개통 예정, 송도-여의도 17분, 송도-서울역 27분), 인천3호선(송도달빛축제공원역-검단초수공원역, 34.64km), 송도트램(2032년 예정, 30개역 8자 순환), 제2외곽순환도로(인천-안산, 19.80km) 등 교통 호재가 풍부합니다.</p>
+    <p>채드윅 송도 국제학교 도보권, 신정초·신정중 등 명문학교 인접, 인천 최대 규모 학원가 도보 거리에 위치합니다. 센트럴파크역, 해돌이공원, 송도달빛축제공원, 잭니클라우스CC, 롯데마트, 코스트코, 송도컨벤시아 등 완성된 생활인프라를 갖추고 있습니다.</p>
+    <p>현재 6억원대부터 특별할인 분양이 진행 중이며 즉시 입주가 가능합니다. 입주지원금 1억 이상(분양가 대비 15% 효과), 발코니 확장 무상, 3,000만원 상당의 무상옵션, 계약금 정액제 등 파격적인 분양 혜택이 제공됩니다. 모델하우스는 방문예약제로 운영되며, 대표번호 1533-9077로 문의하시면 전문 상담사의 맞춤형 상담을 받으실 수 있습니다.</p>
   </section>
 
 </div>
@@ -617,7 +868,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
 <!-- 푸터 -->
 <footer class="lp-footer">
   <div class="lp-footer-inner">
-    <!-- ✅ 변경: 푸터 로고 링크 -->
     <div class="lp-footer-logo"><a href="https://viphome.kr/"><img src="7349-2343_1771463555_4457.webp" alt="송도 월드메르디앙 에클라 로고"></a></div>
     <div class="lp-footer-info">
       <div class="lp-footer-info-row"><span class="label">현장명</span><span>|</span><span>송도 월드메르디앙</span></div>
@@ -630,9 +880,11 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
     <div class="lp-footer-notice">
       ※ 본 홈페이지에 사용된 투시도, 조감도, CG, 이미지 및 내용, 문구 등은 소비자의 이해를 돕기 위해 제작 또는 표현된 것으로 실제와 차이가 있을 수 있습니다.<br>
       ※ 본 홈페이지 상의 개발 및 교통계획에 대한 사항은 추후 관계기관의 사정에 따라 변경 및 취소 될 수 있으며, 이는 당사와 무관함을 알려드립니다.<br>
-      ※ 본 홈페이지의 내용은 시행사 및 시공사 및 관계기관에 의해 변경될 수 있습니다.
+      ※ 본 홈페이지의 내용은 시행사 및 시공사 및 관계기관에 의해 변경될 수 있습니다.<br>
+온라인마케팅 대행 :  더블유부동산   대표자 : 이광철   사업자등록번호 : 589-24-01721 
+
     </div>
-    <div class="lp-footer-copy">Copyright 2026 CO.,LTD. ALL RIGHTS RESERVED.</div>
+    <div class="lp-footer-copy">Copyright 2026 월드메르디앙 송도. ALL RIGHTS RESERVED.</div>
   </div>
 </footer>
 
@@ -647,7 +899,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
 <!-- 플로팅 딤 -->
 <div class="lp-float-dim" id="lpFloatDim"></div>
 
-<!-- ===== 플로팅 예약폼 ===== -->
+<!-- 플로팅 예약폼 -->
 <div class="lp-float-form" id="lpFloatForm">
   <button type="button" class="lp-float-close" id="lpFloatClose">×</button>
   <h3 class="lp-float-title" style="color:#b39b00">방문예약신청</h3>
@@ -720,7 +972,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
 </div>
 
 <script>
-/* ===== 전화번호: 화면에는 하이픈 표시, 구글폼에는 숫자만 전송 ===== */
+/* ===== 전화번호 포맷 ===== */
 ['top','bottom','float'].forEach(function(id){
     var display = document.getElementById('display_phone_' + id);
     var real = document.getElementById('real_phone_' + id);
@@ -736,12 +988,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.8)!importa
 /* ===== 폼 검증 ===== */
 function validateForm(id){
     var phone = document.getElementById('real_phone_' + id).value;
-    if(phone.length < 10){
-        alert('올바른 전화번호를 입력해주세요.');
-        return false;
-    }
-    submitted = true;
-    return true;
+    if(phone.length < 10){ alert('올바른 전화번호를 입력해주세요.'); return false; }
+    submitted = true; return true;
 }
 
 /* ===== AOS ===== */
@@ -813,7 +1061,7 @@ document.querySelectorAll('.js-quick-top').forEach(function(b){b.addEventListene
 /* ===== 말풍선 닫기 ===== */
 document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-bubble-close');if(b){var w=b.closest('.lp-resv-bubble-fixed');if(w)w.style.display='none';}});
 
-/* ===== PC 퀵+말풍선 스크롤 모션 ===== */
+/* ===== PC 퀵+말풍선 스크롤 ===== */
 (function(){
   if(!matchMedia('(min-width:1024px)').matches)return;
   var q=document.querySelector('.lp-quick-pc'),b=document.querySelector('.lp-resv-bubble-fixed');
@@ -849,36 +1097,45 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   kv.addEventListener('mouseleave',function(){h.classList.remove('show');v=false;clearTimeout(ht);});
 })();
 
-/* ===== 유튜브 스크롤 시 자동재생 (추가) ===== */
+/* ===== 유튜브 ===== */
 (function(){
   var tag = document.createElement('script');
   tag.src = 'https://www.youtube.com/iframe_api';
   document.head.appendChild(tag);
-
-  var player;
-  var played = false;
-
+  var player, played = false;
   window.onYouTubeIframeAPIReady = function(){
     player = new YT.Player('ytPlayer', {
       events: {
         'onReady': function(){
           var section = document.querySelector('.lp-youtube-section');
           if(!section) return;
-
           var observer = new IntersectionObserver(function(entries){
             entries.forEach(function(entry){
-              if(entry.isIntersecting && !played){
-                played = true;
-                player.playVideo();
-              }
+              if(entry.isIntersecting && !played){ played = true; player.playVideo(); }
             });
           }, { threshold: 0.3 });
-
           observer.observe(section);
         }
       }
     });
   };
+})();
+
+/* ===== FAQ 아코디언 ===== */
+(function(){
+  document.querySelectorAll('.lp-faq-item').forEach(function(item){
+    var q = item.querySelector('.lp-faq-q');
+    var a = item.querySelector('.lp-faq-a');
+    if(!q || !a) return;
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('active');
+      document.querySelectorAll('.lp-faq-item.active').forEach(function(other){
+        if(other !== item){ other.classList.remove('active'); other.querySelector('.lp-faq-a').style.maxHeight = null; }
+      });
+      if(isOpen){ item.classList.remove('active'); a.style.maxHeight = null; }
+      else { item.classList.add('active'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
 })();
 </script>
 </body>

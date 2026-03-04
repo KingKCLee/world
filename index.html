@@ -1161,14 +1161,35 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   });
 })();
 
-/* ✅ SEO FIX: Mixed Content 해결 - 카카오맵 http 링크를 https로 강제 변환 */
-document.addEventListener('DOMContentLoaded', function(){
-  setTimeout(function(){
-    document.querySelectorAll('a[href^="http://map.kakao.com"]').forEach(function(a){
+/* ✅ SEO FIX: 카카오맵 자동생성 요소 수정 (Mixed Content + alt 누락) */
+(function(){
+  var mapContainer = document.getElementById('daumRoughmapContainer1772630746853');
+  if(!mapContainer) return;
+
+  function fixKakaoMap(root){
+    /* 1) http → https 링크 수정 */
+    root.querySelectorAll('a[href^="http://"]').forEach(function(a){
       a.href = a.href.replace('http://','https://');
     });
-  }, 2000);
-});
+    /* 2) alt="" 빈 이미지에 설명 추가 */
+    root.querySelectorAll('img[alt=""]').forEach(function(img){
+      img.alt = '카카오맵 송도 월드메르디앙 에클라 위치';
+    });
+  }
+
+  /* 초기 1회 실행 (지도 이미 로드된 경우 대비) */
+  setTimeout(function(){ fixKakaoMap(mapContainer); }, 3000);
+
+  /* MutationObserver로 동적 삽입 요소도 감시 */
+  if('MutationObserver' in window){
+    var observer = new MutationObserver(function(){
+      fixKakaoMap(mapContainer);
+    });
+    observer.observe(mapContainer, { childList:true, subtree:true, attributes:true });
+    /* 10초 후 감시 종료 (성능 보호) */
+    setTimeout(function(){ observer.disconnect(); }, 10000);
+  }
+})();
 </script>
 </body>
 </html>

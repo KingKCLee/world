@@ -227,7 +227,6 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-input:focus{border-color:var(--brand-color);box-shadow:0 0 0 3px rgba(179,155,0,.12);}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
-/* ✅ 변경 1: 헤더 15% 슬림 (12px→10px) + 첫 화면부터 반투명 */
 #header{position:fixed;left:0;top:0;width:100%;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:10px 24px;z-index:100;transition:padding .3s,box-shadow .3s;box-shadow:0 4px 16px rgba(0,0,0,.08);}
 #header.on{padding:10px 24px;box-shadow:0 4px 16px rgba(0,0,0,.08);}
 .header-content{margin:0 auto;max-width:1600px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:nowrap;}
@@ -279,6 +278,13 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .section-images img{width:100%;display:block;cursor:zoom-in;}
 .section-images > div{margin-bottom:16px;}
 .section-images a img{cursor:pointer;}
+
+/* ✅ 추가: 본문 이미지 섹션 제목 */
+.lp-section-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:36px 0 6px;}
+.lp-section-sub{text-align:center;font-size:14px;color:#888;margin-bottom:16px;letter-spacing:-.5px;}
+@media(max-width:1023px){
+  .lp-section-title{font-size:22px;margin:28px 0 4px;}
+}
 
 .lp-reserve-wrap{max-width:100%;margin:40px auto;padding:40px 28px 28px;border-radius:14px;background:#fff;border:2px solid var(--brand-color);box-shadow:0 4px 24px rgba(179,155,0,.12),0 1px 4px rgba(0,0,0,.06);position:relative;}
 .lp-reserve-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--brand-color);border-radius:14px 14px 0 0;}
@@ -456,14 +462,12 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 }
 
 @media(min-width:1024px){
-  /* ✅ 변경: PC 헤더 15% 슬림 (12→10px) */
   #header{padding:10px 40px;}
   #header.on{padding:10px 40px;}
   .lp-quick-pc{display:block;}
   .lp-quick-mo{display:none;}
 }
 @media(max-width:1023px){
-  /* ✅ 변경: 모바일 헤더 15% 슬림 + 기본/스크롤 통일 (10→9px, 11→9px) */
   #header{padding:9px 12px;}
   #header.on{padding:9px 12px;}
   .header-content{gap:8px;}
@@ -505,7 +509,6 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 }
 html,body{overflow-y:auto;}
 body.lp-landing{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important;}
-/* 첫 화면 + 스크롤 후 모두 반투명 헤더 */
 body.lp-landing.lp-brand-dark #header,
 body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;box-shadow:0 4px 16px rgba(0,0,0,.08)!important;}
 </style>
@@ -628,9 +631,9 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </section>
   </div>
 
-  <!-- ✅ 변경 2: autoplay=1 추가 -->
   <div class="lp-youtube-section" data-aos="fade-up">
     <div class="lp-youtube-responsive">
+      <!-- ✅ autoplay=1 추가 -->
       <iframe id="ytPlayer" width="100%" height="100%"
         src="https://www.youtube.com/embed/ZQXgPeGzwW4?si=_GjwR6COHyJd1bfG&amp;autoplay=1&amp;controls=0&amp;mute=1&amp;loop=1&amp;playlist=ZQXgPeGzwW4&amp;playsinline=1&amp;enablejsapi=1"
         title="송도 월드메르디앙 에클라 홍보 영상" frameborder="0"
@@ -677,19 +680,45 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </section>
 
+  <!-- ✅ 추가: 각 이미지 그룹 위에 제목 삽입 -->
   <section class="section-images">
     <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner1.gif" alt="송도 월드메르디앙 에클라 전화상담 배너 ☎1533-9077" loading="lazy"></a></div>
+
+    <h3 class="lp-section-title" data-aos="fade-up">단지 배치도 및 사업 개요</h3>
     <div data-aos="fade-up"><img src="landing_page_images_309_1_1771463628.webp" alt="송도 월드메르디앙 에클라 단지 배치도 및 사업 개요" loading="lazy"></div>
+
+    <h3 class="lp-section-title" data-aos="fade-up">입지 환경</h3>
+    <p class="lp-section-sub" data-aos="fade-up">인천대입구역 도보 15분, GTX-B 수혜 입지</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_2_1771463628.webp" alt="송도 월드메르디앙 에클라 입지 환경 - 인천대입구역 도보 15분, GTX-B 수혜" loading="lazy"></div>
+
+    <h3 class="lp-section-title" data-aos="fade-up">교육 환경</h3>
+    <p class="lp-section-sub" data-aos="fade-up">채드윅 국제학교 도보권, 1공구 학원가 인접</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_3_1771463628.webp" alt="송도 월드메르디앙 에클라 교육 환경 - 채드윅 국제학교 도보권, 1공구 학원가" loading="lazy"></div>
+
+    <h3 class="lp-section-title" data-aos="fade-up">생활 인프라</h3>
+    <p class="lp-section-sub" data-aos="fade-up">센트럴파크, 대형마트 등 완성된 생활권</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_4_1771463628.webp" alt="송도 월드메르디앙 에클라 생활 인프라 - 센트럴파크, 대형마트 인접" loading="lazy"></div>
+
+    <h3 class="lp-section-title" data-aos="fade-up">세대 평면도</h3>
+    <p class="lp-section-sub" data-aos="fade-up">전 세대 남향 4베이 설계</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_5_1771463628.webp" alt="송도 월드메르디앙 에클라 78㎡ 평면도 - 30평대 남향 4베이" loading="lazy"></div>
     <div data-aos="fade-up"><img src="landing_page_images_309_6_1771463628.webp" alt="송도 월드메르디앙 에클라 83㎡ 평면도 - 31평대 남향 4베이" loading="lazy"></div>
     <div data-aos="fade-up"><img src="landing_page_images_309_7_1771463629.webp" alt="송도 월드메르디앙 에클라 84㎡ 평면도 - 32평대 남향 4베이" loading="lazy"></div>
+
+    <h3 class="lp-section-title" data-aos="fade-up">인테리어</h3>
+    <p class="lp-section-sub" data-aos="fade-up">차별화된 마감재와 신축 품질</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_8_1771463629.webp" alt="송도 월드메르디앙 에클라 인테리어 - 신축 아파트 내부 마감" loading="lazy"></div>
+
+    <h3 class="lp-section-title" data-aos="fade-up">커뮤니티 시설</h3>
+    <p class="lp-section-sub" data-aos="fade-up">입주민을 위한 단지 내 편의시설</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_9_1771463629.webp" alt="송도 월드메르디앙 에클라 커뮤니티 시설 및 단지 편의시설" loading="lazy"></div>
+
+    <h3 class="lp-section-title" data-aos="fade-up">분양 혜택</h3>
+    <p class="lp-section-sub" data-aos="fade-up">입주지원금 1억 이상, 발코니 확장 무상</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_10_1771463629.webp" alt="송도 월드메르디앙 에클라 분양 혜택 - 입주지원금 1억 이상, 발코니 확장 무상" loading="lazy"></div>
+
     <div data-aos="fade-up"><img src="landing_page_images_309_11_1771463629.webp" alt="송도 월드메르디앙 에클라 오시는 길 - 인천광역시 연수구 송도동 신송로 165-17" loading="lazy"></div>
+
     <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner2.gif" alt="송도 월드메르디앙 에클라 방문예약 배너 ☎1533-9077" loading="lazy"></a></div>
   </section>
 
@@ -1064,7 +1093,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   kv.addEventListener('mouseleave',function(){h.classList.remove('show');v=false;clearTimeout(ht);});
 })();
 
-/* ✅ 변경 3: YouTube 즉시 재생 (IntersectionObserver 제거) */
+/* ✅ YouTube 즉시 재생 */
 (function(){
   var tag = document.createElement('script');
   tag.src = 'https://www.youtube.com/iframe_api';

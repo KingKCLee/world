@@ -204,6 +204,28 @@
 <style>
 *{box-sizing:border-box;}
 :root{--brand-color:#b39b00;--brand-color-light:#ffff66;--brand-color-dark:#664e00;}
+
+/* ✅ 추가: 텍스트 선택 방지 */
+body.lp-landing{
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+body.lp-landing input,
+body.lp-landing textarea{
+  -webkit-user-select:text;
+  -moz-user-select:text;
+  -ms-user-select:text;
+  user-select:text;
+}
+
+/* ✅ 추가: 인쇄 방지 */
+@media print{
+  body *{display:none!important;}
+  body::after{content:"이 페이지는 인쇄할 수 없습니다. 상담문의 ☎ 1533-9077";display:block!important;font-size:24px;text-align:center;padding:100px 0;color:#333;}
+}
+
 @media(pointer:coarse){
   html,body{overflow-x:hidden!important;overflow-y:auto!important;height:auto!important;-webkit-overflow-scrolling:touch;}
   #header .header-content{transform:none!important;}
@@ -470,7 +492,6 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   .lp-slide-popup-inner{max-width:72vw;}
 }
 
-/* 분양 혜택 CTA 섹션 — 톤앤매너 통일 */
 .lp-benefit-cta{margin:56px auto;padding:40px 28px;border-radius:14px;background:#fff;border:2px solid var(--brand-color);box-shadow:0 4px 24px rgba(179,155,0,.12),0 1px 4px rgba(0,0,0,.06);text-align:center;position:relative;}
 .lp-benefit-cta::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--brand-color);border-radius:14px 14px 0 0;}
 .lp-benefit-cta-title{font-size:26px;font-weight:800;color:var(--brand-color);letter-spacing:-1.5px;margin:0 0 6px;}
@@ -1228,6 +1249,58 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
       var target=document.getElementById('reserve-bottom');
       if(target){target.scrollIntoView({behavior:'smooth',block:'center'});}
     });
+  });
+})();
+
+/* ✅ 추가: 콘텐츠 복사 방지 */
+(function(){
+  // 우클릭 방지
+  document.addEventListener('contextmenu', function(e){
+    e.preventDefault();
+  });
+
+  // 드래그 방지
+  document.addEventListener('dragstart', function(e){
+    e.preventDefault();
+  });
+
+  // 키보드 단축키 방지
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'F12'){
+      e.preventDefault();
+      return false;
+    }
+    if(e.ctrlKey || e.metaKey){
+      var blocked = ['c','u','s','a','p'];
+      if(blocked.indexOf(e.key.toLowerCase()) !== -1){
+        var tag = (e.target.tagName || '').toLowerCase();
+        if(tag === 'input' || tag === 'textarea') return;
+        e.preventDefault();
+        return false;
+      }
+      if(e.shiftKey && e.key.toLowerCase() === 'i'){
+        e.preventDefault();
+        return false;
+      }
+      if(e.shiftKey && e.key.toLowerCase() === 'j'){
+        e.preventDefault();
+        return false;
+      }
+    }
+  });
+
+  // 이미지 드래그 방지
+  document.querySelectorAll('img').forEach(function(img){
+    img.setAttribute('draggable', 'false');
+    img.addEventListener('mousedown', function(e){ e.preventDefault(); });
+  });
+
+  // 인쇄 방지
+  window.addEventListener('beforeprint', function(){
+    document.body.style.display = 'none';
+  });
+  window.addEventListener('afterprint', function(){
+    document.body.style.display = '';
   });
 })();
 </script>

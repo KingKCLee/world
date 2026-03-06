@@ -389,15 +389,10 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-benefits{margin:56px auto;padding:48px 0 0;border-top:1px solid #eee;border-bottom:none;}
 .lp-benefits-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:0 0 6px;}
 .lp-benefits-sub{text-align:center;font-size:14px;color:#888;margin-bottom:20px;letter-spacing:-.5px;}
-.lp-benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-.lp-benefit-card{background:#faf8ef;border:1px solid #e8e2c8;border-radius:12px;padding:22px 16px;text-align:center;transition:transform .2s,box-shadow .2s;}
-.lp-benefit-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(179,155,0,.15);}
-.lp-benefit-icon{font-size:32px;margin-bottom:8px;line-height:1;}
-.lp-benefit-label{font-size:15px;font-weight:700;color:#222;letter-spacing:-.5px;margin-bottom:4px;}
-.lp-benefit-desc{font-size:12px;color:#777;line-height:1.45;letter-spacing:-.3px;}
+
 
 /* ✅ 추가: 프리미엄6 인터랙티브 탭 스타일 */
-.premium6-interactive{max-width:720px;margin:28px auto 0;}
+.premium6-interactive{max-width:100%;margin:20px auto 0;}
 .p6-tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:0;}
 .p6-tab{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 4px 14px;border:2px solid #e0d6b8;border-radius:12px 12px 0 0;border-bottom:none;background:#fffef8;cursor:pointer;transition:all .3s ease;position:relative;}
 .p6-tab.active{border-color:#b8960c;background:#fff;box-shadow:0 -4px 16px rgba(184,150,12,.12);z-index:2;}
@@ -408,11 +403,11 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .p6-panels{position:relative;min-height:200px;border:2px solid #b8960c;border-radius:0 0 14px 14px;background:#fff;overflow:hidden;}
 .p6-panel{position:absolute;inset:0;opacity:0;visibility:hidden;transform:translateX(30px);transition:opacity .4s ease,transform .4s ease,visibility 0s .4s;}
 .p6-panel.active{opacity:1;visibility:visible;transform:translateX(0);transition:opacity .4s ease,transform .4s ease,visibility 0s 0s;position:relative;}
-.p6-panel-inner{display:flex;align-items:center;gap:20px;padding:32px 28px;}
+.p6-panel-inner{display:flex;align-items:center;gap:24px;padding:40px 36px;}
 .p6-panel-icon{flex:0 0 auto;font-size:48px;width:80px;height:80px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fdf6e3,#fff8dc);border-radius:50%;border:2px solid #e8e0c8;}
 .p6-panel-text{flex:1 1 auto;}
-.p6-panel-text h4{font-size:19px;font-weight:700;color:#8a6d00;margin:0 0 10px;}
-.p6-panel-text p{font-size:14.5px;line-height:1.85;color:#444;margin:0;}
+.p6-panel-text h4{font-size:22px;font-weight:700;color:#8a6d00;margin:0 0 12px;}
+.p6-panel-text p{font-size:15px;line-height:1.9;color:#444;margin:0;}
 .p6-panel-text .p6-sub{display:block;margin-top:8px;font-size:13px;color:#888;line-height:1.7;}
 .p6-progress{height:3px;background:#eee;border-radius:2px;margin-top:12px;overflow:hidden;}
 .p6-progress-bar{height:100%;width:0;background:linear-gradient(90deg,#b8960c,#d4af37);border-radius:2px;}
@@ -420,15 +415,11 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 @media(max-width:1023px){
   .lp-benefits{margin:40px auto;padding:36px 0 0;}
   .lp-benefits-title{font-size:22px;}
-  .lp-benefits-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
-  .lp-benefit-card{padding:16px 12px;}
-  .lp-benefit-icon{font-size:26px;}
-  .lp-benefit-label{font-size:14px;}
   .p6-tabs{grid-template-columns:repeat(3,1fr);gap:6px;}
   .p6-tab{padding:12px 4px 10px;border-radius:10px 10px 0 0;}
   .p6-tab-num{width:22px;height:22px;font-size:11px;}
   .p6-tab-label{font-size:11px;}
-  .p6-panel-inner{flex-direction:column;padding:24px 20px;gap:16px;text-align:center;}
+  .p6-panel-inner{flex-direction:column;padding:30px 24px;gap:16px;text-align:center;}
   .p6-panel-icon{width:64px;height:64px;font-size:36px;}
   .p6-panel-text h4{font-size:17px;}
   .p6-panel-text p{font-size:13.5px;}
@@ -772,38 +763,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   <section class="lp-benefits" data-aos="fade-up">
     <h2 class="lp-benefits-title">월드메르디앙 송도 PREMIUM 6</h2>
     <p class="lp-benefits-sub">송도 1공구 핵심 입지, 6가지 프리미엄</p>
-    <div class="lp-benefits-grid">
-      <div class="lp-benefit-card">
-        <div class="lp-benefit-icon">🏫</div>
-        <div class="lp-benefit-label">명문학군 프리미엄</div>
-        <div class="lp-benefit-desc">송도국제학교를 비롯한 12개의 학교와 송도 최대 규모 학원가 인접</div>
-      </div>
-      <div class="lp-benefit-card">
-        <div class="lp-benefit-icon">📍</div>
-        <div class="lp-benefit-label">특급입지 프리미엄</div>
-        <div class="lp-benefit-desc">송도국제도시 중심인 1·2공구 매머드급 주거타운 중심 위치</div>
-      </div>
-      <div class="lp-benefit-card">
-        <div class="lp-benefit-icon">🚄</div>
-        <div class="lp-benefit-label">쾌속교통 프리미엄</div>
-        <div class="lp-benefit-desc">송도트램(예정) 도보권, GTX-B 개통 시 서울역까지 약 27분</div>
-      </div>
-      <div class="lp-benefit-card">
-        <div class="lp-benefit-icon">🏬</div>
-        <div class="lp-benefit-label">명품생활 프리미엄</div>
-        <div class="lp-benefit-desc">송도국제도시의 완성된 생활인프라와 근린공원으로 둘러싸인 입지</div>
-      </div>
-      <div class="lp-benefit-card">
-        <div class="lp-benefit-icon">🏗️</div>
-        <div class="lp-benefit-label">희소가치 프리미엄</div>
-        <div class="lp-benefit-desc">희소성이 높은 중소형 혁신평면에 차별화된 인테리어 마감재 적용</div>
-      </div>
-      <div class="lp-benefit-card">
-        <div class="lp-benefit-icon">🌳</div>
-        <div class="lp-benefit-label">힐링생활 프리미엄</div>
-        <div class="lp-benefit-desc">센트럴파크, 미추홀공원, 송도달빛축제공원 등과 가까운 쾌적한 환경</div>
-      </div>
-    </div>
+ 
 
     <!-- ✅ 추가: 인터랙티브 자동순환 탭 -->
     <div class="premium6-interactive" id="p6interactive">
@@ -1502,3 +1462,4 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 </script>
 </body>
 </html>
+

@@ -279,7 +279,6 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .section-images > div{margin-bottom:16px;}
 .section-images a img{cursor:pointer;}
 
-/* ✅ 추가: 본문 이미지 섹션 제목 */
 .lp-section-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:36px 0 6px;}
 .lp-section-sub{text-align:center;font-size:14px;color:#888;margin-bottom:16px;letter-spacing:-.5px;}
 @media(max-width:1023px){
@@ -463,6 +462,28 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 
 @media(max-width:1023px){
   .lp-slide-popup-inner{max-width:72vw;}
+}
+
+/* ✅ 추가: 분양 혜택 CTA 섹션 */
+.lp-benefit-cta{margin:36px auto;padding:36px 28px;border-radius:14px;background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 100%);text-align:center;position:relative;overflow:hidden;}
+.lp-benefit-cta::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(179,155,0,.1),transparent);animation:urgShine 3s ease-in-out infinite;}
+.lp-benefit-cta-title{font-size:26px;font-weight:800;color:#fff;letter-spacing:-1.5px;margin:0 0 8px;position:relative;}
+.lp-benefit-cta-sub{font-size:14px;color:#ccc;margin-bottom:24px;letter-spacing:-.3px;position:relative;}
+.lp-benefit-cta-list{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:560px;margin:0 auto 28px;position:relative;}
+.lp-benefit-cta-item{background:rgba(179,155,0,.15);border:1px solid rgba(179,155,0,.3);border-radius:10px;padding:16px 12px;text-align:center;}
+.lp-benefit-cta-item .cta-icon{font-size:24px;margin-bottom:6px;}
+.lp-benefit-cta-item .cta-label{font-size:13px;font-weight:700;color:var(--brand-color-light);letter-spacing:-.3px;margin-bottom:2px;}
+.lp-benefit-cta-item .cta-value{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.5px;}
+.lp-benefit-cta-bottom{position:relative;}
+.lp-benefit-cta-bottom p{font-size:13px;color:#999;margin:0 0 16px;letter-spacing:-.3px;}
+.lp-benefit-cta-bottom .lp-submit-btn{max-width:360px;font-size:20px;padding:14px 0;animation:ctaPulse 2s ease-in-out infinite;}
+@keyframes ctaPulse{0%,100%{box-shadow:0 0 0 0 rgba(179,155,0,.4)}50%{box-shadow:0 0 0 12px rgba(179,155,0,0)}}
+@media(max-width:1023px){
+  .lp-benefit-cta{padding:28px 18px;}
+  .lp-benefit-cta-title{font-size:21px;}
+  .lp-benefit-cta-list{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .lp-benefit-cta-item .cta-value{font-size:16px;}
+  .lp-benefit-cta-bottom .lp-submit-btn{font-size:18px;max-width:none;width:100%;}
 }
 
 @media(min-width:1024px){
@@ -685,7 +706,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
         </tr>
       </tbody>
     </table>
-    <p class="lp-price-note">※ 시세는 2025년 기준 실거래가 참고 자료이며, 실제와 차이가 있을 수 있습니다.</p>
+    <!-- ✅ 3번 수정: 시세 연도 업데이트 -->
+    <p class="lp-price-note">※ 시세는 2026년 기준 실거래가 참고 자료이며, 실제와 차이가 있을 수 있습니다.</p>
   </section>
 
   <section class="lp-benefits" data-aos="fade-up">
@@ -725,7 +747,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </section>
 
-  <!-- ✅ 수정: 7번 이미지를 section-images 안으로 이동 -->
+  <!-- ✅ 1번 수정: section 중첩 해소 — 첫 번째 section-images 블록 -->
   <section class="section-images">
     <div data-aos="fade-up"><img src="landing_page_images_309_7_1771463629.webp" alt="송도 월드메르디앙 에클라 6가지 프리미엄" loading="lazy"></div>
 
@@ -738,7 +760,9 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     <p class="lp-section-sub" data-aos="fade-up">인천대입구역 도보 15분, GTX-B 수혜 입지</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_2_1771463628.webp" alt="송도 월드메르디앙 에클라 입지 환경 - 인천대입구역 도보 15분, GTX-B 수혜" loading="lazy"></div>
     <div data-aos="fade-up"><img src="landing_page_images_309_6_1771463628.webp" alt="송도 월드메르디앙 에클라 단지입지" loading="lazy"></div>
+  </section>
 
+  <!-- ✅ 1번 수정: 리뷰 섹션을 section-images 밖으로 분리 -->
   <section class="lp-reviews-section" data-aos="fade-up">
     <h2 class="lp-reviews-title">상담 후기</h2>
     <p class="lp-reviews-sub">방문 상담을 받으신 분들의 실제 후기입니다</p>
@@ -761,6 +785,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </section>
 
+  <!-- ✅ 1번 수정: 두 번째 section-images 블록 -->
+  <section class="section-images">
     <h3 class="lp-section-title" data-aos="fade-up">교육 환경</h3>
     <p class="lp-section-sub" data-aos="fade-up">채드윅 국제학교 도보권, 1공구 학원가 인접</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_3_1771463628.webp" alt="송도 월드메르디앙 에클라 교육 환경 - 채드윅 국제학교 도보권, 1공구 학원가" loading="lazy"></div>
@@ -839,8 +865,37 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </section>
 
-    <h3 class="lp-section-title" data-aos="fade-up">분양 혜택</h3>
-    <p class="lp-section-sub" data-aos="fade-up">입주지원금 1억 이상, 발코니 확장 무상</p>
+  <!-- ✅ 2번 수정: 분양 혜택 CTA 섹션 — 혜택 요약 + 관심고객 등록 유도 -->
+  <section class="lp-benefit-cta" data-aos="fade-up">
+    <h3 class="lp-benefit-cta-title">지금 등록하면 받을 수 있는 분양 혜택</h3>
+    <p class="lp-benefit-cta-sub">잔여세대 한정, 조기 마감 시 혜택이 종료됩니다</p>
+    <div class="lp-benefit-cta-list">
+      <div class="lp-benefit-cta-item">
+        <div class="cta-icon">💰</div>
+        <div class="cta-label">특별할인</div>
+        <div class="cta-value">1억 2천만원</div>
+      </div>
+      <div class="lp-benefit-cta-item">
+        <div class="cta-icon">🎁</div>
+        <div class="cta-label">무상옵션</div>
+        <div class="cta-value">3,000만원</div>
+      </div>
+      <div class="lp-benefit-cta-item">
+        <div class="cta-icon">🏠</div>
+        <div class="cta-label">발코니 확장</div>
+        <div class="cta-value">전 세대 무상</div>
+      </div>
+      <div class="lp-benefit-cta-item">
+        <div class="cta-icon">🔑</div>
+        <div class="cta-label">입주지원금</div>
+        <div class="cta-value">1억 이상</div>
+      </div>
+    </div>
+    <div class="lp-benefit-cta-bottom">
+      <p>관심고객 등록 시 추가 할인 혜택을 안내드립니다</p>
+      <button type="button" class="lp-submit-btn js-scroll-to-register">관심고객 등록하고 혜택 받기</button>
+    </div>
+  </section>
 
   <div id="reserve-bottom">
     <section class="lp-reserve-wrap" data-aos="fade-up">
@@ -1053,10 +1108,17 @@ document.querySelectorAll('.js-quick-top').forEach(function(b){b.addEventListene
   if(d)d.addEventListener('click',close);
 })();
 
+/* ✅ 4번 수정: 예약 카운터 날짜 기반 자동 증가 */
 (function(){
   document.querySelectorAll('.js-resv-counter').forEach(function(box){
     var n=box.querySelector('.num');if(!n)return;
-    var target=parseInt(n.dataset.count)||0,start=Math.max(0,target-100),dur=1600,st=null;
+    var baseCount=138;
+    var baseDate=new Date('2026-03-01');
+    var today=new Date();
+    var days=Math.floor((today-baseDate)/86400000);
+    var target=baseCount+Math.max(0,days)*2;
+    n.dataset.count=target;
+    var start=Math.max(0,target-100),dur=1600,st=null;
     function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/dur,1),e=1-Math.pow(1-p,3);n.textContent=Math.floor(start+(target-start)*e).toLocaleString('ko-KR');if(p<1)requestAnimationFrame(step);else n.textContent=target.toLocaleString('ko-KR');}
     if('IntersectionObserver' in window){var once=false;new IntersectionObserver(function(entries,io){entries.forEach(function(entry){if(!once&&entry.isIntersecting){once=true;requestAnimationFrame(step);io.disconnect();}});},{threshold:.2}).observe(box);}
     else requestAnimationFrame(step);
@@ -1072,9 +1134,13 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   addEventListener('scroll',function(){var cur=scrollY,d=cur>last;[q,b].forEach(function(el){if(!el)return;el.classList.toggle('down',d);el.classList.toggle('up',!d);});last=cur;},{passive:true});
 })();
 
+/* ✅ 5번 수정: 팝업 "오늘 하루 보지 않기" localStorage 연동 */
 (function(){
   var popup=document.getElementById('lpSlidePopup');if(!popup)return;
-  function show(){popup.classList.add('show');}
+  function show(){
+    if(localStorage.getItem('popup_hide_today')===new Date().toDateString())return;
+    popup.classList.add('show');
+  }
   function hide(){popup.classList.remove('show');}
   var cb=popup.querySelector('.lp-slide-popup-close');
   if(cb)cb.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();hide();});
@@ -1087,6 +1153,15 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     e.preventDefault();e.stopPropagation();hide();
     if(typeof lpOpenFloatForm==='function')lpOpenFloatForm();
   });
+  var todayChk=popup.querySelector('.lp-popup-today-chk');
+  if(todayChk){
+    todayChk.addEventListener('change',function(){
+      if(this.checked){
+        localStorage.setItem('popup_hide_today',new Date().toDateString());
+        hide();
+      }
+    });
+  }
   setTimeout(show,1200);
 })();
 
@@ -1098,7 +1173,6 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   kv.addEventListener('mouseleave',function(){h.classList.remove('show');v=false;clearTimeout(ht);});
 })();
 
-/* ✅ YouTube 즉시 재생 */
 (function(){
   var tag = document.createElement('script');
   tag.src = 'https://www.youtube.com/iframe_api';
@@ -1150,6 +1224,16 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     observer.observe(mapContainer, { childList:true, subtree:true, attributes:true });
     setTimeout(function(){ observer.disconnect(); }, 10000);
   }
+})();
+
+/* ✅ 2번 수정: 분양 혜택 CTA 버튼 → 관심고객 등록 폼으로 스크롤 */
+(function(){
+  document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var target=document.getElementById('reserve-bottom');
+      if(target){target.scrollIntoView({behavior:'smooth',block:'center'});}
+    });
+  });
 })();
 </script>
 </body>

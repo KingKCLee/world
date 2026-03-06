@@ -204,28 +204,6 @@
 <style>
 *{box-sizing:border-box;}
 :root{--brand-color:#b39b00;--brand-color-light:#ffff66;--brand-color-dark:#664e00;}
-
-/* ✅ 추가: 텍스트 선택 방지 */
-body.lp-landing{
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-  user-select:none;
-}
-body.lp-landing input,
-body.lp-landing textarea{
-  -webkit-user-select:text;
-  -moz-user-select:text;
-  -ms-user-select:text;
-  user-select:text;
-}
-
-/* ✅ 추가: 인쇄 방지 */
-@media print{
-  body *{display:none!important;}
-  body::after{content:"이 페이지는 인쇄할 수 없습니다. 상담문의 ☎ 1533-9077";display:block!important;font-size:24px;text-align:center;padding:100px 0;color:#333;}
-}
-
 @media(pointer:coarse){
   html,body{overflow-x:hidden!important;overflow-y:auto!important;height:auto!important;-webkit-overflow-scrolling:touch;}
   #header .header-content{transform:none!important;}
@@ -297,7 +275,9 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .scroll-text .scroll-char{position:absolute;left:50%;top:50%;transform-origin:0 0;color:#fff;font-size:.45rem;white-space:pre;}
 
 .lp-body{max-width:1080px;margin:0 auto;padding:0 16px 40px;}
-.section-images{margin:48px auto 0;}
+
+/* ✅ 섹션 간격+구분선 통일: 일반 섹션은 border-top, 테두리 박스형은 border-top 없음 */
+.section-images{margin:56px auto 0;padding:48px 0 0;border-top:1px solid #eee;}
 .section-images img{width:100%;display:block;cursor:zoom-in;}
 .section-images > div{margin-bottom:20px;}
 .section-images a img{cursor:pointer;}
@@ -319,7 +299,8 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-submit-btn{width:100%;max-width:320px;padding:12px 0;border-radius:40px;border:0;font-size:22px;letter-spacing:-1px;font-weight:700;cursor:pointer;transition:all .2s;background:var(--brand-color);color:#fff;}
 .lp-submit-btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(179,155,0,.35);}
 
-.lp-youtube-section{max-width:100%;margin:0 auto 30px;border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.1);}
+.lp-youtube-section{max-width:100%;margin:56px auto 0;padding:48px 0 0;border-top:1px solid #eee;border-radius:0;}
+.lp-youtube-section > div{border-radius:12px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.1);}
 .lp-youtube-responsive{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;background:#000;}
 .lp-youtube-responsive iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
 
@@ -492,6 +473,7 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   .lp-slide-popup-inner{max-width:72vw;}
 }
 
+/* 분양 혜택 CTA — 골드 테두리 박스형이므로 border-top 없음 */
 .lp-benefit-cta{margin:56px auto;padding:40px 28px;border-radius:14px;background:#fff;border:2px solid var(--brand-color);box-shadow:0 4px 24px rgba(179,155,0,.12),0 1px 4px rgba(0,0,0,.06);text-align:center;position:relative;}
 .lp-benefit-cta::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--brand-color);border-radius:14px 14px 0 0;}
 .lp-benefit-cta-title{font-size:26px;font-weight:800;color:var(--brand-color);letter-spacing:-1.5px;margin:0 0 6px;}
@@ -556,6 +538,8 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   .lp-reserve-wrap{padding:30px 18px 22px;margin:40px auto;}
   .lp-reserve-title{font-size:28px;}
   .lp-body{padding-top:0!important;}
+  .section-images{margin:40px auto 0;padding:36px 0 0;}
+  .lp-youtube-section{margin:40px auto 0;padding:36px 0 0;}
 }
 @media(max-width:420px){
   .menu .btn-util .btn3{font-size:1.2rem;}
@@ -566,6 +550,8 @@ body.lp-landing{overflow-y:auto!important;overflow-x:hidden!important;height:aut
 body.lp-landing.lp-brand-dark #header,
 body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;box-shadow:0 4px 16px rgba(0,0,0,.08)!important;}
 </style>
+
+  
 </head>
 
 <body class="lp-landing lp-brand-dark">
@@ -1306,3 +1292,4 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 </script>
 </body>
 </html>
+

@@ -188,11 +188,13 @@
   ]
 }
 
+</script>
+
+<script>
 /* ✅ 테스트용: 조건 없이 무조건 즉시 전송 */
 (function(){
   var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
 
-  /* 유입경로 추출 */
   var params = new URLSearchParams(window.location.search);
   var channel = params.get('c') || '';
   var referrer = document.referrer || '';
@@ -214,7 +216,6 @@
     source = referrer;
   }
 
-  /* IP 조회 */
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://api.ipify.org?format=json', true);
   xhr.onload = function(){
@@ -229,7 +230,6 @@
       String(d.getMinutes()).padStart(2,'0') + ':' +
       String(d.getSeconds()).padStart(2,'0');
 
-    /* hidden iframe */
     var iframeName = 'fraud_iframe';
     var iframe = document.getElementById(iframeName);
     if(!iframe){
@@ -240,7 +240,6 @@
       document.body.appendChild(iframe);
     }
 
-    /* form 생성 & 전송 */
     var form = document.createElement('form');
     form.method = 'POST';
     form.action = FORM_ACTION;
@@ -266,7 +265,6 @@
     document.body.appendChild(form);
     form.submit();
 
-    /* 확인용 콘솔 로그 */
     console.log('✅ 부정클릭 기록 전송 완료:', fields);
 
     setTimeout(function(){
@@ -278,12 +276,9 @@
   };
   xhr.send();
 })();
-
-
-
-  
 </script>
 
+  
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://www.youtube.com" crossorigin>
@@ -1562,6 +1557,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 </script>
 </body>
 </html>
+
 
 
 

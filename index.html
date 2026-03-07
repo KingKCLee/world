@@ -1726,29 +1726,15 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 })();
 </script>
 
-<!-- ✅ 4. 방문/이탈 추적 (Apps Script 연동 — Google Form 대체) -->
+<!-- ✅ 4. 방문 추적 (Google Form — EXIT 없음) -->
 <script>
 (function(){
-  var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxepNYAQOoxyEmvOhhHTJ9sy_1nlHRFxX8szjojPC-FQ5_ieLXJPNh_NEiD8vIp3yNq/exec";
-  var startTime = Date.now();
-  var maxScroll = 0;
-  var visitorIP = "";
-  var visitCount = 1;
-  var totalKey = "lp_total_visit";
+  var FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse";
   var sessionKey = "lp_visit_sent";
-  var exitSent = false;
+  if(sessionStorage.getItem(sessionKey)) return;
+  sessionStorage.setItem(sessionKey, "1");
 
-  window.addEventListener("scroll", function(){
-    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    var depth = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
-    if(depth > maxScroll) maxScroll = depth;
-  }, {passive:true});
-
-  fetch("https://api.ipify.org?format=json")
-    .then(function(r){ return r.json(); })
-    .then(function(d){ visitorIP = d.ip; sendVisit(); })
-    .catch(function(){ visitorIP = "unknown"; sendVisit(); });
+  var visitorIP = "unknown";
 
   function getSource(){
     var params = new URLSearchParams(location.search);
@@ -1756,10 +1742,10 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     if(utm) return utm;
     var ref = document.referrer;
     if(!ref) return "직접방문";
-    if(ref.indexOf("search.naver.com") > -1) return "네이버 자연검색";
-    if(ref.indexOf("naver.com") > -1) return "네이버 기타";
-    if(ref.indexOf("google") > -1) return "구글 검색";
-    if(ref.indexOf("daum") > -1) return "다음 검색";
+    if(ref.indexOf("search.naver.com") > -1) return "네이버검색";
+    if(ref.indexOf("naver.com") > -1) return "네이버기타";
+    if(ref.indexOf("google") > -1) return "구글검색";
+    if(ref.indexOf("daum") > -1) return "다음검색";
     if(ref.indexOf("kakao") > -1) return "카카오";
     if(ref.indexOf("instagram") > -1) return "인스타그램";
     if(ref.indexOf("facebook") > -1 || ref.indexOf("fb.") > -1) return "페이스북";
@@ -1772,21 +1758,17 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     var c = parseInt(localStorage.getItem(key)) || 0;
     c++;
     localStorage.setItem(key, c);
-    visitCount = c;
     return c;
   }
 
   function getTotalVisit(){
-    var t = parseInt(localStorage.getItem(totalKey)) || 138;
+    var t = parseInt(localStorage.getItem("lp_total_visit")) || 138;
     t++;
-    localStorage.setItem(totalKey, t);
+    localStorage.setItem("lp_total_visit", t);
     return t;
   }
 
   function sendVisit(){
-    if(sessionStorage.getItem(sessionKey)) return;
-    sessionStorage.setItem(sessionKey, "1");
-
     var now = new Date();
     var dateStr = now.getFullYear() + "-" +
       String(now.getMonth()+1).padStart(2,"0") + "-" +
@@ -1795,41 +1777,25 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
       String(now.getMinutes()).padStart(2,"0") + ":" +
       String(now.getSeconds()).padStart(2,"0");
 
-    send({
-      type: "VISIT",
-      date: dateStr,
-      time: timeStr,
-      ip: visitorIP,
-      visitCount: getVisitCount(),
-      source: getSource(),
-      totalVisit: getTotalVisit()
-    });
+    var fd = new FormData();
+    fd.append("entry.24374031", dateStr);
+    fd.append("entry.433685765", timeStr);
+    fd.append("entry.605185830", visitorIP);
+    fd.append("entry.1498646498", getVisitCount());
+    fd.append("entry.1762498498", getSource());
+    fd.append("entry.567498580", getTotalVisit());
+
+    navigator.sendBeacon(FORM_URL, fd);
   }
 
-  function sendExit(){
-    if(exitSent) return;
-    exitSent = true;
-    var dwell = Math.round((Date.now() - startTime) / 1000);
-    send({
-      type: "EXIT",
-      ip: visitorIP,
-      dwellTime: dwell + "초",
-      scrollDepth: maxScroll + "%",
-      referrer: document.referrer || "직접방문",
-      source: getSource()
-    });
-  }
-
-  function send(payload){
-    navigator.sendBeacon(SCRIPT_URL, JSON.stringify(payload));
-  }
-
-  document.addEventListener("visibilitychange", function(){
-    if(document.visibilityState === "hidden") sendExit();
-  });
-  window.addEventListener("pagehide", function(){ sendExit(); });
+  fetch("https://api.ipify.org?format=json")
+    .then(function(r){ return r.json(); })
+    .then(function(d){ visitorIP = d.ip; sendVisit(); })
+    .catch(function(){ sendVisit(); });
 })();
 </script>
 
+
 </body>
 </html>
+

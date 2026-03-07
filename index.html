@@ -192,31 +192,23 @@
 
 
 <script>
-/* ✅ 부정클릭 탐지: Google Forms 직접 전송 (IP: ipify + 지역: ipwho.is) */
+/* ✅ 부정클릭 탐지: Google Forms 직접 전송 
 document.addEventListener('DOMContentLoaded', function(){
   var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
 
-  var params = new URLSearchParams(window.location.search);
-  var channel = params.get('c') || '';
-  var referrer = document.referrer || '';
+  /* ── 유입경로 판별 ── */
+  var params = new URLSearchParams(location.search);
+  var ref = document.referrer;
   var source = '';
+  if(params.get('c')) source = params.get('c');
+  else if(ref.indexOf('search.naver.com') > -1) source = '네이버 자연검색';
+  else if(ref.indexOf('naver.com') > -1) source = '네이버 기타';
+  else if(ref.indexOf('google.com') > -1 || ref.indexOf('google.co.kr') > -1) source = '구글 검색';
+  else if(ref.indexOf('daum.net') > -1) source = '다음 검색';
+  else if(!ref) source = '직접입력/즐겨찾기';
+  else source = ref;
 
-  if(channel){
-    source = channel;
-  } else if(referrer.indexOf('search.naver.com') > -1){
-    source = '네이버 자연검색';
-  } else if(referrer.indexOf('naver.com') > -1){
-    source = '네이버 기타';
-  } else if(referrer.indexOf('google.com') > -1 || referrer.indexOf('google.co.kr') > -1){
-    source = '구글 검색';
-  } else if(referrer.indexOf('daum.net') > -1){
-    source = '다음 검색';
-  } else if(referrer === ''){
-    source = '직접입력/즐겨찾기';
-  } else {
-    source = referrer;
-  }
-
+  /* ── 방문횟수 (IP 기반 localStorage) ── */
   function getVisitCount(ip){
     var key = 'lp_vc_' + ip;
     var c = parseInt(localStorage.getItem(key)) || 0;
@@ -225,98 +217,79 @@ document.addEventListener('DOMContentLoaded', function(){
     return c;
   }
 
-  function sendFraudData(ip, region){
+  /* ── Google Form 전송 ── */
+  function sendData(ip, region){
     var d = new Date();
-    var dateStr = d.getFullYear() + '-' +
-      String(d.getMonth()+1).padStart(2,'0') + '-' +
-      String(d.getDate()).padStart(2,'0');
-    var timeStr = String(d.getHours()).padStart(2,'0') + ':' +
-      String(d.getMinutes()).padStart(2,'0') + ':' +
-      String(d.getSeconds()).padStart(2,'0');
+    var date = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    var time = String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0') + ':' + String(d.getSeconds()).padStart(2,'0');
 
-    var iframeName = 'fraud_iframe';
-    var iframe = document.getElementById(iframeName);
-    if(!iframe){
-      iframe = document.createElement('iframe');
-      iframe.name = iframeName;
-      iframe.id = iframeName;
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-    }
+    var fields = {
+      'entry.24374031': date,
+      'entry.433685765': time,
+      'entry.605185830': ip,
+      'entry.838856477': region,
+      'entry.1339679079': String(getVisitCount(ip)),
+      'entry.1214037773': source
+    };
+
+    var iframe = document.createElement('iframe');
+    iframe.name = 'fraud_iframe';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
 
     var form = document.createElement('form');
     form.method = 'POST';
     form.action = FORM_ACTION;
-    form.target = iframeName;
-    form.style.display = 'none';
+    form.target = 'fraud_iframe';
 
-    var fields = {
-      'entry.24374031': dateStr,
-      'entry.433685765': timeStr,
-      'entry.605185830': ip,
-      'entry.838856477': region,
-      'entry.1339679079': getVisitCount(ip).toString(),
-      'entry.1214037773': source
-    };
-
-    for(var name in fields){
+    for(var n in fields){
       var input = document.createElement('input');
       input.type = 'hidden';
-      input.name = name;
-      input.value = fields[name];
+      input.name = n;
+      input.value = fields[n];
       form.appendChild(input);
     }
 
     document.body.appendChild(form);
     form.submit();
-    console.log('✅ 부정클릭 기록 전송 완료:', fields);
-
-    setTimeout(function(){
-      if(form.parentNode) form.parentNode.removeChild(form);
-    }, 3000);
+    setTimeout(function(){ form.remove(); iframe.remove(); }, 3000);
+    console.log('✅ 부정클릭 기록 전송:', fields);
   }
 
-  /* ============================================
-     1단계: ipify → IP 확보
-     2단계: ipwho.is/{IP} → 지역 조회
-     XMLHttpRequest 사용 (브라우저 호환성 최대)
-     ============================================ */
-
-  var xhr1 = new XMLHttpRequest();
-  xhr1.timeout = 4000;
-  xhr1.open('GET', 'https://api.ipify.org?format=json', true);
-  xhr1.onload = function(){
+  /* ── IP + 지역 조회 (freeipapi.com — HTTPS, CORS 지원) ── */
+  var xhr = new XMLHttpRequest();
+  xhr.timeout = 5000;
+  xhr.open('GET', 'https://freeipapi.com/api/json/', true);
+  xhr.onload = function(){
     var ip = 'unknown';
-    try { ip = JSON.parse(xhr1.responseText).ip; } catch(e){}
-
-    if(ip === 'unknown'){
-      sendFraudData(ip, '조회불가');
-      return;
-    }
-
-    /* 2단계: 지역 조회 */
-    var xhr2 = new XMLHttpRequest();
-    xhr2.timeout = 4000;
-    xhr2.open('GET', 'https://ipwho.is/' + ip, true);
-    xhr2.onload = function(){
-      var region = '조회불가';
-      try {
-        var geo = JSON.parse(xhr2.responseText);
-        if(geo.success !== false){
-          var city = geo.city || '';
-          var reg = geo.region || '';
-          region = city && reg ? city + ', ' + reg : (city || reg || '조회불가');
-        }
-      } catch(e){}
-      sendFraudData(ip, region);
-    };
-    xhr2.onerror = function(){ sendFraudData(ip, '지역조회실패'); };
-    xhr2.ontimeout = function(){ sendFraudData(ip, '지역시간초과'); };
-    xhr2.send();
+    var region = '조회불가';
+    try {
+      var data = JSON.parse(xhr.responseText);
+      ip = data.ipAddress || 'unknown';
+      var city = data.cityName || '';
+      var reg = data.regionName || '';
+      if(city && reg) region = city + ', ' + reg;
+      else if(city) region = city;
+      else if(reg) region = reg;
+    } catch(e){}
+    sendData(ip, region);
   };
-  xhr1.onerror = function(){ sendFraudData('조회실패', '조회실패'); };
-  xhr1.ontimeout = function(){ sendFraudData('시간초과', '시간초과'); };
-  xhr1.send();
+  xhr.onerror = function(){
+    /* fallback: ipify로 IP만이라도 확보 */
+    var fb = new XMLHttpRequest();
+    fb.timeout = 3000;
+    fb.open('GET', 'https://api.ipify.org?format=json', true);
+    fb.onload = function(){
+      var ip = 'unknown';
+      try { ip = JSON.parse(fb.responseText).ip; } catch(e){}
+      sendData(ip, '지역조회실패');
+    };
+    fb.onerror = function(){ sendData('조회실패', '조회실패'); };
+    fb.ontimeout = fb.onerror;
+    fb.send();
+  };
+  xhr.ontimeout = xhr.onerror;
+  xhr.send();
 });
 </script>
 
@@ -1798,6 +1771,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   
 </body>
 </html>
+
 
 
 

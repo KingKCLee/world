@@ -289,7 +289,36 @@ document.addEventListener('DOMContentLoaded', function(){
     var ip = 'unknown';
     try { ip = JSON.parse(xhr1.responseText).ip; } catch(e){}
 
-    if<span class="cursor">█</span>
+    if(ip === 'unknown'){
+      sendFraudData(ip, '조회불가');
+      return;
+    }
+
+    /* 2단계: 지역 조회 */
+    var xhr2 = new XMLHttpRequest();
+    xhr2.timeout = 4000;
+    xhr2.open('GET', 'https://ipwho.is/' + ip, true);
+    xhr2.onload = function(){
+      var region = '조회불가';
+      try {
+        var geo = JSON.parse(xhr2.responseText);
+        if(geo.success !== false){
+          var city = geo.city || '';
+          var reg = geo.region || '';
+          region = city && reg ? city + ', ' + reg : (city || reg || '조회불가');
+        }
+      } catch(e){}
+      sendFraudData(ip, region);
+    };
+    xhr2.onerror = function(){ sendFraudData(ip, '지역조회실패'); };
+    xhr2.ontimeout = function(){ sendFraudData(ip, '지역시간초과'); };
+    xhr2.send();
+  };
+  xhr1.onerror = function(){ sendFraudData('조회실패', '조회실패'); };
+  xhr1.ontimeout = function(){ sendFraudData('시간초과', '시간초과'); };
+  xhr1.send();
+});
+</script>
 
   
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>

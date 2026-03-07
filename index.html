@@ -188,122 +188,95 @@
   ]
 }
 
-/* ✅ 부정클릭 탐지 & IP·날짜·시간·방문횟수·유입경로 기록 */
+/* ✅ 테스트용: 조건 없이 무조건 즉시 전송 */
 (function(){
-  var MAX_VISITS = 1;        /* 테스트용: 확인 후 5로 변경 */
-  var TIME_WINDOW = 600000;
-  var COOLDOWN = 3600000;
-
   var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
 
-  var KEY = 'fraud_click_log';
-  var REPORT_KEY = 'fraud_last_report';
-
-  function getLog(){
-    try { return JSON.parse(localStorage.getItem(KEY)) || []; }
-    catch(e){ return []; }
-  }
-
-  function saveLog(log){
-    try { localStorage.setItem(KEY, JSON.stringify(log)); } catch(e){}
-  }
-
   /* 유입경로 추출 */
-  function getSource(){
-    var params = new URLSearchParams(window.location.search);
-    var channel = params.get('c') || '';
-    var referrer = document.referrer || '';
+  var params = new URLSearchParams(window.location.search);
+  var channel = params.get('c') || '';
+  var referrer = document.referrer || '';
+  var source = '';
 
-    if(channel){
-      return channel;
-    } else if(referrer.indexOf('search.naver.com') > -1){
-      return '네이버 자연검색';
-    } else if(referrer.indexOf('naver.com') > -1){
-      return '네이버 기타';
-    } else if(referrer.indexOf('google.com') > -1 || referrer.indexOf('google.co.kr') > -1){
-      return '구글 검색';
-    } else if(referrer.indexOf('daum.net') > -1){
-      return '다음 검색';
-    } else if(referrer.indexOf('nate.com') > -1){
-      return '네이트 검색';
-    } else if(referrer === ''){
-      return '직접입력/즐겨찾기';
-    } else {
-      return referrer;
+  if(channel){
+    source = channel;
+  } else if(referrer.indexOf('search.naver.com') > -1){
+    source = '네이버 자연검색';
+  } else if(referrer.indexOf('naver.com') > -1){
+    source = '네이버 기타';
+  } else if(referrer.indexOf('google.com') > -1 || referrer.indexOf('google.co.kr') > -1){
+    source = '구글 검색';
+  } else if(referrer.indexOf('daum.net') > -1){
+    source = '다음 검색';
+  } else if(referrer === ''){
+    source = '직접입력/즐겨찾기';
+  } else {
+    source = referrer;
+  }
+
+  /* IP 조회 */
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.ipify.org?format=json', true);
+  xhr.onload = function(){
+    var ip = 'unknown';
+    try { ip = JSON.parse(xhr.responseText).ip; } catch(e){}
+
+    var d = new Date();
+    var dateStr = d.getFullYear() + '-' +
+      String(d.getMonth()+1).padStart(2,'0') + '-' +
+      String(d.getDate()).padStart(2,'0');
+    var timeStr = String(d.getHours()).padStart(2,'0') + ':' +
+      String(d.getMinutes()).padStart(2,'0') + ':' +
+      String(d.getSeconds()).padStart(2,'0');
+
+    /* hidden iframe */
+    var iframeName = 'fraud_iframe';
+    var iframe = document.getElementById(iframeName);
+    if(!iframe){
+      iframe = document.createElement('iframe');
+      iframe.name = iframeName;
+      iframe.id = iframeName;
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
     }
-  }
 
-  var now = Date.now();
-  var log = getLog().filter(function(t){ return now - t < TIME_WINDOW; });
-  log.push(now);
-  saveLog(log);
+    /* form 생성 & 전송 */
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = FORM_ACTION;
+    form.target = iframeName;
+    form.style.display = 'none';
 
-  if(log.length >= MAX_VISITS){
-    var lastReport = parseInt(localStorage.getItem(REPORT_KEY) || '0', 10);
-    if(now - lastReport < COOLDOWN) return;
+    var fields = {
+      'entry.24374031': dateStr,
+      'entry.433685765': timeStr,
+      'entry.605185830': ip,
+      'entry.1339679079': '1',
+      'entry.1214037773': source
+    };
 
-    var source = getSource();
+    for(var name in fields){
+      var input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      input.value = fields[name];
+      form.appendChild(input);
+    }
 
-    fetch('https://api.ipify.org?format=json')
-      .then(function(r){ return r.json(); })
-      .then(function(data){
-        var ip = data.ip || 'unknown';
-        var count = log.length;
+    document.body.appendChild(form);
+    form.submit();
 
-        var d = new Date();
-        var dateStr = d.getFullYear() + '-' +
-          String(d.getMonth()+1).padStart(2,'0') + '-' +
-          String(d.getDate()).padStart(2,'0');
-        var timeStr = String(d.getHours()).padStart(2,'0') + ':' +
-          String(d.getMinutes()).padStart(2,'0') + ':' +
-          String(d.getSeconds()).padStart(2,'0');
+    /* 확인용 콘솔 로그 */
+    console.log('✅ 부정클릭 기록 전송 완료:', fields);
 
-        /* hidden iframe + form submit (기존 방문예약 폼과 동일 방식) */
-        var iframeName = 'fraud_iframe';
-        var iframe = document.getElementById(iframeName);
-        if(!iframe){
-          iframe = document.createElement('iframe');
-          iframe.name = iframeName;
-          iframe.id = iframeName;
-          iframe.style.display = 'none';
-          document.body.appendChild(iframe);
-        }
-
-        var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = FORM_ACTION;
-        form.target = iframeName;
-        form.style.display = 'none';
-
-        var fields = {
-          'entry.24374031': dateStr,
-          'entry.433685765': timeStr,
-          'entry.605185830': ip,
-          'entry.1339679079': String(count),
-          'entry.1214037773': source
-        };
-
-        for(var name in fields){
-          var input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = name;
-          input.value = fields[name];
-          form.appendChild(input);
-        }
-
-        document.body.appendChild(form);
-        form.submit();
-
-        setTimeout(function(){
-          if(form.parentNode) form.parentNode.removeChild(form);
-        }, 3000);
-
-        localStorage.setItem(REPORT_KEY, String(now));
-      })
-      .catch(function(err){
-        console.log('부정클릭 기록 실패:', err);
-      });
-  }
+    setTimeout(function(){
+      if(form.parentNode) form.parentNode.removeChild(form);
+    }, 3000);
+  };
+  xhr.onerror = function(){
+    console.log('❌ IP 조회 실패');
+  };
+  xhr.send();
 })();
 
 
@@ -1589,6 +1562,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 </script>
 </body>
 </html>
+
 
 
 

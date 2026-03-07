@@ -256,7 +256,18 @@ document.addEventListener('DOMContentLoaded', function(){
     console.log('✅ 부정클릭 기록 전송:', fields);
   }
 
-  /* ── 1순위: ipapi.co (HTTPS, CORS 공식지원, 무료 월30,000회) ── */
+  /* ── 지역 + ISP 합치기 ── */
+  function buildRegion(city, reg, org){
+    var loc = '';
+    if(city && reg) loc = city + ', ' + reg;
+    else if(city) loc = city;
+    else if(reg) loc = reg;
+    else loc = '조회불가';
+    if(org) loc += ' (' + org + ')';
+    return loc;
+  }
+
+  /* ── 1순위: ipapi.co ── */
   function tryIpapi(){
     var xhr = new XMLHttpRequest();
     xhr.timeout = 4000;
@@ -267,11 +278,7 @@ document.addEventListener('DOMContentLoaded', function(){
         var data = JSON.parse(xhr.responseText);
         if(data.error){ throw new Error('ipapi error'); }
         ip = data.ip || 'unknown';
-        var city = data.city || '';
-        var reg = data.region || '';
-        if(city && reg) region = city + ', ' + reg;
-        else if(city) region = city;
-        else if(reg) region = reg;
+        region = buildRegion(data.city, data.region, data.org);
       } catch(e){ tryFreeIpApi(); return; }
       sendData(ip, region);
     };
@@ -280,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function(){
     xhr.send();
   }
 
-  /* ── 2순위: freeipapi.com (폴백) ── */
+  /* ── 2순위: freeipapi.com ── */
   function tryFreeIpApi(){
     var xhr = new XMLHttpRequest();
     xhr.timeout = 4000;
@@ -290,11 +297,7 @@ document.addEventListener('DOMContentLoaded', function(){
       try {
         var data = JSON.parse(xhr.responseText);
         ip = data.ipAddress || 'unknown';
-        var city = data.cityName || '';
-        var reg = data.regionName || '';
-        if(city && reg) region = city + ', ' + reg;
-        else if(city) region = city;
-        else if(reg) region = reg;
+        region = buildRegion(data.cityName, data.regionName, data.asnOrganization);
       } catch(e){ tryIpifyOnly(); return; }
       sendData(ip, region);
     };
@@ -303,7 +306,7 @@ document.addEventListener('DOMContentLoaded', function(){
     xhr.send();
   }
 
-  /* ── 3순위: ipify (IP만 확보) ── */
+  /* ── 3순위: ipify (IP만) ── */
   function tryIpifyOnly(){
     var xhr = new XMLHttpRequest();
     xhr.timeout = 3000;
@@ -322,6 +325,7 @@ document.addEventListener('DOMContentLoaded', function(){
   tryIpapi();
 });
 </script>
+
 
 
   
@@ -1802,6 +1806,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   
 </body>
 </html>
+
 
 
 

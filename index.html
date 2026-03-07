@@ -191,7 +191,7 @@
 </script>
 
 <script>
-/* ✅ 부정클릭 탐지: Google Forms 직접 전송 (검증 완료) */
+/* ✅ 부정클릭 탐지: Google Forms 직접 전송 (지역 추가 버전) */
 document.addEventListener('DOMContentLoaded', function(){
   var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
 
@@ -216,7 +216,16 @@ document.addEventListener('DOMContentLoaded', function(){
     source = referrer;
   }
 
-  function sendFraudData(ip){
+  /* ✅ 방문횟수 카운트 (IP 기반 localStorage) */
+  function getVisitCount(ip){
+    var key = 'lp_vc_' + ip;
+    var c = parseInt(localStorage.getItem(key)) || 0;
+    c++;
+    localStorage.setItem(key, c);
+    return c;
+  }
+
+  function sendFraudData(ip, region){
     var d = new Date();
     var dateStr = d.getFullYear() + '-' +
       String(d.getMonth()+1).padStart(2,'0') + '-' +
@@ -245,7 +254,8 @@ document.addEventListener('DOMContentLoaded', function(){
       'entry.24374031': dateStr,
       'entry.433685765': timeStr,
       'entry.605185830': ip,
-      'entry.1339679079': '1',
+      'entry.838856477': region,
+      'entry.1339679079': getVisitCount(ip).toString(),
       'entry.1214037773': source
     };
 
@@ -266,19 +276,26 @@ document.addEventListener('DOMContentLoaded', function(){
     }, 3000);
   }
 
+  /* ✅ ip-api.com으로 IP + 지역 동시 조회 (무료, 한국어 지원) */
   var xhr = new XMLHttpRequest();
   xhr.timeout = 3000;
-  xhr.open('GET', 'https://api.ipify.org?format=json', true);
+  xhr.open('GET', 'https://ip-api.com/json/?fields=query,regionName,city&lang=ko', true);
   xhr.onload = function(){
-    var ip = 'unknown';
-    try { ip = JSON.parse(xhr.responseText).ip; } catch(e){}
-    sendFraudData(ip);
+    var ip = 'unknown', region = '';
+    try {
+      var data = JSON.parse(xhr.responseText);
+      ip = data.query || 'unknown';
+      region = (data.city || '') + ', ' + (data.regionName || '');
+      if(region === ', ') region = '조회불가';
+    } catch(e){}
+    sendFraudData(ip, region);
   };
-  xhr.onerror = function(){ sendFraudData('조회실패'); };
-  xhr.ontimeout = function(){ sendFraudData('시간초과'); };
+  xhr.onerror = function(){ sendFraudData('조회실패', '조회실패'); };
+  xhr.ontimeout = function(){ sendFraudData('시간초과', '시간초과'); };
   xhr.send();
 });
 </script>
+
 
 
   
@@ -1759,4 +1776,5 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   
 </body>
 </html>
+
 

@@ -678,6 +678,74 @@ html,body{overflow-y:auto;}
 body.lp-landing{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important;}
 body.lp-landing.lp-brand-dark #header,
 body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;box-shadow:0 4px 16px rgba(0,0,0,.08)!important;}
+
+  /* ========================================
+   ✅ 1. 이탈 방지 팝업 (Exit Intent)
+   ======================================== */
+.lp-exit-popup{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;justify-content:center;align-items:center;z-index:12000;opacity:0;transition:opacity .3s;}
+.lp-exit-popup.show{display:flex;opacity:1;}
+.lp-exit-inner{width:90%;max-width:420px;background:#fff;border-radius:16px;padding:36px 24px 28px;text-align:center;position:relative;box-shadow:0 16px 40px rgba(0,0,0,.3);transform:translateY(30px);transition:transform .35s ease;}
+.lp-exit-popup.show .lp-exit-inner{transform:translateY(0);}
+.lp-exit-close{position:absolute;right:12px;top:10px;width:28px;height:28px;border-radius:50%;border:none;background:#eee;cursor:pointer;font-size:18px;line-height:28px;text-align:center;padding:0;}
+.lp-exit-badge{display:inline-block;background:#d60000;color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:999px;margin-bottom:14px;letter-spacing:-.3px;}
+.lp-exit-title{font-size:24px;font-weight:800;color:#111;letter-spacing:-1.5px;margin:0 0 8px;line-height:1.3;}
+.lp-exit-title em{font-style:normal;color:var(--brand-color);}
+.lp-exit-desc{font-size:14px;color:#666;line-height:1.6;margin-bottom:20px;letter-spacing:-.3px;}
+.lp-exit-benefits{display:flex;justify-content:center;gap:10px;margin-bottom:22px;}
+.lp-exit-benefit{background:#faf8ef;border:1px solid #e8e2c8;border-radius:10px;padding:12px 10px;flex:1;text-align:center;}
+.lp-exit-benefit .eb-icon{font-size:22px;margin-bottom:4px;}
+.lp-exit-benefit .eb-text{font-size:11px;font-weight:600;color:#666;line-height:1.3;}
+.lp-exit-benefit .eb-value{font-size:16px;font-weight:800;color:var(--brand-color-dark);margin-top:2px;}
+.lp-exit-cta{width:100%;padding:14px 0;border-radius:999px;border:0;font-size:18px;font-weight:700;letter-spacing:-1px;cursor:pointer;background:var(--brand-color);color:#fff;transition:all .2s;animation:ctaPulse 2s ease-in-out infinite;}
+.lp-exit-cta:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(179,155,0,.35);}
+.lp-exit-later{display:inline-block;margin-top:12px;font-size:12px;color:#999;cursor:pointer;border:none;background:none;text-decoration:underline;}
+@media(max-width:1023px){
+  .lp-exit-inner{padding:28px 18px 22px;}
+  .lp-exit-title{font-size:20px;}
+  .lp-exit-benefits{flex-direction:column;gap:8px;}
+}
+
+/* ========================================
+   ✅ 2. 실시간 알림 토스트
+   ======================================== */
+.lp-toast{position:fixed;z-index:10000;background:#fff;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.18);padding:14px 42px 14px 16px;display:flex;align-items:center;gap:12px;opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease;pointer-events:none;max-width:360px;width:90%;}
+.lp-toast.show{opacity:1;transform:translateY(0);pointer-events:auto;}
+.lp-toast-close{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;border:none;background:rgba(0,0,0,.06);font-size:13px;line-height:20px;text-align:center;cursor:pointer;padding:0;color:#666;}
+.lp-toast-icon{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#fdf6e3,#fff8dc);border:2px solid #e8e0c8;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.lp-toast-body{flex:1;min-width:0;}
+.lp-toast-msg{font-size:13px;font-weight:600;color:#222;letter-spacing:-.3px;line-height:1.4;}
+.lp-toast-time{font-size:11px;color:#999;margin-top:2px;}
+.lp-toast-bar{position:absolute;bottom:0;left:0;height:3px;background:var(--brand-color);border-radius:0 0 14px 14px;transition:width linear;}
+@media(min-width:1024px){
+  .lp-toast{left:24px;bottom:24px;}
+}
+@media(max-width:1023px){
+  .lp-toast{left:50%;bottom:80px;transform:translateX(-50%) translateY(20px);max-width:92vw;}
+  .lp-toast.show{transform:translateX(-50%) translateY(0);}
+}
+
+/* ========================================
+   ✅ 3. 체류시간 기반 CTA
+   ======================================== */
+.lp-dwell-cta{position:fixed;z-index:10001;opacity:0;visibility:hidden;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease,visibility 0s .4s;pointer-events:none;}
+.lp-dwell-cta.show{opacity:1;visibility:visible;transform:translateY(0);transition:opacity .4s ease,transform .4s ease,visibility 0s 0s;pointer-events:auto;}
+.lp-dwell-inner{background:#fff;border-radius:14px;box-shadow:0 8px 28px rgba(0,0,0,.18);padding:16px 42px 16px 18px;display:flex;align-items:center;gap:12px;max-width:380px;width:92vw;position:relative;}
+.lp-dwell-close{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;border:none;background:rgba(0,0,0,.06);font-size:13px;line-height:20px;text-align:center;cursor:pointer;padding:0;color:#666;}
+.lp-dwell-icon{flex:0 0 auto;font-size:28px;}
+.lp-dwell-text{flex:1;min-width:0;}
+.lp-dwell-text strong{display:block;font-size:14px;font-weight:700;color:var(--brand-color-dark);letter-spacing:-.3px;margin-bottom:2px;}
+.lp-dwell-text span{font-size:12px;color:#666;letter-spacing:-.3px;}
+.lp-dwell-btn{flex:0 0 auto;padding:8px 16px;border-radius:999px;border:0;background:var(--brand-color);color:#fff;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;}
+@media(min-width:1024px){
+  .lp-dwell-cta{right:24px;bottom:90px;}
+}
+@media(max-width:1023px){
+  .lp-dwell-cta{left:50%;bottom:80px;transform:translateX(-50%) translateY(20px);}
+  .lp-dwell-cta.show{transform:translateX(-50%) translateY(0);}
+  .lp-dwell-inner{max-width:92vw;}
+}
+
+
 </style>
 
 </head>
@@ -1558,5 +1626,137 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   });
 })();
 </script>
+
+<!-- ✅ 이탈 방지 팝업 -->
+<div class="lp-exit-popup" id="lpExitPopup">
+  <div class="lp-exit-inner">
+    <button type="button" class="lp-exit-close" id="lpExitClose">&times;</button>
+    <div class="lp-exit-badge">⏰ 잠깐만요!</div>
+    <h3 class="lp-exit-title">지금 예약하시면<br><em>VIP 추가 혜택</em>을 드립니다</h3>
+    <p class="lp-exit-desc">방문 상담 예약 고객에게만 제공되는<br>특별 할인 혜택을 놓치지 마세요.</p>
+    <div class="lp-exit-benefits">
+      <div class="lp-exit-benefit">
+        <div class="eb-icon">💰</div>
+        <div class="eb-text">특별할인</div>
+        <div class="eb-value">1.2억</div>
+      </div>
+      <div class="lp-exit-benefit">
+        <div class="eb-icon">🎁</div>
+        <div class="eb-text">무상옵션</div>
+        <div class="eb-value">3,000만</div>
+      </div>
+      <div class="lp-exit-benefit">
+        <div class="eb-icon">🔑</div>
+        <div class="eb-text">즉시입주</div>
+        <div class="eb-value">신축</div>
+      </div>
+    </div>
+    <button type="button" class="lp-exit-cta" id="lpExitCta">30초만에 방문예약 신청하기</button>
+    <button type="button" class="lp-exit-later" id="lpExitLater">다음에 할게요</button>
+  </div>
+</div>
+
+<!-- ✅ 실시간 알림 토스트 -->
+<div class="lp-toast" id="lpToast">
+  <button type="button" class="lp-toast-close" id="lpToastClose">&times;</button>
+  <div class="lp-toast-icon">🔔</div>
+  <div class="lp-toast-body">
+    <div class="lp-toast-msg" id="lpToastMsg"></div>
+    <div class="lp-toast-time" id="lpToastTime"></div>
+  </div>
+  <div class="lp-toast-bar" id="lpToastBar"></div>
+</div>
+
+<!-- ✅ 체류시간 기반 CTA -->
+<div class="lp-dwell-cta" id="lpDwellCta">
+  <div class="lp-dwell-inner">
+    <button type="button" class="lp-dwell-close" id="lpDwellClose">&times;</button>
+    <div class="lp-dwell-icon">👀</div>
+    <div class="lp-dwell-text">
+      <strong>관심이 있으시군요!</strong>
+      <span>지금 예약하시면 VIP 상담을 받으실 수 있습니다</span>
+    </div>
+    <button type="button" class="lp-dwell-btn" id="lpDwellBtn">예약하기</button>
+  </div>
+</div>
+
+<!-- ✅ 이탈 방지 + 토스트 + 체류시간 CTA JavaScript -->
+<script>
+/* 1. 이탈 방지 팝업 */
+(function(){
+  var popup = document.getElementById('lpExitPopup');
+  if(!popup) return;
+  var shown = false;
+  function showPopup(){
+    if(shown || sessionStorage.getItem('exit_shown')) return;
+    shown = true;
+    sessionStorage.setItem('exit_shown','1');
+    popup.classList.add('show');
+  }
+  function hidePopup(){ popup.classList.remove('show'); }
+  document.addEventListener('mouseout', function(e){ if(e.clientY <= 0) showPopup(); });
+  if('ontouchstart' in window){
+    history.pushState(null, '', location.href);
+    window.addEventListener('popstate', function(){ history.pushState(null, '', location.href); showPopup(); });
+  }
+  document.getElementById('lpExitClose').addEventListener('click', hidePopup);
+  document.getElementById('lpExitLater').addEventListener('click', hidePopup);
+  document.getElementById('lpExitCta').addEventListener('click', function(){
+    hidePopup();
+    if(typeof lpOpenFloatForm === 'function') lpOpenFloatForm();
+    else { var t = document.getElementById('reserve-top'); if(t) t.scrollIntoView({behavior:'smooth', block:'center'}); }
+  });
+  popup.addEventListener('click', function(e){ if(e.target === popup) hidePopup(); });
+})();
+
+/* 2. 실시간 알림 토스트 */
+(function(){
+  var toast = document.getElementById('lpToast');
+  var msgEl = document.getElementById('lpToastMsg');
+  var timeEl = document.getElementById('lpToastTime');
+  var barEl = document.getElementById('lpToastBar');
+  if(!toast || !msgEl) return;
+  var SHOW_DURATION = 5000;
+  var stopped = false;
+  var hideTimer = null;
+  var names = ['김**','이**','박**','최**','정**','한**','조**','윤**','장**','임**','오**','서**','신**','권**','황**','안**','송**','류**','홍**','전**'];
+  var regions = ['서울','인천','경기 수원','경기 성남','경기 안양','경기 부천','경기 김포','경기 시흥','인천 연수구','인천 남동구','서울 강남','서울 송파','서울 마포','경기 화성','경기 용인'];
+  var actions = ['방문예약을 신청','전화상담을 신청','관심고객 등록을 완료','모델하우스 예약을 완료'];
+  var times = ['방금 전','1분 전','2분 전','3분 전','5분 전','7분 전','10분 전'];
+  function rand(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function showToast(){
+    if(stopped) return;
+    msgEl.textContent = rand(regions) + ' ' + rand(names) + ' 님이 ' + rand(actions) + '했습니다';
+    if(timeEl) timeEl.textContent = rand(times);
+    if(barEl){ barEl.style.transition = 'none'; barEl.style.width = '100%'; void barEl.offsetWidth; barEl.style.transition = 'width ' + SHOW_DURATION + 'ms linear'; barEl.style.width = '0%'; }
+    toast.classList.add('show');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function(){ toast.classList.remove('show'); if(!stopped) scheduleNext(); }, SHOW_DURATION);
+  }
+  function scheduleNext(){ setTimeout(showToast, 15000 + Math.random() * 25000); }
+  document.getElementById('lpToastClose').addEventListener('click', function(){ stopped = true; clearTimeout(hideTimer); toast.classList.remove('show'); });
+  setTimeout(showToast, 8000 + Math.random() * 7000);
+})();
+
+/* 3. 체류시간 기반 CTA (30초) */
+(function(){
+  var cta = document.getElementById('lpDwellCta');
+  if(!cta || sessionStorage.getItem('dwell_closed')) return;
+  setTimeout(function(){
+    cta.classList.add('show');
+    setTimeout(function(){ cta.classList.remove('show'); }, 10000);
+  }, 30000);
+  document.getElementById('lpDwellClose').addEventListener('click', function(){ cta.classList.remove('show'); sessionStorage.setItem('dwell_closed','1'); });
+  document.getElementById('lpDwellBtn').addEventListener('click', function(){
+    cta.classList.remove('show');
+    sessionStorage.setItem('dwell_closed','1');
+    if(typeof lpOpenFloatForm === 'function') lpOpenFloatForm();
+    else { var t = document.getElementById('reserve-top'); if(t) t.scrollIntoView({behavior:'smooth', block:'center'}); }
+  });
+})();
+</script>
+
+  
 </body>
 </html>
+

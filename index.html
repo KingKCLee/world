@@ -190,8 +190,9 @@
 
 </script>
 
-<script>
-/* ✅ 부정클릭 탐지: Google Forms 직접 전송 (IP + 지역 — 2단계 조회) */
+
+  <script>
+/* ✅ 부정클릭 탐지: Google Forms 직접 전송 (IP: ipify + 지역: ipwho.is 2단계) */
 document.addEventListener('DOMContentLoaded', function(){
   var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
 
@@ -275,45 +276,36 @@ document.addEventListener('DOMContentLoaded', function(){
     }, 3000);
   }
 
-  /* ========================================
-     1단계: ipify로 IP 확인 (HTTPS, 기존 검증 완료)
-     2단계: ipwho.is로 지역 조회 (HTTPS 무료)
-     ======================================== */
-  var xhr1 = new XMLHttpRequest();
-  xhr1.timeout = 3000;
-  xhr1.open('GET', 'https://api.ipify.org?format=json', true);
-  xhr1.onload = function(){
-    var ip = 'unknown';
-    try { ip = JSON.parse(xhr1.responseText).ip; } catch(e){}
+  /* ============================================
+     1단계: ipify → IP 확보 (기존 검증 완료)
+     2단계: ipwho.is/{IP} → 지역 조회
+     실패 시에도 IP는 반드시 기록
+     ============================================ */
+  fetch('https://api.ipify.org?format=json', {signal: AbortSignal.timeout(3000)})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var ip = d.ip || 'unknown';
 
-    if(ip === 'unknown'){
-      sendFraudData(ip, '조회불가');
-      return;
-    }
-
-    /* 2단계: IP를 가지고 지역 조회 */
-    var xhr2 = new XMLHttpRequest();
-    xhr2.timeout = 3000;
-    xhr2.open('GET', 'https://ipwho.is/' + ip, true);
-    xhr2.onload = function(){
-      var region = '조회불가';
-      try {
-        var geo = JSON.parse(xhr2.responseText);
-        if(geo.success !== false){
-          var city = geo.city || '';
-          var reg = geo.region || '';
-          region = city && reg ? city + ', ' + reg : (city || reg || '조회불가');
-        }
-      } catch(e){}
-      sendFraudData(ip, region);
-    };
-    xhr2.onerror = function(){ sendFraudData(ip, '지역조회실패'); };
-    xhr2.ontimeout = function(){ sendFraudData(ip, '지역시간초과'); };
-    xhr2.send();
-  };
-  xhr1.onerror = function(){ sendFraudData('조회실패', '조회실패'); };
-  xhr1.ontimeout = function(){ sendFraudData('시간초과', '시간초과'); };
-  xhr1.send();
+      /* 2단계: 지역 조회 */
+      fetch('https://ipwho.is/' + ip, {signal: AbortSignal.timeout(3000)})
+        .then(function(r){ return r.json(); })
+        .then(function(geo){
+          var region = '조회불가';
+          if(geo.success !== false){
+            var city = geo.city || '';
+            var reg = geo.region || '';
+            region = city && reg ? city + ', ' + reg : (city || reg || '조회불가');
+          }
+          sendFraudData(ip, region);
+        })
+        .catch(function(){
+          sendFraudData(ip, '지역조회실패');
+        });
+    })
+    .catch(function(){
+      /* ipify도 실패 시 최후 수단 */
+      sendFraudData('조회실패', '조회실패');
+    });
 });
 </script>
 
@@ -1799,6 +1791,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   
 </body>
 </html>
+
 
 
 

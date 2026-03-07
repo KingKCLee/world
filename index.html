@@ -190,15 +190,11 @@
 
 /* ✅ 부정클릭 탐지 & IP·날짜·시간·방문횟수 기록 */
 (function(){
-  var MAX_VISITS = 5;
+  var MAX_VISITS = 1;        /* 테스트용: 1회만에 바로 기록 (확인 후 5로 변경) */
   var TIME_WINDOW = 600000;
   var COOLDOWN = 3600000;
 
-  var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
-  var ENTRY_DATE  = 'entry.24374031';
-  var ENTRY_TIME  = 'entry.433685765';
-  var ENTRY_IP    = 'entry.605185830';
-  var ENTRY_COUNT = 'entry.1339679079';
+  var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
 
   var KEY = 'fraud_click_log';
   var REPORT_KEY = 'fraud_last_report';
@@ -217,7 +213,7 @@
   log.push(now);
   saveLog(log);
 
-  if(log.length > MAX_VISITS){
+  if(log.length >= MAX_VISITS){
     var lastReport = parseInt(localStorage.getItem(REPORT_KEY) || '0', 10);
     if(now - lastReport < COOLDOWN) return;
 
@@ -227,36 +223,61 @@
         var ip = data.ip || 'unknown';
         var count = log.length;
 
-        var koNow = new Date().toLocaleString('ko-KR', {
-          timeZone: 'Asia/Seoul',
-          hour12: false
-        });
-        var parts = koNow.replace(/\./g, '').trim().split(/\s+/);
-        var year = parts[0];
-        var month = parts[1] ? parts[1].padStart(2, '0') : '00';
-        var day = parts[2] ? parts[2].padStart(2, '0') : '00';
-        var dateStr = year + '-' + month + '-' + day;
-        var timeStr = parts[3] || '00:00:00';
+        var d = new Date();
+        var dateStr = d.getFullYear() + '-' +
+          String(d.getMonth()+1).padStart(2,'0') + '-' +
+          String(d.getDate()).padStart(2,'0');
+        var timeStr = String(d.getHours()).padStart(2,'0') + ':' +
+          String(d.getMinutes()).padStart(2,'0') + ':' +
+          String(d.getSeconds()).padStart(2,'0');
 
-        var params = new URLSearchParams();
-        params.append(ENTRY_DATE, dateStr);
-        params.append(ENTRY_TIME, timeStr);
-        params.append(ENTRY_IP, ip);
-        params.append(ENTRY_COUNT, count);
+        /* 기존 방문예약 폼과 동일한 방식: hidden iframe + form submit */
+        var iframeName = 'fraud_iframe';
+        var iframe = document.getElementById(iframeName);
+        if(!iframe){
+          iframe = document.createElement('iframe');
+          iframe.name = iframeName;
+          iframe.id = iframeName;
+          iframe.style.display = 'none';
+          document.body.appendChild(iframe);
+        }
 
-        return fetch(FORM_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          body: params.toString()
-        });
-      })
-      .then(function(){
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = FORM_ACTION;
+        form.target = iframeName;
+        form.style.display = 'none';
+
+        var fields = {
+          'entry.24374031': dateStr,
+          'entry.433685765': timeStr,
+          'entry.605185830': ip,
+          'entry.1339679079': String(count)
+        };
+
+        for(var name in fields){
+          var input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = name;
+          input.value = fields[name];
+          form.appendChild(input);
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+
+        setTimeout(function(){
+          if(form.parentNode) form.parentNode.removeChild(form);
+        }, 3000);
+
         localStorage.setItem(REPORT_KEY, String(now));
       })
-      .catch(function(){});
+      .catch(function(err){
+        console.log('부정클릭 기록 실패:', err);
+      });
   }
 })();
+
 
   
 </script>
@@ -1539,6 +1560,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 </script>
 </body>
 </html>
+
 
 
 

@@ -1252,3 +1252,438 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     <div class="lp-footer-notice">
       ※ 본 홈페이지에 사용된 투시도, 조감도, CG, 이미지 및 내용, 문구 등은 소비자의 이해를 돕기 위해 제작 또는 표현된 것으로 실제와 차이가 있을 수 있습니다.<br>
       ※ 본 홈페이지 상의 개발 및 교통계획에 대한 사항은 추후 관계기관의 사정에 따라 변경 및 취소 될 수 있으며, 이는 당사와 무관함을 알려드립니다
+<!-- ===== 퀵 메뉴 (PC + 모바일) ===== -->
+<div class="lp-quick lp-quick-pc" id="lpQuickPc">
+  <div class="lp-quick-pc-inner">
+    <button class="lp-quick-btn" onclick="location.href='tel:1533-9077'">
+      <span class="lp-quick-btn-icon"><img src="btn0.png" alt="전화"></span>
+      <span class="lp-quick-btn-label">전화상담</span>
+    </button>
+    <button class="lp-quick-btn js-open-float">
+      <span class="lp-quick-btn-icon"><img src="btn1.png" alt="예약"></span>
+      <span class="lp-quick-btn-label">방문예약</span>
+    </button>
+  </div>
+</div>
+<div class="lp-quick lp-quick-mo" id="lpQuickMo">
+  <div class="lp-quick-mo-inner">
+    <button class="lp-quick-btn" onclick="location.href='tel:1533-9077'">
+      <span class="lp-quick-btn-icon"><img src="btn0.png" alt="전화"></span>
+      <span class="lp-quick-btn-label">전화상담</span>
+    </button>
+    <button class="lp-quick-btn js-open-float">
+      <span class="lp-quick-btn-icon"><img src="btn1.png" alt="예약"></span>
+      <span class="lp-quick-btn-label">방문예약</span>
+    </button>
+  </div>
+</div>
+
+<!-- ===== 플로팅 예약 폼 ===== -->
+<div class="lp-float-dim" id="lpFloatDim"></div>
+<div class="lp-float-form" id="lpFloatForm">
+  <button class="lp-float-close" id="lpFloatClose">&times;</button>
+  <h3 class="lp-float-title">방문예약</h3>
+  <form action="https://docs.google.com/forms/d/e/1FAIpQLScfHQY82AJ9EHuOlm4zS_dtRN_2ZbP9qDIC2KGLfNYDhvv2Rw/formResponse"
+        method="POST" target="hidden_iframe" onsubmit="return validateForm('float');">
+    <div class="lp-float-inner-row">
+      <input name="entry.1019098426" required placeholder="성함" class="lp-input">
+    </div>
+    <div class="lp-float-inner-row">
+      <input type="tel" id="display_phone_float" required placeholder="휴대폰 번호" class="lp-input">
+      <input type="hidden" name="entry.929183790" id="real_phone_float">
+    </div>
+    <input type="hidden" name="entry.716000199" class="js-source-field">
+    <div class="lp-float-inner-row lp-float-privacy">
+      <label>
+        <input type="checkbox" name="entry.1692797403" value="네 동의합니다." required>
+        개인정보 수집이용 동의 <a href="#" class="lp-privacy-more">[자세히]</a>
+      </label>
+    </div>
+    <div class="lp-float-submit">
+      <button type="submit" class="lp-submit-btn">방문예약 신청</button>
+    </div>
+  </form>
+</div>
+
+<!-- ===== 예약 버블 ===== -->
+<div class="lp-resv-bubble-fixed" id="lpResvBubble" style="display:none;">
+  <div class="lp-resv-bubble">
+    <button class="lp-resv-bubble-close" id="lpBubbleClose">&times;</button>
+    오늘 <span class="num" id="bubbleCount">0</span>명이 방문예약했어요!
+  </div>
+</div>
+
+<!-- ===== 토스트 알림 ===== -->
+<div class="lp-toast" id="lpToast">
+  <button class="lp-toast-close">&times;</button>
+  <div class="lp-toast-icon">🔔</div>
+  <div class="lp-toast-body">
+    <div class="lp-toast-msg" id="toastMsg"></div>
+    <div class="lp-toast-time" id="toastTime"></div>
+  </div>
+  <div class="lp-toast-bar" id="toastBar"></div>
+</div>
+
+<!-- ===== 체류시간 CTA ===== -->
+<div class="lp-dwell-cta" id="lpDwellCta">
+  <div class="lp-dwell-inner">
+    <button class="lp-dwell-close" id="dwellClose">&times;</button>
+    <div class="lp-dwell-icon">💬</div>
+    <div class="lp-dwell-text">
+      <strong>관심이 있으시군요!</strong>
+      <span>지금 상담 받으시면 추가 혜택을 안내드립니다</span>
+    </div>
+    <button class="lp-dwell-btn" onclick="location.href='tel:1533-9077'">전화상담</button>
+  </div>
+</div>
+
+<!-- ===== 이탈방지 팝업 ===== -->
+<div class="lp-exit-popup" id="lpExitPopup">
+  <div class="lp-exit-inner">
+    <button class="lp-exit-close" id="exitClose">&times;</button>
+    <div class="lp-exit-badge">잠깐만요!</div>
+    <h3 class="lp-exit-title">지금 상담 받으시면<br><em>추가 할인 혜택</em>을 드립니다</h3>
+    <p class="lp-exit-desc">송도 월드메르디앙 잔여세대 한정 특별분양 중입니다.<br>놓치지 마세요!</p>
+    <div class="lp-exit-benefits">
+      <div class="lp-exit-benefit"><div class="eb-icon">💰</div><div class="eb-text">할인 혜택</div><div class="eb-value">1억2천</div></div>
+      <div class="lp-exit-benefit"><div class="eb-icon">🎁</div><div class="eb-text">무상옵션</div><div class="eb-value">3,000만원</div></div>
+      <div class="lp-exit-benefit"><div class="eb-icon">🔑</div><div class="eb-text">즉시입주</div><div class="eb-value">2023 신축</div></div>
+    </div>
+    <button class="lp-exit-cta" onclick="document.getElementById('lpExitPopup').classList.remove('show');document.querySelector('#reserve-top input[name=\\'entry.1019098426\\']').focus();">지금 바로 상담 신청하기</button>
+    <button class="lp-exit-later" id="exitLater">나중에 할게요</button>
+  </div>
+</div>
+
+<!-- ===== 슬라이드 팝업 ===== -->
+<div class="lp-slide-popup" id="lpSlidePopup">
+  <div class="lp-slide-popup-container">
+    <div class="lp-slide-popup-inner" id="slidePopup1">
+      <button class="lp-slide-popup-close" data-close="slidePopup1">&times;</button>
+      <a href="tel:1533-9077"><img src="popup1.png" alt="송도 월드메르디앙 팝업 1"></a>
+      <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" data-target="slidePopup1"> 오늘 하루 보지 않기</label></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 카카오 지도 ===== -->
+<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_KEY&autoload=false"></script>
+<script>
+new daum.roughmap.Lander({
+  "timestamp":"1772630746853",
+  "key":"2mwp0",
+  "mapWidth":"100%",
+  "mapHeight":"400"
+}).render();
+</script>
+
+<!-- ===== 메인 스크립트 ===== -->
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+
+  /* ── AOS 초기화 ── */
+  try {
+    AOS.init({ duration: 800, once: true, offset: 60 });
+  } catch(e) {
+    // AOS 로드 실패 시 모든 요소 강제 표시
+    document.querySelectorAll('[data-aos]').forEach(function(el){
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+  }
+
+  /* ── Swiper 초기화 ── */
+  try {
+    new Swiper('.swiper1', {
+      loop: true,
+      autoplay: { delay: 4000, disableOnInteraction: false },
+      speed: 800,
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+      pagination: { el: '.swiper1 .swiper-pagination', clickable: true }
+    });
+  } catch(e){}
+
+  /* ── vh 변수 (모바일 주소창 대응) ── */
+  function setVh(){ document.documentElement.style.setProperty('--vh', window.innerHeight * 0.01 + 'px'); }
+  setVh(); window.addEventListener('resize', setVh);
+
+  /* ── 스크롤 텍스트 (Scroll Down) ── */
+  var stEl = document.querySelector('.scroll-text');
+  if(stEl){
+    var stTxt = stEl.getAttribute('data-text') || 'SCROLL DOWN · ';
+    var stHtml = '';
+    for(var i=0; i<stTxt.length; i++){
+      var angle = (360 / stTxt.length) * i;
+      stHtml += '<span class="scroll-char" style="transform:rotate('+angle+'deg) translate(0,-32px)">'+stTxt[i]+'</span>';
+    }
+    stEl.innerHTML = stHtml;
+  }
+
+  /* ── 헤더 스크롤 ── */
+  var header = document.getElementById('header');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 80) header.classList.add('on');
+    else header.classList.remove('on');
+  });
+
+  /* ── 유입경로 히든 필드 세팅 ── */
+  var params = new URLSearchParams(location.search);
+  var ref = document.referrer;
+  var src = '';
+  if(params.get('c')) src = params.get('c');
+  else if(ref.indexOf('search.naver.com') > -1) src = '네이버 자연검색';
+  else if(ref.indexOf('naver.com') > -1) src = '네이버 기타';
+  else if(ref.indexOf('google.com') > -1 || ref.indexOf('google.co.kr') > -1) src = '구글 검색';
+  else if(ref.indexOf('daum.net') > -1) src = '다음 검색';
+  else if(!ref) src = '직접입력/즐겨찾기';
+  else src = ref;
+  document.querySelectorAll('.js-source-field').forEach(function(el){ el.value = src; });
+
+  /* ── 전화번호 자동 하이픈 + 유효성 ── */
+  function formatPhone(val){
+    var n = val.replace(/\D/g,'');
+    if(n.length<=3) return n;
+    if(n.length<=7) return n.slice(0,3)+'-'+n.slice(3);
+    return n.slice(0,3)+'-'+n.slice(3,7)+'-'+n.slice(7,11);
+  }
+  ['top','bottom','float'].forEach(function(id){
+    var d = document.getElementById('display_phone_'+id);
+    var r = document.getElementById('real_phone_'+id);
+    if(d && r){
+      d.addEventListener('input', function(){
+        d.value = formatPhone(d.value);
+        r.value = d.value.replace(/-/g,'');
+      });
+    }
+  });
+
+  window.validateForm = function(formId){
+    var d = document.getElementById('display_phone_'+formId);
+    var r = document.getElementById('real_phone_'+formId);
+    if(d && r) r.value = d.value.replace(/-/g,'');
+    if(r && r.value.length < 10){
+      alert('올바른 휴대폰 번호를 입력해주세요.');
+      if(d) d.focus();
+      return false;
+    }
+    submitted = true;
+    return true;
+  };
+
+  /* ── 개인정보 레이어 ── */
+  document.querySelectorAll('.lp-privacy-more').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      document.getElementById('lpPrivacyLayer').style.display = 'flex';
+    });
+  });
+  var pc = document.getElementById('lpPrivacyClose');
+  var pl = document.getElementById('lpPrivacyLayer');
+  if(pc) pc.addEventListener('click', function(){ pl.style.display='none'; });
+  if(pl) pl.addEventListener('click', function(e){ if(e.target===pl) pl.style.display='none'; });
+
+  /* ── FAQ 토글 ── */
+  document.querySelectorAll('.lp-faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      var item = q.parentElement;
+      var a = item.querySelector('.lp-faq-a');
+      var isActive = item.classList.contains('active');
+      document.querySelectorAll('.lp-faq-item').forEach(function(fi){
+        fi.classList.remove('active');
+        fi.querySelector('.lp-faq-a').style.maxHeight = null;
+      });
+      if(!isActive){
+        item.classList.add('active');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ── Premium 6 탭 ── */
+  var p6Tabs = document.querySelectorAll('.p6-tab');
+  var p6Panels = document.querySelectorAll('.p6-panel');
+  var p6Bar = document.querySelector('.p6-progress-bar');
+  var p6Idx = 0, p6Timer = null, p6Duration = 5000;
+
+  function p6Go(idx){
+    p6Idx = idx;
+    p6Tabs.forEach(function(t,i){ t.classList.toggle('active', i===idx); });
+    p6Panels.forEach(function(p,i){ p.classList.toggle('active', i===idx); });
+    if(p6Bar){
+      p6Bar.style.transition = 'none';
+      p6Bar.style.width = '0';
+      p6Bar.offsetHeight;
+      p6Bar.style.transition = 'width '+p6Duration+'ms linear';
+      p6Bar.style.width = '100%';
+    }
+  }
+  function p6Next(){ p6Go((p6Idx + 1) % p6Tabs.length); }
+  function p6Start(){ p6Timer = setInterval(p6Next, p6Duration); }
+  function p6Stop(){ clearInterval(p6Timer); }
+
+  p6Tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      p6Stop();
+      p6Go(parseInt(t.getAttribute('data-index')));
+      p6Start();
+    });
+  });
+  p6Go(0); p6Start();
+
+  /* ── 유튜브 썸네일 클릭 재생 ── */
+  var ytThumb = document.getElementById('ytThumb');
+  if(ytThumb){
+    ytThumb.addEventListener('click', function(){
+      var wrapper = document.getElementById('ytSection');
+      ytThumb.style.display = 'none';
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/ZQXgPeGzwW4?autoplay=1&rel=0';
+      iframe.setAttribute('allow','autoplay; encrypted-media');
+      iframe.setAttribute('allowfullscreen','');
+      iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+      wrapper.appendChild(iframe);
+    });
+  }
+
+  /* ── 퀵 메뉴 PC 표시 ── */
+  var quickPc = document.getElementById('lpQuickPc');
+  if(quickPc){
+    window.addEventListener('scroll', function(){
+      if(window.scrollY > 400) quickPc.classList.add('show');
+      else quickPc.classList.remove('show');
+    });
+  }
+
+  /* ── 플로팅 폼 ── */
+  var floatDim = document.getElementById('lpFloatDim');
+  var floatForm = document.getElementById('lpFloatForm');
+  function openFloat(){ floatDim.classList.add('active'); floatForm.classList.add('active'); }
+  function closeFloat(){ floatDim.classList.remove('active'); floatForm.classList.remove('active'); }
+  document.querySelectorAll('.js-open-float').forEach(function(b){ b.addEventListener('click', openFloat); });
+  if(document.getElementById('lpFloatClose')) document.getElementById('lpFloatClose').addEventListener('click', closeFloat);
+  if(floatDim) floatDim.addEventListener('click', closeFloat);
+
+  /* ── 관심고객 스크롤 버튼 ── */
+  document.querySelectorAll('.js-scroll-to-register').forEach(function(b){
+    b.addEventListener('click', function(){
+      var target = document.getElementById('reserve-bottom');
+      if(target) target.scrollIntoView({ behavior:'smooth' });
+    });
+  });
+
+  /* ── 예약 버블 ── */
+  var bubble = document.getElementById('lpResvBubble');
+  var bubbleCount = document.getElementById('bubbleCount');
+  if(bubble && bubbleCount){
+    setTimeout(function(){
+      bubbleCount.textContent = Math.floor(Math.random()*8)+3;
+      bubble.style.display = 'block';
+    }, 3000);
+    var bc = document.getElementById('lpBubbleClose');
+    if(bc) bc.addEventListener('click', function(){ bubble.style.display='none'; });
+  }
+
+  /* ── 토스트 알림 ── */
+  var toastNames = ['김**','이**','박**','최**','정**','강**','조**','윤**','장**','한**'];
+  var toastAreas = ['서울','인천','경기','부천','안양','수원','성남'];
+  var toastEl = document.getElementById('lpToast');
+  var toastMsg = document.getElementById('toastMsg');
+  var toastTime = document.getElementById('toastTime');
+  var toastBar = document.getElementById('toastBar');
+
+  function showToast(){
+    if(!toastEl) return;
+    var name = toastNames[Math.floor(Math.random()*toastNames.length)];
+    var area = toastAreas[Math.floor(Math.random()*toastAreas.length)];
+    var min = Math.floor(Math.random()*25)+2;
+    toastMsg.textContent = name+'님('+area+')이 방문예약을 신청했습니다';
+    toastTime.textContent = min+'분 전';
+    if(toastBar){ toastBar.style.width='100%'; toastBar.style.transition='width 5s linear'; setTimeout(function(){ toastBar.style.width='0'; },50); }
+    toastEl.classList.add('show');
+    setTimeout(function(){ toastEl.classList.remove('show'); }, 5500);
+  }
+  var toastCloseBtn = toastEl ? toastEl.querySelector('.lp-toast-close') : null;
+  if(toastCloseBtn) toastCloseBtn.addEventListener('click', function(){ toastEl.classList.remove('show'); });
+  setTimeout(showToast, 8000);
+  setInterval(showToast, 35000);
+
+  /* ── 체류시간 CTA ── */
+  var dwellCta = document.getElementById('lpDwellCta');
+  var dwellClose = document.getElementById('dwellClose');
+  if(dwellCta){
+    setTimeout(function(){ dwellCta.classList.add('show'); }, 30000);
+    if(dwellClose) dwellClose.addEventListener('click', function(){ dwellCta.classList.remove('show'); });
+  }
+
+  /* ── 이탈방지 팝업 (PC only) ── */
+  var exitPopup = document.getElementById('lpExitPopup');
+  var exitShown = false;
+  if(exitPopup && window.innerWidth >= 1024){
+    document.addEventListener('mouseout', function(e){
+      if(!exitShown && e.clientY < 5){
+        exitPopup.classList.add('show');
+        exitShown = true;
+      }
+    });
+    var exitClose = document.getElementById('exitClose');
+    var exitLater = document.getElementById('exitLater');
+    if(exitClose) exitClose.addEventListener('click', function(){ exitPopup.classList.remove('show'); });
+    if(exitLater) exitLater.addEventListener('click', function(){ exitPopup.classList.remove('show'); });
+  }
+
+  /* ── 슬라이드 팝업 ── */
+  var slidePopup = document.getElementById('lpSlidePopup');
+  if(slidePopup){
+    var today = new Date().toDateString();
+    var p1 = document.getElementById('slidePopup1');
+    var hidden1 = localStorage.getItem('popup_slidePopup1') === today;
+    if(!hidden1 && p1){ slidePopup.classList.add('show'); }
+    slidePopup.querySelectorAll('.lp-slide-popup-close').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var t = btn.getAttribute('data-close');
+        var el = document.getElementById(t);
+        if(el) el.style.display='none';
+        var anyVisible = false;
+        slidePopup.querySelectorAll('.lp-slide-popup-inner').forEach(function(inner){
+          if(inner.style.display !== 'none') anyVisible = true;
+        });
+        if(!anyVisible) slidePopup.classList.remove('show');
+      });
+    });
+    slidePopup.querySelectorAll('.lp-popup-today-chk').forEach(function(chk){
+      chk.addEventListener('change', function(){
+        if(chk.checked){
+          var t = chk.getAttribute('data-target');
+          localStorage.setItem('popup_'+t, today);
+          var el = document.getElementById(t);
+          if(el) el.style.display='none';
+          var anyVisible = false;
+          slidePopup.querySelectorAll('.lp-slide-popup-inner').forEach(function(inner){
+            if(inner.style.display !== 'none') anyVisible = true;
+          });
+          if(!anyVisible) slidePopup.classList.remove('show');
+        }
+      });
+    });
+    slidePopup.addEventListener('click', function(e){ if(e.target === slidePopup) slidePopup.classList.remove('show'); });
+  }
+
+  /* ── 드래그 힌트 (PC) ── */
+  var dragHint = document.querySelector('.kv-drag-hint');
+  if(dragHint && window.innerWidth >= 1024){
+    document.querySelector('.top-visual').addEventListener('mousemove', function(e){
+      dragHint.style.left = e.clientX + 'px';
+      dragHint.style.top = e.clientY + 'px';
+      dragHint.classList.add('show');
+    });
+    document.querySelector('.top-visual').addEventListener('mouseleave', function(){
+      dragHint.classList.remove('show');
+    });
+  }
+
+});
+</script>
+
+</body>
+</html>
+

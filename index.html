@@ -192,7 +192,7 @@
 
 
 <script>
-/* ✅ 부정클릭 탐지: Google Forms 직접 전송  */
+/* ✅ 부정클릭 탐지: Google Forms 직접 전송 */
 document.addEventListener('DOMContentLoaded', function(){
   var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
 
@@ -256,42 +256,73 @@ document.addEventListener('DOMContentLoaded', function(){
     console.log('✅ 부정클릭 기록 전송:', fields);
   }
 
-  /* ── IP + 지역 조회 (freeipapi.com — HTTPS, CORS 지원) ── */
-  var xhr = new XMLHttpRequest();
-  xhr.timeout = 5000;
-  xhr.open('GET', 'https://freeipapi.com/api/json/', true);
-  xhr.onload = function(){
-    var ip = 'unknown';
-    var region = '조회불가';
-    try {
-      var data = JSON.parse(xhr.responseText);
-      ip = data.ipAddress || 'unknown';
-      var city = data.cityName || '';
-      var reg = data.regionName || '';
-      if(city && reg) region = city + ', ' + reg;
-      else if(city) region = city;
-      else if(reg) region = reg;
-    } catch(e){}
-    sendData(ip, region);
-  };
-  xhr.onerror = function(){
-    /* fallback: ipify로 IP만이라도 확보 */
-    var fb = new XMLHttpRequest();
-    fb.timeout = 3000;
-    fb.open('GET', 'https://api.ipify.org?format=json', true);
-    fb.onload = function(){
+  /* ── 1순위: ipapi.co (HTTPS, CORS 공식지원, 무료 월30,000회) ── */
+  function tryIpapi(){
+    var xhr = new XMLHttpRequest();
+    xhr.timeout = 4000;
+    xhr.open('GET', 'https://ipapi.co/json/', true);
+    xhr.onload = function(){
+      var ip = 'unknown', region = '조회불가';
+      try {
+        var data = JSON.parse(xhr.responseText);
+        if(data.error){ throw new Error('ipapi error'); }
+        ip = data.ip || 'unknown';
+        var city = data.city || '';
+        var reg = data.region || '';
+        if(city && reg) region = city + ', ' + reg;
+        else if(city) region = city;
+        else if(reg) region = reg;
+      } catch(e){ tryFreeIpApi(); return; }
+      sendData(ip, region);
+    };
+    xhr.onerror = function(){ tryFreeIpApi(); };
+    xhr.ontimeout = xhr.onerror;
+    xhr.send();
+  }
+
+  /* ── 2순위: freeipapi.com (폴백) ── */
+  function tryFreeIpApi(){
+    var xhr = new XMLHttpRequest();
+    xhr.timeout = 4000;
+    xhr.open('GET', 'https://freeipapi.com/api/json/', true);
+    xhr.onload = function(){
+      var ip = 'unknown', region = '조회불가';
+      try {
+        var data = JSON.parse(xhr.responseText);
+        ip = data.ipAddress || 'unknown';
+        var city = data.cityName || '';
+        var reg = data.regionName || '';
+        if(city && reg) region = city + ', ' + reg;
+        else if(city) region = city;
+        else if(reg) region = reg;
+      } catch(e){ tryIpifyOnly(); return; }
+      sendData(ip, region);
+    };
+    xhr.onerror = function(){ tryIpifyOnly(); };
+    xhr.ontimeout = xhr.onerror;
+    xhr.send();
+  }
+
+  /* ── 3순위: ipify (IP만 확보) ── */
+  function tryIpifyOnly(){
+    var xhr = new XMLHttpRequest();
+    xhr.timeout = 3000;
+    xhr.open('GET', 'https://api.ipify.org?format=json', true);
+    xhr.onload = function(){
       var ip = 'unknown';
-      try { ip = JSON.parse(fb.responseText).ip; } catch(e){}
+      try { ip = JSON.parse(xhr.responseText).ip; } catch(e){}
       sendData(ip, '지역조회실패');
     };
-    fb.onerror = function(){ sendData('조회실패', '조회실패'); };
-    fb.ontimeout = fb.onerror;
-    fb.send();
-  };
-  xhr.ontimeout = xhr.onerror;
-  xhr.send();
+    xhr.onerror = function(){ sendData('조회실패', '조회실패'); };
+    xhr.ontimeout = xhr.onerror;
+    xhr.send();
+  }
+
+  /* ── 시작 ── */
+  tryIpapi();
 });
 </script>
+
 
   
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -1771,6 +1802,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   
 </body>
 </html>
+
 
 
 

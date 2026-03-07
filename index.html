@@ -258,95 +258,67 @@
 }
 </style>
 
+
+/* ── 삭제 대상 시작 ── */
 <script>
-/* ✅ 부정클릭 탐지: Google Forms 직접 전송 (검증 완료) */
-document.addEventListener('DOMContentLoaded', function(){
-  var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
+(function(){
+  var FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse";
+  var startTime = Date.now();
+  var maxScroll = 0;
+  var visitorIP = "";
 
-  var params = new URLSearchParams(window.location.search);
-  var channel = params.get('c') || '';
-  var referrer = document.referrer || '';
-  var source = '';
+  // 스크롤 깊이
+  window.addEventListener("scroll", function(){
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var depth = docHeight > 0 ? Math.round((scrollTop / docHeight) * 100) : 0;
+    if(depth > maxScroll) maxScroll = depth;
+  });
 
-  if(channel){
-    source = channel;
-  } else if(referrer.indexOf('search.naver.com') > -1){
-    source = '네이버 자연검색';
-  } else if(referrer.indexOf('naver.com') > -1){
-    source = '네이버 기타';
-  } else if(referrer.indexOf('google.com') > -1 || referrer.indexOf('google.co.kr') > -1){
-    source = '구글 검색';
-  } else if(referrer.indexOf('daum.net') > -1){
-    source = '다음 검색';
-  } else if(referrer === ''){
-    source = '직접입력/즐겨찾기';
-  } else {
-    source = referrer;
+  // IP
+  fetch("https://api.ipify.org?format=json")
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      visitorIP = d.ip;
+      sendVisit();
+    })
+    .catch(function(){ visitorIP = "unknown"; sendVisit(); });
+
+  function getSource(){ ... }
+
+  function sendVisit(){
+    ...
+    var formData = new FormData();
+    formData.append("entry.XXXXXXX", ...);  // 날짜
+    formData.append("entry.XXXXXXX", ...);  // 시간
+    formData.append("entry.XXXXXXX", ...);  // IP
+    formData.append("entry.XXXXXXX", ...);  // 방문횟수
+    formData.append("entry.XXXXXXX", ...);  // 유입경로
+    formData.append("entry.XXXXXXX", ...);  // 누적방문
+    navigator.sendBeacon(FORM_URL, formData);
   }
 
-  function sendFraudData(ip){
-    var d = new Date();
-    var dateStr = d.getFullYear() + '-' +
-      String(d.getMonth()+1).padStart(2,'0') + '-' +
-      String(d.getDate()).padStart(2,'0');
-    var timeStr = String(d.getHours()).padStart(2,'0') + ':' +
-      String(d.getMinutes()).padStart(2,'0') + ':' +
-      String(d.getSeconds()).padStart(2,'0');
-
-    var iframeName = 'fraud_iframe';
-    var iframe = document.getElementById(iframeName);
-    if(!iframe){
-      iframe = document.createElement('iframe');
-      iframe.name = iframeName;
-      iframe.id = iframeName;
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-    }
-
-    var form = document.createElement('form');
-    form.method = 'POST';
-    form.action = FORM_ACTION;
-    form.target = iframeName;
-    form.style.display = 'none';
-
-    var fields = {
-      'entry.24374031': dateStr,
-      'entry.433685765': timeStr,
-      'entry.605185830': ip,
-      'entry.1339679079': '1',
-      'entry.1214037773': source
-    };
-
-    for(var name in fields){
-      var input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = name;
-      input.value = fields[name];
-      form.appendChild(input);
-    }
-
-    document.body.appendChild(form);
-    form.submit();
-    console.log('✅ 부정클릭 기록 전송 완료:', fields);
-
-    setTimeout(function(){
-      if(form.parentNode) form.parentNode.removeChild(form);
-    }, 3000);
+  // 이탈 시 전송
+  function sendExit(){
+    ...
+    var formData = new FormData();
+    formData.append("entry.XXXXXXX", "EXIT");
+    formData.append("entry.XXXXXXX", dwell + "초");
+    formData.append("entry.XXXXXXX", "스크롤" + maxScroll + "%");
+    ...
+    navigator.sendBeacon(FORM_URL, formData);
   }
 
-  var xhr = new XMLHttpRequest();
-  xhr.timeout = 3000;
-  xhr.open('GET', 'https://api.ipify.org?format=json', true);
-  xhr.onload = function(){
-    var ip = 'unknown';
-    try { ip = JSON.parse(xhr.responseText).ip; } catch(e){}
-    sendFraudData(ip);
-  };
-  xhr.onerror = function(){ sendFraudData('조회실패'); };
-  xhr.ontimeout = function(){ sendFraudData('시간초과'); };
-  xhr.send();
-});
+  document.addEventListener("visibilitychange", function(){
+    if(document.visibilityState === "hidden") sendExit();
+  });
+  window.addEventListener("pagehide", function(){ sendExit(); });
+})();
 </script>
+/* ── 삭제 대상 끝 ── */
+
+
+  
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://www.youtube.com" crossorigin>
@@ -1861,3 +1833,4 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 
 </body>
 </html>
+

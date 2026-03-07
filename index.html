@@ -191,8 +191,8 @@
 </script>
 
 <script>
-/* ✅ 테스트용: 조건 없이 무조건 즉시 전송 */
-(function(){
+/* ✅ 부정클릭 탐지: DOMContentLoaded 후 실행 */
+document.addEventListener('DOMContentLoaded', function(){
   var FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse';
 
   var params = new URLSearchParams(window.location.search);
@@ -275,8 +275,9 @@
     console.log('❌ IP 조회 실패');
   };
   xhr.send();
-})();
+});
 </script>
+
 
   
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -1557,6 +1558,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 </script>
 </body>
 </html>
+
 
 
 

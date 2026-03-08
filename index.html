@@ -1416,47 +1416,67 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
     var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
     var timeStr = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
 
+    /* ── 데이터 전송 (Google Form) ── */
+    var sent = false;
     function sendData(ip, region){
+      if(sent) return;          // 중복 전송 방지
+      sent = true;
       var form = new FormData();
-      form.append('entry.1045941022', dateStr);
-      form.append('entry.1065092498', timeStr);
-      form.append('entry.270082', ip || 'unknown');
-      form.append('entry.1166974658', region || 'unknown');
-      form.append('entry.1715498498', String(count));
-      form.append('entry.248aborting', source);
+      form.append('entry.24374031', dateStr);
+      form.append('entry.433685765', timeStr);
+      form.append('entry.605185830', ip || 'unknown');
+      form.append('entry.838856477', region || 'unknown');
+      form.append('entry.1339679079', String(count));
+      form.append('entry.1214037773', source);
       fetch('https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse', {
         method: 'POST', mode: 'no-cors', body: form
       }).catch(function(){});
     }
 
-    function tryIpapi(){
-      return fetch('https://ipapi.co/json/').then(function(r){ return r.json(); }).then(function(d){
-        sendData(d.ip, (d.region||'') + ' ' + (d.org||''));
-      });
+    /* ── IP 조회 (3단 fallback + 5초 안전장치) ── */
+
+    // 5초 안에 IP 조회가 안 끝나면 강제 전송
+    var safetyTimer = setTimeout(function(){
+      sendData('timeout', 'timeout');
+    }, 5000);
+
+    function done(ip, region){
+      clearTimeout(safetyTimer);
+      sendData(ip, region);
     }
 
-    function tryFreeipapi(){
-      return fetch('https://freeipapi.com/api/json/').then(function(r){ return r.json(); }).then(function(d){
-        sendData(d.ipAddress, (d.regionName||'') + ' ' + (d.countryName||''));
+    // 1차: ipapi.co
+    fetch('https://ipapi.co/json/')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      done(d.ip, (d.region||'') + ' ' + (d.org||''));
+    })
+    .catch(function(){
+      // 2차: freeipapi.com
+      return fetch('https://freeipapi.com/api/json/')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        done(d.ipAddress, (d.regionName||'') + ' ' + (d.countryName||''));
       });
-    }
-
-    function tryIpify(){
-      return fetch('https://api.ipify.org?format=json').then(function(r){ return r.json(); }).then(function(d){
-        sendData(d.ip, '');
+    })
+    .catch(function(){
+      // 3차: ipify.org
+      return fetch('https://api.ipify.org?format=json')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        done(d.ip, 'IP only');
       });
-    }
-
-    tryIpapi().catch(function(){
-      return tryFreeipapi();
-    }).catch(function(){
-      return tryIpify();
-    }).catch(function(){
-      sendData('error', 'all-failed');
+    })
+    .catch(function(){
+      // 3개 모두 실패
+      done('error', 'all-failed');
     });
+
   });
 })();
 </script>
+
+
 
 </body>
 </html>

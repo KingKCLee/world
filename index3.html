@@ -1756,5 +1756,62 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 })();
 </script>
 
+<script>
+/* ── 보안: 우클릭·소스보기·개발자도구 차단 ── */
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+document.addEventListener('selectstart', function(e){ e.preventDefault(); });
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('copy', function(e){ e.preventDefault(); });
+document.addEventListener('cut', function(e){ e.preventDefault(); });
+document.addEventListener('paste', function(e){ e.preventDefault(); });
+document.addEventListener('keydown', function(e){
+  if(e.key === 'F12') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'u') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.shiftKey && e.key === 'C') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 's') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'a') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'c') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'p') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'j') { e.preventDefault(); return; }
+  if(e.key === 'F7') { e.preventDefault(); return; }
+});
+
+/* 개발자도구 감지 → 페이지 리다이렉트 */
+(function(){
+  var threshold = 160;
+  setInterval(function(){
+    if(window.outerWidth - window.innerWidth > threshold || 
+       window.outerHeight - window.innerHeight > threshold){
+      document.body.innerHTML = '';
+      window.location.href = 'https://viphome.kr/';
+    }
+  }, 1000);
+})();
+
+/* 콘솔 열기 감지 → 경고 */
+(function(){
+  var devtools = { open: false };
+  var el = new Image();
+  Object.defineProperty(el, 'id', {
+    get: function(){
+      devtools.open = true;
+      document.body.innerHTML = '';
+      window.location.href = 'https://viphome.kr/';
+    }
+  });
+  setInterval(function(){ devtools.open = false; console.log(el); console.clear(); }, 1000);
+})();
+
+/* 이미지 드래그·저장 방지 CSS 주입 */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = 'img{-webkit-user-drag:none;user-select:none;pointer-events:none;}a img{pointer-events:auto;}';
+  document.head.appendChild(style);
+})();
+</script>
+
+
 </body>
 </html>

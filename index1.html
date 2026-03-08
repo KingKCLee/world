@@ -274,8 +274,8 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 @keyframes sTxtRot{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 .scroll-text .scroll-char{position:absolute;left:50%;top:50%;transform-origin:0 0;color:#fff;font-size:.45rem;white-space:pre;}
 
-/* ★ 수정: lp-body padding-top 추가 (헤더 높이만큼) */
-.lp-body{max-width:1080px;margin:0 auto;padding:120px 16px 40px;}
+/* ★ 수정: lp-body padding-top 0 — 메인비주얼과 배너 붙이기 */
+.lp-body{max-width:1080px;margin:0 auto;padding:0 16px 40px;}
 
 .section-images{margin:56px auto 0;padding:48px 0 0;border-top:1px solid #eee;}
 .section-images img{width:100%;display:block;cursor:zoom-in;}
@@ -380,16 +380,22 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-popup-today{background:rgba(245,245,245,.95);color:#333;font-size:12px;padding:8px 10px;border-top:1px solid rgba(0,0,0,.06);}
 .lp-popup-today label{display:flex;align-items:center;gap:6px;}
 
-.lp-urgency{text-align:center;padding:14px 16px;background:linear-gradient(135deg,#1a1a1a 0%,#333 100%);border-radius:0;margin:0 auto 40px;position:relative;overflow:hidden;width:100vw;margin-left:calc(-50vw + 50%);}
+/* ★ 수정: 긴급성 배너 — 폰트 확대 + 메인비주얼에 붙이기 */
+.lp-urgency{text-align:center;padding:20px 16px;background:linear-gradient(135deg,#1a1a1a 0%,#333 100%);border-radius:0;margin:0 auto 40px;position:relative;overflow:hidden;width:100vw;margin-left:calc(-50vw + 50%);}
 .lp-urgency::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(179,155,0,.08),transparent);animation:urgShine 3s ease-in-out infinite;}
 @keyframes urgShine{0%,100%{opacity:0}50%{opacity:1}}
-.lp-urgency-top{font-size:13px;color:#ccc;letter-spacing:-.3px;margin-bottom:4px;}
-.lp-urgency-main{font-size:22px;font-weight:800;color:#fff;letter-spacing:-1px;}
+.lp-urgency-top{font-size:16px;color:#ccc;letter-spacing:-.3px;margin-bottom:6px;}
+.lp-urgency-main{font-size:28px;font-weight:800;color:#fff;letter-spacing:-1px;}
 .lp-urgency-main em{font-style:normal;color:var(--brand-color-light);}
-.lp-urgency-bottom{font-size:12px;color:#999;margin-top:4px;}
-@media(max-width:1023px){.lp-urgency-main{font-size:18px;}}
+.lp-urgency-bottom{font-size:15px;color:#bbb;margin-top:6px;font-weight:500;}
+@media(max-width:1023px){
+  .lp-urgency-top{font-size:14px;}
+  .lp-urgency-main{font-size:22px;}
+  .lp-urgency-bottom{font-size:13px;}
+}
 
-.lp-benefits{margin:56px auto;padding:48px 0 0;border-top:1px solid #eee;border-bottom:none;}
+/* ★ 수정: 프리미엄6 상단 구분선 제거 */
+.lp-benefits{margin:56px auto;padding:48px 0 0;border-top:none;border-bottom:none;}
 .lp-benefits-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:0 0 6px;}
 .lp-benefits-sub{text-align:center;font-size:14px;color:#888;margin-bottom:20px;letter-spacing:-.5px;}
 
@@ -554,8 +560,8 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   .top-visual .main-title-image{width:100%;}
   .top-visual{height:680px;max-height:none;}
   .kv-drag-hint{display:none;}
-  /* ★ 수정: 모바일 lp-body padding-top */
-  .lp-body{padding:70px 12px 40px!important;}
+  /* ★ 수정: 모바일 lp-body padding-top 0 */
+  .lp-body{padding:0 12px 40px!important;}
   .lp-footer{padding:32px 16px 120px;}
   .lp-footer-info{font-size:14px;}
   .lp-footer-call .number{font-size:30px;}
@@ -586,6 +592,22 @@ html,body{overflow-y:auto;}
 body.lp-landing{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important;}
 body.lp-landing.lp-brand-dark #header,
 body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;box-shadow:0 4px 16px rgba(0,0,0,.08)!important;}
+
+/* ★ 추가: 실시간 예약 알림 토스트 */
+.lp-toast-wrap{position:fixed;z-index:10000;pointer-events:none;cursor:pointer;}
+@media(min-width:1024px){
+  .lp-toast-wrap{left:30px;bottom:30px;}
+}
+@media(max-width:1023px){
+  .lp-toast-wrap{left:12px;right:12px;bottom:90px;}
+}
+.lp-toast{background:#fff;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);padding:14px 20px;display:flex;align-items:center;gap:12px;opacity:0;transform:translateY(20px);transition:opacity .4s,transform .4s,box-shadow .2s;pointer-events:auto;max-width:340px;}
+.lp-toast.show{opacity:1;transform:translateY(0);}
+.lp-toast:hover{box-shadow:0 8px 28px rgba(179,155,0,.3);transform:translateY(-2px);}
+.lp-toast-icon{font-size:22px;flex:0 0 auto;}
+.lp-toast-text{font-size:13px;line-height:1.5;color:#333;letter-spacing:-.3px;}
+.lp-toast-text strong{color:var(--brand-color-dark);font-weight:700;}
+.lp-toast-time{font-size:11px;color:#999;margin-top:2px;}
 </style>
 
 </head>
@@ -860,13 +882,28 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 
   <section class="section-images no-border-top">
     <div data-aos="fade-up"><img src="landing_page_images_309_7_1771463629.webp" alt="송도 월드메르디앙 6가지 프리미엄" loading="lazy"></div>
+    <!-- ★ 추가: SEO 숨김 텍스트 - 6가지 프리미엄 -->
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 6가지 프리미엄 요약</h4>
+      <p>프리미엄 01 명문학군: 채드윅 송도 국제학교 도보 300m, 신정초·신정중 인접, 송도 1공구 최대 규모 학원가 도보권. 프리미엄 02 특급입지: 송도국제도시 1·2공구 핵심 중심부, 인천대입구역 도보 15분 역세권, 완성된 주거 인프라. 프리미엄 03 쾌속교통: GTX-B 개통 시 서울역 27분·여의도 17분, 송도트램(2032년 예정) 도보권 정차, 인천3호선·제2외곽순환도로 예정. 프리미엄 04 명품생활: 롯데마트·코스트코 인접, 센트럴파크역 상권, 송도컨벤시아·트리플스트리트 등 대형 편의시설. 프리미엄 05 희소가치: 전 세대 남향 4베이 설계, 발코니 확장 무상 제공, 프리미엄 인테리어 마감재 적용, 중소형 혁신평면. 프리미엄 06 힐링생활: 센트럴파크·해돋이공원·송도달빛축제공원·미추홀공원 인접, 잭니클라우스CC 도보권.</p>
+    </div>
     <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner1.gif" alt="송도 월드메르디앙 전화상담 배너 ☎1533-9077" loading="lazy"></a></div>
     <h3 class="lp-section-title" data-aos="fade-up">단지 배치도 및 사업 개요</h3>
     <div data-aos="fade-up"><img src="landing_page_images_309_1_1771463628.webp" alt="송도 월드메르디앙 단지 배치도 및 사업 개요" loading="lazy"></div>
+    <!-- ★ 추가: SEO 숨김 텍스트 - 사업 개요 -->
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 사업 개요</h4>
+      <p>사업명: 송도 월드메르디앙. 위치: 인천광역시 연수구 송도동 21-16(신송로 165-17). 대지면적: 6,628㎡(2,004평). 건축면적: 3,308㎡(1,000평). 연면적: 29,704㎡(8,985평). 건폐율: 49.92%. 용적률: 279.55%. 규모: 지하 2층~지상 10층, 4개동. 총세대수: 128세대(아파트). 주차대수: 총 259대(세대당 약 1.13대, 근린생활시설 74대, 판매시설 40대). 준공: 2023년 10월. 타입별 세대수: 전용 78㎡ 32세대(25%), 전용 83㎡ 64세대(50%), 전용 84A㎡ 31세대(24%), 전용 84A-1㎡ 1세대(1%). 전 세대 남향 4베이 판상형 설계.</p>
+    </div>
     <h3 class="lp-section-title" data-aos="fade-up">입지 환경</h3>
     <p class="lp-section-sub" data-aos="fade-up">인천대입구역 도보 15분, GTX-B 수혜 입지</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_2_1771463628.webp" alt="송도 월드메르디앙 입지 환경 - 인천대입구역 도보 15분, GTX-B 수혜" loading="lazy"></div>
     <div data-aos="fade-up"><img src="landing_page_images_309_6_1771463628.webp" alt="송도 월드메르디앙 단지입지" loading="lazy"></div>
+    <!-- ★ 추가: SEO 숨김 텍스트 - 입지 환경 -->
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 입지 환경</h4>
+      <p>인천대입구역(인천1호선) 도보 15분 거리. 송도국제도시 1공구 중심부에 위치하여 완성된 생활 인프라를 즉시 이용 가능. 센트럴파크역까지 차량 5분, 송도IC 인접으로 제2경인고속도로·영동고속도로 진입 용이. GTX-B 노선 착공 확정으로 인천대입구역 환승 시 서울역까지 약 27분, 여의도까지 약 17분 소요 예정. 송도트램(2032년 개통 예정) 30개역 8자 순환노선 도보권 정차 예정. 인천3호선(송도달빛축제공원역~검단초수공원역, 34.64km) 계획 노선 수혜. 제2외곽순환도로(인천~안산, 19.80km) 예정.</p>
+    </div>
   </section>
 
   <section class="lp-reviews-section" data-aos="fade-up">
@@ -895,12 +932,27 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     <h3 class="lp-section-title" data-aos="fade-up">교육 환경</h3>
     <p class="lp-section-sub" data-aos="fade-up">채드윅 국제학교 도보권, 1공구 학원가 인접</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_3_1771463628.webp" alt="송도 월드메르디앙 교육 환경 - 채드윅 국제학교 도보권, 1공구 학원가" loading="lazy"></div>
+    <!-- ★ 추가: SEO 숨김 텍스트 - 교육 환경 -->
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 교육 환경</h4>
+      <p>채드윅 송도 국제학교 도보 약 300m. 신정초등학교, 신정중학교, 송도중학교 인접. 인천포스코고등학교, 인천과학예술영재학교 통학권. 송도 1공구 인천 최대 규모 학원가 도보 거리. 송도국제도시 내 12개 초·중·고교 밀집. 연세대학교 국제캠퍼스, 인천대학교, 인천가톨릭대학교 인접. 글로벌 교육 환경과 국내 명문학군을 동시에 누릴 수 있는 최적의 교육 입지.</p>
+    </div>
     <h3 class="lp-section-title" data-aos="fade-up">생활 인프라</h3>
     <p class="lp-section-sub" data-aos="fade-up">센트럴파크, 대형마트 등 완성된 생활권</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_4_1771463628.webp" alt="송도 월드메르디앙 생활 인프라 - 센트럴파크, 대형마트 인접" loading="lazy"></div>
+    <!-- ★ 추가: SEO 숨김 텍스트 - 생활 인프라 -->
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 생활 인프라</h4>
+      <p>롯데마트 송도점 차량 5분. 코스트코 송도점 차량 7분. 홈플러스 송도점 인접. 센트럴파크역 상권(트리플스트리트, 송도 커널워크). 송도컨벤시아(국제회의장). 연세대학교 세브란스병원 송도분원 예정. 인천성모병원 차량 15분. 송도 테크노파크(IT·BT 산업단지) 인접. 현대프리미엄아울렛 송도점 차량 10분.</p>
+    </div>
     <h3 class="lp-section-title" data-aos="fade-up">교통 인프라</h3>
     <p class="lp-section-sub" data-aos="fade-up">인천 1·3호선, GTX-B, 송도트램, 제2외곽순환도로</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_5_1771463628.webp" alt="송도 월드메르디앙 교통인프라" loading="lazy"></div>
+    <!-- ★ 추가: SEO 숨김 텍스트 - 교통 인프라 -->
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 교통 인프라</h4>
+      <p>인천1호선 인천대입구역 도보 15분. GTX-B 노선(2031년 개통 예정): 인천대입구역 환승 → 여의도 17분, 서울역 27분. 송도트램(2032년 개통 예정): 30개역 8자 순환노선, 단지 도보권 정차. 인천3호선(계획): 송도달빛축제공원역~검단초수공원역, 총연장 34.64km. 제2외곽순환도로(계획): 인천~안산 구간 총연장 19.80km. 송도IC 인접, 제2경인고속도로·영동고속도로 진입 용이. 인천국제공항 차량 약 30분.</p>
+    </div>
   </section>
 
   <section class="lp-benefit-cta" data-aos="fade-up">
@@ -932,12 +984,22 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   <section class="section-images">
     <h3 class="lp-section-title" data-aos="fade-up">단지 배치도</h3>
     <p class="lp-section-sub" data-aos="fade-up">1001동, 1002동, 1003동, 1004동</p>
-    <div data-aos="fade-up"><img src="landing_page_images_309_8_1771463629.webp" alt="송도 월드메르디앙 인테리어 - 신축 아파트 내부 마감" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_8_1771463629.webp" alt="송도 월드메르디앙 단지 배치도 - 4개동 남향 배치" loading="lazy"></div>
+    <!-- ★ 추가: SEO 숨김 텍스트 - 단지 배치 -->
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 단지 배치</h4>
+      <p>총 4개동 배치: 1001동, 1002동, 1003동, 1004동. 전 동 남향 배치로 일조권 확보. 동간 간격을 넓혀 프라이버시 및 조망권 확보. 지하 2층 전체 주차장 연결, 차 없는 단지 내 보행환경. 총 주차대수 259대. 단지 내 조경시설 및 어린이 놀이터, 주민운동시설 배치.</p>
+    </div>
     <h3 class="lp-section-title" data-aos="fade-up">내부 평면도</h3>
     <p class="lp-section-sub" data-aos="fade-up">전 세대 4베이 설계, 차별화된 마감재와 신축 품질</p>
     <div data-aos="fade-up"><img src="landing_page_images_309_9_1771463629.webp" alt="송도 월드메르디앙 78㎡ 평면도 - 30평대 남향 4베이" loading="lazy"></div>
     <div data-aos="fade-up"><img src="landing_page_images_309_10_1771463629.webp" alt="송도 월드메르디앙 83㎡ 평면도 - 31평대 남향 4베이" loading="lazy"></div>
     <div data-aos="fade-up"><img src="landing_page_images_309_11_1771463629.webp" alt="송도 월드메르디앙 84㎡ 평면도 - 32평대 남향 4베이" loading="lazy"></div>
+    <!-- ★ 추가: SEO 숨김 텍스트 - 평면도 -->
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 평면도 안내</h4>
+      <p>전용 78㎡(약 23.89평, 공급 101㎡): 방 3개 + 욕실 2개, 남향 4베이, 판상형 구조. 발코니 확장 시 실사용 면적 약 30평대. 전용 83㎡(약 25.16평, 공급 107㎡): 방 3개 + 욕실 2개, 남향 4베이, 넓은 거실과 주방 연결 개방형 구조. 전용 84A㎡(약 25.59평, 공급 108㎡): 방 3개 + 욕실 2개, 남향 4베이, 알파룸 활용 가능한 확장형 설계. 전 타입 공통: 남향 4베이 판상형, 발코니 확장 무상 제공, 시스템 에어컨 설치 공간 확보, 현관 중문 설치 가능 구조, 드레스룸·펜트리 수납공간. 프리미엄 마감재: 고급 도어락, 3중 로이유리, 욕실 강화유리 파티션, 주방 빌트인 가전(쿡탑·후드·식기세척기·오븐 등).</p>
+    </div>
     <div data-aos="fade-up"><a href="tel:1533-9077"><img src="banner2.gif" alt="송도 월드메르디앙 방문예약 배너 ☎1533-9077" loading="lazy"></a></div>
   </section>
 
@@ -1119,6 +1181,14 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   </div>
 </div>
 
+<!-- ★ 추가: 실시간 예약 알림 토스트 -->
+<div class="lp-toast-wrap" id="lpToastWrap">
+  <div class="lp-toast" id="lpToast">
+    <div class="lp-toast-icon">🔔</div>
+    <div class="lp-toast-text" id="lpToastText"></div>
+  </div>
+</div>
+
 <div class="lp-quick lp-quick-pc show">
   <div class="lp-quick-pc-inner">
     <button type="button" class="lp-quick-btn js-quick-open-form">
@@ -1271,7 +1341,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   addEventListener('scroll',function(){var cur=scrollY,d=cur>last;[q,b].forEach(function(el){if(!el)return;el.classList.toggle('down',d);el.classList.toggle('up',!d);});last=cur;},{passive:true});
 })();
 
-/* ★ 수정: 슬라이드 팝업 — localStorage 초기화 안전장치 추가 */
+/* 슬라이드 팝업 (1.5초 후 자동) */
 (function(){
   var popup=document.getElementById('lpSlidePopup');if(!popup)return;
   function show(){
@@ -1471,6 +1541,67 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
   }
 })();
 
+/* ★ 추가: 실시간 예약 알림 토스트 + 클릭 시 예약 유도 */
+(function(){
+  var toastEl = document.getElementById('lpToast');
+  var textEl = document.getElementById('lpToastText');
+  var wrapEl = document.getElementById('lpToastWrap');
+  if(!toastEl || !textEl) return;
+
+  var messages = [
+    { area: '서울 서초', name: '김**', time: '3분 전' },
+    { area: '인천 연수', name: '박**', time: '5분 전' },
+    { area: '경기 성남', name: '이**', time: '8분 전' },
+    { area: '서울 강남', name: '최**', time: '12분 전' },
+    { area: '인천 남동', name: '정**', time: '15분 전' },
+    { area: '경기 수원', name: '한**', time: '18분 전' },
+    { area: '서울 송파', name: '윤**', time: '22분 전' },
+    { area: '인천 부평', name: '장**', time: '25분 전' },
+    { area: '경기 용인', name: '오**', time: '28분 전' },
+    { area: '서울 마포', name: '신**', time: '32분 전' },
+    { area: '인천 계양', name: '조**', time: '35분 전' },
+    { area: '경기 안양', name: '임**', time: '40분 전' }
+  ];
+
+  var idx = Math.floor(Math.random() * messages.length);
+  var showing = false;
+  var hideTimer = null;
+  var SHOW_DURATION = 4000;
+  var HIDE_DURATION = 8000;
+  var FIRST_DELAY = 5000;
+
+  function showToast(){
+    var msg = messages[idx % messages.length];
+    idx++;
+    textEl.innerHTML = '<strong>' + msg.area + ' ' + msg.name + '</strong>님이 방문예약을 등록했습니다.'
+      + '<div class="lp-toast-time">' + msg.time + ' · <span style="color:#b39b00;font-weight:600;">나도 등록하기 →</span></div>';
+    toastEl.classList.add('show');
+    showing = true;
+
+    hideTimer = setTimeout(function(){
+      toastEl.classList.remove('show');
+      showing = false;
+      setTimeout(showToast, HIDE_DURATION);
+    }, SHOW_DURATION);
+  }
+
+  wrapEl.addEventListener('click', function(){
+    if(!showing) return;
+    clearTimeout(hideTimer);
+    toastEl.classList.remove('show');
+    showing = false;
+
+    if(typeof lpOpenFloatForm === 'function'){
+      lpOpenFloatForm();
+    } else {
+      var target = document.getElementById('reserve-bottom');
+      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+
+  setTimeout(showToast, FIRST_DELAY);
+})();
+
 /* 부정클릭 방지 스크립트 */
 (function(){
   document.addEventListener('DOMContentLoaded', function(){
@@ -1493,7 +1624,6 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
     var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
     var timeStr = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
 
-    /* ── 데이터 전송 (Google Form) ── */
     var sent = false;
     function sendData(ip, region){
       if(sent) return;
@@ -1510,7 +1640,6 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
       }).catch(function(){});
     }
 
-    /* ── IP 조회 (3단 fallback + 5초 안전장치) ── */
     var safetyTimer = setTimeout(function(){
       sendData('timeout', 'timeout');
     }, 5000);

@@ -623,9 +623,9 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 }
 .pendulum{
   position:absolute;
-  left:50%;
+  left:24px;
   top:100%;
-  margin-left:-50px;
+  margin-top:0;
   width:100px;
   height:auto;
   transform-origin:top center;
@@ -634,13 +634,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   filter:drop-shadow(0 4px 10px rgba(0,0,0,.2));
   pointer-events:none;
 }
-@keyframes swing{
-  0%  {transform:rotate(-5deg)}
-  50% {transform:rotate(5deg)}
-  100%{transform:rotate(-5deg)}
-}
 @media(max-width:600px){
-  .pendulum{width:80px;margin-left:-40px;}
+  .pendulum{width:70px;left:12px;}
 }
 
 

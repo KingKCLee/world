@@ -617,33 +617,31 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 .lp-toast-text strong{color:var(--brand-color-dark);font-weight:700;}
 .lp-toast-time{font-size:11px;color:#999;margin-top:2px;}
 
-/* ── 헤더에 매달린 시계추 ── */
-#header{
-  overflow:visible!important;
+/* ── 메인 비주얼에 매달린 시계추 ── */
+.top-visual {
+  position: relative;
 }
-.pendulum{
-  position:absolute;
-  left:24px;    /* 좌우: 숫자 키우면 오른쪽 */
-  top:0;        /* 상하: 숫자 키우면 아래로 */
-  width:100px;
-  height:auto;
-  transform-origin:top center;
-  animation:swing 2s infinite ease-in-out;
-  z-index:50;
-  filter:drop-shadow(0 4px 10px rgba(0,0,0,.2));
-  pointer-events:none;
+.pendulum {
+  position: absolute;
+  left: 24px;       /* 좌우: 숫자 키우면 오른쪽 */
+  top: 0;           /* 상하: 숫자 키우면 아래로 */
+  width: 100px;
+  height: auto;
+  transform-origin: top center;
+  animation: swing 2s infinite ease-in-out;
+  z-index: 50;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.2));
+  pointer-events: none;
 }
-@keyframes swing{
-  0%  {transform:rotate(-5deg)}
-  50% {transform:rotate(5deg)}
-  100%{transform:rotate(-5deg)}
+@keyframes swing {
+  0%   { transform: rotate(-5deg); }
+  50%  { transform: rotate(5deg); }
+  100% { transform: rotate(-5deg); }
 }
-@media(max-width:600px){
-  .pendulum{width:70px;left:12px;}
+@media (max-width: 600px) {
+  .pendulum { width: 70px; left: 12px; }
 }
 
-
-</style>
 
 </head>
 
@@ -684,12 +682,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 
 
 <div class="top-visual">
-
-<div class="top-visual">
   <!-- ★ 즉시입주가능 매달린 그림 -->
   <img src="resize.webp" class="pendulum" alt="즉시입주가능" draggable="false">
-
-  <div class="swiper-container swiper1">
 
   <div class="swiper-container swiper1">
     <ul class="swiper-wrapper">

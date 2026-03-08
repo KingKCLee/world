@@ -624,7 +624,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 .pendulum {
   position: absolute;
   left: 200px;       /* 좌우: 숫자 키우면 오른쪽 */
-  top: 600px;           /* 상하: 숫자 키우면 아래로 */
+  top: 100px;           /* 상하: 숫자 키우면 아래로 */
   width: 100px;
   height: auto;
   transform-origin: top center;
@@ -638,9 +638,25 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   50%  { transform: rotate(5deg); }
   100% { transform: rotate(-5deg); }
 }
-@media (max-width: 600px) {
-  .pendulum { width: 70px; left: 12px; }
+
+/* PC */
+@media (min-width: 1024px) {
+  .pendulum {
+    left: 200px;
+    top: 120px;     /* PC 헤더 높이 */
+    width: 100px;
+  }
 }
+
+/* 모바일 */
+@media (max-width: 1023px) {
+  .pendulum {
+    left: 12px;
+    top: 68px;      /* 모바일 헤더 높이 */
+    width: 70px;
+  }
+}
+
 
 </style>
 </head>

@@ -1315,15 +1315,33 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 
 <script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
 <script charset="UTF-8">
-new daum.roughmap.Lander({
-  "timestamp" : "1772630746853",
-  "key" : "iq8g2yphy9h",
-  "mapWidth" : "640",
-  "mapHeight" : "360",
-  "phone" : "1533-9077"
-}).render();
-
+  new daum.roughmap.Lander({
+    "timestamp" : "1772630746853",
+    "key" : "iq8g2yphy9h",
+    "mapWidth" : "640",
+    "mapHeight" : "360"
+  }).render();
 </script>
+<script>
+  // 카카오 약도 '전화' 항목에 번호 강제 삽입
+  (function(){
+    var timer = setInterval(function(){
+      var lis = document.querySelectorAll('.root_daum_roughmap li');
+      for(var i = 0; i < lis.length; i++){
+        if(lis[i].textContent.indexOf('전화') > -1){
+          var desc = lis[i].querySelector('.desc');
+          if(desc && !desc.textContent.trim()){
+            desc.innerHTML = '<a href="tel:1533-9077" style="color:#333;text-decoration:none;font-weight:600;">1533-9077</a>';
+            clearInterval(timer);
+            return;
+          }
+        }
+      }
+    }, 300);
+    setTimeout(function(){ clearInterval(timer); }, 10000);
+  })();
+</script>
+
 
 <script>
 /* 전화번호 자동 하이픈 */

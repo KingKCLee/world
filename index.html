@@ -1343,21 +1343,47 @@ function validateForm(id){
     submitted = true; return true;
 }
 
-/* 유입경로 판별 + 히든 필드 세팅 */
+/* 유입경로 판별 + 히든 필드 세팅 (광고/자연검색 구분) */
 (function(){
   var params = new URLSearchParams(location.search);
-  var ref = document.referrer;
+  var ref = document.referrer || '';
   var src = '';
-  if(params.get('c')) src = params.get('c');
-  else if(ref.indexOf('search.naver.com') > -1) src = '네이버 자연검색';
-  else if(ref.indexOf('naver.com') > -1) src = '네이버 기타';
-  else if(ref.indexOf('google.com') > -1 || ref.indexOf('google.co.kr') > -1) src = '구글 검색';
-  else if(ref.indexOf('daum.net') > -1) src = '다음 검색';
-  else if(!ref) src = '직접입력/즐겨찾기';
-  else src = ref;
+
+  // 1순위: referrer가 ader.naver.com → 네이버 광고 클릭
+  if(ref.indexOf('ader.naver.com') > -1){
+    src = '네이버 검색광고';
+  }
+
+  // 2순위: c 파라미터 (ader 리다이렉트 후 전달되는 값)
+  if(!src){
+    var cParam = (params.get('c') || '').toLowerCase();
+    if(cParam.indexOf('naver.search') > -1) src = '네이버 검색광고';
+    else if(cParam.indexOf('naver') > -1) src = '네이버 광고(기타)';
+  }
+
+  // 3순위: UTM 파라미터
+  if(!src){
+    var utmSource = (params.get('utm_source') || '').toLowerCase();
+    var utmMedium = (params.get('utm_medium') || '').toLowerCase();
+    if(utmSource === 'naver' && utmMedium === 'cpc') src = '네이버 검색광고';
+    else if(utmSource === 'google' && utmMedium === 'cpc') src = '구글 검색광고';
+  }
+
+  // 4순위: 일반 referrer
+  if(!src){
+    if(ref.indexOf('search.naver.com') > -1) src = '네이버 자연검색';
+    else if(ref.indexOf('naver.com') > -1) src = '네이버 기타';
+    else if(ref.indexOf('google.com') > -1 || ref.indexOf('google.co.kr') > -1) src = '구글 자연검색';
+    else if(ref.indexOf('daum.net') > -1) src = '다음 검색';
+    else if(!ref) src = '직접입력/즐겨찾기';
+    else src = ref;
+  }
+
   document.querySelectorAll('.js-source-field').forEach(function(el){ el.value = src; });
   window.__lpSource = src;
+  console.log('[유입경로-폼]', src, '| referrer=', ref);
 })();
+
 
 document.addEventListener('DOMContentLoaded',function(){
   if(typeof AOS!=='undefined')AOS.init({once:true,duration:800,easing:'ease-out-cubic'});
@@ -1686,15 +1712,39 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 (function(){
   document.addEventListener('DOMContentLoaded', function(){
     var ref = document.referrer || '';
+    var params = new URLSearchParams(location.search);
     var source = '';
-    if(ref.indexOf('search.naver.com') > -1) source = 'naver';
-    else if(ref.indexOf('google') > -1) source = 'google';
-    else if(ref.indexOf('daum.net') > -1) source = 'daum';
-    else if(ref.indexOf('facebook.com') > -1 || ref.indexOf('fb.com') > -1) source = 'facebook';
-    else if(ref.indexOf('instagram.com') > -1) source = 'instagram';
-    else if(ref.indexOf('kakao') > -1) source = 'kakao';
-    else if(!ref) source = 'direct';
-    else source = ref;
+
+    // ader.naver.com = 네이버 광고 리다이렉트 서버
+    if(ref.indexOf('ader.naver.com') > -1){
+      source = 'naver_ad';
+    }
+    // c 파라미터로 네이버 광고 판별
+    if(!source){
+      var cParam = (params.get('c') || '').toLowerCase();
+      if(cParam.indexOf('naver.search') > -1) source = 'naver_ad';
+      else if(cParam.indexOf('naver') > -1) source = 'naver_ad_etc';
+    }
+    // UTM으로 광고 판별
+    if(!source){
+      var utmSource = (params.get('utm_source') || '').toLowerCase();
+      var utmMedium = (params.get('utm_medium') || '').toLowerCase();
+      if(utmSource === 'naver' && utmMedium === 'cpc') source = 'naver_ad';
+      else if(utmSource === 'google' && utmMedium === 'cpc') source = 'google_ad';
+    }
+    // 일반 referrer
+    if(!source){
+      if(ref.indexOf('search.naver.com') > -1) source = 'naver_organic';
+      else if(ref.indexOf('naver.com') > -1) source = 'naver_etc';
+      else if(ref.indexOf('google') > -1) source = 'google';
+      else if(ref.indexOf('daum.net') > -1) source = 'daum';
+      else if(ref.indexOf('facebook.com') > -1 || ref.indexOf('fb.com') > -1) source = 'facebook';
+      else if(ref.indexOf('instagram.com') > -1) source = 'instagram';
+      else if(ref.indexOf('kakao') > -1) source = 'kakao';
+      else if(!ref) source = 'direct';
+      else source = ref;
+    }
+
 
     var visitKey = 'lp_visit_count';
     var count = parseInt(localStorage.getItem(visitKey) || '0', 10) + 1;

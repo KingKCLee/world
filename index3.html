@@ -616,6 +616,41 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 .lp-toast-text{font-size:13px;line-height:1.5;color:#333;letter-spacing:-.3px;}
 .lp-toast-text strong{color:var(--brand-color-dark);font-weight:700;}
 .lp-toast-time{font-size:11px;color:#999;margin-top:2px;}
+
+
+/* ── 헤더 하단에 매달린 즉시입주가능 ── */
+#header{
+  overflow:visible!important;  /* 매달린 부분이 잘리지 않도록 */
+}
+.hanging-sign{
+  position:absolute;
+  left:50%;
+  top:100%;              /* 헤더 바 하단 경계에서 시작 */
+  transform:translateX(-50%);
+  z-index:99;
+  transform-origin:top center;
+  animation:swing 3s ease-in-out infinite;
+  pointer-events:none;   /* 아래 콘텐츠 클릭 방해 안 함 */
+}
+.hanging-sign img{
+  display:block;
+  width:100px;
+  height:auto;
+  filter:drop-shadow(0 6px 12px rgba(0,0,0,.25));
+  pointer-events:auto;
+}
+@keyframes swing{
+  0%  {transform:translateX(-50%) rotate(0deg)}
+  25% {transform:translateX(-50%) rotate(8deg)}
+  50% {transform:translateX(-50%) rotate(0deg)}
+  75% {transform:translateX(-50%) rotate(-8deg)}
+  100%{transform:translateX(-50%) rotate(0deg)}
+}
+@media(max-width:600px){
+  .hanging-sign img{width:80px;}
+}
+
+
 </style>
 
 </head>
@@ -634,6 +669,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 
 <h1 class="sr-only">송도 월드메르디앙 - 인천 송도 1공구 6억대 신축 아파트 특별분양 | 모델하우스 방문예약 ☎1533-9077</h1>
 
+
 <header id="header">
   <div class="header-content">
     <div class="h1_logo-wrap">
@@ -650,6 +686,10 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
         </a>
       </div>
     </div>
+  </div><!-- .header-content 끝 -->
+  <!-- ★ 헤더 바 하단에 매달린 즉시입주가능 -->
+  <div class="hanging-sign">
+    <img src="resize.webp" alt="즉시입주가능" draggable="false">
   </div>
 </header>
 

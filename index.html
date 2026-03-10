@@ -970,7 +970,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   </form>
 </div>
 
-<!-- ═══════════ 팝업 2개 (popup2.mp4 + popup4.webp) ═══════════ -->
+<!-- ═══════════ 팝업 3개 (popup2.mp4 + popup4.webp + popup-wine.webp) ═══════════ -->
 <div class="lp-slide-popup" id="lpSlidePopup">
   <div class="lp-slide-popup-container">
     <!-- 팝업 1: 영상 -->
@@ -989,8 +989,17 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <a href="tel:1533-9077" class="lp-popup-link"><img src="popup4.webp" alt="송도 월드메르디앙 특별분양 안내 팝업" loading="lazy"></a>
       <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" onchange="closePopupToday(2)"> 오늘 하루 보지 않기</label></div>
     </div>
+    <!-- 팝업 3: 와인 이벤트 (NEW) -->
+    <div class="lp-slide-popup-inner lp-popup-card" id="popupInner3" data-has-link="0">
+      <button type="button" class="lp-slide-popup-close lp-popup-card-close" onclick="closePopup(3)">×</button>
+      <a href="#" class="lp-popup-link lp-popup-wine-cta">
+        <img src="popup-wine.webp" alt="사전예약 방문고객 한정 프리미엄 와인 증정 이벤트" loading="lazy">
+      </a>
+      <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" onchange="closePopupToday(3)"> 오늘 하루 보지 않기</label></div>
+    </div>
   </div>
 </div>
+
 
 <!-- ═══════════ Exit-intent 팝업 (PC 전용) ═══════════ -->
 <div class="lp-slide-popup" id="lpExitPopup">
@@ -1227,30 +1236,28 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 })();
 </script>
 
-<!-- ── 팝업 2개 초기화 (독립 localStorage) ── -->
+<!-- ── 팝업 3개 초기화 (독립 localStorage) ── -->
 <script>
 (function(){
   var popup=document.getElementById('lpSlidePopup');if(!popup)return;
   var inner1=document.getElementById('popupInner1');
   var inner2=document.getElementById('popupInner2');
+  var inner3=document.getElementById('popupInner3');
 
-  var now=new Date();
-  var todayStr=now.toDateString();
+  var todayStr=new Date().toDateString();
   var hide1=localStorage.getItem('popup1_hide_today')===todayStr;
   var hide2=localStorage.getItem('popup2_hide_today')===todayStr;
+  var hide3=localStorage.getItem('popup3_hide_today')===todayStr;
 
   if(hide1&&inner1)inner1.style.display='none';
   if(hide2&&inner2)inner2.style.display='none';
-
-  function show(){
-    if(hide1&&hide2)return;
-    popup.classList.add('show');
-  }
+  if(hide3&&inner3)inner3.style.display='none';
 
   function checkAllClosed(){
     var a=inner1?inner1.style.display==='none':true;
     var b=inner2?inner2.style.display==='none':true;
-    if(a&&b)popup.classList.remove('show');
+    var c=inner3?inner3.style.display==='none':true;
+    if(a&&b&&c)popup.classList.remove('show');
   }
 
   window.closePopup=function(n){
@@ -1264,27 +1271,37 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     closePopup(n);
   };
 
-  /* 오버레이 클릭 시 전체 닫기 */
   popup.addEventListener('click',function(e){if(e.target===popup){popup.classList.remove('show');}});
   document.addEventListener('keydown',function(e){if(popup.classList.contains('show')&&e.key==='Escape'){popup.classList.remove('show');}});
 
-  /* 팝업 내 링크 클릭 처리 (has-link=0이면 플로팅 폼 열기) */
+  /* 팝업 내 링크 클릭 처리 */
   popup.addEventListener('click',function(e){
     var a=e.target.closest('a.lp-popup-link');if(!a)return;
     var card=a.closest('.lp-popup-card');if(!card)return;
     if(card.dataset.hasLink==='1')return;
-    /* popup2.mp4 클릭 시 → 플로팅 폼 열기 */
+    /* 와인 이벤트 팝업 클릭 → 플로팅 폼 열기 (사전예약 유도) */
+    if(a.classList.contains('lp-popup-wine-cta')){
+      e.preventDefault();e.stopPropagation();
+      popup.classList.remove('show');
+      if(typeof lpOpenFloatForm==='function')lpOpenFloatForm();
+      return;
+    }
+    /* popup2.mp4 클릭 → 플로팅 폼 열기 */
     if(a.getAttribute('href')==='#'){
       e.preventDefault();e.stopPropagation();
       popup.classList.remove('show');
       if(typeof lpOpenFloatForm==='function')lpOpenFloatForm();
     }
-    /* popup4.webp 클릭 시 → tel:1533-9077 그대로 동작 */
   });
 
+  function show(){
+    if(hide1&&hide2&&hide3)return;
+    popup.classList.add('show');
+  }
   setTimeout(show, 1500);
 })();
 </script>
+
 
 <!-- ── Premium 6 탭 인터랙션 ── -->
 <script>

@@ -17,10 +17,18 @@
 <meta property="og:site_name" content="송도 월드메르디앙 특별분양">
 <meta property="og:title" content="송도 월드메르디앙 | 6억대 신축 아파트 특별분양">
 <meta property="og:description" content="인천 송도 1공구 월드메르디앙. 전용 78~84㎡ 128세대, 6억대 즉시입주. 입주지원금 1억+발코니 확장 무료. 방문예약 1533-9077">
+<!-- 기본 OG 이미지 (SNS 공유용 16:9) -->
 <meta property="og:image" content="https://viphome.kr/sns-image.webp">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/webp">
+
+<!-- 구글 검색결과 정사각형 썸네일용 (1:1) -->
+<meta property="og:image" content="https://viphome.kr/google-thumb.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:type" content="image/webp">
+
 <meta property="og:url" content="https://viphome.kr/">
 <meta property="og:locale" content="ko_KR">
 
@@ -28,6 +36,8 @@
 <meta name="twitter:title" content="송도 월드메르디앙 | 6억대 신축 아파트 특별분양">
 <meta name="twitter:description" content="인천 송도 1공구 30평대 신축 아파트 6억원대. 즉시입주·GTX-B 수혜. 모델하우스 방문예약 ☎1533-9077">
 <meta name="twitter:image" content="https://viphome.kr/sns-image.webp">
+<link rel="image_src" href="https://viphome.kr/google-thumb.webp">
+
 
 <meta name="naver-site-verification" content="80a0adf1eaa770c140cc3030217531ee7e501738" />
 
@@ -64,10 +74,17 @@
       "name": "송도 월드메르디앙 분양상담센터",
       "url": "https://viphome.kr/",
       "telephone": "+82-1533-9077",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://viphome.kr/sns-image.webp"
-      },
+"logo": {
+  "@type": "ImageObject",
+  "url": "https://viphome.kr/sns-image.webp"
+},
+"image": {
+  "@type": "ImageObject",
+  "url": "https://viphome.kr/google-thumb.webp",
+  "width": 1200,
+  "height": 1200
+}
+
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "신송로 165-17",
@@ -127,7 +144,21 @@
         {"@type": "LocationFeatureSpecification", "name": "총 주차 259대 (세대당 약 2대, 근생·판매 포함)"},
         {"@type": "LocationFeatureSpecification", "name": "즉시 입주 가능 (2023년 준공)"}
       ],
-      "image": "https://viphome.kr/sns-image.webp"
+      "image": [
+  {
+    "@type": "ImageObject",
+    "url": "https://viphome.kr/google-thumb.webp",
+    "width": 1200,
+    "height": 1200
+  },
+  {
+    "@type": "ImageObject",
+    "url": "https://viphome.kr/sns-image.webp",
+    "width": 1200,
+    "height": 630
+  }
+]
+
     },
     {
       "@type": "FAQPage",

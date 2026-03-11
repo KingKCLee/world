@@ -527,9 +527,53 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 }
 
 @media(max-width:1023px){
-  .lp-slide-popup-container{flex-direction:column;align-items:center;gap:12px;max-height:90vh;overflow-y:auto;padding:20px;}
-  .lp-slide-popup-inner{max-width:72vw;width:320px;}
+  .lp-slide-popup{align-items:center;justify-content:center;}
+  .lp-slide-popup-container{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:0!important;
+    max-height:none;
+    overflow:visible;
+    padding:20px;
+    position:relative;
+    min-height:60vh;
+  }
+  .lp-slide-popup-inner{
+    max-width:76vw;
+    width:320px;
+    position:absolute!important;
+    left:50%;
+    top:50%;
+    transition:transform .35s ease, opacity .35s ease;
+  }
+  /* 맨 앞 카드 (현재 보이는 카드) */
+  .lp-slide-popup-inner[data-stack="0"]{
+    z-index:3;
+    transform:translate(-50%,-50%) scale(1);
+    opacity:1;
+  }
+  /* 두 번째 카드 (뒤에 살짝 보임) */
+  .lp-slide-popup-inner[data-stack="1"]{
+    z-index:2;
+    transform:translate(-50%,-50%) translateY(14px) scale(0.95);
+    opacity:0.7;
+  }
+  /* 세 번째 카드 (맨 뒤) */
+  .lp-slide-popup-inner[data-stack="2"]{
+    z-index:1;
+    transform:translate(-50%,-50%) translateY(28px) scale(0.90);
+    opacity:0.45;
+  }
+  /* 숨겨진 카드 */
+  .lp-slide-popup-inner[data-stack="hidden"]{
+    z-index:0;
+    transform:translate(-50%,-50%) scale(0.85);
+    opacity:0;
+    pointer-events:none;
+  }
 }
+
 
 .lp-benefit-cta{margin:56px auto;padding:40px 28px;border-radius:14px;background:#fff;border:2px solid var(--brand-color);box-shadow:0 4px 24px rgba(179,155,0,.12),0 1px 4px rgba(0,0,0,.06);text-align:center;position:relative;}
 .lp-benefit-cta::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--brand-color);border-radius:14px 14px 0 0;}
@@ -1272,68 +1316,159 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 })();
 </script>
 
-<!-- ── 팝업 3개 초기화 (독립 localStorage) ── -->
+<!-- ── 팝업 3개 초기화 (독립 localStorage + 모바일 스택/스와이프) ── -->
 <script>
 (function(){
-  var popup=document.getElementById('lpSlidePopup');if(!popup)return;
-  var inner1=document.getElementById('popupInner1');
-  var inner2=document.getElementById('popupInner2');
-  var inner3=document.getElementById('popupInner3');
+  var popup = document.getElementById('lpSlidePopup');
+  if(!popup) return;
 
-  var todayStr=new Date().toDateString();
-  var hide1=localStorage.getItem('popup1_hide_today')===todayStr;
-  var hide2=localStorage.getItem('popup2_hide_today')===todayStr;
-  var hide3=localStorage.getItem('popup3_hide_today')===todayStr;
+  var cards = [
+    document.getElementById('popupInner1'),
+    document.getElementById('popupInner2'),
+    document.getElementById('popupInner3')
+  ];
 
-  if(hide1&&inner1)inner1.style.display='none';
-  if(hide2&&inner2)inner2.style.display='none';
-  if(hide3&&inner3)inner3.style.display='none';
+  var todayStr = new Date().toDateString();
+  var hidden = [false, false, false];
 
-  function checkAllClosed(){
-    var a=inner1?inner1.style.display==='none':true;
-    var b=inner2?inner2.style.display==='none':true;
-    var c=inner3?inner3.style.display==='none':true;
-    if(a&&b&&c)popup.classList.remove('show');
-  }
-
-  window.closePopup=function(n){
-    var el=document.getElementById('popupInner'+n);
-    if(el)el.style.display='none';
-    checkAllClosed();
-  };
-
-  window.closePopupToday=function(n){
-    localStorage.setItem('popup'+n+'_hide_today',new Date().toDateString());
-    closePopup(n);
-  };
-
-  popup.addEventListener('click',function(e){if(e.target===popup){popup.classList.remove('show');}});
-  document.addEventListener('keydown',function(e){if(popup.classList.contains('show')&&e.key==='Escape'){popup.classList.remove('show');}});
-
-  /* 팝업 내 링크 클릭 처리 */
-  popup.addEventListener('click',function(e){
-    var a=e.target.closest('a.lp-popup-link');if(!a)return;
-    var card=a.closest('.lp-popup-card');if(!card)return;
-    if(card.dataset.hasLink==='1')return;
-    /* 와인 이벤트 팝업 클릭 → 플로팅 폼 열기 (사전예약 유도) */
-    if(a.classList.contains('lp-popup-wine-cta')){
-      e.preventDefault();e.stopPropagation();
-      popup.classList.remove('show');
-      if(typeof lpOpenFloatForm==='function')lpOpenFloatForm();
-      return;
-    }
-    /* popup2.mp4 클릭 → 플로팅 폼 열기 */
-    if(a.getAttribute('href')==='#'){
-      e.preventDefault();e.stopPropagation();
-      popup.classList.remove('show');
-      if(typeof lpOpenFloatForm==='function')lpOpenFloatForm();
+  // localStorage 체크 → 오늘 하루 보지않기 처리
+  cards.forEach(function(card, i){
+    if(!card) { hidden[i] = true; return; }
+    var key = 'popup' + (i+1) + '_hide_today';
+    if(localStorage.getItem(key) === todayStr){
+      hidden[i] = true;
+      card.style.display = 'none';
     }
   });
 
+  var isMobile = window.matchMedia('(max-width:1023px)').matches;
+  var currentIdx = 0; // 모바일에서 현재 맨 앞에 보이는 카드 인덱스
+
+  // 보이는 카드 목록 (hidden 아닌 것들)
+  function getVisibleCards(){
+    var arr = [];
+    cards.forEach(function(card, i){
+      if(!hidden[i] && card && card.style.display !== 'none') arr.push({el: card, idx: i});
+    });
+    return arr;
+  }
+
+  // 모바일: 스택 data-stack 속성 세팅
+  function updateMobileStack(){
+    if(!isMobile) return;
+    var visible = getVisibleCards();
+    // 모든 카드 일단 hidden 처리
+    cards.forEach(function(card){
+      if(card) card.setAttribute('data-stack', 'hidden');
+    });
+    if(visible.length === 0) return;
+    // currentIdx가 범위를 넘으면 보정
+    if(currentIdx >= visible.length) currentIdx = 0;
+    // 맨 앞부터 stack 0, 1, 2 부여
+    for(var s = 0; s < Math.min(visible.length, 3); s++){
+      var realIdx = (currentIdx + s) % visible.length;
+      visible[realIdx].el.setAttribute('data-stack', String(s));
+    }
+  }
+
+  // 전체 닫힘 체크
+  function checkAllClosed(){
+    var allGone = getVisibleCards().length === 0;
+    if(allGone) popup.classList.remove('show');
+  }
+
+  // 개별 팝업 닫기
+  window.closePopup = function(n){
+    var card = document.getElementById('popupInner' + n);
+    if(card){
+      card.style.display = 'none';
+      hidden[n-1] = true;
+    }
+    if(isMobile) updateMobileStack();
+    checkAllClosed();
+  };
+
+  // 오늘 하루 보지 않기
+  window.closePopupToday = function(n){
+    localStorage.setItem('popup' + n + '_hide_today', new Date().toDateString());
+    closePopup(n);
+  };
+
+  // 배경 클릭 닫기
+  popup.addEventListener('click', function(e){
+    if(e.target === popup) popup.classList.remove('show');
+  });
+  document.addEventListener('keydown', function(e){
+    if(popup.classList.contains('show') && e.key === 'Escape') popup.classList.remove('show');
+  });
+
+  // 팝업 내 링크 클릭 처리
+  popup.addEventListener('click', function(e){
+    var a = e.target.closest('a.lp-popup-link');
+    if(!a) return;
+    var card = a.closest('.lp-popup-card');
+    if(!card) return;
+    if(card.dataset.hasLink === '1') return;
+    if(a.classList.contains('lp-popup-wine-cta')){
+      e.preventDefault(); e.stopPropagation();
+      popup.classList.remove('show');
+      if(typeof lpOpenFloatForm === 'function') lpOpenFloatForm();
+      return;
+    }
+    if(a.getAttribute('href') === '#'){
+      e.preventDefault(); e.stopPropagation();
+      popup.classList.remove('show');
+      if(typeof lpOpenFloatForm === 'function') lpOpenFloatForm();
+    }
+  });
+
+  // ── 모바일 스와이프로 카드 넘기기 ──
+  if(isMobile){
+    var startX = 0, startY = 0, swiping = false;
+    var container = popup.querySelector('.lp-slide-popup-container');
+
+    container.addEventListener('touchstart', function(e){
+      var t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      swiping = true;
+    }, {passive: true});
+
+    container.addEventListener('touchend', function(e){
+      if(!swiping) return;
+      swiping = false;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - startX;
+      var dy = t.clientY - startY;
+      // 수평 스와이프만 감지 (최소 50px, 수직보다 커야 함)
+      if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){
+        var visible = getVisibleCards();
+        if(visible.length <= 1) return;
+        if(dx < 0){
+          // 왼쪽 스와이프 → 다음
+          currentIdx = (currentIdx + 1) % visible.length;
+        } else {
+          // 오른쪽 스와이프 → 이전
+          currentIdx = (currentIdx - 1 + visible.length) % visible.length;
+        }
+        updateMobileStack();
+      }
+    }, {passive: true});
+  }
+
+  // 팝업 표시
   function show(){
-    if(hide1&&hide2&&hide3)return;
+    if(hidden[0] && hidden[1] && hidden[2]) return;
+    if(isMobile){
+      // 첫 번째 보이는 카드를 맨 앞으로
+      var visible = getVisibleCards();
+      if(visible.length === 0) return;
+      currentIdx = 0;
+      updateMobileStack();
+    }
     popup.classList.add('show');
   }
+
   setTimeout(show, 1500);
 })();
 </script>
@@ -1739,4 +1874,3 @@ document.addEventListener('keydown', function(e){
 
 </body>
 </html>
-

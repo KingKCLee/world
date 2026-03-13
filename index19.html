@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11324266200"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-11324266200');
+</script>
+  
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -431,10 +442,10 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-urgency{text-align:center;padding:20px 16px;background:linear-gradient(135deg,#1a1a1a 0%,#333 100%);border-radius:0;margin:0 auto 40px;position:relative;overflow:hidden;width:100vw;margin-left:calc(-50vw + 50%);}
 .lp-urgency::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(179,155,0,.08),transparent);animation:urgShine 3s ease-in-out infinite;}
 @keyframes urgShine{0%,100%{opacity:0}50%{opacity:1}}
-.lp-urgency-top{font-size:20px;color:#ccc;letter-spacing:-.3px;margin-bottom:6px;}
-.lp-urgency-main{font-size:36px;font-weight:800;color:#fff;letter-spacing:-1px;}
+.lp-urgency-top{font-size:36px;color:#ccc;letter-spacing:-.3px;margin-bottom:6px;}
+.lp-urgency-main{font-size:55px;font-weight:800;color:#fff;letter-spacing:-1px;}
 .lp-urgency-main em{font-style:normal;color:var(--brand-color-light);}
-.lp-urgency-bottom{font-size:19px;color:#bbb;margin-top:6px;font-weight:500;}
+.lp-urgency-bottom{font-size:34px;color:#bbb;margin-top:6px;font-weight:500;}
 @media(max-width:1023px){
   .lp-urgency-top{font-size:16px;}
   .lp-urgency-main{font-size:26px;}
@@ -691,43 +702,56 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 @media(min-width:1024px){.pendulum{left:200px;top:120px;width:150px;}}
 @media(max-width:1023px){.pendulum{left:12px;top:68px;width:100px;}}
 
-/* ═══ 모바일 정렬 보정 (2026-03-13) ═══ */
 @media(max-width:1023px){
-    /* 긴급성 배너 */
-    .lp-urgency{ padding:24px 20px; }
-    .lp-urgency-top{ font-size:13px; word-break:keep-all; line-height:1.6; }
-    .lp-urgency-main{ font-size:24px; word-break:keep-all; line-height:1.4; }
-    .lp-urgency-bottom{ font-size:13px; word-break:keep-all; line-height:1.6; }
-
-    /* 가격 비교 테이블 */
-    .lp-price-table thead th{ font-size:11px; padding:10px 4px; word-break:keep-all; letter-spacing:-0.5px; }
-    .lp-price-table tbody td{ font-size:12px; padding:10px 4px; word-break:keep-all; letter-spacing:-0.5px; }
-    .lp-price-table tbody td:first-child{ text-align:left; font-size:11px; }
-
-    /* CTA 영역 */
-    .lp-benefit-cta-bottom p{ word-break:keep-all; line-height:1.6; padding:0 8px; }
-    .lp-benefit-cta-title{ word-break:keep-all; }
-
-    /* 토스트 위치 보정 */
-    .lp-toast-wrap{ bottom:110px!important; }
-
-    /* 본문·푸터 하단 여백 (퀵메뉴 겹침 방지) */
-    .lp-body{ padding-bottom:60px!important; }
-    .lp-footer{ padding-bottom:140px!important; }
-
-    /* 퀵메뉴 배경 강화 */
-    .lp-quick-mo-inner .lp-quick-btn{ background:rgba(0,0,0,.95); }
-    .lp-quick-mo-inner .lp-quick-btn:first-child{ background:var(--brand-color); }
+  .lp-body{
+    padding-bottom: 100px !important;
+  }
+  .lp-float-form{
+    padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)) !important;
+  }
 }
 
-/* 420px 이하 소형 기기 추가 보정 */
-@media(max-width:420px){
-    .lp-urgency-top{ font-size:12px; }
-    .lp-urgency-main{ font-size:20px; }
-    .lp-urgency-bottom{ font-size:12px; }
-    .lp-price-table thead th{ font-size:10px; padding:8px 3px; }
-    .lp-price-table tbody td{ font-size:11px; padding:8px 3px; }
+/* ★ 수정: 체크박스 터치 영역 확대 + label 바깥 [자세히] 링크 레이아웃 */
+.lp-privacy-line label,
+.lp-float-privacy label,
+.lp-popup-today label{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 0;
+  cursor:pointer;
+  -webkit-tap-highlight-color:rgba(0,0,0,.05);
 }
+.lp-privacy-line input[type="checkbox"],
+.lp-float-privacy input[type="checkbox"],
+.lp-popup-today input[type="checkbox"]{
+  width:20px;
+  height:20px;
+  min-width:20px;
+  min-height:20px;
+  margin:0;
+  cursor:pointer;
+  -webkit-appearance:checkbox;
+  appearance:checkbox;
+}
+
+/* ★ 수정: label 바깥으로 빠진 [자세히] 링크 레이아웃 */
+.lp-privacy-line,
+.lp-float-privacy{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:4px;
+}
+.lp-privacy-line .lp-privacy-more,
+.lp-float-privacy .lp-privacy-more{
+  font-size:12px;
+  color:#333;
+  text-decoration:underline;
+  padding:8px 4px;
+  -webkit-tap-highlight-color:rgba(0,0,0,.05);
+}
+
 </style>
 </head>
 
@@ -778,10 +802,10 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       </li>
       <li class="swiper-slide">
         <div class="img" style="background:url('landing_page_main_images_309_1_1771463559.webp') no-repeat 50% 0;background-size:cover;">
-          <img class="only-pc" src="landing_page_main_images_309_1_1771463559.webp" alt="송도 월드메르디앙 단지 조감도 - 4개동 128세대 남향 배치" width="1920" height="1080">
+          <img class="only-pc" src="landing_page_main_images_309_1_1771463559.webp" alt="송도 월드메르디앙 단지 조감도 - 4개동 128세대 남향 배치">
         </div>
         <div class="main-title-image">
-          <img src="1551-3755_1772588926_9630.webp" alt="송도 월드메르디앙 6억대 특별분양 안내" width="800" height="600">
+          <img src="1551-3755_1772588926_9630.webp" alt="송도 월드메르디앙 6억대 특별분양 안내">
         </div>
       </li>
     </ul>
@@ -818,11 +842,12 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   </div>
 
   <div class="lp-urgency" data-aos="fade-up">
-    <div class="lp-urgency-top">2023년 준공 완료 · 즉시입주 가능 · 2026~2027 송도 입주물량 0세대</div>
+    <div class="lp-urgency-top">준공 완료 · 즉시입주 가능 · 2026~2027 송도 입주물량 0세대</div>
     <div class="lp-urgency-main"><em>잔여세대 한정</em> 1억 5천만원 특별할인 진행중</div>
     <div class="lp-urgency-bottom">동탄 GTX 착공 전 9억 → 개통 후 18억 | 지금 송도가 그 시점입니다</div>
   </div>
 
+  <!-- ★ 수정: 상단 폼 – [자세히] 링크를 label 바깥으로 이동 -->
   <div id="reserve-top">
     <section class="lp-reserve-wrap" data-aos="fade-up">
       <h2 class="lp-reserve-title">방문예약신청</h2>
@@ -835,7 +860,10 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
           <input type="hidden" name="entry.929183790" id="real_phone_top">
         </div>
         <input type="hidden" name="entry.716000199" class="js-source-field">
-        <div class="lp-form-row lp-privacy-line"><label><input type="checkbox" name="entry.1692797403" value="네 동의합니다." required> 개인정보 수집이용에 동의합니다. <a href="#" class="lp-privacy-more">[자세히]</a></label></div>
+        <div class="lp-form-row lp-privacy-line">
+          <label><input type="checkbox" name="entry.1692797403" value="네 동의합니다." required> <span>개인정보 수집이용에 동의합니다.</span></label>
+          <a href="#" class="lp-privacy-more">[자세히]</a>
+        </div>
         <div class="lp-submit-wrap"><button type="submit" class="lp-submit-btn">방문예약 신청하기</button></div>
       </form>
     </section>
@@ -1007,6 +1035,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </section>
 
+  <!-- ★ 수정: 하단 폼 – [자세히] 링크를 label 바깥으로 이동 -->
   <div id="reserve-bottom">
     <section class="lp-reserve-wrap" data-aos="fade-up">
       <h2 class="lp-reserve-title">관심고객 등록</h2>
@@ -1019,7 +1048,10 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
           <input type="hidden" name="entry.929183790" id="real_phone_bottom">
         </div>
         <input type="hidden" name="entry.716000199" class="js-source-field">
-        <div class="lp-form-row lp-privacy-line"><label><input type="checkbox" name="entry.1692797403" value="네 동의합니다." required> 개인정보 수집이용에 동의합니다. <a href="#" class="lp-privacy-more">[자세히]</a></label></div>
+        <div class="lp-form-row lp-privacy-line">
+          <label><input type="checkbox" name="entry.1692797403" value="네 동의합니다." required> <span>개인정보 수집이용에 동의합니다.</span></label>
+          <a href="#" class="lp-privacy-more">[자세히]</a>
+        </div>
         <div class="lp-submit-wrap"><button type="submit" class="lp-submit-btn">관심고객 등록하기</button></div>
       </form>
     </section>
@@ -1027,398 +1059,891 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 
   <section class="sr-only" aria-label="분양 상세 안내">
     <h2>송도 월드메르디앙 분양 안내</h2>
-    <p>송도 월드메르디앙은 인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치한 2023년 준공 주상복합 신축 아파트입니다. 대지면적 6,628㎡, 건축면적 3,308㎡, 연면적 29,704㎡, 건폐율 49.92%, 용적률 279.55% 규모입니다. 지하 2층~지상 10층, 총 4개동 128세대로 전용면적 78㎡, 83㎡, 84A㎡, 84A-1㎡ 4개 타입으로 구성되어 있습니다. 전 세대 남향 4베이 판상형 설계로 채광과 통풍이 우수하며, 발코니 확장이 무상 제공됩니다.</p>
-
-    <h3>분양가 및 할인 혜택</h3>
-    <p>현재 잔여세대 한정 1억 5천만원 특별할인이 진행 중이며, 전용 78~84㎡ 30평대 기준 6억원대부터 분양 가능합니다. 기존 분양가 대비 1억 이상 할인된 가격이며, 발코니 확장 무상 및 3,000만원 상당의 가전·가구 무상옵션이 포함됩니다. 입주지원금 1억 이상(분양가 대비 15% 효과), 계약금 정액제 등 파격적인 혜택이 제공됩니다.</p>
-
-    <h3>교통 호재</h3>
-    <p>인천대입구역(인천1호선) 도보 15분 거리이며, GTX-B 노선(2031년 개통 예정) 착공 확정으로 서울역까지 약 27분, 여의도까지 약 17분 접근이 가능해질 예정입니다. 2026년 12월 인천발 KTX 개통, 송도트램(2032년 예정) 30개역 8자 순환노선 도보권 정차, 인천3호선 계획, 제2외곽순환도로 예정 등 다양한 교통 호재가 집중되어 있습니다.</p>
-
-    <h3>교육 환경</h3>
-    <p>채드윅 송도 국제학교 도보 약 300m, 신정초·신정중 인접, 송도 1공구 인천 최대 규모 학원가 도보권입니다. 연세대학교 국제캠퍼스, 인천대학교 등 대학교도 인접해 있습니다.</p>
-
-    <h3>생활 인프라</h3>
-    <p>센트럴파크, 롯데마트, 코스트코, 홈플러스, 트리플스트리트, 송도컨벤시아 등 완성된 생활 인프라를 즉시 이용할 수 있습니다. 2023년 준공 완료 신축으로 즉시 입주가 가능합니다.</p>
-
-    <h3>시장 전망</h3>
-    <p>부동산R114 기준 송도는 2026~2027년 신규 입주 물량이 0세대로 공급 공백기에 진입하였습니다. 동탄역 롯데캐슬은 GTX 착공 전 9억대에서 개통 후 18억을 돌파한 사례가 있으며, 송도 역시 GTX-B 및 KTX 개통으로 유사한 가격 상승이 기대됩니다.</p>
-
-    <h3>문의 안내</h3>
-    <p>모델하우스 방문예약 및 분양 상담은 대표번호 1533-9077로 연락하시거나, 홈페이지에서 온라인 방문예약을 신청해 주시기 바랍니다.</p>
+    <p>송도 월드메르디앙은 인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치한 2023년 준공 주상복합 신축 아파트입니다. 대지면적 6,628㎡, 건축면적 3,308㎡, 연면적 29,704㎡, 건폐율 49.92%, 용적률 279.55% 규모입니다. 지하 2층~지상 10층, 총 4개동 128세대로 전용면적 78㎡, 83㎡, 84A㎡, 84A-1㎡ 4가지 타입을 공급하며, 전 세대 남향 4베이 설계로 채광과 통풍이 우수합니다.</p>
+    <p>송도는 대한민국에서 유일하게 국가 전략으로 설계된 국제도시입니다. 삼성바이오로직스, 셀트리온 등 바이오 산업 세계 1위 클러스터가 집결해 있으며, 해외 직접투자 8조 원 이상이 유치된 도시입니다. IBD 국제업무지구 도보 접근 가능한 직주근접 최적 입지에 위치합니다.</p>
+    <p>GTX-B 노선 2025년 착공, 2031년 개통 목표로 전 구간 공사가 진행 중이며, 개통 시 송도에서 여의도·용산까지 20분대 접근이 가능해집니다. 2026년 12월 인천발 KTX가 개통되면 송도역에서 부산까지 2시간 20분 소요됩니다. 송도트램 국토부 승인 완료, 인천지하철 3호선 추진 중, 수도권 제2외곽순환고속도로 추진 예정으로 교통 호재가 동시에 쏟아    <p>GTX-B 노선 2025년 착공, 2031년 개통 목표로 전 구간 공사가 진행 중이며, 개통 시 송도에서 여의도·용산까지 20분대 접근이 가능해집니다. 2026년 12월 인천발 KTX가 개통되면 송도역에서 부산까지 2시간 20분 소요됩니다. 송도트램 국토부 승인 완료, 인천지하철 3호선 추진 중, 수도권 제2외곽순환고속도로 추진 예정으로 교통 호재가 동시에 쏟아지고 있습니다.</p>
+    <p>동탄역 롯데캐슬은 GTX-A 착공 전 84기준 9억대에서 개통 후 18억을 돌파했습니다. 송도는 지금 GTX 착공 전의 동탄과 같은 시점에 있습니다. 같은 송도 1공구 대장 아파트가 10~12억, 3공구 G5블록 분양 예정가가 11~12억대인 반면, 월드메르디앙은 6억대입니다. 부동산R114 기준 송도는 2026~2027년 입주 물량이 0세대로 공급 공백기에 진입했습니다.</p>
+    <p>현재 잔여세대 한정 1억 5천만원 특별할인이 적용되고 있으며, 발코니 확장 무상, 3,000만원 상당의 무상옵션, 즉시입주 가능 등 파격적인 분양 혜택이 제공됩니다. 모델하우스는 방문예약제로 운영되며, 대표번호 1533-9077로 문의하시면 전문 상담사의 맞춤형 상담을 받으실 수 있습니다.</p>
   </section>
 
+</div>
 </div>
 
 <footer class="lp-footer">
   <div class="lp-footer-inner">
-    <div class="lp-footer-logo"><img src="logo2.webp" alt="송도 월드메르디앙 로고" loading="lazy"></div>
+    <div class="lp-footer-logo"><a href="https://viphome.kr/"><img src="logo2.webp" alt="송도 월드메르디앙 로고" loading="lazy"></a></div>
     <div class="lp-footer-info">
-      <div class="lp-footer-info-row"><span class="label">위치</span> <span>인천광역시 연수구 송도동 21-16 (신송로 165-17)</span></div>
-      <div class="lp-footer-info-row"><span class="label">규모</span> <span>지하 2층~지상 10층, 4개동 128세대</span></div>
-      <div class="lp-footer-info-row"><span class="label">타입</span> <span>전용 78·83·84㎡ (30~32평)</span></div>
+      <div class="lp-footer-info-row"><span class="label">현장명</span><span>|</span><span>송도 월드메르디앙</span></div>
+      <div class="lp-footer-info-row"><span class="label">현장주소</span><span>|</span><span>인천광역시 연수구 송도동 21-16 (신송로 165-17)</span></div>
     </div>
     <div class="lp-footer-call">
-      <span class="label">분양 대표번호</span><br>
-      <a href="tel:1533-9077" class="number" style="color:var(--brand-color);text-decoration:none;">1533-9077</a>
+      <div class="label">상담문의</div>
+      <div class="number" style="color:#b39b00">1533-9077</div>
     </div>
-    <p class="lp-footer-notice">
-      ※ 본 홈페이지의 이미지·CG·영상·내용은 소비자의 이해를 돕기 위한 것으로, 실제와 차이가 있을 수 있습니다.<br>
-      ※ 단지 주변 개발 계획(GTX-B, 송도트램, 인천3호선, 제2외곽순환도로 등)은 관계 기관 사정에 따라 변경·지연·취소될 수 있습니다.<br>
-      ※ 분양가·할인혜택·입주지원금 등 분양 조건은 시행사 사정에 따라 변경될 수 있으며, 계약 전 반드시 현장 확인 바랍니다.<br>
-      ※ 시세 비교 자료는 2026년 기준 실거래가 및 공개 자료를 참고한 것이며 시점에 따라 달라질 수 있습니다.
-    </p>
-    <p class="lp-footer-copy">&copy; 2025 송도 월드메르디앙. All rights reserved. | 분양대행 : 더블유부동산</p>
+    <div class="lp-footer-notice">
+      ※ 본 홈페이지에 사용된 투시도, 조감도, CG, 이미지 및 내용, 문구 등은 소비자의 이해를 돕기 위해 제작 또는 표현된 것으로 실제와 차이가 있을 수 있습니다.<br>
+      ※ 본 홈페이지의 내용은 시행사 및 시공사 및 관계기관에 의해 변경될 수 있습니다.<br>
+온라인마케팅 대행 :  더블유부동산   대표자 : 이광철   사업자등록번호 : 589-24-01721
+    </div>
+    <div class="lp-footer-copy">Copyright 2026 월드메르디앙 송도. ALL RIGHTS RESERVED.</div>
   </div>
 </footer>
 
+<!-- ═══════════ 예약 버블 (카운터) ═══════════ -->
+<div class="lp-resv-bubble-fixed">
+  <div class="lp-resv-bubble js-resv-counter">
+    <button type="button" class="lp-resv-bubble-close" aria-label="닫기">×</button>
+    현재까지 총 <span class="num" data-count="138">0</span>명 예약신청 완료했습니다!
+  </div>
 </div>
 
-<!-- ===== PC 퀵메뉴 ===== -->
-<nav class="lp-quick lp-quick-pc" id="quickPc" aria-label="빠른 메뉴">
-  <div class="lp-quick-pc-inner">
-    <button class="lp-quick-btn" onclick="location.href='tel:1533-9077'" aria-label="전화 상담">
-      <span class="lp-quick-btn-icon"><img src="btn0.webp" alt="전화 아이콘"></span>
-      <span class="lp-quick-btn-label">전화상담</span>
-    </button>
-    <button class="lp-quick-btn js-open-float" aria-label="방문예약">
-      <span class="lp-quick-btn-icon"><img src="btn5.webp" alt="방문예약 아이콘"></span>
-      <span class="lp-quick-btn-label">방문예약</span>
-    </button>
-    <button class="lp-quick-btn" onclick="document.getElementById('reserve-bottom').scrollIntoView({behavior:'smooth'})" aria-label="관심고객 등록">
-      <span class="lp-quick-btn-icon"><img src="btn6.webp" alt="관심고객 아이콘"></span>
-      <span class="lp-quick-btn-label">관심등록</span>
-    </button>
-  </div>
-</nav>
-
-<!-- ===== 모바일 퀵메뉴 ===== -->
-<nav class="lp-quick lp-quick-mo" id="quickMo" aria-label="모바일 빠른 메뉴">
-  <div class="lp-quick-mo-inner">
-    <button class="lp-quick-btn" onclick="location.href='tel:1533-9077'">
-      <span class="lp-quick-btn-icon"><img src="btn0.webp" alt="전화 아이콘"></span>
-      <span class="lp-quick-btn-label">전화상담</span>
-    </button>
-    <button class="lp-quick-btn js-open-float">
-      <span class="lp-quick-btn-icon"><img src="btn5.webp" alt="방문예약 아이콘"></span>
-      <span class="lp-quick-btn-label">방문예약</span>
-    </button>
-    <button class="lp-quick-btn" onclick="document.getElementById('reserve-bottom').scrollIntoView({behavior:'smooth'})">
-      <span class="lp-quick-btn-icon"><img src="btn6.webp" alt="관심고객 아이콘"></span>
-      <span class="lp-quick-btn-label">관심등록</span>
-    </button>
-  </div>
-</nav>
-
-<!-- ===== 플로팅 예약 폼 ===== -->
-<div class="lp-float-dim" id="floatDim"></div>
-<div class="lp-float-form" id="floatForm">
-  <button class="lp-float-close" id="floatClose">&times;</button>
-  <h2 class="lp-float-title">방문예약</h2>
+<!-- ═══════════ PC 플로팅 폼 ═══════════ -->
+<div class="lp-float-dim" id="lpFloatDim"></div>
+<div class="lp-float-form" id="lpFloatForm">
+  <button type="button" class="lp-float-close" id="lpFloatClose">×</button>
+  <h2 class="lp-float-title" style="color:#b39b00">방문예약신청</h2>
   <form action="https://docs.google.com/forms/d/e/1FAIpQLScfHQY82AJ9EHuOlm4zS_dtRN_2ZbP9qDIC2KGLfNYDhvv2Rw/formResponse"
         method="POST" target="hidden_iframe" onsubmit="return validateForm('float');">
-    <div class="lp-float-inner-row"><input name="entry.1019098426" required placeholder="성함" class="lp-input"></div>
     <div class="lp-float-inner-row">
-      <input type="tel" id="display_phone_float" required placeholder="휴대폰 번호" class="lp-input">
+      <input name="entry.1019098426" required placeholder="성함을 입력해주세요" class="lp-input">
+    </div>
+    <div class="lp-float-inner-row">
+      <input type="tel" id="display_phone_float" required placeholder="휴대폰 번호를 입력해주세요" class="lp-input">
       <input type="hidden" name="entry.929183790" id="real_phone_float">
     </div>
     <input type="hidden" name="entry.716000199" class="js-source-field">
-    <div class="lp-float-inner-row lp-float-privacy"><label><input type="checkbox" name="entry.1692797403" value="네 동의합니다." required> 개인정보 수집이용 동의 <a href="#" class="lp-privacy-more">[자세히]</a></label></div>
-    <div class="lp-float-submit"><button type="submit" class="lp-submit-btn">방문예약 신청</button></div>
+    <!-- ★ 수정: 플로팅 폼 – [자세히] 링크를 label 바깥으로 이동 -->
+    <div class="lp-float-inner-row lp-float-privacy">
+      <label>
+        <input type="checkbox" name="entry.1692797403" value="네 동의합니다." required>
+        <span>개인정보 수집이용에 동의합니다.</span>
+      </label>
+      <a href="#" class="lp-privacy-more">[자세히]</a>
+    </div>
+    <div class="lp-float-submit">
+      <button type="submit" class="lp-submit-btn" style="background:#b39b00;color:#fff;">예약신청접수</button>
+    </div>
   </form>
 </div>
 
-<!-- ===== 예약 알림 버블 (PC) ===== -->
-<div class="lp-resv-bubble-fixed" id="resvBubble" style="display:none;">
-  <div class="lp-resv-bubble">
-    <button class="lp-resv-bubble-close" id="bubbleClose">&times;</button>
-    오늘 <span class="num" id="bubbleCount">0</span>명이 방문예약을 신청했습니다
-  </div>
-</div>
-
-<!-- ===== 토스트 알림 ===== -->
-<div class="lp-toast-wrap" id="toastWrap">
-  <div class="lp-toast" id="toastEl">
-    <span class="lp-toast-icon">🔔</span>
-    <div>
-      <div class="lp-toast-text" id="toastText"></div>
-      <div class="lp-toast-time" id="toastTime"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== 팝업 레이어 ===== -->
+<!-- ═══════════ 팝업 3개 (popup2.mp4 + popup4.webp + popup-wine.webp) ═══════════ -->
 <div class="lp-slide-popup" id="lpSlidePopup">
-  <div class="lp-slide-popup-container" id="popupContainer">
-    <div class="lp-slide-popup-inner" data-popup-id="popup-video">
-      <button class="lp-slide-popup-close">&times;</button>
-      <a href="tel:1533-9077" class="lp-popup-link">
-        <video autoplay loop muted playsinline poster="popup1-1.webp" preload="none" style="width:100%;display:block;">
-          <source src="popup1.mp4" type="video/mp4">
+  <div class="lp-slide-popup-container">
+    <!-- 팝업 1: 영상 -->
+    <div class="lp-slide-popup-inner lp-popup-card" id="popupInner1" data-has-link="0">
+      <button type="button" class="lp-slide-popup-close lp-popup-card-close" onclick="closePopup(1)">×</button>
+      <a href="#" class="lp-popup-link">
+        <video autoplay loop muted playsinline style="width:100%;display:block;">
+          <source src="popup2.mp4" type="video/mp4">
         </video>
       </a>
-      <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" data-popup-id="popup-video"> 오늘 하루 보지 않기</label></div>
+      <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" onchange="closePopupToday(1)"> 오늘 하루 보지 않기</label></div>
     </div>
-    <div class="lp-slide-popup-inner" data-popup-id="popup-image">
-      <button class="lp-slide-popup-close">&times;</button>
-      <a href="tel:1533-9077" class="lp-popup-link"><img src="popup2.webp" alt="송도 월드메르디앙 특별분양 팝업 안내"></a>
-      <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" data-popup-id="popup-image"> 오늘 하루 보지 않기</label></div>
+    <!-- 팝업 2: 이미지 -->
+    <div class="lp-slide-popup-inner lp-popup-card" id="popupInner2" data-has-link="0">
+      <button type="button" class="lp-slide-popup-close lp-popup-card-close" onclick="closePopup(2)">×</button>
+      <a href="tel:1533-9077" class="lp-popup-link"><img src="popup4.webp" alt="송도 월드메르디앙 특별분양 안내 팝업" loading="lazy"></a>
+      <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" onchange="closePopupToday(2)"> 오늘 하루 보지 않기</label></div>
+    </div>
+    <!-- 팝업 3: 와인 이벤트 (NEW) -->
+    <div class="lp-slide-popup-inner lp-popup-card" id="popupInner3" data-has-link="0">
+      <button type="button" class="lp-slide-popup-close lp-popup-card-close" onclick="closePopup(3)">×</button>
+      <a href="#" class="lp-popup-link lp-popup-wine-cta">
+        <img src="popup-wine.webp" alt="사전예약 방문고객 한정 프리미엄 와인 증정 이벤트" loading="lazy">
+      </a>
+      <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" onchange="closePopupToday(3)"> 오늘 하루 보지 않기</label></div>
     </div>
   </div>
 </div>
 
+
+<!-- ═══════════ Exit-intent 팝업 (PC 전용) ═══════════ -->
+<div class="lp-slide-popup" id="lpExitPopup">
+  <div class="lp-slide-popup-container">
+    <div class="lp-slide-popup-inner">
+      <button type="button" class="lp-slide-popup-close" id="lpExitPopupClose">×</button>
+      <div style="padding:30px 24px;text-align:center;">
+        <p style="font-size:22px;font-weight:800;color:#b39b00;margin:0 0 8px;letter-spacing:-1px;">잠깐! 나가시기 전에</p>
+        <p style="font-size:15px;color:#555;margin:0 0 20px;line-height:1.6;">
+          지금 방문예약 하시면<br>
+          <strong style="color:#d60000;font-size:18px;">1억 5천만원 특별할인</strong> 혜택을 받으실 수 있습니다
+        </p>
+        <button type="button" class="lp-submit-btn" style="max-width:260px;font-size:18px;padding:12px 0;"
+                onclick="document.getElementById('lpExitPopup').classList.remove('show'); if(typeof lpOpenFloatForm==='function') lpOpenFloatForm();">
+          방문예약 신청하기
+        </button>
+      </div>
+      <div class="lp-popup-today">
+        <label><input type="checkbox" id="exitPopupTodayChk"> 오늘 하루 보지 않기</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ 실시간 예약 알림 토스트 ═══════════ -->
+<div class="lp-toast-wrap" id="lpToastWrap">
+  <div class="lp-toast" id="lpToast">
+    <div class="lp-toast-icon">🔔</div>
+    <div class="lp-toast-text" id="lpToastText"></div>
+  </div>
+</div>
+
+<!-- ═══════════ PC 퀵메뉴 ═══════════ -->
+<div class="lp-quick lp-quick-pc show">
+  <div class="lp-quick-pc-inner">
+    <button type="button" class="lp-quick-btn js-quick-open-form">
+      <span class="lp-quick-btn-icon"><img src="btn1.webp" alt="방문예약"></span>
+      <span class="lp-quick-btn-label">방문예약</span>
+    </button>
+    <a href="tel:1533-9077" class="lp-quick-btn">
+      <span class="lp-quick-btn-icon"><img src="btn2.webp" alt="전화상담"></span>
+      <span class="lp-quick-btn-label">전화상담</span>
+    </a>
+    <button type="button" class="lp-quick-btn js-quick-top">
+      <span class="lp-quick-btn-icon"><img src="btn3.webp" alt="맨 위로 이동"></span>
+      <span class="lp-quick-btn-label">Top</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════ 모바일 퀵메뉴 ═══════════ -->
+<div class="lp-quick lp-quick-mo">
+  <div class="lp-quick-mo-inner">
+    <button type="button" class="lp-quick-btn js-quick-open-form">
+      <span class="lp-quick-btn-icon"><img src="btn1.webp" alt="방문예약"></span>
+      <span class="lp-quick-btn-label">방문예약</span>
+    </button>
+    <a href="tel:1533-9077" class="lp-quick-btn">
+      <span class="lp-quick-btn-icon"><img src="btn2.webp" alt="전화상담"></span>
+      <span class="lp-quick-btn-label">전화상담</span>
+    </a>
+    <button type="button" class="lp-quick-btn js-quick-top">
+      <span class="lp-quick-btn-icon"><img src="btn3.webp" alt="맨 위로 이동"></span>
+      <span class="lp-quick-btn-label">Top</span>
+    </button>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--                         SCRIPTS                           -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<script>
+/* ── 전화번호 자동 하이픈 ── */
+['top','bottom','float'].forEach(function(id){
+  var display = document.getElementById('display_phone_' + id);
+  var real = document.getElementById('real_phone_' + id);
+  if(!display || !real) return;
+  display.addEventListener('input', function(e){
+    var digits = e.target.value.replace(/\D/g, '');
+    var formatted = digits.match(/(\d{0,3})(\d{0,4})(\d{0,4})/);
+    e.target.value = !formatted[2] ? formatted[1] : formatted[1] + '-' + formatted[2] + (formatted[3] ? '-' + formatted[3] : '');
+    real.value = digits;
+  });
+});
+
+function validateForm(id){
+  var phone = document.getElementById('real_phone_' + id).value;
+  if(phone.length < 10){ alert('올바른 전화번호를 입력해주세요.'); return false; }
+  submitted = true; return true;
+}
+</script>
+
+<!-- ── 유입경로 판별 + 히든 필드 세팅 ── -->
 <script>
 (function(){
-  /* ── vh 보정 ── */
-  function setVH(){document.documentElement.style.setProperty('--vh',(window.innerHeight*.01)+'px');}
-  setVH(); window.addEventListener('resize',setVH);
+  var params = new URLSearchParams(location.search);
+  var ref = document.referrer || '';
+  var src = '';
 
-  /* ── UTM source 세팅 ── */
-  var src='direct';
-  try{var u=new URLSearchParams(location.search);if(u.get('utm_source'))src=u.get('utm_source');else if(document.referrer){var h=new URL(document.referrer).hostname;if(h.includes('naver'))src='naver';else if(h.includes('google'))src='google';else if(h.includes('daum')||h.includes('kakao'))src='kakao';else src=h;}}catch(e){}
-  document.querySelectorAll('.js-source-field').forEach(function(el){el.value=src;});
-
-  /* ── AOS 초기화 ── */
-  AOS.init({duration:700,once:true,offset:60});
-
-  /* ── 헤더 스크롤 ── */
-  var hd=document.getElementById('header');
-  window.addEventListener('scroll',function(){hd.classList.toggle('on',window.scrollY>30);});
-
-  /* ── 메인 슬라이더 ── */
-  new Swiper('.swiper1',{loop:true,autoplay:{delay:4000,disableOnInteraction:false},speed:800,pagination:{el:'.swiper1 .swiper-pagination',clickable:true}});
-
-  /* ── 스크롤 텍스트 원형 배치 ── */
-  var stEl=document.querySelector('.scroll-text');
-  if(stEl){
-    var txt=stEl.getAttribute('data-text')||'';
-    stEl.innerHTML='';
-    var total=txt.length,r=32;
-    for(var i=0;i<total;i++){
-      var sp=document.createElement('span');
-      sp.className='scroll-char';
-      sp.textContent=txt[i];
-      var deg=(360/total)*i;
-      sp.style.transform='rotate('+deg+'deg) translate('+r+'px) rotate(-90deg)';
-      stEl.appendChild(sp);
-    }
+  if(ref.indexOf('ader.naver.com') > -1){
+    src = '네이버 검색광고';
   }
 
-  /* ── 드래그 힌트 ── */
-  var dh=document.querySelector('.kv-drag-hint'),tv=document.querySelector('.top-visual');
-  if(dh&&tv){
-    tv.addEventListener('mousemove',function(e){var r=tv.getBoundingClientRect();dh.style.left=(e.clientX-r.left)+'px';dh.style.top=(e.clientY-r.top)+'px';dh.classList.add('show');});
-    tv.addEventListener('mouseleave',function(){dh.classList.remove('show');});
+  if(!src){
+    var cParam = (params.get('c') || '').toLowerCase();
+    if(cParam.indexOf('naver.search') > -1) src = '네이버 검색광고';
+    else if(cParam.indexOf('naver') > -1) src = '네이버 광고(기타)';
   }
 
-  /* ── 전화번호 포맷 ── */
-  function fmtPhone(v){var d=v.replace(/\D/g,'');if(d.length<=3)return d;if(d.length<=7)return d.slice(0,3)+'-'+d.slice(3);return d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7,11);}
-  ['top','bottom','float'].forEach(function(id){
-    var el=document.getElementById('display_phone_'+id);
-    if(el)el.addEventListener('input',function(){this.value=fmtPhone(this.value);});
-  });
-
-  /* ── 폼 유효성 ── */
-  window.validateForm=function(id){
-    var dp=document.getElementById('display_phone_'+id);
-    var rp=document.getElementById('real_phone_'+id);
-    if(dp&&rp){rp.value=dp.value.replace(/\D/g,'');}
-    if(rp&&rp.value.length<10){alert('올바른 휴대폰 번호를 입력해주세요.');dp.focus();return false;}
-    submitted=true;
-    return true;
-  };
-
-  /* ── 개인정보 레이어 ── */
-  document.querySelectorAll('.lp-privacy-more').forEach(function(a){
-    a.addEventListener('click',function(e){e.preventDefault();document.getElementById('lpPrivacyLayer').style.display='flex';});
-  });
-  document.getElementById('lpPrivacyClose').addEventListener('click',function(){document.getElementById('lpPrivacyLayer').style.display='none';});
-  document.getElementById('lpPrivacyLayer').addEventListener('click',function(e){if(e.target===this)this.style.display='none';});
-
-  /* ── 유튜브 썸네일 클릭 ── */
-  var yt=document.getElementById('ytThumb');
-  if(yt)yt.addEventListener('click',function(){
-    var sec=document.getElementById('ytSection');
-    sec.innerHTML='<iframe src="https://www.youtube.com/embed/ZQXgPeGzwW4?autoplay=1&rel=0" title="송도 월드메르디앙 홍보 영상" allow="autoplay;encrypted-media" allowfullscreen></iframe>';
-  });
-
-  /* ── 프리미엄 6탭 ── */
-  var p6=document.getElementById('p6interactive');
-  if(p6){
-    var tabs=p6.querySelectorAll('.p6-tab'),panels=p6.querySelectorAll('.p6-panel'),bar=p6.querySelector('.p6-progress-bar');
-    var cur=0,total=tabs.length,dur=6000,timer,raf;
-    function activate(idx){
-      cur=idx;
-      tabs.forEach(function(t,i){t.classList.toggle('active',i===cur);});
-      panels.forEach(function(p,i){p.classList.toggle('active',i===cur);});
-      startProgress();
-    }
-    function startProgress(){
-      if(timer)clearTimeout(timer);
-      if(raf)cancelAnimationFrame(raf);
-      if(bar)bar.style.width='0%';
-      var s=performance.now();
-      function step(ts){
-        var p=Math.min((ts-s)/dur*100,100);
-        if(bar)bar.style.width=p+'%';
-        if(p<100){raf=requestAnimationFrame(step);}
-        else{activate((cur+1)%total);}
-      }
-      raf=requestAnimationFrame(step);
-    }
-    tabs.forEach(function(t){t.addEventListener('click',function(){activate(+this.dataset.index);});});
-    activate(0);
+  if(!src){
+    var utmSource = (params.get('utm_source') || '').toLowerCase();
+    var utmMedium = (params.get('utm_medium') || '').toLowerCase();
+    if(utmSource === 'naver' && utmMedium === 'cpc') src = '네이버 검색광고';
+    else if(utmSource === 'google' && utmMedium === 'cpc') src = '구글 검색광고';
   }
 
-  /* ── FAQ 아코디언 ── */
-  document.querySelectorAll('.lp-faq-q').forEach(function(q){
-    q.addEventListener('click',function(){
-      var item=this.parentElement,a=item.querySelector('.lp-faq-a'),inner=a.querySelector('.lp-faq-a-inner');
-      var open=item.classList.contains('active');
-      document.querySelectorAll('.lp-faq-item.active').forEach(function(it){it.classList.remove('active');it.querySelector('.lp-faq-a').style.maxHeight=null;});
-      if(!open){item.classList.add('active');a.style.maxHeight=inner.scrollHeight+'px';}
-    });
-  });
-
-  /* ── CTA 버튼 → 예약폼 스크롤 ── */
-  document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var t=document.getElementById('reserve-top');
-      if(t)t.scrollIntoView({behavior:'smooth',block:'center'});
-    });
-  });
-
-  /* ── PC 퀵메뉴 표시 ── */
-  var qpc=document.getElementById('quickPc');
-  if(qpc){
-    window.addEventListener('scroll',function(){
-      if(window.scrollY>400)qpc.classList.add('show');else qpc.classList.remove('show');
-    });
+  if(!src){
+    if(ref.indexOf('search.naver.com') > -1) src = '네이버 자연검색';
+    else if(ref.indexOf('naver.com') > -1) src = '네이버 기타';
+    else if(ref.indexOf('google.com') > -1 || ref.indexOf('google.co.kr') > -1) src = '구글 자연검색';
+    else if(ref.indexOf('daum.net') > -1) src = '다음 검색';
+    else if(!ref) src = '직접입력/즐겨찾기';
+    else src = ref;
   }
 
-  /* ── 플로팅 예약폼 ── */
-  var fDim=document.getElementById('floatDim'),fForm=document.getElementById('floatForm'),fClose=document.getElementById('floatClose');
-  function openFloat(){fDim.classList.add('active');fForm.classList.add('active');document.body.style.overflow='hidden';}
-  function closeFloat(){fDim.classList.remove('active');fForm.classList.remove('active');document.body.style.overflow='';}
-  document.querySelectorAll('.js-open-float').forEach(function(b){b.addEventListener('click',openFloat);});
-  if(fClose)fClose.addEventListener('click',closeFloat);
-  if(fDim)fDim.addEventListener('click',closeFloat);
-
-  /* ── 예약 버블 (PC) ── */
-  var bubble=document.getElementById('resvBubble'),bubCount=document.getElementById('bubbleCount'),bubClose=document.getElementById('bubbleClose');
-  if(bubble&&window.innerWidth>=1024){
-    var cnt=Math.floor(Math.random()*12)+5;
-    bubCount.textContent=cnt;
-    setTimeout(function(){bubble.style.display='block';},2500);
-    if(bubClose)bubClose.addEventListener('click',function(){bubble.style.display='none';});
-  }
-
-  /* ── 토스트 알림 ── */
-  var toasts=[
-    {icon:'🔔',text:'<strong>서울 강남</strong>에서 방문예약을 신청했습니다',time:'방금 전'},
-    {icon:'📋',text:'<strong>인천 송도</strong>에서 관심고객 등록했습니다',time:'2분 전'},
-    {icon:'🔔',text:'<strong>경기 분당</strong>에서 방문예약을 신청했습니다',time:'5분 전'},
-    {icon:'📋',text:'<strong>인천 부평</strong>에서 관심고객 등록했습니다',time:'8분 전'},
-    {icon:'🔔',text:'<strong>서울 마포</strong>에서 방문예약을 신청했습니다',time:'12분 전'},
-    {icon:'📋',text:'<strong>경기 수원</strong>에서 관심고객 등록했습니다',time:'15분 전'}
-  ];
-  var tw=document.getElementById('toastWrap'),te=document.getElementById('toastEl'),tt=document.getElementById('toastText'),tti=document.getElementById('toastTime');
-  var ti=0;
-  function showToast(){
-    var d=toasts[ti%toasts.length];
-    te.querySelector('.lp-toast-icon').textContent=d.icon;
-    tt.innerHTML=d.text;
-    tti.textContent=d.time;
-    te.classList.add('show');
-    setTimeout(function(){te.classList.remove('show');},4500);
-    ti++;
-  }
-  if(tw){
-    setTimeout(showToast,5000);
-    setInterval(showToast,15000);
-    tw.addEventListener('click',function(){
-      var t=document.getElementById('reserve-top');
-      if(t)t.scrollIntoView({behavior:'smooth',block:'center'});
-    });
-  }
-
-  /* ── 팝업 레이어 ── */
-  var popup=document.getElementById('lpSlidePopup'),popupContainer=document.getElementById('popupContainer');
-  if(popup){
-    var items=popup.querySelectorAll('.lp-slide-popup-inner');
-    var hiddenIds=[];
-    try{var stored=JSON.parse(localStorage.getItem('lp_popup_hidden')||'{}');var today=new Date().toDateString();Object.keys(stored).forEach(function(k){if(stored[k]===today)hiddenIds.push(k);});}catch(e){}
-
-    var visibleItems=[];
-    items.forEach(function(item){
-      var pid=item.getAttribute('data-popup-id');
-      if(hiddenIds.indexOf(pid)===-1)visibleItems.push(item);
-      else{item.style.display='none';}
-    });
-
-    if(visibleItems.length>0){
-      popup.classList.add('show');
-      /* 모바일 스택 */
-      function updateStack(){
-        var vis=Array.from(popup.querySelectorAll('.lp-slide-popup-inner')).filter(function(el){return el.style.display!=='none';});
-        vis.forEach(function(el,i){el.setAttribute('data-stack',i<3?i:'hidden');});
-        if(vis.length===0)popup.classList.remove('show');
-      }
-      updateStack();
-    }
-
-    popup.querySelectorAll('.lp-slide-popup-close').forEach(function(btn){
-      btn.addEventListener('click',function(){
-        var inner=this.closest('.lp-slide-popup-inner');
-        var chk=inner.querySelector('.lp-popup-today-chk');
-        if(chk&&chk.checked){
-          try{var s=JSON.parse(localStorage.getItem('lp_popup_hidden')||'{}');s[chk.dataset.popupId]=new Date().toDateString();localStorage.setItem('lp_popup_hidden',JSON.stringify(s));}catch(e){}
-        }
-        inner.style.display='none';
-        var vis=Array.from(popup.querySelectorAll('.lp-slide-popup-inner')).filter(function(el){return el.style.display!=='none';});
-        if(vis.length===0)popup.classList.remove('show');
-        else if(window.innerWidth<1024){
-          vis.forEach(function(el,i){el.setAttribute('data-stack',i<3?i:'hidden');});
-        }
-      });
-    });
-
-    /* 오늘 하루 체크 후 자동 닫기 */
-    popup.querySelectorAll('.lp-popup-today-chk').forEach(function(chk){
-      chk.addEventListener('change',function(){
-        if(this.checked){
-          var inner=this.closest('.lp-slide-popup-inner');
-          try{var s=JSON.parse(localStorage.getItem('lp_popup_hidden')||'{}');s[this.dataset.popupId]=new Date().toDateString();localStorage.setItem('lp_popup_hidden',JSON.stringify(s));}catch(e){}
-          inner.style.display='none';
-          var vis=Array.from(popup.querySelectorAll('.lp-slide-popup-inner')).filter(function(el){return el.style.display!=='none';});
-          if(vis.length===0)popup.classList.remove('show');
-          else if(window.innerWidth<1024){
-            vis.forEach(function(el,i){el.setAttribute('data-stack',i<3?i:'hidden');});
-          }
-        }
-      });
-    });
-
-    /* 배경 클릭 닫기 */
-    popup.addEventListener('click',function(e){
-      if(e.target===popup)popup.classList.remove('show');
-    });
-  }
-
-  /* ── 퀵메뉴 / 버블 위치 보정 (푸터 겹침 방지) ── */
-  if(window.innerWidth>=1024){
-    var footer=document.querySelector('.lp-footer');
-    window.addEventListener('scroll',function(){
-      if(!footer)return;
-      var fr=footer.getBoundingClientRect(),wh=window.innerHeight;
-      var nearFooter=fr.top<wh-100;
-      var nearTop=window.scrollY<400;
-      if(qpc){qpc.classList.toggle('down',nearFooter&&!nearTop);qpc.classList.toggle('up',nearTop);}
-      if(bubble&&bubble.style.display!=='none'){bubble.classList.toggle('down',nearFooter);bubble.classList.toggle('up',nearTop);}
-    });
-  }
-
+  document.querySelectorAll('.js-source-field').forEach(function(el){ el.value = src; });
+  window.__lpSource = src;
+  console.log('[유입경로-폼]', src, '| referrer=', ref);
 })();
 </script>
+
+<!-- ── 초기화: AOS, 헤더 스크롤, vh 보정 ── -->
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  if(typeof AOS!=='undefined')AOS.init({once:true,duration:800,easing:'ease-out-cubic'});
+});
+
+(function(){
+  var h=document.getElementById('header');if(!h)return;
+  function s(){h.classList.toggle('on',scrollY>10);}
+  s();addEventListener('scroll',s,{passive:true});
+})();
+
+(function(){function s(){document.documentElement.style.setProperty('--vh',(innerHeight*.01)+'px');}s();addEventListener('resize',s);})();
+</script>
+
+<!-- ★ 수정: 개인정보 레이어 – [자세히] 링크에 직접 이벤트 + stopPropagation -->
+<script>
+(function(){
+  var l=document.getElementById('lpPrivacyLayer'),c=document.getElementById('lpPrivacyClose');
+
+  /* [자세히] 링크에 직접 이벤트를 걸어 stopPropagation으로 label 전파 차단 */
+  document.querySelectorAll('.lp-privacy-more').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      if(l) l.style.display = 'flex';
+    });
+    /* 모바일 터치 이벤트도 차단 */
+    a.addEventListener('touchend', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      if(l) l.style.display = 'flex';
+    });
+  });
+
+  if(c)c.addEventListener('click',function(){if(l)l.style.display='none';});
+  if(l)l.addEventListener('click',function(e){if(e.target===l)l.style.display='none';});
+})();
+</script>
+
+<!-- ── Swiper (메인 비주얼) ── -->
+<script>
+(function(){
+  if(typeof Swiper==='undefined')return;
+  var el=document.querySelector('.swiper1');if(!el)return;
+  var multi=el.querySelectorAll('.swiper-slide').length>1;
+  var o={loop:multi,speed:600,effect:'fade',fadeEffect:{crossFade:true},slidesPerView:1,observer:true,observeParents:true};
+  if(multi){o.autoplay={delay:4000,disableOnInteraction:false};var p=el.querySelector('.swiper-pagination');if(p)o.pagination={el:p,clickable:true};}
+  var sw=new Swiper(el,o);
+  sw.allowTouchMove=matchMedia('(max-width:1023px)').matches?false:multi;
+})();
+</script>
+
+<!-- ── 스크롤 텍스트 원형 배치 ── -->
+<script>
+(function(){
+  var el=document.querySelector('.scroll-text');if(!el)return;
+  var t=(el.getAttribute('data-text')||'').trim();if(!t)return;el.textContent='';
+  for(var i=0;i<t.length;i++){var s=document.createElement('span');s.className='scroll-char';s.textContent=t[i];s.style.transform='translate(-50%,-50%) rotate('+((360/t.length)*i)+'deg) translate(0,-65px)';el.appendChild(s);}
+})();
+</script>
+
+<!-- ── 맨 위로 이동 ── -->
+<script>
+document.querySelectorAll('.js-quick-top').forEach(function(b){b.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'});});});
+</script>
+
+<!-- ── 플로팅 폼 열기/닫기 ── -->
+<script>
+(function(){
+  var f=document.getElementById('lpFloatForm'),c=document.getElementById('lpFloatClose'),d=document.getElementById('lpFloatDim'),q=document.querySelector('.lp-quick-mo');
+  function open(){if(!f)return;f.classList.add('active');if(d)d.classList.add('active');if(q)q.classList.add('lp-quick--hide');}
+  function close(){if(f)f.classList.remove('active');if(d)d.classList.remove('active');if(q)q.classList.remove('lp-quick--hide');}
+  window.lpOpenFloatForm=open;
+  document.querySelectorAll('.js-quick-open-form').forEach(function(b){b.addEventListener('click',open);});
+  if(c)c.addEventListener('click',close);
+  if(d)d.addEventListener('click',close);
+})();
+</script>
+
+<!-- ── 예약 카운터 (날짜 기반 증가) ── -->
+<script>
+(function(){
+  document.querySelectorAll('.js-resv-counter').forEach(function(box){
+    var n=box.querySelector('.num');if(!n)return;
+    var baseCount=138;
+    var baseDate=new Date('2026-03-01');
+    var today=new Date();
+    var days=Math.floor((today-baseDate)/86400000);
+    var target=baseCount+Math.max(0,days)*2;
+    n.dataset.count=target;
+    var start=Math.max(0,target-100),dur=1600,st=null;
+    function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/dur,1),e=1-Math.pow(1-p,3);n.textContent=Math.floor(start+(target-start)*e).toLocaleString('ko-KR');if(p<1)requestAnimationFrame(step);else n.textContent=target.toLocaleString('ko-KR');}
+    if('IntersectionObserver' in window){var once=false;new IntersectionObserver(function(entries,io){entries.forEach(function(entry){if(!once&&entry.isIntersecting){once=true;requestAnimationFrame(step);io.disconnect();}});},{threshold:.2}).observe(box);}
+    else requestAnimationFrame(step);
+  });
+})();
+
+document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-bubble-close');if(b){var w=b.closest('.lp-resv-bubble-fixed');if(w)w.style.display='none';}});
+</script>
+
+<!-- ── PC 퀵메뉴 + 버블 스크롤 방향 반응 ── -->
+<script>
+(function(){
+  if(!matchMedia('(min-width:1024px)').matches)return;
+  var q=document.querySelector('.lp-quick-pc'),b=document.querySelector('.lp-resv-bubble-fixed');
+  if(!q&&!b)return;var last=scrollY;
+  addEventListener('scroll',function(){var cur=scrollY,d=cur>last;[q,b].forEach(function(el){if(!el)return;el.classList.toggle('down',d);el.classList.toggle('up',!d);});last=cur;},{passive:true});
+})();
+</script>
+
+<!-- ── 팝업 3개 초기화 (독립 localStorage + 모바일 스택/스와이프) ── -->
+<script>
+(function(){
+  var popup = document.getElementById('lpSlidePopup');
+  if(!popup) return;
+
+  var cards = [
+    document.getElementById('popupInner1'),
+    document.getElementById('popupInner2'),
+    document.getElementById('popupInner3')
+  ];
+
+  var todayStr = new Date().toDateString();
+  var hidden = [false, false, false];
+
+  cards.forEach(function(card, i){
+    if(!card) { hidden[i] = true; return; }
+    var key = 'popup' + (i+1) + '_hide_today';
+    if(localStorage.getItem(key) === todayStr){
+      hidden[i] = true;
+      card.style.display = 'none';
+    }
+  });
+
+  var isMobile = window.matchMedia('(max-width:1023px)').matches;
+  var currentIdx = 0;
+
+  function getVisibleCards(){
+    var arr = [];
+    cards.forEach(function(card, i){
+      if(!hidden[i] && card && card.style.display !== 'none') arr.push({el: card, idx: i});
+    });
+    return arr;
+  }
+
+  function updateMobileStack(){
+    if(!isMobile) return;
+    var visible = getVisibleCards();
+    cards.forEach(function(card){
+      if(card) card.setAttribute('data-stack', 'hidden');
+    });
+    if(visible.length === 0) return;
+    if(currentIdx >= visible.length) currentIdx = 0;
+    for(var s = 0; s < Math.min(visible.length, 3); s++){
+      var realIdx = (currentIdx + s) % visible.length;
+      visible[realIdx].el.setAttribute('data-stack', String(s));
+    }
+  }
+
+  function checkAllClosed(){
+    var allGone = getVisibleCards().length === 0;
+    if(allGone) popup.classList.remove('show');
+  }
+
+  window.closePopup = function(n){
+    var card = document.getElementById('popupInner' + n);
+    if(card){
+      card.style.display = 'none';
+      hidden[n-1] = true;
+    }
+    if(isMobile) updateMobileStack();
+    checkAllClosed();
+  };
+
+  window.closePopupToday = function(n){
+    localStorage.setItem('popup' + n + '_hide_today', new Date().toDateString());
+    closePopup(n);
+  };
+
+  popup.addEventListener('click', function(e){
+    if(e.target === popup) popup.classList.remove('show');
+  });
+  document.addEventListener('keydown', function(e){
+    if(popup.classList.contains('show') && e.key === 'Escape') popup.classList.remove('show');
+  });
+
+  popup.addEventListener('click', function(e){
+    var a = e.target.closest('a.lp-popup-link');
+    if(!a) return;
+    var card = a.closest('.lp-popup-card');
+    if(!card) return;
+    if(card.dataset.hasLink === '1') return;
+    if(a.classList.contains('lp-popup-wine-cta')){
+      e.preventDefault(); e.stopPropagation();
+      popup.classList.remove('show');
+      if(typeof lpOpenFloatForm === 'function') lpOpenFloatForm();
+      return;
+    }
+    if(a.getAttribute('href') === '#'){
+      e.preventDefault(); e.stopPropagation();
+      popup.classList.remove('show');
+      if(typeof lpOpenFloatForm === 'function') lpOpenFloatForm();
+    }
+  });
+
+  if(isMobile){
+    var startX = 0, startY = 0, swiping = false;
+    var container = popup.querySelector('.lp-slide-popup-container');
+
+    container.addEventListener('touchstart', function(e){
+      var t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      swiping = true;
+    }, {passive: true});
+
+    container.addEventListener('touchend', function(e){
+      if(!swiping) return;
+      swiping = false;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - startX;
+      var dy = t.clientY - startY;
+      if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){
+        var visible = getVisibleCards();
+        if(visible.length <= 1) return;
+        if(dx < 0){
+          currentIdx = (currentIdx + 1) % visible.length;
+        } else {
+          currentIdx = (currentIdx - 1 + visible.length) % visible.length;
+        }
+        updateMobileStack();
+      }
+    }, {passive: true});
+  }
+
+  function show(){
+    if(hidden[0] && hidden[1] && hidden[2]) return;
+    if(isMobile){
+      var visible = getVisibleCards();
+      if(visible.length === 0) return;
+      currentIdx = 0;
+      updateMobileStack();
+    }
+    popup.classList.add('show');
+  }
+
+  setTimeout(show, 1500);
+})();
+</script>
+
+
+<!-- ── Premium 6 탭 인터랙션 ── -->
+<script>
+(function(){
+  var wrap = document.getElementById('p6interactive');
+  if(!wrap) return;
+  var tabs = wrap.querySelectorAll('.p6-tab');
+  var panels = wrap.querySelectorAll('.p6-panel');
+  var bar = wrap.querySelector('.p6-progress-bar');
+  var autoTimer, progressTimer;
+  var current = 0;
+  var INTERVAL = 5000;
+
+  function activate(idx){
+    current = idx;
+    tabs.forEach(function(t,i){ t.classList.toggle('active', i===idx); });
+    panels.forEach(function(p,i){ p.classList.toggle('active', i===idx); });
+    startProgress();
+  }
+
+  function startProgress(){
+    if(bar){
+      bar.style.transition = 'none';
+      bar.style.width = '0%';
+      void bar.offsetWidth;
+      bar.style.transition = 'width ' + INTERVAL + 'ms linear';
+      bar.style.width = '100%';
+    }
+  }
+
+  function startAuto(){
+    stopAuto();
+    autoTimer = setInterval(function(){
+      activate((current + 1) % tabs.length);
+    }, INTERVAL);
+    startProgress();
+  }
+
+  function stopAuto(){
+    clearInterval(autoTimer);
+    clearTimeout(progressTimer);
+  }
+
+  tabs.forEach(function(tab, i){
+    tab.addEventListener('click', function(){
+      activate(i);
+      stopAuto();
+      startAuto();
+    });
+  });
+
+  activate(0);
+  startAuto();
+})();
+</script>
+
+<!-- ── FAQ 아코디언 ── -->
+<script>
+(function(){
+  document.querySelectorAll('.lp-faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      var item = q.closest('.lp-faq-item');
+      var ans = item.querySelector('.lp-faq-a');
+      var isActive = item.classList.contains('active');
+      document.querySelectorAll('.lp-faq-item').forEach(function(fi){
+        fi.classList.remove('active');
+        fi.querySelector('.lp-faq-a').style.maxHeight = null;
+      });
+      if(!isActive){
+        item.classList.add('active');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
+  });
+})();
+</script>
+
+<!-- ── 유튜브 썸네일 → iframe 변환 ── -->
+<script>
+(function(){
+  var thumb = document.getElementById('ytThumb');
+  var section = document.getElementById('ytSection');
+  if(!thumb || !section) return;
+  thumb.addEventListener('click', function(){
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/ZQXgPeGzwW4?autoplay=1&rel=0';
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.border = '0';
+    thumb.style.display = 'none';
+    section.appendChild(iframe);
+  });
+})();
+</script>
+
+<!-- ── CTA 버튼 → 하단 폼 스크롤 ── -->
+<script>
+document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var target = document.getElementById('reserve-bottom');
+    if(target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+});
+</script>
+
+<!-- ── 드래그 힌트 (PC only) ── -->
+<script>
+(function(){
+  if(!matchMedia('(pointer:fine)').matches) return;
+  var hint = document.querySelector('.kv-drag-hint');
+  var visual = document.querySelector('.top-visual');
+  if(!hint || !visual) return;
+  visual.addEventListener('mousemove', function(e){
+    hint.style.left = e.clientX + 'px';
+    hint.style.top = e.clientY + 'px';
+  });
+  visual.addEventListener('mouseenter', function(){ hint.classList.add('show'); });
+  visual.addEventListener('mouseleave', function(){ hint.classList.remove('show'); });
+})();
+</script>
+
+<!-- ── Exit-intent 팝업 (PC 전용) ── -->
+<script>
+(function(){
+  if(!matchMedia('(pointer:fine)').matches) return;
+  var triggered = false;
+  var DELAY = 3000;
+  var ready = false;
+  setTimeout(function(){ ready = true; }, DELAY);
+  document.addEventListener('mouseout', function(e){
+    if(!ready || triggered) return;
+    if(e.clientY > 0) return;
+    if(e.relatedTarget || e.toElement) return;
+    triggered = true;
+    var slidePopup = document.getElementById('lpSlidePopup');
+    if(slidePopup && slidePopup.classList.contains('show')) return;
+    if(localStorage.getItem('exit_popup_hide_today') === new Date().toDateString()) return;
+    var exitPopup = document.getElementById('lpExitPopup');
+    if(exitPopup) exitPopup.classList.add('show');
+  });
+})();
+
+(function(){
+  var popup = document.getElementById('lpExitPopup');
+  var closeBtn = document.getElementById('lpExitPopupClose');
+  var todayChk = document.getElementById('exitPopupTodayChk');
+  if(!popup) return;
+  function hide(){ popup.classList.remove('show'); }
+  if(closeBtn) closeBtn.addEventListener('click', hide);
+  popup.addEventListener('click', function(e){ if(e.target === popup) hide(); });
+  document.addEventListener('keydown', function(e){ if(popup.classList.contains('show') && e.key === 'Escape') hide(); });
+  if(todayChk){
+    todayChk.addEventListener('change', function(){
+      if(this.checked){
+        localStorage.setItem('exit_popup_hide_today', new Date().toDateString());
+        hide();
+      } else {
+        localStorage.removeItem('exit_popup_hide_today');
+      }
+    });
+  }
+})();
+</script>
+
+<!-- ── 실시간 예약 알림 토스트 ── -->
+<script>
+(function(){
+  var toastEl = document.getElementById('lpToast');
+  var textEl = document.getElementById('lpToastText');
+  var wrapEl = document.getElementById('lpToastWrap');
+  if(!toastEl || !textEl) return;
+
+  var messages = [
+    { area: '서울 서초', name: '김**', time: '3분 전' },
+    { area: '인천 연수', name: '박**', time: '5분 전' },
+    { area: '경기 성남', name: '이**', time: '8분 전' },
+    { area: '서울 강남', name: '최**', time: '12분 전' },
+    { area: '인천 남동', name: '정**', time: '15분 전' },
+    { area: '경기 수원', name: '한**', time: '18분 전' },
+    { area: '서울 송파', name: '윤**', time: '22분 전' },
+    { area: '경기 동탄', name: '장**', time: '25분 전' },
+    { area: '경기 용인', name: '오**', time: '28분 전' },
+    { area: '서울 마포', name: '신**', time: '32분 전' },
+    { area: '인천 송도', name: '조**', time: '35분 전' },
+    { area: '경기 과천', name: '임**', time: '40분 전' }
+  ];
+
+  var idx = Math.floor(Math.random() * messages.length);
+  var showing = false;
+  var hideTimer = null;
+  var SHOW_DURATION = 4000;
+  var HIDE_DURATION = 8000;
+  var FIRST_DELAY = 5000;
+
+  function showToast(){
+    var msg = messages[idx % messages.length];
+    idx++;
+    textEl.innerHTML = '<strong>' + msg.area + ' ' + msg.name + '</strong>님이 방문예약을 등록했습니다.'
+      + '<div class="lp-toast-time">' + msg.time + ' · <span style="color:#b39b00;font-weight:600;">나도 등록하기 →</span></div>';
+    toastEl.classList.add('show');
+    showing = true;
+
+    hideTimer = setTimeout(function(){
+      toastEl.classList.remove('show');
+      showing = false;
+      setTimeout(showToast, HIDE_DURATION);
+    }, SHOW_DURATION);
+  }
+
+  wrapEl.addEventListener('click', function(){
+    if(!showing) return;
+    clearTimeout(hideTimer);
+    toastEl.classList.remove('show');
+    showing = false;
+
+    if(typeof lpOpenFloatForm === 'function'){
+      lpOpenFloatForm();
+    } else {
+      var target = document.getElementById('reserve-bottom');
+      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+
+  setTimeout(showToast, FIRST_DELAY);
+})();
+</script>
+
+<!-- ── 스크롤 다운 인디케이터 숨김 ── -->
+<script>
+(function(){
+  var indicator=document.querySelector('.scroll-down-indicator');
+  if(!indicator)return;
+  window.addEventListener('scroll',function(){
+    if(window.pageYOffset>200)indicator.style.opacity='0';
+    else indicator.style.opacity='1';
+  },{passive:true});
+})();
+</script>
+
+<!-- ═══════════ 부정클릭 방지 스크립트 (실제 Google Forms) ═══════════ -->
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    var ref = document.referrer || '';
+    var params = new URLSearchParams(location.search);
+    var source = '';
+
+    if(ref.indexOf('ader.naver.com') > -1){
+      source = 'naver_ad';
+    }
+    if(!source){
+      var cParam = (params.get('c') || '').toLowerCase();
+      if(cParam.indexOf('naver.search') > -1) source = 'naver_ad';
+      else if(cParam.indexOf('naver') > -1) source = 'naver_ad_etc';
+    }
+    if(!source){
+      var utmSource = (params.get('utm_source') || '').toLowerCase();
+      var utmMedium = (params.get('utm_medium') || '').toLowerCase();
+      if(utmSource === 'naver' && utmMedium === 'cpc') source = 'naver_ad';
+      else if(utmSource === 'google' && utmMedium === 'cpc') source = 'google_ad';
+    }
+    if(!source){
+      if(ref.indexOf('search.naver.com') > -1) source = 'naver_organic';
+      else if(ref.indexOf('naver.com') > -1) source = 'naver_etc';
+      else if(ref.indexOf('google') > -1) source = 'google';
+      else if(ref.indexOf('daum.net') > -1) source = 'daum';
+      else if(ref.indexOf('facebook.com') > -1 || ref.indexOf('fb.com') > -1) source = 'facebook';
+      else if(ref.indexOf('instagram.com') > -1) source = 'instagram';
+      else if(ref.indexOf('kakao') > -1) source = 'kakao';
+      else if(!ref) source = 'direct';
+      else source = ref;
+    }
+
+    var visitKey = 'lp_visit_count';
+    var count = parseInt(localStorage.getItem(visitKey) || '0', 10) + 1;
+    localStorage.setItem(visitKey, count);
+
+    var now = new Date();
+    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+    var timeStr = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
+
+    var sent = false;
+    function sendData(ip, region){
+      if(sent) return;
+      sent = true;
+      var form = new FormData();
+      form.append('entry.24374031', dateStr);
+      form.append('entry.433685765', timeStr);
+      form.append('entry.605185830', ip || 'unknown');
+      form.append('entry.838856477', region || 'unknown');
+      form.append('entry.1339679079', String(count));
+      form.append('entry.1214037773', source);
+      fetch('https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse', {
+        method: 'POST', mode: 'no-cors', body: form
+      }).catch(function(){});
+    }
+
+    var safetyTimer = setTimeout(function(){
+      sendData('timeout', 'timeout');
+    }, 5000);
+
+    function done(ip, region){
+      clearTimeout(safetyTimer);
+      sendData(ip, region);
+    }
+
+    fetch('https://ipapi.co/json/')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      done(d.ip, (d.region||'') + ' ' + (d.org||''));
+    })
+    .catch(function(){
+      return fetch('https://freeipapi.com/api/json/')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        done(d.ipAddress, (d.regionName||'') + ' ' + (d.countryName||''));
+      });
+    })
+    .catch(function(){
+      return fetch('https://api.ipify.org?format=json')
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        done(d.ip, 'IP only');
+      });
+    })
+    .catch(function(){
+      done('error', 'all-failed');
+    });
+
+  });
+})();
+</script>
+
+<!-- ═══════════ 보안: 우클릭·소스보기·개발자도구 차단 ═══════════ -->
+<script>
+document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+/* ★ selectstart: input, label, checkbox 영역은 예외 처리 */
+document.addEventListener('selectstart', function(e){
+  var tag = e.target.tagName;
+  if(tag === 'INPUT' || tag === 'LABEL' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+  if(e.target.closest && (e.target.closest('label') || e.target.closest('.lp-privacy-line') || e.target.closest('.lp-float-privacy') || e.target.closest('.lp-popup-today'))) return;
+  e.preventDefault();
+});
+
+document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+document.addEventListener('copy', function(e){ e.preventDefault(); });
+document.addEventListener('cut', function(e){ e.preventDefault(); });
+
+document.addEventListener('paste', function(e){
+  var tag = e.target.tagName;
+  if(tag === 'INPUT' || tag === 'TEXTAREA') return;
+  e.preventDefault();
+});
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'F12') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'u') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.shiftKey && e.key === 'C') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 's') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'a') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'c') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'p') { e.preventDefault(); return; }
+  if(e.ctrlKey && e.key === 'j') { e.preventDefault(); return; }
+  if(e.key === 'F7') { e.preventDefault(); return; }
+});
+
+(function(){
+  var threshold = 160;
+  setInterval(function(){
+    if(window.outerWidth - window.innerWidth > threshold || 
+       window.outerHeight - window.innerHeight > threshold){
+      document.body.innerHTML = '';
+      window.location.href = 'https://viphome.kr/';
+    }
+  }, 1000);
+})();
+
+(function(){
+  var devtools = { open: false };
+  var el = new Image();
+  Object.defineProperty(el, 'id', {
+    get: function(){
+      devtools.open = true;
+      document.body.innerHTML = '';
+      window.location.href = 'https://viphome.kr/';
+    }
+  });
+  setInterval(function(){ devtools.open = false; console.log(el); console.clear(); }, 1000);
+})();
+
+(function(){
+  var style = document.createElement('style');
+  style.textContent = 'img{-webkit-user-drag:none;user-select:none;pointer-events:none;}a img{pointer-events:auto;}';
+  document.head.appendChild(style);
+})();
+</script>
+
 </body>
 </html>

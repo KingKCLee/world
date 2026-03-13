@@ -705,6 +705,16 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 @keyframes swing{0%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}100%{transform:rotate(-5deg)}}
 @media(min-width:1024px){.pendulum{left:200px;top:120px;width:150px;}}
 @media(max-width:1023px){.pendulum{left:12px;top:68px;width:100px;}}
+
+@media(max-width:1023px){
+  .lp-body{
+    padding-bottom: 100px !important;
+  }
+  .lp-float-form{
+    padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+  
 </style>
 </head>
 

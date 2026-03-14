@@ -712,96 +712,53 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 }
 
 /* ★ 수정: 체크박스 터치 영역 확대 + label 바깥 [자세히] 링크 레이아웃 */
-.lp-privacy-line label,
-.lp-float-privacy label,
-.lp-popup-today label{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 0;
-  cursor:pointer;
-  -webkit-tap-highlight-color:rgba(0,0,0,.05);
-}
-.lp-privacy-line input[type="checkbox"],
-.lp-float-privacy input[type="checkbox"],
-.lp-popup-today input[type="checkbox"]{
-  width:20px;
-  height:20px;
-  min-width:20px;
-  min-height:20px;
-  margin:0;
-  cursor:pointer;
-  -webkit-appearance:checkbox;
-  appearance:checkbox;
-}
-
-/* ★ 수정: label 바깥으로 빠진 [자세히] 링크 레이아웃 */
-.lp-privacy-line,
-.lp-float-privacy{
-  display:flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:4px;
-}
-.lp-privacy-line .lp-privacy-more,
-.lp-float-privacy .lp-privacy-more{
-  font-size:12px;
-  color:#333;
-  text-decoration:underline;
-  padding:8px 4px;
-  -webkit-tap-highlight-color:rgba(0,0,0,.05);
-}
-
 @media screen and (max-width: 768px) {
 
-  /* 동의란: [자세히] 왼쪽 — 텍스트 — 체크박스 오른쪽 끝 */
   .lp-privacy-line,
   .lp-float-privacy {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-end;      /* ★ 전체를 오른쪽 끝으로 */
     gap: 8px;
-    padding: 10px 8px;
+    padding: 10px 0 10px 8px;
+    margin-right: 0;
     position: relative;
     z-index: 1100;
   }
 
-  /* [자세히] 링크를 왼쪽으로 밀기 */
   .lp-privacy-line .lp-privacy-more,
   .lp-float-privacy .lp-privacy-more {
-    margin-right: auto;
     font-size: 12px;
     padding: 10px 6px;
+    flex-shrink: 0;
   }
 
-  /* 라벨: 텍스트 먼저 → 체크박스 뒤로 */
   .lp-privacy-line label,
   .lp-float-privacy label {
     display: inline-flex;
-    flex-direction: row-reverse;   /* ★ 체크박스를 텍스트 뒤(오른쪽)로 */
+    flex-direction: row-reverse;
     align-items: center;
     gap: 8px;
-    padding: 12px 8px;
+    padding: 12px 0 12px 8px;
+    margin-right: 0;
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0.05);
     user-select: none;
     -webkit-user-select: none;
   }
 
-  /* 체크박스 크기 확대 */
   .lp-privacy-line input[type="checkbox"],
   .lp-float-privacy input[type="checkbox"] {
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    min-height: 24px;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
     margin: 0;
     flex-shrink: 0;
     accent-color: #2b6cb0;
     pointer-events: auto !important;
   }
 
-  /* 터치 이벤트 보장 */
   .lp-privacy-line *,
   .lp-float-privacy * {
     -webkit-user-select: auto !important;

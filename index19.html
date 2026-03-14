@@ -752,6 +752,69 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   -webkit-tap-highlight-color:rgba(0,0,0,.05);
 }
 
+/* ── 모바일 전용: 개인정보 동의란 오른쪽 정렬 + 터치 보강 ── */
+@media screen and (max-width: 768px) {
+
+  /* 1) 동의란 오른쪽 정렬 */
+  .lp-privacy-line,
+  .lp-float-privacy {
+    display: flex;
+    flex-direction: row-reverse;   /* ★ 체크박스를 오른쪽으로 */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 10px 8px;
+    position: relative;
+    z-index: 1100;                 /* 퀵메뉴(999)보다 위 */
+  }
+
+  /* 2) 라벨 터치 영역 확대 */
+  .lp-privacy-line label,
+  .lp-float-privacy label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 12px 8px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.05);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* 3) 체크박스 크기 확대 (최소 44px 터치 타겟) */
+  .lp-privacy-line input[type="checkbox"],
+  .lp-float-privacy input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+    margin: 0;
+    flex-shrink: 0;
+    accent-color: #2b6cb0;
+    pointer-events: auto !important;
+  }
+
+  /* 4) [자세히] 링크 터치 영역 */
+  .lp-privacy-line .lp-privacy-more,
+  .lp-float-privacy .lp-privacy-more {
+    font-size: 12px;
+    color: #555;
+    text-decoration: underline;
+    padding: 10px 6px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.05);
+  }
+
+  /* 5) 보안 스크립트 차단 해제: 동의란 내부 터치 허용 */
+  .lp-privacy-line *,
+  .lp-float-privacy * {
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    touch-action: manipulation !important;
+  }
+}
+
+  
 </style>
 </head>
 

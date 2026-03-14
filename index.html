@@ -571,25 +571,21 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
     top:50%;
     transition:transform .35s ease, opacity .35s ease;
   }
-  /* 맨 앞 카드 (현재 보이는 카드) */
   .lp-slide-popup-inner[data-stack="0"]{
     z-index:3;
     transform:translate(-50%,-50%) scale(1);
     opacity:1;
   }
-  /* 두 번째 카드 (뒤에 살짝 보임) */
   .lp-slide-popup-inner[data-stack="1"]{
     z-index:2;
     transform:translate(-50%,-50%) translateY(14px) scale(0.95);
     opacity:0.7;
   }
-  /* 세 번째 카드 (맨 뒤) */
   .lp-slide-popup-inner[data-stack="2"]{
     z-index:1;
     transform:translate(-50%,-50%) translateY(28px) scale(0.90);
     opacity:0.45;
   }
-  /* 숨겨진 카드 */
   .lp-slide-popup-inner[data-stack="hidden"]{
     z-index:0;
     transform:translate(-50%,-50%) scale(0.85);
@@ -714,6 +710,63 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
+
+/* ★ 수정: 체크박스 터치 영역 확대 + label 바깥 [자세히] 링크 레이아웃 */
+@media screen and (max-width: 768px) {
+
+  .lp-privacy-line,
+  .lp-float-privacy {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;      /* ★ 전체를 오른쪽 끝으로 */
+    gap: 8px;
+    padding: 10px 0 10px 8px;
+    margin-right: 0;
+    position: relative;
+    z-index: 1100;
+  }
+
+  .lp-privacy-line .lp-privacy-more,
+  .lp-float-privacy .lp-privacy-more {
+    font-size: 12px;
+    padding: 10px 6px;
+    flex-shrink: 0;
+  }
+
+  .lp-privacy-line label,
+  .lp-float-privacy label {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0 12px 8px;
+    margin-right: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0.05);
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .lp-privacy-line input[type="checkbox"],
+  .lp-float-privacy input[type="checkbox"] {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    margin: 0;
+    flex-shrink: 0;
+    accent-color: #2b6cb0;
+    pointer-events: auto !important;
+  }
+
+  .lp-privacy-line *,
+  .lp-float-privacy * {
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    touch-action: manipulation !important;
+  }
+}
+
   
 </style>
 </head>
@@ -810,6 +863,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     <div class="lp-urgency-bottom">동탄 GTX 착공 전 9억 → 개통 후 18억 | 지금 송도가 그 시점입니다</div>
   </div>
 
+  <!-- ★ 수정: 상단 폼 – [자세히] 링크를 label 바깥으로 이동 -->
   <div id="reserve-top">
     <section class="lp-reserve-wrap" data-aos="fade-up">
       <h2 class="lp-reserve-title">방문예약신청</h2>
@@ -822,7 +876,10 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
           <input type="hidden" name="entry.929183790" id="real_phone_top">
         </div>
         <input type="hidden" name="entry.716000199" class="js-source-field">
-        <div class="lp-form-row lp-privacy-line"><label><input type="checkbox" name="entry.1692797403" value="네 동의합니다." required> 개인정보 수집이용에 동의합니다. <a href="#" class="lp-privacy-more">[자세히]</a></label></div>
+        <div class="lp-form-row lp-privacy-line">
+          <label><input type="checkbox" name="entry.1692797403" value="네 동의합니다." required> <span>개인정보 수집이용에 동의합니다.</span></label>
+          <a href="#" class="lp-privacy-more">[자세히]</a>
+        </div>
         <div class="lp-submit-wrap"><button type="submit" class="lp-submit-btn">방문예약 신청하기</button></div>
       </form>
     </section>
@@ -867,7 +924,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
         <button class="p6-tab" data-index="5"><span class="p6-tab-num">06</span><span class="p6-tab-label">완성생활</span></button>
       </div>
       <div class="p6-panels">
-        <!-- ★ SEO: h4→h3 (패널 내부 heading) -->
         <div class="p6-panel active" data-panel="0"><div class="p6-panel-inner"><div class="p6-panel-icon">🌏</div><div class="p6-panel-text"><h3>01. 대한민국 유일의 국제도시, 송도</h3><p>송도는 단순한 신도시가 아닙니다. 국가 전략으로 설계된 유일한 국제도시입니다. 삼성바이오로직스·셀트리온 등 바이오 세계 1위 클러스터가 집결해 있고, 해외 직접투자 8조 원 이상이 유치된 외국 자본이 검증한 도시입니다.</p><span class="p6-sub">바이오 산업 세계 1위 클러스터 · 해외 직접투자 8조+ · 수도권 마지막 국제도시</span></div></div></div>
         <div class="p6-panel" data-panel="1"><div class="p6-panel-inner"><div class="p6-panel-icon">📍</div><div class="p6-panel-text"><h3>02. 송도 안에서도 가장 핵심, 1공구</h3><p>아파트 가치의 90%는 입지가 결정합니다. 이곳은 IBD 국제업무지구 도보 접근 가능한 직주근접 최적 입지입니다. 1공구는 더 이상 지을 땅이 없어 사실상 마지막 기회이며, 3공구 G5블록 84기준 분양 예정가가 11~12억대인 점이 이 입지의 가치를 증명합니다.</p><span class="p6-sub">IBD 국제업무지구 도보권 · 1공구 신규 공급 불가 · 3공구 분양가 11~12억대</span></div></div></div>
         <div class="p6-panel" data-panel="2"><div class="p6-panel-inner"><div class="p6-panel-icon">🚄</div><div class="p6-panel-text"><h3>03. 동탄의 기적이 송도에서 반복됩니다</h3><p>동탄역 롯데캐슬은 GTX 착공 전 9억대에서 개통 후 18억을 돌파했습니다. 부동산 가격은 결국 교통이 결정합니다. 송도는 지금 GTX-B 전 구간 착공 중이고, 올해 12월 인천발 KTX까지 개통됩니다. GTX + KTX가 동시에 들어오는 전례 없는 교통 혁신이 시작됩니다.</p><span class="p6-sub">GTX-B 2031 개통 · 인천발 KTX 2026.12 개통 · 송도트램 승인 · 인천3호선 추진</span></div></div></div>
@@ -885,7 +941,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <h4>송도 월드메르디앙 6가지 프리미엄 요약</h4>
       <p>프리미엄 01 명문학군: 채드윅 송도 국제학교 도보 300m, 신정초·신정중 인접, 송도 1공구 최대 규모 학원가 도보권. 프리미엄 02 특급입지: 송도국제도시 1·2공구 핵심 중심부, 인천대입구역 도보 15분 역세권, 완성된 주거 인프라. 프리미엄 03 쾌속교통: GTX-B 개통 시 서울역 27분·여의도 17분, 송도트램(2032년 예정) 도보권 정차, 인천3호선·제2외곽순환도로 예정. 프리미엄 04 명품생활: 롯데마트·코스트코 인접, 센트럴파크역 상권, 송도컨벤시아·트리플스트리트 등 대형 편의시설. 프리미엄 05 희소가치: 전 세대 남향 4베이 설계, 발코니 확장 무상 제공, 프리미엄 인테리어 마감재 적용, 중소형 혁신평면. 프리미엄 06 힐링생활: 센트럴파크·해돋이공원·송도달빛축제공원·미추홀공원 인접, 잭니클라우스CC 도보권.</p>
     </div>
-    <!-- ★ banner1.gif → banner1.mp4 -->
     <div data-aos="fade-up"><a href="tel:1533-9077" style="display:block;"><video autoplay loop muted playsinline style="width:100%;display:block;" poster="banner1-1.webp" preload="none"><source src="banner1.mp4" type="video/mp4"></video></a></div>
     <h3 class="lp-section-title" data-aos="fade-up">단지 배치도 및 사업 개요</h3>
     <div data-aos="fade-up"><img src="landing_page_images_309_1_1771463628.webp" alt="송도 월드메르디앙 단지 배치도 및 사업 개요" loading="lazy"></div>
@@ -968,11 +1023,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <h4>송도 월드메르디앙 평면도 안내</h4>
       <p>전용 78㎡(약 23.89평, 공급 101㎡): 방 3개 + 욕실 2개, 남향 4베이, 판상형 구조. 발코니 확장 시 실사용 면적 약 30평대. 전용 83㎡(약 25.16평, 공급 107㎡): 방 3개 + 욕실 2개, 남향 4베이, 넓은 거실과 주방 연결 개방형 구조. 전용 84A㎡(약 25.59평, 공급 108㎡): 방 3개 + 욕실 2개, 남향 4베이, 알파룸 활용 가능한 확장형 설계. 전 타입 공통: 남향 4베이 판상형, 발코니 확장 무상 제공, 시스템 에어컨 설치 공간 확보, 현관 중문 설치 가능 구조, 드레스룸·펜트리 수납공간. 프리미엄 마감재: 고급 도어락, 3중 로이유리, 욕실 강화유리 파티션, 주방 빌트인 가전(쿡탑·후드·식기세척기·오븐 등).</p>
     </div>
-    <!-- ★ banner2.gif → banner2.mp4 -->
     <div data-aos="fade-up"><a href="tel:1533-9077" style="display:block;"><video autoplay loop muted playsinline style="width:100%;display:block;" poster="banner2.webp" preload="none"><source src="banner2.mp4" type="video/mp4"></video></a></div>
   </section>
-
-  <!-- ★ 카카오맵 섹션 완전 삭제 -->
 
   <section class="lp-faq-section" data-aos="fade-up">
     <h2 class="lp-faq-title">자주 묻는 질문</h2>
@@ -999,6 +1051,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </section>
 
+  <!-- ★ 수정: 하단 폼 – [자세히] 링크를 label 바깥으로 이동 -->
   <div id="reserve-bottom">
     <section class="lp-reserve-wrap" data-aos="fade-up">
       <h2 class="lp-reserve-title">관심고객 등록</h2>
@@ -1011,7 +1064,10 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
           <input type="hidden" name="entry.929183790" id="real_phone_bottom">
         </div>
         <input type="hidden" name="entry.716000199" class="js-source-field">
-        <div class="lp-form-row lp-privacy-line"><label><input type="checkbox" name="entry.1692797403" value="네 동의합니다." required> 개인정보 수집이용에 동의합니다. <a href="#" class="lp-privacy-more">[자세히]</a></label></div>
+        <div class="lp-form-row lp-privacy-line">
+          <label><input type="checkbox" name="entry.1692797403" value="네 동의합니다." required> <span>개인정보 수집이용에 동의합니다.</span></label>
+          <a href="#" class="lp-privacy-more">[자세히]</a>
+        </div>
         <div class="lp-submit-wrap"><button type="submit" class="lp-submit-btn">관심고객 등록하기</button></div>
       </form>
     </section>
@@ -1021,7 +1077,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     <h2>송도 월드메르디앙 분양 안내</h2>
     <p>송도 월드메르디앙은 인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치한 2023년 준공 주상복합 신축 아파트입니다. 대지면적 6,628㎡, 건축면적 3,308㎡, 연면적 29,704㎡, 건폐율 49.92%, 용적률 279.55% 규모입니다. 지하 2층~지상 10층, 총 4개동 128세대로 전용면적 78㎡, 83㎡, 84A㎡, 84A-1㎡ 4가지 타입을 공급하며, 전 세대 남향 4베이 설계로 채광과 통풍이 우수합니다.</p>
     <p>송도는 대한민국에서 유일하게 국가 전략으로 설계된 국제도시입니다. 삼성바이오로직스, 셀트리온 등 바이오 산업 세계 1위 클러스터가 집결해 있으며, 해외 직접투자 8조 원 이상이 유치된 도시입니다. IBD 국제업무지구 도보 접근 가능한 직주근접 최적 입지에 위치합니다.</p>
-    <p>GTX-B 노선 2025년 착공, 2031년 개통 목표로 전 구간 공사가 진행 중이며, 개통 시 송도에서 여의도·용산까지 20분대 접근이 가능해집니다. 2026년 12월 인천발 KTX가 개통되면 송도역에서 부산까지 2시간 20분 소요됩니다. 송도트램 국토부 승인 완료, 인천지하철 3호선 추진 중, 수도권 제2외곽순환고속도로 추진 예정으로 교통 호재가 동시에 쏟아지고 있습니다.</p>
+    <p>GTX-B 노선 2025년 착공, 2031년 개통 목표로 전 구간 공사가 진행 중이며, 개통 시 송도에서 여의도·용산까지 20분대 접근이 가능해집니다. 2026년 12월 인천발 KTX가 개통되면 송도역에서 부산까지 2시간 20분 소요됩니다. 송도트램 국토부 승인 완료, 인천지하철 3호선 추진 중, 수도권 제2외곽순환고속도로 추진 예정으로 교통 호재가 동시에 쏟아    <p>GTX-B 노선 2025년 착공, 2031년 개통 목표로 전 구간 공사가 진행 중이며, 개통 시 송도에서 여의도·용산까지 20분대 접근이 가능해집니다. 2026년 12월 인천발 KTX가 개통되면 송도역에서 부산까지 2시간 20분 소요됩니다. 송도트램 국토부 승인 완료, 인천지하철 3호선 추진 중, 수도권 제2외곽순환고속도로 추진 예정으로 교통 호재가 동시에 쏟아지고 있습니다.</p>
     <p>동탄역 롯데캐슬은 GTX-A 착공 전 84기준 9억대에서 개통 후 18억을 돌파했습니다. 송도는 지금 GTX 착공 전의 동탄과 같은 시점에 있습니다. 같은 송도 1공구 대장 아파트가 10~12억, 3공구 G5블록 분양 예정가가 11~12억대인 반면, 월드메르디앙은 6억대입니다. 부동산R114 기준 송도는 2026~2027년 입주 물량이 0세대로 공급 공백기에 진입했습니다.</p>
     <p>현재 잔여세대 한정 1억 5천만원 특별할인이 적용되고 있으며, 발코니 확장 무상, 3,000만원 상당의 무상옵션, 즉시입주 가능 등 파격적인 분양 혜택이 제공됩니다. 모델하우스는 방문예약제로 운영되며, 대표번호 1533-9077로 문의하시면 전문 상담사의 맞춤형 상담을 받으실 수 있습니다.</p>
   </section>
@@ -1072,11 +1128,13 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <input type="hidden" name="entry.929183790" id="real_phone_float">
     </div>
     <input type="hidden" name="entry.716000199" class="js-source-field">
+    <!-- ★ 수정: 플로팅 폼 – [자세히] 링크를 label 바깥으로 이동 -->
     <div class="lp-float-inner-row lp-float-privacy">
       <label>
         <input type="checkbox" name="entry.1692797403" value="네 동의합니다." required>
-        개인정보 수집이용에 동의합니다. <a href="#" class="lp-privacy-more">[자세히]</a>
+        <span>개인정보 수집이용에 동의합니다.</span>
       </label>
+      <a href="#" class="lp-privacy-more">[자세히]</a>
     </div>
     <div class="lp-float-submit">
       <button type="submit" class="lp-submit-btn" style="background:#b39b00;color:#fff;">예약신청접수</button>
@@ -1208,26 +1266,23 @@ function validateForm(id){
 }
 </script>
 
-<!-- ── 유입경로 판별 + 히든 필드 세팅 (네이버 광고/자연검색/구글 등 구분) ── -->
+<!-- ── 유입경로 판별 + 히든 필드 세팅 ── -->
 <script>
 (function(){
   var params = new URLSearchParams(location.search);
   var ref = document.referrer || '';
   var src = '';
 
-  /* 1순위: referrer가 ader.naver.com → 네이버 광고 클릭 */
   if(ref.indexOf('ader.naver.com') > -1){
     src = '네이버 검색광고';
   }
 
-  /* 2순위: c 파라미터 (ader 리다이렉트 후 전달되는 값) */
   if(!src){
     var cParam = (params.get('c') || '').toLowerCase();
     if(cParam.indexOf('naver.search') > -1) src = '네이버 검색광고';
     else if(cParam.indexOf('naver') > -1) src = '네이버 광고(기타)';
   }
 
-  /* 3순위: UTM 파라미터 */
   if(!src){
     var utmSource = (params.get('utm_source') || '').toLowerCase();
     var utmMedium = (params.get('utm_medium') || '').toLowerCase();
@@ -1235,7 +1290,6 @@ function validateForm(id){
     else if(utmSource === 'google' && utmMedium === 'cpc') src = '구글 검색광고';
   }
 
-  /* 4순위: 일반 referrer */
   if(!src){
     if(ref.indexOf('search.naver.com') > -1) src = '네이버 자연검색';
     else if(ref.indexOf('naver.com') > -1) src = '네이버 기타';
@@ -1257,22 +1311,35 @@ document.addEventListener('DOMContentLoaded',function(){
   if(typeof AOS!=='undefined')AOS.init({once:true,duration:800,easing:'ease-out-cubic'});
 });
 
-/* 헤더 스크롤 상태 */
 (function(){
   var h=document.getElementById('header');if(!h)return;
   function s(){h.classList.toggle('on',scrollY>10);}
   s();addEventListener('scroll',s,{passive:true});
 })();
 
-/* vh 단위 보정 (모바일 주소창 대응) */
 (function(){function s(){document.documentElement.style.setProperty('--vh',(innerHeight*.01)+'px');}s();addEventListener('resize',s);})();
 </script>
 
-<!-- ── 개인정보 레이어 ── -->
+<!-- ★ 수정: 개인정보 레이어 – [자세히] 링크에 직접 이벤트 + stopPropagation -->
 <script>
 (function(){
   var l=document.getElementById('lpPrivacyLayer'),c=document.getElementById('lpPrivacyClose');
-  document.body.addEventListener('click',function(e){if(e.target.classList.contains('lp-privacy-more')){e.preventDefault();if(l)l.style.display='flex';}});
+
+  /* [자세히] 링크에 직접 이벤트를 걸어 stopPropagation으로 label 전파 차단 */
+  document.querySelectorAll('.lp-privacy-more').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      if(l) l.style.display = 'flex';
+    });
+    /* 모바일 터치 이벤트도 차단 */
+    a.addEventListener('touchend', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      if(l) l.style.display = 'flex';
+    });
+  });
+
   if(c)c.addEventListener('click',function(){if(l)l.style.display='none';});
   if(l)l.addEventListener('click',function(e){if(e.target===l)l.style.display='none';});
 })();
@@ -1336,7 +1403,6 @@ document.querySelectorAll('.js-quick-top').forEach(function(b){b.addEventListene
   });
 })();
 
-/* 버블 닫기 */
 document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-bubble-close');if(b){var w=b.closest('.lp-resv-bubble-fixed');if(w)w.style.display='none';}});
 </script>
 
@@ -1365,7 +1431,6 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   var todayStr = new Date().toDateString();
   var hidden = [false, false, false];
 
-  // localStorage 체크 → 오늘 하루 보지않기 처리
   cards.forEach(function(card, i){
     if(!card) { hidden[i] = true; return; }
     var key = 'popup' + (i+1) + '_hide_today';
@@ -1376,9 +1441,8 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   });
 
   var isMobile = window.matchMedia('(max-width:1023px)').matches;
-  var currentIdx = 0; // 모바일에서 현재 맨 앞에 보이는 카드 인덱스
+  var currentIdx = 0;
 
-  // 보이는 카드 목록 (hidden 아닌 것들)
   function getVisibleCards(){
     var arr = [];
     cards.forEach(function(card, i){
@@ -1387,31 +1451,25 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     return arr;
   }
 
-  // 모바일: 스택 data-stack 속성 세팅
   function updateMobileStack(){
     if(!isMobile) return;
     var visible = getVisibleCards();
-    // 모든 카드 일단 hidden 처리
     cards.forEach(function(card){
       if(card) card.setAttribute('data-stack', 'hidden');
     });
     if(visible.length === 0) return;
-    // currentIdx가 범위를 넘으면 보정
     if(currentIdx >= visible.length) currentIdx = 0;
-    // 맨 앞부터 stack 0, 1, 2 부여
     for(var s = 0; s < Math.min(visible.length, 3); s++){
       var realIdx = (currentIdx + s) % visible.length;
       visible[realIdx].el.setAttribute('data-stack', String(s));
     }
   }
 
-  // 전체 닫힘 체크
   function checkAllClosed(){
     var allGone = getVisibleCards().length === 0;
     if(allGone) popup.classList.remove('show');
   }
 
-  // 개별 팝업 닫기
   window.closePopup = function(n){
     var card = document.getElementById('popupInner' + n);
     if(card){
@@ -1422,13 +1480,11 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     checkAllClosed();
   };
 
-  // 오늘 하루 보지 않기
   window.closePopupToday = function(n){
     localStorage.setItem('popup' + n + '_hide_today', new Date().toDateString());
     closePopup(n);
   };
 
-  // 배경 클릭 닫기
   popup.addEventListener('click', function(e){
     if(e.target === popup) popup.classList.remove('show');
   });
@@ -1436,7 +1492,6 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     if(popup.classList.contains('show') && e.key === 'Escape') popup.classList.remove('show');
   });
 
-  // 팝업 내 링크 클릭 처리
   popup.addEventListener('click', function(e){
     var a = e.target.closest('a.lp-popup-link');
     if(!a) return;
@@ -1456,7 +1511,6 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     }
   });
 
-  // ── 모바일 스와이프로 카드 넘기기 ──
   if(isMobile){
     var startX = 0, startY = 0, swiping = false;
     var container = popup.querySelector('.lp-slide-popup-container');
@@ -1474,15 +1528,12 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
       var t = e.changedTouches[0];
       var dx = t.clientX - startX;
       var dy = t.clientY - startY;
-      // 수평 스와이프만 감지 (최소 50px, 수직보다 커야 함)
       if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){
         var visible = getVisibleCards();
         if(visible.length <= 1) return;
         if(dx < 0){
-          // 왼쪽 스와이프 → 다음
           currentIdx = (currentIdx + 1) % visible.length;
         } else {
-          // 오른쪽 스와이프 → 이전
           currentIdx = (currentIdx - 1 + visible.length) % visible.length;
         }
         updateMobileStack();
@@ -1490,11 +1541,9 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     }, {passive: true});
   }
 
-  // 팝업 표시
   function show(){
     if(hidden[0] && hidden[1] && hidden[2]) return;
     if(isMobile){
-      // 첫 번째 보이는 카드를 맨 앞으로
       var visible = getVisibleCards();
       if(visible.length === 0) return;
       currentIdx = 0;
@@ -1654,7 +1703,6 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
   });
 })();
 
-/* Exit-intent 팝업 닫기 + 오늘 하루 보지 않기 */
 (function(){
   var popup = document.getElementById('lpExitPopup');
   var closeBtn = document.getElementById('lpExitPopupClose');
@@ -1760,24 +1808,20 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
     var params = new URLSearchParams(location.search);
     var source = '';
 
-    /* ader.naver.com = 네이버 광고 리다이렉트 서버 */
     if(ref.indexOf('ader.naver.com') > -1){
       source = 'naver_ad';
     }
-    /* c 파라미터로 네이버 광고 판별 */
     if(!source){
       var cParam = (params.get('c') || '').toLowerCase();
       if(cParam.indexOf('naver.search') > -1) source = 'naver_ad';
       else if(cParam.indexOf('naver') > -1) source = 'naver_ad_etc';
     }
-    /* UTM으로 광고 판별 */
     if(!source){
       var utmSource = (params.get('utm_source') || '').toLowerCase();
       var utmMedium = (params.get('utm_medium') || '').toLowerCase();
       if(utmSource === 'naver' && utmMedium === 'cpc') source = 'naver_ad';
       else if(utmSource === 'google' && utmMedium === 'cpc') source = 'google_ad';
     }
-    /* 일반 referrer */
     if(!source){
       if(ref.indexOf('search.naver.com') > -1) source = 'naver_organic';
       else if(ref.indexOf('naver.com') > -1) source = 'naver_etc';
@@ -1853,11 +1897,25 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 <!-- ═══════════ 보안: 우클릭·소스보기·개발자도구 차단 ═══════════ -->
 <script>
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-document.addEventListener('selectstart', function(e){ e.preventDefault(); });
+
+/* ★ selectstart: input, label, checkbox 영역은 예외 처리 */
+document.addEventListener('selectstart', function(e){
+  var tag = e.target.tagName;
+  if(tag === 'INPUT' || tag === 'LABEL' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+  if(e.target.closest && (e.target.closest('label') || e.target.closest('.lp-privacy-line') || e.target.closest('.lp-float-privacy') || e.target.closest('.lp-popup-today'))) return;
+  e.preventDefault();
+});
+
 document.addEventListener('dragstart', function(e){ e.preventDefault(); });
 document.addEventListener('copy', function(e){ e.preventDefault(); });
 document.addEventListener('cut', function(e){ e.preventDefault(); });
-document.addEventListener('paste', function(e){ e.preventDefault(); });
+
+document.addEventListener('paste', function(e){
+  var tag = e.target.tagName;
+  if(tag === 'INPUT' || tag === 'TEXTAREA') return;
+  e.preventDefault();
+});
+
 document.addEventListener('keydown', function(e){
   if(e.key === 'F12') { e.preventDefault(); return; }
   if(e.ctrlKey && e.key === 'u') { e.preventDefault(); return; }
@@ -1872,7 +1930,6 @@ document.addEventListener('keydown', function(e){
   if(e.key === 'F7') { e.preventDefault(); return; }
 });
 
-/* 개발자도구 감지 → 페이지 리다이렉트 */
 (function(){
   var threshold = 160;
   setInterval(function(){
@@ -1884,7 +1941,6 @@ document.addEventListener('keydown', function(e){
   }, 1000);
 })();
 
-/* 콘솔 열기 감지 */
 (function(){
   var devtools = { open: false };
   var el = new Image();
@@ -1898,7 +1954,6 @@ document.addEventListener('keydown', function(e){
   setInterval(function(){ devtools.open = false; console.log(el); console.clear(); }, 1000);
 })();
 
-/* 이미지 드래그·저장 방지 CSS 주입 */
 (function(){
   var style = document.createElement('style');
   style.textContent = 'img{-webkit-user-drag:none;user-select:none;pointer-events:none;}a img{pointer-events:auto;}';
@@ -1908,5 +1963,3 @@ document.addEventListener('keydown', function(e){
 
 </body>
 </html>
-
-

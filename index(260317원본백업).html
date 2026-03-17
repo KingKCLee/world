@@ -767,115 +767,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   }
 }
 
-/* ================================================================
-   7개 삽입 블록 CSS
-   ================================================================ */
-.blk-section{padding:52px 16px;max-width:100%;}
-.blk-container{max-width:1080px;margin:0 auto;}
-.blk-title{text-align:center;font-size:28px;font-weight:800;margin-bottom:8px;line-height:1.35;letter-spacing:-1.5px;}
-.blk-sub{text-align:center;font-size:15px;margin-bottom:30px;letter-spacing:-.5px;}
-.blk-light{background:#f7f8fa;color:#1a1a1a;}
-.blk-light .blk-sub{color:#888;}
-.blk-dark{background:#13132b;color:#eee;}
-.blk-dark .blk-title{color:#ffdf00;}
-.blk-dark .blk-sub{color:#bbb;}
-.blk-navy-grad{background:linear-gradient(160deg,#0f1a3c 0%,#1b2d5e 100%);color:#fff;}
-.blk-navy-grad .blk-title{color:#ffdf00;}
-.blk-navy-grad .blk-sub{color:#b0c4de;}
-
-/* 블록4: 타입비교표 */
-.blk-type-table{width:100%;border-collapse:collapse;font-size:15px;margin-top:10px;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);}
-.blk-type-table th,.blk-type-table td{padding:14px 10px;text-align:center;border-bottom:1px solid #eee;}
-.blk-type-table thead th{background:#1a1a1a;color:#fff;font-weight:700;font-size:14px;}
-.blk-type-table tbody tr:nth-child(even){background:rgba(0,0,0,.02);}
-.blk-type-table .em-val{color:#d60000;font-weight:800;font-size:18px;}
-.blk-type-note{margin-top:14px;font-size:12px;color:#999;text-align:center;}
-
-/* 블록1: 자금계산기 */
-.blk-calc-row{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
-.blk-calc-col{flex:1 1 48%;}
-.blk-calc-col label{font-size:14px;font-weight:700;margin-bottom:6px;display:block;color:#ffdf00;}
-.blk-calc-col select{width:100%;padding:13px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:#1d1d3a;color:#fff;font-size:15px;font-family:inherit;appearance:none;-webkit-appearance:none;}
-.blk-calc-result{background:rgba(255,255,255,.06);border-radius:12px;padding:22px;margin-top:14px;}
-.blk-calc-result dl{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;}
-.blk-calc-result dt{font-size:14px;color:#aaa;display:flex;align-items:center;}
-.blk-calc-result dd{font-size:18px;font-weight:800;text-align:right;margin:0;}
-.blk-calc-result dd.em-cash{color:#ff6b6b;font-size:20px;}
-.blk-jeonse-row{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(255,255,255,.15);}
-
-/* 블록2: 전세갭 시뮬레이션 */
-.blk-gap-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.blk-gap-card{background:#fff;border-radius:12px;padding:24px 14px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.06);transition:transform .2s,box-shadow .2s;}
-.blk-gap-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.1);}
-.blk-gap-card .type-label{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:8px;}
-.blk-gap-card .price-tag{font-size:24px;font-weight:800;color:#d60000;}
-.blk-gap-card .sub-info{font-size:13px;color:#888;margin-top:8px;line-height:1.6;}
-@media(max-width:600px){.blk-gap-cards{grid-template-columns:1fr;}}
-
-/* 블록3: 교통 타임라인 + 슬롯머신 */
-.blk-tl-list{position:relative;padding-left:36px;}
-.blk-tl-list::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:rgba(255,223,0,.25);}
-.blk-tl-item{position:relative;margin-bottom:32px;}
-.blk-tl-dot{position:absolute;left:-28px;top:4px;width:14px;height:14px;border-radius:50%;background:#ffdf00;border:3px solid #13132b;}
-.blk-tl-icon{font-size:24px;margin-bottom:4px;}
-.blk-tl-name{font-size:17px;font-weight:700;color:#fff;}
-.blk-tl-date{font-size:13px;color:#aaa;margin:2px 0 8px;}
-.blk-slot-wrap{display:inline-flex;gap:3px;background:rgba(0,0,0,.35);padding:6px 12px;border-radius:8px;align-items:center;}
-.blk-slot-digit{display:inline-block;width:26px;height:34px;line-height:34px;text-align:center;background:#222;color:#ffdf00;font-size:19px;font-weight:800;border-radius:4px;overflow:hidden;position:relative;}
-.blk-slot-digit .digit-inner{display:block;animation:slotSpin .6s ease-out forwards;}
-@keyframes slotSpin{0%{transform:translateY(-200%)}60%{transform:translateY(10%)}80%{transform:translateY(-5%)}100%{transform:translateY(0)}}
-.blk-slot-label{font-size:12px;color:#aaa;margin-left:8px;}
-.blk-tl-item.past .blk-tl-name{color:#666;text-decoration:line-through;}
-.blk-tl-item.past .blk-tl-dot{background:#555;}
-
-/* 블록5: 시세 바 차트 */
-.blk-bar-list{display:flex;flex-direction:column;gap:18px;}
-.blk-bar-item{position:relative;}
-.blk-bar-label{font-size:15px;font-weight:700;margin-bottom:5px;}
-.blk-bar-track{height:38px;background:rgba(255,255,255,.08);border-radius:8px;overflow:hidden;position:relative;}
-.blk-bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:14px;font-size:15px;font-weight:800;color:#fff;width:0;transition:width 1.2s ease;}
-.blk-bar-fill.bar-red{background:linear-gradient(90deg,#d4145a,#ff6b6b);}
-.blk-bar-fill.bar-orange{background:linear-gradient(90deg,#e6700a,#ffa040);}
-.blk-bar-fill.bar-blue{background:linear-gradient(90deg,#2563eb,#60a5fa);}
-.blk-bar-fill.bar-gold{background:linear-gradient(90deg,#8a6d00,#ffdf00);}
-.blk-bar-badge{display:inline-block;margin-top:6px;font-size:12px;padding:3px 10px;border-radius:20px;font-weight:700;}
-.blk-bar-badge.badge-hot{background:rgba(212,20,90,.15);color:#ff4d6d;}
-.blk-bar-badge.badge-cool{background:rgba(255,223,0,.15);color:#ffdf00;}
-
-/* 블록7: 동탄vs송도 */
-.blk-vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-.blk-vs-card{border-radius:14px;padding:28px 18px;text-align:center;}
-.blk-vs-card.card-left{background:#1e293b;color:#fff;}
-.blk-vs-card.card-right{background:linear-gradient(135deg,#b39b00,#d4af37);color:#1a1a1a;}
-.blk-vs-card h4{font-size:18px;font-weight:800;margin-bottom:14px;}
-.blk-vs-card .vs-num{font-size:28px;font-weight:900;margin:8px 0;}
-.blk-vs-card .vs-detail{font-size:14px;line-height:1.7;opacity:.85;}
-@media(max-width:600px){.blk-vs-grid{grid-template-columns:1fr;}}
-
-/* 블록6: 자가진단 퀴즈 */
-.blk-quiz-step{display:none;text-align:center;}
-.blk-quiz-step.active{display:block;}
-.blk-quiz-q{font-size:22px;font-weight:800;margin-bottom:22px;color:#ffdf00;line-height:1.4;}
-.blk-quiz-opts{display:flex;flex-direction:column;gap:12px;max-width:420px;margin:0 auto;}
-.blk-quiz-opt{padding:16px 22px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;font-size:16px;color:#eee;cursor:pointer;transition:all .25s;font-weight:600;font-family:inherit;}
-.blk-quiz-opt:hover{background:rgba(255,223,0,.15);border-color:#ffdf00;}
-.blk-quiz-progress{max-width:420px;margin:26px auto 0;height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;}
-.blk-quiz-progress-bar{height:100%;background:#ffdf00;transition:width .4s;}
-.blk-quiz-result{text-align:center;}
-.blk-quiz-result .result-score{font-size:52px;font-weight:900;color:#ffdf00;}
-.blk-quiz-result .result-label{font-size:22px;font-weight:700;margin:8px 0 18px;}
-.blk-quiz-result .result-desc{font-size:15px;color:#bbb;line-height:1.7;margin-bottom:26px;}
-.blk-quiz-cta{display:inline-block;padding:14px 40px;background:var(--brand-color);color:#fff;font-size:17px;font-weight:800;border-radius:40px;transition:all .3s;text-decoration:none;}
-.blk-quiz-cta:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(179,155,0,.4);}
-@media(max-width:1023px){
-  .blk-title{font-size:22px;}
-  .blk-quiz-q{font-size:18px;}
-  .blk-type-table{font-size:13px;}
-  .blk-type-table th,.blk-type-table td{padding:10px 6px;}
-  .blk-calc-col select{padding:11px 12px;font-size:14px;}
-}
   
-
 </style>
 </head>
 
@@ -1098,12 +990,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <h4>송도 월드메르디앙 교통 인프라</h4>
       <p>인천1호선 인천대입구역 도보 15분. GTX-B 노선(2031년 개통 예정): 인천대입구역 환승 → 여의도 17분, 서울역 27분. 송도트램(2032년 개통 예정): 30개역 8자 순환노선, 단지 도보권 정차. 인천3호선(계획): 송도달빛축제공원역~검단초수공원역, 총연장 34.64km. 제2외곽순환도로(계획): 인천~안산 구간 총연장 19.80km. 송도IC 인접, 제2경인고속도로·영동고속도로 진입 용이. 인천국제공항 차량 약 30분.</p>
     </div>
-
-  
-
   </section>
-
-
 
   <section class="lp-benefit-cta" data-aos="fade-up">
     <h3 class="lp-benefit-cta-title">부동산은 타이밍과 가격 선점입니다</h3>
@@ -1118,59 +1005,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <button type="button" class="lp-submit-btn js-scroll-to-register">방문예약하고 동·호수 확인하기</button>
     </div>
   </section>
-
-  <!-- ★ 블록5: 시세 바 차트 -->
-  <div class="blk-section blk-navy-grad" id="blkChart" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">📊 송도 주요 단지 시세 비교</h3>
-      <p class="blk-sub">월드메르디앙은 최대 <strong style="color:#ff6b6b">5.7억</strong> 이상 저렴합니다</p>
-      <div class="blk-bar-list" id="blkBarList">
-        <div class="blk-bar-item" data-width="92" data-delay="0">
-          <div class="blk-bar-label">더샵 퍼스트파크 (84㎡)</div>
-          <div class="blk-bar-track"><div class="blk-bar-fill bar-red">~12억</div></div>
-          <span class="blk-bar-badge badge-hot">최고가</span>
-        </div>
-        <div class="blk-bar-item" data-width="68" data-delay="150">
-          <div class="blk-bar-label">힐스테이트 송도 (84㎡)</div>
-          <div class="blk-bar-track"><div class="blk-bar-fill bar-orange">~8.5억</div></div>
-        </div>
-        <div class="blk-bar-item" data-width="58" data-delay="300">
-          <div class="blk-bar-label">송도 8공구 (84㎡)</div>
-          <div class="blk-bar-track"><div class="blk-bar-fill bar-blue">~7억</div></div>
-        </div>
-        <div class="blk-bar-item" data-width="52" data-delay="450">
-          <div class="blk-bar-label">★ 월드메르디앙 (78~84㎡)</div>
-          <div class="blk-bar-track"><div class="blk-bar-fill bar-gold">6.3억~</div></div>
-          <span class="blk-bar-badge badge-cool">최저가 · 특별분양</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ★ 블록7: 동탄 vs 송도 비교 -->
-  <div class="blk-section blk-light" id="blkVs" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">🏙️ 동탄 vs 송도 — 미래가치 비교</h3>
-      <p class="blk-sub">GTX 수혜 + 분양가 격차 = <strong>폭발적 상승 여력</strong></p>
-      <div class="blk-vs-grid">
-        <div class="blk-vs-card card-left">
-          <h4>동탄역 롯데캐슬</h4>
-          <div style="font-size:13px;opacity:.7">84㎡ · 2018년 준공 · GTX-A 수혜</div>
-          <div class="vs-num">~9억 → 18억+</div>
-          <div class="vs-detail">상승폭 <strong>+9억</strong><br>약 <strong>2배</strong> 상승</div>
-        </div>
-        <div class="blk-vs-card card-right">
-          <h4>송도 월드메르디앙</h4>
-          <div style="font-size:13px;opacity:.7">78~84㎡ · 2023년 준공 · GTX-B 수혜 예정</div>
-          <div class="vs-num">6.3억~ → 10~12억+</div>
-          <div class="vs-detail">예상 상승폭 <strong>+4~6억</strong><br>잠재 수익률 <strong>60~95%</strong></div>
-        </div>
-      </div>
-      <p style="text-align:center;margin-top:18px;font-size:13px;color:#999">※ 동탄 사례는 실거래 기반이며, 송도 전망은 시장 분석에 따른 예상치입니다.</p>
-    </div>
-  </div>
-
-
 
   <section class="section-images">
     <h3 class="lp-section-title" data-aos="fade-up">단지 배치도</h3>
@@ -1191,69 +1025,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
     <div data-aos="fade-up"><a href="tel:1533-9077" style="display:block;"><video autoplay loop muted playsinline style="width:100%;display:block;" poster="banner2.webp" preload="none"><source src="banner2.mp4" type="video/mp4"></video></a></div>
   </section>
-
-
-  <!-- ★ 블록4: 타입별 가격·대출·필요현금 비교표 -->
-  <div class="blk-section blk-light" id="blkTypeTable" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">📋 타입별 가격·대출·필요현금 비교</h3>
-      <p class="blk-sub">78㎡ / 83㎡ / 84㎡ 한눈에 비교</p>
-      <div style="overflow-x:auto">
-        <table class="blk-type-table">
-          <thead><tr><th>항목</th><th>78㎡</th><th>83㎡</th><th>84㎡</th></tr></thead>
-          <tbody>
-            <tr><td><strong>최저 분양가</strong></td><td class="em-val">6.3억</td><td class="em-val">6.6억</td><td class="em-val">6.8억</td></tr>
-            <tr><td>전세보증금</td><td>4.7억</td><td>5.0억</td><td>5.0억</td></tr>
-            <tr><td>무주택 70%<br><small>(상한 5억)</small></td><td>4.41억</td><td>4.62억</td><td>4.76억</td></tr>
-            <tr><td>생애최초 80%<br><small>(상한 5억)</small></td><td>5.0억<br><small style="color:#d60000">한도적용</small></td><td>5.0억<br><small style="color:#d60000">한도적용</small></td><td>5.0억<br><small style="color:#d60000">한도적용</small></td></tr>
-            <tr><td><strong>필요현금</strong><br><small>무주택 70%</small></td><td class="em-val">1.89억</td><td class="em-val">1.98억</td><td class="em-val">2.04억</td></tr>
-            <tr><td><strong>필요현금</strong><br><small>생애최초 80%</small></td><td class="em-val">1.3억</td><td class="em-val">1.6억</td><td class="em-val">1.8억</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="blk-type-note">※ 대출 상한 5억 적용 · 취득세 약 1.1% 포함 · 실제 조건은 개인별 상이</p>
-    </div>
-  </div>
-
-  <!-- ★ 블록1: 자금 계산기 -->
-  <div class="blk-section blk-dark" id="blkCalc" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">🧮 자금 계산기</h3>
-      <p class="blk-sub">타입과 대출 조건을 선택하면 필요 현금을 바로 확인</p>
-      <div class="blk-calc-row">
-        <div class="blk-calc-col"><label for="calcType">전용면적</label><select id="calcType"><option value="78" selected>78㎡ (6.3억)</option><option value="83">83㎡ (6.6억)</option><option value="84">84㎡ (6.8억)</option></select></div>
-        <div class="blk-calc-col"><label for="calcLoan">대출 조건</label><select id="calcLoan"><option value="70" selected>무주택자 70%</option><option value="80">생애최초 80%</option></select></div>
-      </div>
-      <div class="blk-calc-result" id="calcResult">
-        <dl>
-          <dt>분양가</dt><dd id="crPrice">6.3억</dd>
-          <dt>대출 가능액</dt><dd id="crLoan">4.41억</dd>
-          <dt>취득세(≈1.1%)</dt><dd id="crTax">693만</dd>
-          <dt><strong>필요 현금</strong></dt><dd id="crCash" class="em-cash">1.96억</dd>
-        </dl>
-        <div class="blk-jeonse-row">
-          <dl>
-            <dt>전세보증금</dt><dd id="crJeonse">4.7억</dd>
-            <dt>전세 갭</dt><dd id="crGap">1.6억</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ★ 블록2: 전세갭 투자 시뮬레이션 -->
-  <div class="blk-section blk-light" id="blkGap" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">🏦 전세갭 투자 시뮬레이션</h3>
-      <p class="blk-sub">전세 보증금을 활용하면 실 투자금은 이만큼!</p>
-      <div class="blk-gap-cards">
-        <div class="blk-gap-card" data-aos="fade-up" data-aos-delay="0"><div class="type-label">78㎡</div><div class="price-tag">실투자 1.6억</div><div class="sub-info">분양가 6.3억<br>전세보증금 4.7억<br>갭 = 1.6억</div></div>
-        <div class="blk-gap-card" data-aos="fade-up" data-aos-delay="100"><div class="type-label">83㎡</div><div class="price-tag">실투자 1.6억</div><div class="sub-info">분양가 6.6억<br>전세보증금 5.0억<br>갭 = 1.6억</div></div>
-        <div class="blk-gap-card" data-aos="fade-up" data-aos-delay="200"><div class="type-label">84㎡</div><div class="price-tag">실투자 1.8억</div><div class="sub-info">분양가 6.8억<br>전세보증금 5.0억<br>갭 = 1.8억</div></div>
-      </div>
-    </div>
-  </div>
-
 
   <section class="lp-faq-section" data-aos="fade-up">
     <h2 class="lp-faq-title">자주 묻는 질문</h2>
@@ -1279,58 +1050,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <button type="button" class="lp-submit-btn js-scroll-to-register">동·호수 함께 확인하기</button>
     </div>
   </section>
-
-
-  <!-- ★ 블록6: 자가진단 퀴즈 -->
-  <div class="blk-section blk-dark" id="blkQuiz" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">🧪 나에게 맞는 아파트일까?</h3>
-      <p class="blk-sub">4가지 질문으로 송도 월드메르디앙 적합도를 확인하세요</p>
-      <div class="blk-quiz-step active" data-step="1">
-        <div class="blk-quiz-q">Q1. 현재 주택 보유 상태는?</div>
-        <div class="blk-quiz-opts">
-          <button class="blk-quiz-opt" data-score="3">무주택자입니다</button>
-          <button class="blk-quiz-opt" data-score="2">1주택 보유 (갈아타기 희망)</button>
-          <button class="blk-quiz-opt" data-score="1">다주택자입니다</button>
-        </div>
-        <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:25%"></div></div>
-      </div>
-      <div class="blk-quiz-step" data-step="2">
-        <div class="blk-quiz-q">Q2. 예산 범위(자기자본+대출)는?</div>
-        <div class="blk-quiz-opts">
-          <button class="blk-quiz-opt" data-score="3">6~7억 이내</button>
-          <button class="blk-quiz-opt" data-score="2">7~9억 이내</button>
-          <button class="blk-quiz-opt" data-score="1">9억 이상</button>
-        </div>
-        <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:50%"></div></div>
-      </div>
-      <div class="blk-quiz-step" data-step="3">
-        <div class="blk-quiz-q">Q3. 입주 희망 시기는?</div>
-        <div class="blk-quiz-opts">
-          <button class="blk-quiz-opt" data-score="3">즉시 입주 원합니다</button>
-          <button class="blk-quiz-opt" data-score="2">6개월~1년 내</button>
-          <button class="blk-quiz-opt" data-score="1">1년 이상 여유 있음</button>
-        </div>
-        <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:75%"></div></div>
-      </div>
-      <div class="blk-quiz-step" data-step="4">
-        <div class="blk-quiz-q">Q4. 교통 호재(GTX-B 등)에 관심이?</div>
-        <div class="blk-quiz-opts">
-          <button class="blk-quiz-opt" data-score="3">매우 중요합니다</button>
-          <button class="blk-quiz-opt" data-score="2">보통입니다</button>
-          <button class="blk-quiz-opt" data-score="1">크게 상관없습니다</button>
-        </div>
-        <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:100%"></div></div>
-      </div>
-      <div class="blk-quiz-step blk-quiz-result" data-step="result">
-        <div class="result-score" id="quizScoreDisp">0%</div>
-        <div class="result-label" id="quizLabel">분석 중…</div>
-        <div class="result-desc" id="quizDesc"></div>
-        <a href="#reserve-bottom" class="blk-quiz-cta">📞 맞춤 상담 예약하기</a>
-      </div>
-    </div>
-  </div>
-
 
   <!-- ★ 수정: 하단 폼 – [자세히] 링크를 label 바깥으로 이동 -->
   <div id="reserve-bottom">
@@ -1557,82 +1276,44 @@ function validateForm(id){
 }
 </script>
 
-
-<!-- ── 유입경로 판별 + 검색어 추출 + 히든 필드 세팅 ── -->
+<!-- ── 유입경로 판별 + 히든 필드 세팅 ── -->
 <script>
 (function(){
   var params = new URLSearchParams(location.search);
-  var ref    = document.referrer || '';
-  var src    = '';
+  var ref = document.referrer || '';
+  var src = '';
 
-  /* ── 유입 소스 판별 (기존 로직 그대로) ── */
-  if(ref.indexOf('ader.naver.com')>-1){                          src='네이버 검색광고';
-  }else if(ref.indexOf('search.naver.com')>-1||ref.indexOf('m.search.naver.com')>-1){ src='네이버 자연검색';
-  }else if(ref.indexOf('naver.com')>-1){                         src='네이버 기타';
-  }else if(ref.indexOf('googleads')>-1||params.get('gclid')){    src='구글 검색광고';
-  }else if(ref.indexOf('google.')>-1){                           src='구글 자연검색';
-  }else if(ref.indexOf('daum.net')>-1||ref.indexOf('kakao.com')>-1){ src='다음/카카오';
-  }else if(ref.indexOf('youtube.com')>-1){                       src='유튜브';
-  }else if(ref.indexOf('instagram.com')>-1){                     src='인스타그램';
-  }else if(ref.indexOf('facebook.com')>-1||ref.indexOf('fb.com')>-1){ src='페이스북';
-  }else if(ref.indexOf('blog.naver.com')>-1){                    src='네이버블로그';
-  }else if(ref.indexOf('cafe.naver.com')>-1){                    src='네이버카페';
-  }else if(ref.indexOf('band.us')>-1){                           src='밴드';
-  }else if(ref.indexOf('bing.com')>-1){                          src='빙';
-  }else if(ref){                                                  src=ref;
+  if(ref.indexOf('ader.naver.com') > -1){
+    src = '네이버 검색광고';
   }
 
-  var utmSrc=params.get('utm_source');
-  if(utmSrc) src=utmSrc+( params.get('utm_medium')?' / '+params.get('utm_medium'):'');
-  if(!src) src='직접방문';
-
-  /* ── ★ 검색어 추출 (신규 추가) ── */
-  var keyword = params.get('utm_term')
-             || params.get('keyword')
-             || params.get('q')
-             || params.get('query')
-             || '';
-
-  if(!keyword && ref){
-    try{
-      var refUrl    = new URL(ref);
-      var refParams = new URLSearchParams(refUrl.search);
-      var host      = refUrl.hostname;
-
-      if(host.includes('naver.com')){
-        keyword = refParams.get('query') || refParams.get('q') || '';
-      }else if(host.includes('google.')||host.includes('bing.com')){
-        keyword = refParams.get('q') || '';
-      }else if(host.includes('daum.net')){
-        keyword = refParams.get('q') || refParams.get('query') || '';
-      }else if(host.includes('yahoo.com')||host.includes('yahoo.co')){
-        keyword = refParams.get('p') || '';
-      }else if(host.includes('youtube.com')){
-        keyword = refParams.get('search_query') || '';
-      }else{
-        keyword = refParams.get('q') || refParams.get('query') || refParams.get('keyword') || '';
-      }
-    }catch(e){}
+  if(!src){
+    var cParam = (params.get('c') || '').toLowerCase();
+    if(cParam.indexOf('naver.search') > -1) src = '네이버 검색광고';
+    else if(cParam.indexOf('naver') > -1) src = '네이버 광고(기타)';
   }
 
-  if(keyword){
-    try{ keyword = decodeURIComponent(keyword); }catch(e){}
+  if(!src){
+    var utmSource = (params.get('utm_source') || '').toLowerCase();
+    var utmMedium = (params.get('utm_medium') || '').toLowerCase();
+    if(utmSource === 'naver' && utmMedium === 'cpc') src = '네이버 검색광고';
+    else if(utmSource === 'google' && utmMedium === 'cpc') src = '구글 검색광고';
   }
 
-  /* ── 히든 필드에 소스 + 검색어 기록 ── */
-  var sourceValue = src;
-  if(keyword) sourceValue += ' | 검색어: ' + keyword;
+  if(!src){
+    if(ref.indexOf('search.naver.com') > -1) src = '네이버 자연검색';
+    else if(ref.indexOf('naver.com') > -1) src = '네이버 기타';
+    else if(ref.indexOf('google.com') > -1 || ref.indexOf('google.co.kr') > -1) src = '구글 자연검색';
+    else if(ref.indexOf('daum.net') > -1) src = '다음 검색';
+    else if(!ref) src = '직접입력/즐겨찾기';
+    else src = ref;
+  }
 
-  document.querySelectorAll('.js-source-field').forEach(function(el){
-    el.value = sourceValue;
-  });
-
-  window.__lpSource  = src;
-  window.__lpKeyword = keyword;
-  console.log('[유입경로-폼]', src, '| 검색어:', keyword||'(없음)', '| referrer=', ref);
+  document.querySelectorAll('.js-source-field').forEach(function(el){ el.value = src; });
+  window.__lpSource = src;
+  console.log('[유입경로-폼]', src, '| referrer=', ref);
 })();
 </script>
-
 
 <!-- ── 초기화: AOS, 헤더 스크롤, vh 보정 ── -->
 <script>
@@ -2222,101 +1903,6 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
   });
 })();
 </script>
-
-
-<!-- ★ 블록 JS: 자금계산기 -->
-<script>
-(function(){
-  var priceMap={78:63000,83:66000,84:68000};
-  var jeonseMap={78:47000,83:50000,84:50000};
-  var cap=50000;
-  var typeEl=document.getElementById('calcType');
-  var loanEl=document.getElementById('calcLoan');
-  function fmtEok(m){if(m>=10000){var e=Math.floor(m/10000),r=m%10000;return r>0?e+'억 '+r+'만':e+'억';}return m+'만';}
-  function calc(){
-    var t=parseInt(typeEl.value),ltv=parseInt(loanEl.value)/100;
-    var price=priceMap[t],rawLoan=Math.floor(price*ltv),loan=Math.min(rawLoan,cap);
-    var tax=Math.round(price*0.011),cash=price-loan+tax;
-    var jeonse=jeonseMap[t],gap=price-jeonse;
-    document.getElementById('crPrice').textContent=fmtEok(price);
-    document.getElementById('crLoan').textContent=fmtEok(loan)+(rawLoan>cap?' (한도적용)':'');
-    document.getElementById('crTax').textContent=Math.round(tax)+'만';
-    document.getElementById('crCash').textContent=fmtEok(cash);
-    document.getElementById('crJeonse').textContent=fmtEok(jeonse);
-    document.getElementById('crGap').textContent=fmtEok(gap);
-  }
-  if(typeEl&&loanEl){typeEl.addEventListener('change',calc);loanEl.addEventListener('change',calc);calc();}
-})();
-</script>
-
-<!-- ★ 블록 JS: 교통 타임라인 슬롯머신 -->
-<script>
-(function(){
-  var items=document.querySelectorAll('.blk-tl-item');
-  if(!items.length)return;
-  var now=new Date();
-  function animateSlot(item){
-    var target=new Date(item.getAttribute('data-target'));
-    var diff=Math.max(0,Math.ceil((target-now)/(1000*60*60*24)));
-    if(diff<=0){item.classList.add('past');var lb=item.querySelector('.blk-slot-label');if(lb)lb.textContent='개통 완료!';}
-    var str=String(diff).padStart(4,'0');
-    var digits=item.querySelectorAll('.blk-slot-digit .digit-inner');
-    digits.forEach(function(d,i){if(i<str.length){d.textContent=str[i];d.style.animationDelay=(i*0.15)+'s';}});
-  }
-  if('IntersectionObserver' in window){
-    var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){animateSlot(entry.target);obs.unobserve(entry.target);}});},{threshold:0.3});
-    items.forEach(function(item){obs.observe(item);});
-  }else{items.forEach(animateSlot);}
-})();
-</script>
-
-<!-- ★ 블록 JS: 시세 바 차트 애니메이션 -->
-<script>
-(function(){
-  var list=document.getElementById('blkBarList');
-  if(!list)return;
-  var animated=false;
-  if('IntersectionObserver' in window){
-    var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){
-      if(entry.isIntersecting&&!animated){animated=true;
-        list.querySelectorAll('.blk-bar-item').forEach(function(item){
-          var w=item.getAttribute('data-width'),dl=parseInt(item.getAttribute('data-delay'))||0;
-          var fill=item.querySelector('.blk-bar-fill');
-          setTimeout(function(){fill.style.width=w+'%';},dl);
-        });obs.unobserve(list);}
-    });},{threshold:0.2});
-    obs.observe(list);
-  }
-})();
-</script>
-
-<!-- ★ 블록 JS: 자가진단 퀴즈 -->
-<script>
-(function(){
-  var totalScore=0,maxScore=12;
-  document.querySelectorAll('.blk-quiz-opt').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      totalScore+=parseInt(btn.getAttribute('data-score'));
-      var step=btn.closest('.blk-quiz-step');
-      var next=parseInt(step.getAttribute('data-step'))+1;
-      step.classList.remove('active');
-      if(next<=4){document.querySelector('.blk-quiz-step[data-step="'+next+'"]').classList.add('active');}
-      else{
-        var pct=Math.round(totalScore/maxScore*100);
-        document.getElementById('quizScoreDisp').textContent=pct+'%';
-        var label,desc;
-        if(pct>=80){label='🎯 매우 적합!';desc='현재 조건에서 송도 월드메르디앙은 최적의 선택입니다. 6억대 특별분양, 즉시입주, 교통 호재까지 — 지금 바로 상담을 추천드립니다.';}
-        else if(pct>=55){label='✅ 조건이 맞습니다';desc='주요 조건이 부합합니다. 세부 자금 계획과 대출 조건을 상담을 통해 확인해 보시면 좋겠습니다.';}
-        else{label='🤔 신중한 검토 필요';desc='현재 조건에서는 추가 검토가 필요할 수 있습니다. 전문 상담사와 구체적인 조건을 상의해 보세요.';}
-        document.getElementById('quizLabel').textContent=label;
-        document.getElementById('quizDesc').textContent=desc;
-        document.querySelector('.blk-quiz-step[data-step="result"]').classList.add('active');
-      }
-    });
-  });
-})();
-</script>
-
 
 <!-- ═══════════ 보안: 우클릭·소스보기·개발자도구 차단 ═══════════ -->
 <script>

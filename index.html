@@ -914,6 +914,147 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   .blk-calc-col select{padding:11px 12px;font-size:14px;}
 }
 
+/* ================================================================
+   타입별 인테리어 갤러리
+   ================================================================ */
+.lp-interior-gallery {
+  margin: 48px 0 32px;
+  padding-top: 48px;
+  border-top: 1px solid #eee;
+}
+
+.ig-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.ig-tab {
+  padding: 10px 24px;
+  border: 2px solid #e0d6b8;
+  border-radius: 30px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  color: #888;
+  cursor: pointer;
+  transition: all .25s;
+  font-family: inherit;
+}
+.ig-tab.active {
+  background: var(--brand-color);
+  border-color: var(--brand-color);
+  color: #fff;
+}
+.ig-tab:hover:not(.active) {
+  border-color: var(--brand-color);
+  color: var(--brand-color);
+}
+
+.ig-panel { display: none; position: relative; }
+.ig-panel.active { display: block; }
+
+.ig-swiper {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,.1);
+}
+.ig-swiper .swiper-slide { background: #f5f5f5; }
+.ig-swiper .swiper-slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: zoom-in;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
+.ig-swiper .swiper-button-prev,
+.ig-swiper .swiper-button-next {
+  display: flex !important;
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,.9);
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+  transition: transform .2s, box-shadow .2s;
+}
+.ig-swiper .swiper-button-prev:hover,
+.ig-swiper .swiper-button-next:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+}
+.ig-swiper .swiper-button-prev::after,
+.ig-swiper .swiper-button-next::after {
+  font-size: 16px; color: #333; font-weight: 700;
+}
+
+.ig-dots { bottom: 14px !important; }
+.ig-dots .swiper-pagination-bullet {
+  width: 8px; height: 8px;
+  background: rgba(255,255,255,.6);
+  opacity: 1;
+  transition: all .3s;
+}
+.ig-dots .swiper-pagination-bullet-active {
+  background: var(--brand-color);
+  width: 22px;
+  border-radius: 4px;
+}
+
+.ig-counter {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 14px;
+  color: #999;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.ig-counter .ig-current {
+  color: var(--brand-color);
+  font-weight: 800;
+  font-size: 16px;
+}
+
+/* 라이트박스 */
+.ig-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.92);
+  z-index: 12000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.ig-lightbox.show { display: flex; }
+.ig-lightbox img {
+  max-width: 95vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.5);
+}
+.ig-lb-close {
+  position: absolute; top: 16px; right: 20px;
+  width: 44px; height: 44px;
+  background: rgba(255,255,255,.15);
+  color: #fff; border: none; border-radius: 50%;
+  font-size: 26px; cursor: pointer; z-index: 10;
+  transition: background .2s;
+}
+.ig-lb-close:hover { background: rgba(255,255,255,.3); }
+
+@media (max-width: 1023px) {
+  .ig-tabs { gap: 6px; }
+  .ig-tab { padding: 8px 16px; font-size: 13px; }
+  .ig-swiper .swiper-button-prev,
+  .ig-swiper .swiper-button-next { width: 34px; height: 34px; }
+  .ig-swiper .swiper-button-prev::after,
+  .ig-swiper .swiper-button-next::after { font-size: 13px; }
+  .lp-interior-gallery { margin: 36px 0 24px; padding-top: 36px; }
+  .ig-counter { font-size: 13px; }
+  .ig-counter .ig-current { font-size: 14px; }
+}
+
 
 </style>
 </head>
@@ -1205,6 +1346,96 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <h4>송도 월드메르디앙 평면도 안내</h4>
       <p>전용 78㎡(약 23.89평, 공급 101㎡): 방 3개 + 욕실 2개, 남향 4베이, 판상형 구조. 발코니 확장 시 실사용 면적 약 30평대. 전용 83㎡(약 25.16평, 공급 107㎡): 방 3개 + 욕실 2개, 남향 4베이, 넓은 거실과 주방 연결 개방형 구조. 전용 84A㎡(약 25.59평, 공급 108㎡): 방 3개 + 욕실 2개, 남향 4베이, 알파룸 활용 가능한 확장형 설계. 전 타입 공통: 남향 4베이 판상형, 발코니 확장 무상 제공, 시스템 에어컨 설치 공간 확보, 현관 중문 설치 가능 구조, 드레스룸·펜트리 수납공간. 프리미엄 마감재: 고급 도어락, 3중 로이유리, 욕실 강화유리 파티션, 주방 빌트인 가전(쿡탑·후드·식기세척기·오븐 등).</p>
     </div>
+
+    <!-- ★ 타입별 인테리어 갤러리 -->
+    <div class="lp-interior-gallery" data-aos="fade-up">
+      <h3 class="lp-section-title">실제 내부 인테리어</h3>
+      <p class="lp-section-sub">전 세대 남향 4베이 · 프리미엄 마감재 · 발코니 확장 적용</p>
+
+      <div class="ig-tabs">
+        <button class="ig-tab active" data-type="78">78㎡ (30평)</button>
+        <button class="ig-tab" data-type="83">83㎡ (31평)</button>
+        <button class="ig-tab" data-type="84">84㎡ (32평)</button>
+      </div>
+
+      <!-- 78㎡ -->
+      <div class="ig-panel active" data-panel="78">
+        <div class="swiper-container ig-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="78type (1).jpg" alt="78㎡ 인테리어 1" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (2).jpg" alt="78㎡ 인테리어 2" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (3).jpg" alt="78㎡ 인테리어 3" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (4).jpg" alt="78㎡ 인테리어 4" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (5).jpg" alt="78㎡ 인테리어 5" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (6).jpg" alt="78㎡ 인테리어 6" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (7).jpg" alt="78㎡ 인테리어 7" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (8).jpg" alt="78㎡ 인테리어 8" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (9).jpg" alt="78㎡ 인테리어 9" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (10).jpg" alt="78㎡ 인테리어 10" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (11).jpg" alt="78㎡ 인테리어 11" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (12).jpg" alt="78㎡ 인테리어 12" loading="lazy"></div>
+            <div class="swiper-slide"><img src="78type (13).jpg" alt="78㎡ 인테리어 13" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-prev ig-prev"></div>
+          <div class="swiper-button-next ig-next"></div>
+          <div class="swiper-pagination ig-dots"></div>
+        </div>
+        <div class="ig-counter"><span class="ig-current">1</span> / <span class="ig-total">13</span></div>
+      </div>
+
+      <!-- 83㎡ -->
+      <div class="ig-panel" data-panel="83">
+        <div class="swiper-container ig-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="83type (1).jpg" alt="83㎡ 인테리어 1" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (2).jpg" alt="83㎡ 인테리어 2" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (3).jpg" alt="83㎡ 인테리어 3" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (4).jpg" alt="83㎡ 인테리어 4" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (5).jpg" alt="83㎡ 인테리어 5" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (6).jpg" alt="83㎡ 인테리어 6" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (7).jpg" alt="83㎡ 인테리어 7" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (8).jpg" alt="83㎡ 인테리어 8" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (9).jpg" alt="83㎡ 인테리어 9" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (10).jpg" alt="83㎡ 인테리어 10" loading="lazy"></div>
+            <div class="swiper-slide"><img src="83type (11).jpg" alt="83㎡ 인테리어 11" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-prev ig-prev"></div>
+          <div class="swiper-button-next ig-next"></div>
+          <div class="swiper-pagination ig-dots"></div>
+        </div>
+        <div class="ig-counter"><span class="ig-current">1</span> / <span class="ig-total">11</span></div>
+      </div>
+
+      <!-- 84㎡ -->
+      <div class="ig-panel" data-panel="84">
+        <div class="swiper-container ig-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="84type (1).jpg" alt="84㎡ 인테리어 1" loading="lazy"></div>
+            <div class="swiper-slide"><img src="84type (2).jpg" alt="84㎡ 인테리어 2" loading="lazy"></div>
+            <div class="swiper-slide"><img src="84type (3).jpg" alt="84㎡ 인테리어 3" loading="lazy"></div>
+            <div class="swiper-slide"><img src="84type (4).jpg" alt="84㎡ 인테리어 4" loading="lazy"></div>
+            <div class="swiper-slide"><img src="84type (5).jpg" alt="84㎡ 인테리어 5" loading="lazy"></div>
+            <div class="swiper-slide"><img src="84type (6).jpg" alt="84㎡ 인테리어 6" loading="lazy"></div>
+            <div class="swiper-slide"><img src="84type (7).jpg" alt="84㎡ 인테리어 7" loading="lazy"></div>
+            <div class="swiper-slide"><img src="84type (8).jpg" alt="84㎡ 인테리어 8" loading="lazy"></div>
+            <div class="swiper-slide"><img src="84type (9).jpg" alt="84㎡ 인테리어 9" loading="lazy"></div>
+            <div class="swiper-slide"><img src="84type (10).jpg" alt="84㎡ 인테리어 10" loading="lazy"></div>
+          </div>
+          <div class="swiper-button-prev ig-prev"></div>
+          <div class="swiper-button-next ig-next"></div>
+          <div class="swiper-pagination ig-dots"></div>
+        </div>
+        <div class="ig-counter"><span class="ig-current">1</span> / <span class="ig-total">10</span></div>
+      </div>
+    </div>
+
+    <!-- ★ 라이트박스 (전체화면 확대) -->
+    <div class="ig-lightbox" id="igLightbox">
+      <button class="ig-lb-close" id="igLbClose">&times;</button>
+      <img src="" alt="" id="igLbImg">
+    </div>
+
+
     <div data-aos="fade-up"><a href="tel:1533-9077" style="display:block;"><video autoplay loop muted playsinline style="width:100%;display:block;" poster="banner2.webp" preload="none"><source src="banner2.mp4" type="video/mp4"></video></a></div>
   </section>
 
@@ -2415,10 +2646,85 @@ document.addEventListener('keydown', function(e){
 
 (function(){
   var style = document.createElement('style');
-  style.textContent = 'img{-webkit-user-drag:none;user-select:none;pointer-events:none;}a img{pointer-events:auto;}';
+style.textContent = 'img{-webkit-user-drag:none;user-select:none;pointer-events:none;}a img,.ig-swiper img{pointer-events:auto;}';
+
   document.head.appendChild(style);
 })();
 </script>
+
+<!-- ── 인테리어 갤러리: 탭 + 스와이퍼 + 라이트박스 ── -->
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.ig-tab');
+  var panels = document.querySelectorAll('.ig-panel');
+  var swipers = {};
+
+  function activatePanel(type) {
+    tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.type === type); });
+    panels.forEach(function(p){
+      var isActive = p.dataset.panel === type;
+      p.classList.toggle('active', isActive);
+      if(isActive && !swipers[type]) {
+        var container = p.querySelector('.ig-swiper');
+        if(container) {
+          swipers[type] = new Swiper(container, {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            loop: true,
+            speed: 400,
+            pagination: {
+              el: container.querySelector('.ig-dots'),
+              clickable: true
+            },
+            navigation: {
+              prevEl: container.querySelector('.ig-prev'),
+              nextEl: container.querySelector('.ig-next')
+            },
+            on: {
+              slideChange: function(){
+                var counter = p.querySelector('.ig-current');
+                if(counter) counter.textContent = this.realIndex + 1;
+              }
+            }
+          });
+        }
+      }
+      if(isActive && swipers[type]) {
+        swipers[type].update();
+      }
+    });
+  }
+
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      activatePanel(tab.dataset.type);
+    });
+  });
+
+  if(tabs.length > 0) activatePanel(tabs[0].dataset.type);
+
+  /* 라이트박스 */
+  var lb = document.getElementById('igLightbox');
+  var lbImg = document.getElementById('igLbImg');
+  var lbClose = document.getElementById('igLbClose');
+
+  document.querySelectorAll('.ig-swiper .swiper-slide img').forEach(function(img){
+    img.addEventListener('click', function(){
+      if(!lb || !lbImg) return;
+      lbImg.src = this.src;
+      lbImg.alt = this.alt;
+      lb.classList.add('show');
+    });
+  });
+
+  if(lbClose) lbClose.addEventListener('click', function(){ lb.classList.remove('show'); });
+  if(lb) lb.addEventListener('click', function(e){ if(e.target === lb) lb.classList.remove('show'); });
+  document.addEventListener('keydown', function(e){
+    if(lb && lb.classList.contains('show') && e.key === 'Escape') lb.classList.remove('show');
+  });
+})();
+</script>
+
 
 </body>
 </html>

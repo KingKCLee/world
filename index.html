@@ -718,7 +718,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   .lp-float-privacy {
     display: flex;
     align-items: center;
-    justify-content: flex-end;      /* ★ 전체를 오른쪽 끝으로 */
+    justify-content: flex-end;
     gap: 8px;
     padding: 10px 0 10px 8px;
     margin-right: 0;
@@ -768,9 +768,21 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 }
 
 /* ================================================================
-   7개 삽입 블록 CSS
+   7개 삽입 블록 CSS (lp-body 바깥 배치 — 전체 너비 자동)
    ================================================================ */
-.blk-section{padding:52px 16px;max-width:100%;}
+.blk-section {
+  width: 100%;
+  padding: 60px 16px;
+  box-sizing: border-box;
+}
+.blk-section .blk-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+.blk-section + .blk-section {
+  margin-top: 0;
+}
 .blk-container{max-width:1080px;margin:0 auto;}
 .blk-title{text-align:center;font-size:28px;font-weight:800;margin-bottom:8px;line-height:1.35;letter-spacing:-1.5px;}
 .blk-sub{text-align:center;font-size:15px;margin-bottom:30px;letter-spacing:-.5px;}
@@ -782,6 +794,41 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 .blk-navy-grad{background:linear-gradient(160deg,#0f1a3c 0%,#1b2d5e 100%);color:#fff;}
 .blk-navy-grad .blk-title{color:#ffdf00;}
 .blk-navy-grad .blk-sub{color:#b0c4de;}
+
+/* 블록별 상단 장식 라인 */
+.blk-section.blk-dark::before,
+.blk-section.blk-navy-grad::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--brand-color);
+  margin: 0 auto 28px;
+  border-radius: 2px;
+}
+.blk-section.blk-light::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #d4d0c0;
+  margin: 0 auto 28px;
+  border-radius: 2px;
+}
+
+/* 블록 경계선 */
+.blk-section.blk-dark {
+  border-top: 1px solid rgba(255,223,0,.08);
+  border-bottom: 1px solid rgba(255,223,0,.08);
+}
+.blk-section.blk-navy-grad {
+  border-top: 1px solid rgba(255,223,0,.1);
+  border-bottom: 1px solid rgba(255,223,0,.1);
+}
+.blk-section.blk-light {
+  border-top: 1px solid #e8e4d8;
+  border-bottom: 1px solid #e8e4d8;
+}
 
 /* 블록4: 타입비교표 */
 .blk-type-table{width:100%;border-collapse:collapse;font-size:15px;margin-top:10px;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);}
@@ -811,22 +858,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 .blk-gap-card .price-tag{font-size:24px;font-weight:800;color:#d60000;}
 .blk-gap-card .sub-info{font-size:13px;color:#888;margin-top:8px;line-height:1.6;}
 @media(max-width:600px){.blk-gap-cards{grid-template-columns:1fr;}}
-
-/* 블록3: 교통 타임라인 + 슬롯머신 */
-.blk-tl-list{position:relative;padding-left:36px;}
-.blk-tl-list::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:rgba(255,223,0,.25);}
-.blk-tl-item{position:relative;margin-bottom:32px;}
-.blk-tl-dot{position:absolute;left:-28px;top:4px;width:14px;height:14px;border-radius:50%;background:#ffdf00;border:3px solid #13132b;}
-.blk-tl-icon{font-size:24px;margin-bottom:4px;}
-.blk-tl-name{font-size:17px;font-weight:700;color:#fff;}
-.blk-tl-date{font-size:13px;color:#aaa;margin:2px 0 8px;}
-.blk-slot-wrap{display:inline-flex;gap:3px;background:rgba(0,0,0,.35);padding:6px 12px;border-radius:8px;align-items:center;}
-.blk-slot-digit{display:inline-block;width:26px;height:34px;line-height:34px;text-align:center;background:#222;color:#ffdf00;font-size:19px;font-weight:800;border-radius:4px;overflow:hidden;position:relative;}
-.blk-slot-digit .digit-inner{display:block;animation:slotSpin .6s ease-out forwards;}
-@keyframes slotSpin{0%{transform:translateY(-200%)}60%{transform:translateY(10%)}80%{transform:translateY(-5%)}100%{transform:translateY(0)}}
-.blk-slot-label{font-size:12px;color:#aaa;margin-left:8px;}
-.blk-tl-item.past .blk-tl-name{color:#666;text-decoration:line-through;}
-.blk-tl-item.past .blk-tl-dot{background:#555;}
 
 /* 블록5: 시세 바 차트 */
 .blk-bar-list{display:flex;flex-direction:column;gap:18px;}
@@ -867,88 +898,21 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 .blk-quiz-result .result-desc{font-size:15px;color:#bbb;line-height:1.7;margin-bottom:26px;}
 .blk-quiz-cta{display:inline-block;padding:14px 40px;background:var(--brand-color);color:#fff;font-size:17px;font-weight:800;border-radius:40px;transition:all .3s;text-decoration:none;}
 .blk-quiz-cta:hover{transform:translateY(-2px);box-shadow:0 4px 15px rgba(179,155,0,.4);}
-@media(max-width:1023px){
+
+/* 모바일 블록 조정 */
+@media (max-width: 1023px) {
+  .blk-section {
+    padding: 44px 12px;
+  }
+  .blk-section .blk-container {
+    padding: 0 4px;
+  }
   .blk-title{font-size:22px;}
   .blk-quiz-q{font-size:18px;}
   .blk-type-table{font-size:13px;}
   .blk-type-table th,.blk-type-table td{padding:10px 6px;}
   .blk-calc-col select{padding:11px 12px;font-size:14px;}
 }
-
-/* ================================================================
-   블록 전체 너비 확장 (최종 수정)
-   ================================================================ */
-
-/* lp-body의 padding과 max-width를 무시하고 뷰포트 전체로 확장 */
-.lp-body .blk-section {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  border-radius: 0;
-  padding: 60px 16px;
-}
-
-/* 내부 컨테이너는 중앙 1080px 유지 */
-.lp-body .blk-section .blk-container {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
-
-/* 블록 간 간격 제거 (배경끼리 붙도록) */
-.lp-body .blk-section + .blk-section {
-  margin-top: 0;
-}
-
-/* ── 블록별 상단 장식 라인 ── */
-.blk-section.blk-dark::before,
-.blk-section.blk-navy-grad::before {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--brand-color);
-  margin: 0 auto 28px;
-  border-radius: 2px;
-}
-
-.blk-section.blk-light::before {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: #d4d0c0;
-  margin: 0 auto 28px;
-  border-radius: 2px;
-}
-
-/* ── 블록 경계선 ── */
-.blk-section.blk-dark {
-  border-top: 1px solid rgba(255,223,0,.08);
-  border-bottom: 1px solid rgba(255,223,0,.08);
-}
-.blk-section.blk-navy-grad {
-  border-top: 1px solid rgba(255,223,0,.1);
-  border-bottom: 1px solid rgba(255,223,0,.1);
-}
-.blk-section.blk-light {
-  border-top: 1px solid #e8e4d8;
-  border-bottom: 1px solid #e8e4d8;
-}
-
-/* ── 모바일 ── */
-@media (max-width: 1023px) {
-  .lp-body .blk-section {
-    padding: 44px 12px;
-  }
-  .lp-body .blk-section .blk-container {
-    padding: 0 4px;
-  }
-}
-
 
 
 </style>
@@ -1022,6 +986,10 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   </div>
 </div>
 
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  구간 1: lp-body (헤더~유튜브)                              -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="lp-body">
 
   <div class="lp-privacy-layer" id="lpPrivacyLayer">
@@ -1046,7 +1014,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     <div class="lp-urgency-bottom">동탄 GTX 착공 전 9억 → 개통 후 18억 | 지금 송도가 그 시점입니다</div>
   </div>
 
-  <!-- ★ 수정: 상단 폼 – [자세히] 링크를 label 바깥으로 이동 -->
   <div id="reserve-top">
     <section class="lp-reserve-wrap" data-aos="fade-up">
       <h2 class="lp-reserve-title">방문예약신청</h2>
@@ -1076,6 +1043,72 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       </div>
     </div>
   </div>
+
+</div><!-- /.lp-body 구간1 닫기 -->
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  ★ INTEREST 블록: 가격 바 차트 → 동탄 vs 송도 비교          -->
+<!--  (유튜브 직후 — "송도가 얼마나 저평가됐는지" 시각적 충격)      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- ★ 블록5: 시세 바 차트 -->
+<div class="blk-section blk-navy-grad" id="blkChart" data-aos="fade-up">
+  <div class="blk-container">
+    <h3 class="blk-title">📊 송도 주요 단지 시세 비교</h3>
+    <p class="blk-sub">월드메르디앙은 최대 <strong style="color:#ff6b6b">5.7억</strong> 이상 저렴합니다</p>
+    <div class="blk-bar-list" id="blkBarList">
+      <div class="blk-bar-item" data-width="92" data-delay="0">
+        <div class="blk-bar-label">더샵 퍼스트파크 (84㎡)</div>
+        <div class="blk-bar-track"><div class="blk-bar-fill bar-red">~12억</div></div>
+        <span class="blk-bar-badge badge-hot">최고가</span>
+      </div>
+      <div class="blk-bar-item" data-width="68" data-delay="150">
+        <div class="blk-bar-label">힐스테이트 송도 (84㎡)</div>
+        <div class="blk-bar-track"><div class="blk-bar-fill bar-orange">~8.5억</div></div>
+      </div>
+      <div class="blk-bar-item" data-width="58" data-delay="300">
+        <div class="blk-bar-label">송도 8공구 (84㎡)</div>
+        <div class="blk-bar-track"><div class="blk-bar-fill bar-blue">~7억</div></div>
+      </div>
+      <div class="blk-bar-item" data-width="52" data-delay="450">
+        <div class="blk-bar-label">★ 월드메르디앙 (78~84㎡)</div>
+        <div class="blk-bar-track"><div class="blk-bar-fill bar-gold">6.3억~</div></div>
+        <span class="blk-bar-badge badge-cool">최저가 · 특별분양</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ★ 블록7: 동탄 vs 송도 비교 -->
+<div class="blk-section blk-light" id="blkVs" data-aos="fade-up">
+  <div class="blk-container">
+    <h3 class="blk-title">🏙️ 동탄 vs 송도 — 미래가치 비교</h3>
+    <p class="blk-sub">GTX 수혜 + 분양가 격차 = <strong>폭발적 상승 여력</strong></p>
+    <div class="blk-vs-grid">
+      <div class="blk-vs-card card-left">
+        <h4>동탄역 롯데캐슬</h4>
+        <div style="font-size:13px;opacity:.7">84㎡ · 2018년 준공 · GTX-A 수혜</div>
+        <div class="vs-num">~9억 → 18억+</div>
+        <div class="vs-detail">상승폭 <strong>+9억</strong><br>약 <strong>2배</strong> 상승</div>
+      </div>
+      <div class="blk-vs-card card-right">
+        <h4>송도 월드메르디앙</h4>
+        <div style="font-size:13px;opacity:.7">78~84㎡ · 2023년 준공 · GTX-B 수혜 예정</div>
+        <div class="vs-num">6.3억~ → 10~12억+</div>
+        <div class="vs-detail">예상 상승폭 <strong>+4~6억</strong><br>잠재 수익률 <strong>60~95%</strong></div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:18px;font-size:13px;color:#999">※ 동탄 사례는 실거래 기반이며, 송도 전망은 시장 분석에 따른 예상치입니다.</p>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  구간 2: lp-body (가격표~혜택CTA~프리미엄이미지~입지~리뷰      -->
+<!--          ~교육·인프라·교통~혜택CTA 2)                        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="lp-body">
 
   <section class="lp-price-section" data-aos="fade-up">
     <h2 class="lp-price-title">왜 지금 이 가격이 기회인가</h2>
@@ -1141,6 +1174,115 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </section>
 
+  <section class="lp-benefit-cta" data-aos="fade-up">
+    <h3 class="lp-benefit-cta-title">부동산은 타이밍과 가격 선점입니다</h3>
+    <p class="lp-benefit-cta-sub">동탄 GTX 착공 전에 잡은 분들은 지금 두 배 가까운 시세를 보고 있습니다</p>
+    <div class="lp-benefit-cta-list">
+      <div class="lp-benefit-cta-item"><div class="cta-icon">💰</div><div><div class="cta-label">잔여세대 한정 특별할인</div><div class="cta-value">1억 5천만원</div></div></div>
+      <div class="lp-benefit-cta-item"><div class="cta-icon">🎁</div><div><div class="cta-label">가전·가구 옵션 무상</div><div class="cta-value">3,000만원</div></div></div>
+      <div class="lp-benefit-cta-item"><div class="cta-icon">📊</div><div><div class="cta-label">2026~2027 송도 입주물량</div><div class="cta-value">0세대</div></div></div>
+    </div>
+    <div class="lp-benefit-cta-bottom">
+      <p>같은 기회가 지금 송도에 열려 있습니다 — 동·호수를 함께 확인해보세요</p>
+      <button type="button" class="lp-submit-btn js-scroll-to-register">방문예약하고 동·호수 확인하기</button>
+    </div>
+  </section>
+
+  <section class="section-images">
+    <h3 class="lp-section-title" data-aos="fade-up">단지 배치도</h3>
+    <p class="lp-section-sub" data-aos="fade-up">1001동, 1002동, 1003동, 1004동</p>
+    <div data-aos="fade-up"><img src="landing_page_images_309_8_1771463629.webp" alt="송도 월드메르디앙 단지 배치도 - 4개동 남향 배치" loading="lazy"></div>
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 단지 배치</h4>
+      <p>총 4개동 배치: 1001동, 1002동, 1003동, 1004동. 전 동 남향 배치로 일조권 확보. 동간 간격을 넓혀 프라이버시 및 조망권 확보. 지하 2층 전체 주차장 연결, 차 없는 단지 내 보행환경. 총 주차대수 259대. 단지 내 조경시설 및 어린이 놀이터, 주민운동시설 배치.</p>
+    </div>
+    <h3 class="lp-section-title" data-aos="fade-up">내부 평면도</h3>
+    <p class="lp-section-sub" data-aos="fade-up">전 세대 4베이 설계, 차별화된 마감재와 신축 품질</p>
+    <div data-aos="fade-up"><img src="landing_page_images_309_9_1771463629.webp" alt="송도 월드메르디앙 78㎡ 평면도 - 30평대 남향 4베이" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_10_1771463629.webp" alt="송도 월드메르디앙 83㎡ 평면도 - 31평대 남향 4베이" loading="lazy"></div>
+    <div data-aos="fade-up"><img src="landing_page_images_309_11_1771463629.webp" alt="송도 월드메르디앙 84㎡ 평면도 - 32평대 남향 4베이" loading="lazy"></div>
+    <div class="sr-only">
+      <h4>송도 월드메르디앙 평면도 안내</h4>
+      <p>전용 78㎡(약 23.89평, 공급 101㎡): 방 3개 + 욕실 2개, 남향 4베이, 판상형 구조. 발코니 확장 시 실사용 면적 약 30평대. 전용 83㎡(약 25.16평, 공급 107㎡): 방 3개 + 욕실 2개, 남향 4베이, 넓은 거실과 주방 연결 개방형 구조. 전용 84A㎡(약 25.59평, 공급 108㎡): 방 3개 + 욕실 2개, 남향 4베이, 알파룸 활용 가능한 확장형 설계. 전 타입 공통: 남향 4베이 판상형, 발코니 확장 무상 제공, 시스템 에어컨 설치 공간 확보, 현관 중문 설치 가능 구조, 드레스룸·펜트리 수납공간. 프리미엄 마감재: 고급 도어락, 3중 로이유리, 욕실 강화유리 파티션, 주방 빌트인 가전(쿡탑·후드·식기세척기·오븐 등).</p>
+    </div>
+    <div data-aos="fade-up"><a href="tel:1533-9077" style="display:block;"><video autoplay loop muted playsinline style="width:100%;display:block;" poster="banner2.webp" preload="none"><source src="banner2.mp4" type="video/mp4"></video></a></div>
+  </section>
+
+</div><!-- /.lp-body 구간2 닫기 -->
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  ★ DESIRE 블록: 평형비교 → 자금계산기 → 전세갭 시뮬레이터    -->
+<!--  (이미지 갤러리 직후 — "어떤 타입? → 내 자금으로? → 갭투자?") -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- ★ 블록4: 타입별 가격·대출·필요현금 비교표 -->
+<div class="blk-section blk-light" id="blkTypeTable" data-aos="fade-up">
+  <div class="blk-container">
+    <h3 class="blk-title">📋 타입별 가격·대출·필요현금 비교</h3>
+    <p class="blk-sub">78㎡ / 83㎡ / 84㎡ 한눈에 비교</p>
+    <div style="overflow-x:auto">
+      <table class="blk-type-table">
+        <thead><tr><th>항목</th><th>78㎡</th><th>83㎡</th><th>84㎡</th></tr></thead>
+        <tbody>
+          <tr><td><strong>최저 분양가</strong></td><td class="em-val">6.3억</td><td class="em-val">6.6억</td><td class="em-val">6.8억</td></tr>
+          <tr><td>전세보증금</td><td>4.7억</td><td>5.0억</td><td>5.0억</td></tr>
+          <tr><td>무주택 70%<br><small>(상한 5억)</small></td><td>4.41억</td><td>4.62억</td><td>4.76억</td></tr>
+          <tr><td>생애최초 80%<br><small>(상한 5억)</small></td><td>5.0억<br><small style="color:#d60000">한도적용</small></td><td>5.0억<br><small style="color:#d60000">한도적용</small></td><td>5.0억<br><small style="color:#d60000">한도적용</small></td></tr>
+          <tr><td><strong>필요현금</strong><br><small>무주택 70%</small></td><td class="em-val">1.89억</td><td class="em-val">1.98억</td><td class="em-val">2.04억</td></tr>
+          <tr><td><strong>필요현금</strong><br><small>생애최초 80%</small></td><td class="em-val">1.3억</td><td class="em-val">1.6억</td><td class="em-val">1.8억</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="blk-type-note">※ 대출 상한 5억 적용 · 취득세 약 1.1% 포함 · 실제 조건은 개인별 상이</p>
+  </div>
+</div>
+
+<!-- ★ 블록1: 자금 계산기 -->
+<div class="blk-section blk-dark" id="blkCalc" data-aos="fade-up">
+  <div class="blk-container">
+    <h3 class="blk-title">🧮 자금 계산기</h3>
+    <p class="blk-sub">타입과 대출 조건을 선택하면 필요 현금을 바로 확인</p>
+    <div class="blk-calc-row">
+      <div class="blk-calc-col"><label for="calcType">전용면적</label><select id="calcType"><option value="78" selected>78㎡ (6.3억)</option><option value="83">83㎡ (6.6억)</option><option value="84">84㎡ (6.8억)</option></select></div>
+      <div class="blk-calc-col"><label for="calcLoan">대출 조건</label><select id="calcLoan"><option value="70" selected>무주택자 70%</option><option value="80">생애최초 80%</option></select></div>
+    </div>
+    <div class="blk-calc-result" id="calcResult">
+      <dl>
+        <dt>분양가</dt><dd id="crPrice">6.3억</dd>
+        <dt>대출 가능액</dt><dd id="crLoan">4.41억</dd>
+        <dt>취득세(≈1.1%)</dt><dd id="crTax">693만</dd>
+        <dt><strong>필요 현금</strong></dt><dd id="crCash" class="em-cash">1.96억</dd>
+      </dl>
+      <div class="blk-jeonse-row">
+        <dl>
+          <dt>전세보증금</dt><dd id="crJeonse">4.7억</dd>
+          <dt>전세 갭</dt><dd id="crGap">1.6억</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ★ 블록2: 전세갭 투자 시뮬레이션 -->
+<div class="blk-section blk-light" id="blkGap" data-aos="fade-up">
+  <div class="blk-container">
+    <h3 class="blk-title">🏦 전세갭 투자 시뮬레이션</h3>
+    <p class="blk-sub">전세 보증금을 활용하면 실 투자금은 이만큼!</p>
+    <div class="blk-gap-cards">
+      <div class="blk-gap-card" data-aos="fade-up" data-aos-delay="0"><div class="type-label">78㎡</div><div class="price-tag">실투자 1.6억</div><div class="sub-info">분양가 6.3억<br>전세보증금 4.7억<br>갭 = 1.6억</div></div>
+      <div class="blk-gap-card" data-aos="fade-up" data-aos-delay="100"><div class="type-label">83㎡</div><div class="price-tag">실투자 1.6억</div><div class="sub-info">분양가 6.6억<br>전세보증금 5.0억<br>갭 = 1.6억</div></div>
+      <div class="blk-gap-card" data-aos="fade-up" data-aos-delay="200"><div class="type-label">84㎡</div><div class="price-tag">실투자 1.8억</div><div class="sub-info">분양가 6.8억<br>전세보증금 5.0억<br>갭 = 1.8억</div></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  구간 3: lp-body (리뷰~교육·인프라·교통~마켓CTA)              -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="lp-body">
+
   <section class="lp-reviews-section" data-aos="fade-up">
     <h2 class="lp-reviews-title">방문 상담 후기</h2>
     <p class="lp-reviews-sub">직접 방문하신 분들의 실제 후기입니다</p>
@@ -1173,171 +1315,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <h4>송도 월드메르디앙 교통 인프라</h4>
       <p>인천1호선 인천대입구역 도보 15분. GTX-B 노선(2031년 개통 예정): 인천대입구역 환승 → 여의도 17분, 서울역 27분. 송도트램(2032년 개통 예정): 30개역 8자 순환노선, 단지 도보권 정차. 인천3호선(계획): 송도달빛축제공원역~검단초수공원역, 총연장 34.64km. 제2외곽순환도로(계획): 인천~안산 구간 총연장 19.80km. 송도IC 인접, 제2경인고속도로·영동고속도로 진입 용이. 인천국제공항 차량 약 30분.</p>
     </div>
-
-  
-
-  </section>
-
-
-
-  <section class="lp-benefit-cta" data-aos="fade-up">
-    <h3 class="lp-benefit-cta-title">부동산은 타이밍과 가격 선점입니다</h3>
-    <p class="lp-benefit-cta-sub">동탄 GTX 착공 전에 잡은 분들은 지금 두 배 가까운 시세를 보고 있습니다</p>
-    <div class="lp-benefit-cta-list">
-      <div class="lp-benefit-cta-item"><div class="cta-icon">💰</div><div><div class="cta-label">잔여세대 한정 특별할인</div><div class="cta-value">1억 5천만원</div></div></div>
-      <div class="lp-benefit-cta-item"><div class="cta-icon">🎁</div><div><div class="cta-label">가전·가구 옵션 무상</div><div class="cta-value">3,000만원</div></div></div>
-      <div class="lp-benefit-cta-item"><div class="cta-icon">📊</div><div><div class="cta-label">2026~2027 송도 입주물량</div><div class="cta-value">0세대</div></div></div>
-    </div>
-    <div class="lp-benefit-cta-bottom">
-      <p>같은 기회가 지금 송도에 열려 있습니다 — 동·호수를 함께 확인해보세요</p>
-      <button type="button" class="lp-submit-btn js-scroll-to-register">방문예약하고 동·호수 확인하기</button>
-    </div>
-  </section>
-
-  <!-- ★ 블록5: 시세 바 차트 -->
-  <div class="blk-section blk-navy-grad" id="blkChart" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">📊 송도 주요 단지 시세 비교</h3>
-      <p class="blk-sub">월드메르디앙은 최대 <strong style="color:#ff6b6b">5.7억</strong> 이상 저렴합니다</p>
-      <div class="blk-bar-list" id="blkBarList">
-        <div class="blk-bar-item" data-width="92" data-delay="0">
-          <div class="blk-bar-label">더샵 퍼스트파크 (84㎡)</div>
-          <div class="blk-bar-track"><div class="blk-bar-fill bar-red">~12억</div></div>
-          <span class="blk-bar-badge badge-hot">최고가</span>
-        </div>
-        <div class="blk-bar-item" data-width="68" data-delay="150">
-          <div class="blk-bar-label">힐스테이트 송도 (84㎡)</div>
-          <div class="blk-bar-track"><div class="blk-bar-fill bar-orange">~8.5억</div></div>
-        </div>
-        <div class="blk-bar-item" data-width="58" data-delay="300">
-          <div class="blk-bar-label">송도 8공구 (84㎡)</div>
-          <div class="blk-bar-track"><div class="blk-bar-fill bar-blue">~7억</div></div>
-        </div>
-        <div class="blk-bar-item" data-width="52" data-delay="450">
-          <div class="blk-bar-label">★ 월드메르디앙 (78~84㎡)</div>
-          <div class="blk-bar-track"><div class="blk-bar-fill bar-gold">6.3억~</div></div>
-          <span class="blk-bar-badge badge-cool">최저가 · 특별분양</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ★ 블록7: 동탄 vs 송도 비교 -->
-  <div class="blk-section blk-light" id="blkVs" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">🏙️ 동탄 vs 송도 — 미래가치 비교</h3>
-      <p class="blk-sub">GTX 수혜 + 분양가 격차 = <strong>폭발적 상승 여력</strong></p>
-      <div class="blk-vs-grid">
-        <div class="blk-vs-card card-left">
-          <h4>동탄역 롯데캐슬</h4>
-          <div style="font-size:13px;opacity:.7">84㎡ · 2018년 준공 · GTX-A 수혜</div>
-          <div class="vs-num">~9억 → 18억+</div>
-          <div class="vs-detail">상승폭 <strong>+9억</strong><br>약 <strong>2배</strong> 상승</div>
-        </div>
-        <div class="blk-vs-card card-right">
-          <h4>송도 월드메르디앙</h4>
-          <div style="font-size:13px;opacity:.7">78~84㎡ · 2023년 준공 · GTX-B 수혜 예정</div>
-          <div class="vs-num">6.3억~ → 10~12억+</div>
-          <div class="vs-detail">예상 상승폭 <strong>+4~6억</strong><br>잠재 수익률 <strong>60~95%</strong></div>
-        </div>
-      </div>
-      <p style="text-align:center;margin-top:18px;font-size:13px;color:#999">※ 동탄 사례는 실거래 기반이며, 송도 전망은 시장 분석에 따른 예상치입니다.</p>
-    </div>
-  </div>
-
-
-
-  <section class="section-images">
-    <h3 class="lp-section-title" data-aos="fade-up">단지 배치도</h3>
-    <p class="lp-section-sub" data-aos="fade-up">1001동, 1002동, 1003동, 1004동</p>
-    <div data-aos="fade-up"><img src="landing_page_images_309_8_1771463629.webp" alt="송도 월드메르디앙 단지 배치도 - 4개동 남향 배치" loading="lazy"></div>
-    <div class="sr-only">
-      <h4>송도 월드메르디앙 단지 배치</h4>
-      <p>총 4개동 배치: 1001동, 1002동, 1003동, 1004동. 전 동 남향 배치로 일조권 확보. 동간 간격을 넓혀 프라이버시 및 조망권 확보. 지하 2층 전체 주차장 연결, 차 없는 단지 내 보행환경. 총 주차대수 259대. 단지 내 조경시설 및 어린이 놀이터, 주민운동시설 배치.</p>
-    </div>
-    <h3 class="lp-section-title" data-aos="fade-up">내부 평면도</h3>
-    <p class="lp-section-sub" data-aos="fade-up">전 세대 4베이 설계, 차별화된 마감재와 신축 품질</p>
-    <div data-aos="fade-up"><img src="landing_page_images_309_9_1771463629.webp" alt="송도 월드메르디앙 78㎡ 평면도 - 30평대 남향 4베이" loading="lazy"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_10_1771463629.webp" alt="송도 월드메르디앙 83㎡ 평면도 - 31평대 남향 4베이" loading="lazy"></div>
-    <div data-aos="fade-up"><img src="landing_page_images_309_11_1771463629.webp" alt="송도 월드메르디앙 84㎡ 평면도 - 32평대 남향 4베이" loading="lazy"></div>
-    <div class="sr-only">
-      <h4>송도 월드메르디앙 평면도 안내</h4>
-      <p>전용 78㎡(약 23.89평, 공급 101㎡): 방 3개 + 욕실 2개, 남향 4베이, 판상형 구조. 발코니 확장 시 실사용 면적 약 30평대. 전용 83㎡(약 25.16평, 공급 107㎡): 방 3개 + 욕실 2개, 남향 4베이, 넓은 거실과 주방 연결 개방형 구조. 전용 84A㎡(약 25.59평, 공급 108㎡): 방 3개 + 욕실 2개, 남향 4베이, 알파룸 활용 가능한 확장형 설계. 전 타입 공통: 남향 4베이 판상형, 발코니 확장 무상 제공, 시스템 에어컨 설치 공간 확보, 현관 중문 설치 가능 구조, 드레스룸·펜트리 수납공간. 프리미엄 마감재: 고급 도어락, 3중 로이유리, 욕실 강화유리 파티션, 주방 빌트인 가전(쿡탑·후드·식기세척기·오븐 등).</p>
-    </div>
-    <div data-aos="fade-up"><a href="tel:1533-9077" style="display:block;"><video autoplay loop muted playsinline style="width:100%;display:block;" poster="banner2.webp" preload="none"><source src="banner2.mp4" type="video/mp4"></video></a></div>
-  </section>
-
-
-  <!-- ★ 블록4: 타입별 가격·대출·필요현금 비교표 -->
-  <div class="blk-section blk-light" id="blkTypeTable" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">📋 타입별 가격·대출·필요현금 비교</h3>
-      <p class="blk-sub">78㎡ / 83㎡ / 84㎡ 한눈에 비교</p>
-      <div style="overflow-x:auto">
-        <table class="blk-type-table">
-          <thead><tr><th>항목</th><th>78㎡</th><th>83㎡</th><th>84㎡</th></tr></thead>
-          <tbody>
-            <tr><td><strong>최저 분양가</strong></td><td class="em-val">6.3억</td><td class="em-val">6.6억</td><td class="em-val">6.8억</td></tr>
-            <tr><td>전세보증금</td><td>4.7억</td><td>5.0억</td><td>5.0억</td></tr>
-            <tr><td>무주택 70%<br><small>(상한 5억)</small></td><td>4.41억</td><td>4.62억</td><td>4.76억</td></tr>
-            <tr><td>생애최초 80%<br><small>(상한 5억)</small></td><td>5.0억<br><small style="color:#d60000">한도적용</small></td><td>5.0억<br><small style="color:#d60000">한도적용</small></td><td>5.0억<br><small style="color:#d60000">한도적용</small></td></tr>
-            <tr><td><strong>필요현금</strong><br><small>무주택 70%</small></td><td class="em-val">1.89억</td><td class="em-val">1.98억</td><td class="em-val">2.04억</td></tr>
-            <tr><td><strong>필요현금</strong><br><small>생애최초 80%</small></td><td class="em-val">1.3억</td><td class="em-val">1.6억</td><td class="em-val">1.8억</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="blk-type-note">※ 대출 상한 5억 적용 · 취득세 약 1.1% 포함 · 실제 조건은 개인별 상이</p>
-    </div>
-  </div>
-
-  <!-- ★ 블록1: 자금 계산기 -->
-  <div class="blk-section blk-dark" id="blkCalc" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">🧮 자금 계산기</h3>
-      <p class="blk-sub">타입과 대출 조건을 선택하면 필요 현금을 바로 확인</p>
-      <div class="blk-calc-row">
-        <div class="blk-calc-col"><label for="calcType">전용면적</label><select id="calcType"><option value="78" selected>78㎡ (6.3억)</option><option value="83">83㎡ (6.6억)</option><option value="84">84㎡ (6.8억)</option></select></div>
-        <div class="blk-calc-col"><label for="calcLoan">대출 조건</label><select id="calcLoan"><option value="70" selected>무주택자 70%</option><option value="80">생애최초 80%</option></select></div>
-      </div>
-      <div class="blk-calc-result" id="calcResult">
-        <dl>
-          <dt>분양가</dt><dd id="crPrice">6.3억</dd>
-          <dt>대출 가능액</dt><dd id="crLoan">4.41억</dd>
-          <dt>취득세(≈1.1%)</dt><dd id="crTax">693만</dd>
-          <dt><strong>필요 현금</strong></dt><dd id="crCash" class="em-cash">1.96억</dd>
-        </dl>
-        <div class="blk-jeonse-row">
-          <dl>
-            <dt>전세보증금</dt><dd id="crJeonse">4.7억</dd>
-            <dt>전세 갭</dt><dd id="crGap">1.6억</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ★ 블록2: 전세갭 투자 시뮬레이션 -->
-  <div class="blk-section blk-light" id="blkGap" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">🏦 전세갭 투자 시뮬레이션</h3>
-      <p class="blk-sub">전세 보증금을 활용하면 실 투자금은 이만큼!</p>
-      <div class="blk-gap-cards">
-        <div class="blk-gap-card" data-aos="fade-up" data-aos-delay="0"><div class="type-label">78㎡</div><div class="price-tag">실투자 1.6억</div><div class="sub-info">분양가 6.3억<br>전세보증금 4.7억<br>갭 = 1.6억</div></div>
-        <div class="blk-gap-card" data-aos="fade-up" data-aos-delay="100"><div class="type-label">83㎡</div><div class="price-tag">실투자 1.6억</div><div class="sub-info">분양가 6.6억<br>전세보증금 5.0억<br>갭 = 1.6억</div></div>
-        <div class="blk-gap-card" data-aos="fade-up" data-aos-delay="200"><div class="type-label">84㎡</div><div class="price-tag">실투자 1.8억</div><div class="sub-info">분양가 6.8억<br>전세보증금 5.0억<br>갭 = 1.8억</div></div>
-      </div>
-    </div>
-  </div>
-
-
-  <section class="lp-faq-section" data-aos="fade-up">
-    <h2 class="lp-faq-title">자주 묻는 질문</h2>
-    <p class="lp-faq-sub">궁금한 사항을 확인해 보세요</p>
-    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 송도 월드메르디앙 분양가는 얼마인가요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">전용 78·83·84㎡ 30평대 기준 6억원대부터 특별할인 분양 중입니다. 기존 7억대 중반 대비 1억 이상 할인 혜택이 적용되며, 발코니 확장 무상 및 3,000만원 상당의 무상옵션이 포함됩니다.</div></div></div>
-    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 송도 월드메르디앙 위치와 교통은 어떤가요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치합니다. 인천대입구역 도보 15분 거리이며, GTX-B 노선 착공 확정으로 향후 서울역까지 약 25분대 접근이 가능해질 예정입니다. 또한 인천3호선, 송도트램(2032년 예정), 제2외곽순환도로 등 다양한 교통 호재가 예정되어 있습니다.</div></div></div>
-    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 모델하우스 방문예약은 어떻게 하나요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">모델하우스는 방문예약제로 운영됩니다. 대표번호 1533-9077로 전화하시거나 홈페이지에서 온라인 방문예약을 신청하시면 전문 상담사가 빠르게 연락드립니다.</div></div></div>
-    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 즉시입주가 가능한가요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">네, 2023년 10월 준공 완료된 신축 아파트로 즉시 입주가 가능합니다. 입주지원금 1억 이상(분양가 대비 15% 효과), 계약금 정액제 등 파격적인 입주 혜택이 제공됩니다.</div></div></div>
-    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 단지 규모와 타입은 어떻게 되나요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">지하 2층~지상 10층, 총 4개동 128세대 규모의 주상복합 단지입니다. 전용 78㎡(23.89평/32세대), 83㎡(25.16평/64세대), 84A㎡(25.59평/31세대), 84A-1㎡(25.59평/1세대) 4개 타입으로 구성되어 있으며, 전 세대 남향 4베이 설계로 채광과 통풍이 우수합니다. 주차는 총 259대(세대당 약 1.13대+근린생활시설 74대, 판매시설 40대)입니다.</div></div></div>
   </section>
 
   <section class="lp-benefit-cta lp-market-cta" data-aos="fade-up" style="background:#1a1a1a;border-color:#1a1a1a;">
@@ -1355,59 +1332,80 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </section>
 
+</div><!-- /.lp-body 구간3 닫기 -->
 
-  <!-- ★ 블록6: 자가진단 퀴즈 -->
-  <div class="blk-section blk-dark" id="blkQuiz" data-aos="fade-up">
-    <div class="blk-container">
-      <h3 class="blk-title">🧪 나에게 맞는 아파트일까?</h3>
-      <p class="blk-sub">4가지 질문으로 송도 월드메르디앙 적합도를 확인하세요</p>
-      <div class="blk-quiz-step active" data-step="1">
-        <div class="blk-quiz-q">Q1. 현재 주택 보유 상태는?</div>
-        <div class="blk-quiz-opts">
-          <button class="blk-quiz-opt" data-score="3">무주택자입니다</button>
-          <button class="blk-quiz-opt" data-score="2">1주택 보유 (갈아타기 희망)</button>
-          <button class="blk-quiz-opt" data-score="1">다주택자입니다</button>
-        </div>
-        <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:25%"></div></div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  ★ ACTION 블록: 자가진단 퀴즈 (최종 넛지)                    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+
+<!-- ★ 블록6: 자가진단 퀴즈 -->
+<div class="blk-section blk-dark" id="blkQuiz" data-aos="fade-up">
+  <div class="blk-container">
+    <h3 class="blk-title">🧪 나에게 맞는 아파트일까?</h3>
+    <p class="blk-sub">4가지 질문으로 송도 월드메르디앙 적합도를 확인하세요</p>
+    <div class="blk-quiz-step active" data-step="1">
+      <div class="blk-quiz-q">Q1. 현재 주택 보유 상태는?</div>
+      <div class="blk-quiz-opts">
+        <button class="blk-quiz-opt" data-score="3">무주택자입니다</button>
+        <button class="blk-quiz-opt" data-score="2">1주택 보유 (갈아타기 희망)</button>
+        <button class="blk-quiz-opt" data-score="1">다주택자입니다</button>
       </div>
-      <div class="blk-quiz-step" data-step="2">
-        <div class="blk-quiz-q">Q2. 예산 범위(자기자본+대출)는?</div>
-        <div class="blk-quiz-opts">
-          <button class="blk-quiz-opt" data-score="3">6~7억 이내</button>
-          <button class="blk-quiz-opt" data-score="2">7~9억 이내</button>
-          <button class="blk-quiz-opt" data-score="1">9억 이상</button>
-        </div>
-        <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:50%"></div></div>
+      <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:25%"></div></div>
+    </div>
+    <div class="blk-quiz-step" data-step="2">
+      <div class="blk-quiz-q">Q2. 예산 범위(자기자본+대출)는?</div>
+      <div class="blk-quiz-opts">
+        <button class="blk-quiz-opt" data-score="3">6~7억 이내</button>
+        <button class="blk-quiz-opt" data-score="2">7~9억 이내</button>
+        <button class="blk-quiz-opt" data-score="1">9억 이상</button>
       </div>
-      <div class="blk-quiz-step" data-step="3">
-        <div class="blk-quiz-q">Q3. 입주 희망 시기는?</div>
-        <div class="blk-quiz-opts">
-          <button class="blk-quiz-opt" data-score="3">즉시 입주 원합니다</button>
-          <button class="blk-quiz-opt" data-score="2">6개월~1년 내</button>
-          <button class="blk-quiz-opt" data-score="1">1년 이상 여유 있음</button>
-        </div>
-        <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:75%"></div></div>
+      <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:50%"></div></div>
+    </div>
+    <div class="blk-quiz-step" data-step="3">
+      <div class="blk-quiz-q">Q3. 입주 희망 시기는?</div>
+      <div class="blk-quiz-opts">
+        <button class="blk-quiz-opt" data-score="3">즉시 입주 원합니다</button>
+        <button class="blk-quiz-opt" data-score="2">6개월~1년 내</button>
+        <button class="blk-quiz-opt" data-score="1">1년 이상 여유 있음</button>
       </div>
-      <div class="blk-quiz-step" data-step="4">
-        <div class="blk-quiz-q">Q4. 교통 호재(GTX-B 등)에 관심이?</div>
-        <div class="blk-quiz-opts">
-          <button class="blk-quiz-opt" data-score="3">매우 중요합니다</button>
-          <button class="blk-quiz-opt" data-score="2">보통입니다</button>
-          <button class="blk-quiz-opt" data-score="1">크게 상관없습니다</button>
-        </div>
-        <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:100%"></div></div>
+      <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:75%"></div></div>
+    </div>
+    <div class="blk-quiz-step" data-step="4">
+      <div class="blk-quiz-q">Q4. 교통 호재(GTX-B 등)에 관심이?</div>
+      <div class="blk-quiz-opts">
+        <button class="blk-quiz-opt" data-score="3">매우 중요합니다</button>
+        <button class="blk-quiz-opt" data-score="2">보통입니다</button>
+        <button class="blk-quiz-opt" data-score="1">크게 상관없습니다</button>
       </div>
-      <div class="blk-quiz-step blk-quiz-result" data-step="result">
-        <div class="result-score" id="quizScoreDisp">0%</div>
-        <div class="result-label" id="quizLabel">분석 중…</div>
-        <div class="result-desc" id="quizDesc"></div>
-        <a href="#reserve-bottom" class="blk-quiz-cta">📞 맞춤 상담 예약하기</a>
-      </div>
+      <div class="blk-quiz-progress"><div class="blk-quiz-progress-bar" style="width:100%"></div></div>
+    </div>
+    <div class="blk-quiz-step blk-quiz-result" data-step="result">
+      <div class="result-score" id="quizScoreDisp">0%</div>
+      <div class="result-label" id="quizLabel">분석 중…</div>
+      <div class="result-desc" id="quizDesc"></div>
+      <a href="#reserve-bottom" class="blk-quiz-cta">📞 맞춤 상담 예약하기</a>
     </div>
   </div>
+</div>
 
 
-  <!-- ★ 수정: 하단 폼 – [자세히] 링크를 label 바깥으로 이동 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  구간 4: lp-body (FAQ~하단폼~sr-only)                       -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="lp-body">
+
+  <section class="lp-faq-section" data-aos="fade-up">
+    <h2 class="lp-faq-title">자주 묻는 질문</h2>
+    <p class="lp-faq-sub">궁금한 사항을 확인해 보세요</p>
+    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 송도 월드메르디앙 분양가는 얼마인가요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">전용 78·83·84㎡ 30평대 기준 6억원대부터 특별할인 분양 중입니다. 기존 7억대 중반 대비 1억 이상 할인 혜택이 적용되며, 발코니 확장 무상 및 3,000만원 상당의 무상옵션이 포함됩니다.</div></div></div>
+    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 송도 월드메르디앙 위치와 교통은 어떤가요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치합니다. 인천대입구역 도보 15분 거리이며, GTX-B 노선 착공 확정으로 향후 서울역까지 약 25분대 접근이 가능해질 예정입니다. 또한 인천3호선, 송도트램(2032년 예정), 제2외곽순환도로 등 다양한 교통 호재가 예정되어 있습니다.</div></div></div>
+    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 모델하우스 방문예약은 어떻게 하나요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">모델하우스는 방문예약제로 운영됩니다. 대표번호 1533-9077로 전화하시거나 홈페이지에서 온라인 방문예약을 신청하시면 전문 상담사가 빠르게 연락드립니다.</div></div></div>
+    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 즉시입주가 가능한가요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">네, 2023년 10월 준공 완료된 신축 아파트로 즉시 입주가 가능합니다. 입주지원금 1억 이상(분양가 대비 15% 효과), 계약금 정액제 등 파격적인 입주 혜택이 제공됩니다.</div></div></div>
+    <div class="lp-faq-item"><div class="lp-faq-q"><span>Q. 단지 규모와 타입은 어떻게 되나요?</span><span class="faq-icon">+</span></div><div class="lp-faq-a"><div class="lp-faq-a-inner">지하 2층~지상 10층, 총 4개동 128세대 규모의 주상복합 단지입니다. 전용 78㎡(23.89평/32세대), 83㎡(25.16평/64세대), 84A㎡(25.59평/31세대), 84A-1㎡(25.59평/1세대) 4개 타입으로 구성되어 있으며, 전 세대 남향 4베이 설계로 채광과 통풍이 우수합니다. 주차는 총 259대(세대당 약 1.13대+근린생활시설 74대, 판매시설 40대)입니다.</div></div></div>
+  </section>
+
+  <!-- 하단 폼 -->
   <div id="reserve-bottom">
     <section class="lp-reserve-wrap" data-aos="fade-up">
       <h2 class="lp-reserve-title">관심고객 등록</h2>
@@ -1429,7 +1427,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </section>
   </div>
 
-<section class="sr-only" aria-label="분양 상세 안내">
+  <section class="sr-only" aria-label="분양 상세 안내">
     <h2>송도 월드메르디앙 분양 안내</h2>
     <p>송도 월드메르디앙은 인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치한 2023년 준공 주상복합 신축 아파트입니다. 대지면적 6,628㎡, 건축면적 3,308㎡, 연면적 29,704㎡, 건폐율 49.92%, 용적률 279.55% 규모입니다. 지하 2층~지상 10층, 총 4개동 128세대로 전용면적 78㎡, 83㎡, 84A㎡, 84A-1㎡ 4가지 타입을 공급하며, 전 세대 남향 4베이 설계로 채광과 통풍이 우수합니다.</p>
     <p>송도는 대한민국에서 유일하게 국가 전략으로 설계된 국제도시입니다. 삼성바이오로직스, 셀트리온 등 바이오 산업 세계 1위 클러스터가 집결해 있으며, 해외 직접투자 8조 원 이상이 유치된 도시입니다. IBD 국제업무지구 도보 접근 가능한 직주근접 최적 입지에 위치합니다.</p>
@@ -1438,9 +1436,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     <p>현재 잔여세대 한정 1억 5천만원 특별할인이 적용되고 있으며, 발코니 확장 무상, 3,000만원 상당의 무상옵션, 즉시입주 가능 등 파격적인 분양 혜택이 제공됩니다. 모델하우스는 방문예약제로 운영되며, 대표번호 1533-9077로 문의하시면 전문 상담사의 맞춤형 상담을 받으실 수 있습니다.</p>
   </section>
 
-
-</div>
-</div>
+</div><!-- /.lp-body 구간4 닫기 -->
+</div><!-- /#lp-wrap -->
 
 <footer class="lp-footer">
   <div class="lp-footer-inner">
@@ -1485,7 +1482,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       <input type="hidden" name="entry.929183790" id="real_phone_float">
     </div>
     <input type="hidden" name="entry.716000199" class="js-source-field">
-    <!-- ★ 수정: 플로팅 폼 – [자세히] 링크를 label 바깥으로 이동 -->
     <div class="lp-float-inner-row lp-float-privacy">
       <label>
         <input type="checkbox" name="entry.1692797403" value="네 동의합니다." required>
@@ -1502,7 +1498,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 <!-- ═══════════ 팝업 3개 (popup2.mp4 + popup4.webp + popup-wine.webp) ═══════════ -->
 <div class="lp-slide-popup" id="lpSlidePopup">
   <div class="lp-slide-popup-container">
-    <!-- 팝업 1: 영상 -->
     <div class="lp-slide-popup-inner lp-popup-card" id="popupInner1" data-has-link="0">
       <button type="button" class="lp-slide-popup-close lp-popup-card-close" onclick="closePopup(1)">×</button>
       <a href="#" class="lp-popup-link">
@@ -1512,13 +1507,11 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
       </a>
       <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" onchange="closePopupToday(1)"> 오늘 하루 보지 않기</label></div>
     </div>
-    <!-- 팝업 2: 이미지 -->
     <div class="lp-slide-popup-inner lp-popup-card" id="popupInner2" data-has-link="0">
       <button type="button" class="lp-slide-popup-close lp-popup-card-close" onclick="closePopup(2)">×</button>
       <a href="tel:1533-9077" class="lp-popup-link"><img src="popup4.webp" alt="송도 월드메르디앙 특별분양 안내 팝업" loading="lazy"></a>
       <div class="lp-popup-today"><label><input type="checkbox" class="lp-popup-today-chk" onchange="closePopupToday(2)"> 오늘 하루 보지 않기</label></div>
     </div>
-    <!-- 팝업 3: 와인 이벤트 (NEW) -->
     <div class="lp-slide-popup-inner lp-popup-card" id="popupInner3" data-has-link="0">
       <button type="button" class="lp-slide-popup-close lp-popup-card-close" onclick="closePopup(3)">×</button>
       <a href="#" class="lp-popup-link lp-popup-wine-cta">
@@ -1528,7 +1521,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </div>
 </div>
-
 
 <!-- ═══════════ Exit-intent 팝업 (PC 전용) ═══════════ -->
 <div class="lp-slide-popup" id="lpExitPopup">
@@ -1620,7 +1612,6 @@ function validateForm(id){
   var phone = document.getElementById('real_phone_' + id).value;
   if(phone.length < 10){ alert('올바른 전화번호를 입력해주세요.'); return false; }
   
-  // Google Ads 전환 이벤트 전송
   if(typeof gtag === 'function'){
     gtag('event', 'conversion', {
       'send_to': 'AW-11324266200/91H7CM_CgIocENit6pcq',
@@ -1633,7 +1624,6 @@ function validateForm(id){
 }
 </script>
 
-
 <!-- ── 유입경로 판별 + 검색어 추출 + 히든 필드 세팅 ── -->
 <script>
 (function(){
@@ -1641,7 +1631,6 @@ function validateForm(id){
   var ref    = document.referrer || '';
   var src    = '';
 
-  /* ── 유입 소스 판별 (기존 로직 그대로) ── */
   if(ref.indexOf('ader.naver.com')>-1){                          src='네이버 검색광고';
   }else if(ref.indexOf('search.naver.com')>-1||ref.indexOf('m.search.naver.com')>-1){ src='네이버 자연검색';
   }else if(ref.indexOf('naver.com')>-1){                         src='네이버 기타';
@@ -1662,7 +1651,6 @@ function validateForm(id){
   if(utmSrc) src=utmSrc+( params.get('utm_medium')?' / '+params.get('utm_medium'):'');
   if(!src) src='직접방문';
 
-  /* ── ★ 검색어 추출 (신규 추가) ── */
   var keyword = params.get('utm_term')
              || params.get('keyword')
              || params.get('q')
@@ -1695,7 +1683,6 @@ function validateForm(id){
     try{ keyword = decodeURIComponent(keyword); }catch(e){}
   }
 
-  /* ── 히든 필드에 소스 + 검색어 기록 ── */
   var sourceValue = src;
   if(keyword) sourceValue += ' | 검색어: ' + keyword;
 
@@ -1708,7 +1695,6 @@ function validateForm(id){
   console.log('[유입경로-폼]', src, '| 검색어:', keyword||'(없음)', '| referrer=', ref);
 })();
 </script>
-
 
 <!-- ── 초기화: AOS, 헤더 스크롤, vh 보정 ── -->
 <script>
@@ -1730,14 +1716,12 @@ document.addEventListener('DOMContentLoaded',function(){
 (function(){
   var l=document.getElementById('lpPrivacyLayer'),c=document.getElementById('lpPrivacyClose');
 
-  /* [자세히] 링크에 직접 이벤트를 걸어 stopPropagation으로 label 전파 차단 */
   document.querySelectorAll('.lp-privacy-more').forEach(function(a){
     a.addEventListener('click', function(e){
       e.preventDefault();
       e.stopPropagation();
       if(l) l.style.display = 'flex';
     });
-    /* 모바일 터치 이벤트도 차단 */
     a.addEventListener('touchend', function(e){
       e.preventDefault();
       e.stopPropagation();
@@ -1960,7 +1944,6 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   setTimeout(show, 1500);
 })();
 </script>
-
 
 <!-- ── Premium 6 탭 인터랙션 ── -->
 <script>
@@ -2299,7 +2282,6 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 })();
 </script>
 
-
 <!-- ★ 블록 JS: 자금계산기 -->
 <script>
 (function(){
@@ -2372,12 +2354,10 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 })();
 </script>
 
-
 <!-- ═══════════ 보안: 우클릭·소스보기·개발자도구 차단 ═══════════ -->
 <script>
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 
-/* ★ selectstart: input, label, checkbox 영역은 예외 처리 */
 document.addEventListener('selectstart', function(e){
   var tag = e.target.tagName;
   if(tag === 'INPUT' || tag === 'LABEL' || tag === 'TEXTAREA' || tag === 'SELECT') return;

@@ -1429,14 +1429,15 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </section>
   </div>
 
-  <section class="sr-only" aria-label="분양 상세 안내">
+<section class="sr-only" aria-label="분양 상세 안내">
     <h2>송도 월드메르디앙 분양 안내</h2>
     <p>송도 월드메르디앙은 인천광역시 연수구 송도동 21-16(신송로 165-17), 송도국제도시 1공구에 위치한 2023년 준공 주상복합 신축 아파트입니다. 대지면적 6,628㎡, 건축면적 3,308㎡, 연면적 29,704㎡, 건폐율 49.92%, 용적률 279.55% 규모입니다. 지하 2층~지상 10층, 총 4개동 128세대로 전용면적 78㎡, 83㎡, 84A㎡, 84A-1㎡ 4가지 타입을 공급하며, 전 세대 남향 4베이 설계로 채광과 통풍이 우수합니다.</p>
     <p>송도는 대한민국에서 유일하게 국가 전략으로 설계된 국제도시입니다. 삼성바이오로직스, 셀트리온 등 바이오 산업 세계 1위 클러스터가 집결해 있으며, 해외 직접투자 8조 원 이상이 유치된 도시입니다. IBD 국제업무지구 도보 접근 가능한 직주근접 최적 입지에 위치합니다.</p>
-    <p>GTX-B 노선 2025년 착공, 2031년 개통 목표로 전 구간 공사가 진행 중이며, 개통 시 송도에서 여의도·용산까지 20분대 접근이 가능해집니다. 2026년 12월 인천발 KTX가 개통되면 송도역에서 부산까지 2시간 20분 소요됩니다. 송도트램 국토부 승인 완료, 인천지하철 3호선 추진 중, 수도권 제2외곽순환고속도로 추진 예정으로 교통 호재가 동시에 쏟아    <p>GTX-B 노선 2025년 착공, 2031년 개통 목표로 전 구간 공사가 진행 중이며, 개통 시 송도에서 여의도·용산까지 20분대 접근이 가능해집니다. 2026년 12월 인천발 KTX가 개통되면 송도역에서 부산까지 2시간 20분 소요됩니다. 송도트램 국토부 승인 완료, 인천지하철 3호선 추진 중, 수도권 제2외곽순환고속도로 추진 예정으로 교통 호재가 동시에 쏟아지고 있습니다.</p>
+    <p>GTX-B 노선 2025년 착공, 2031년 개통 목표로 전 구간 공사가 진행 중이며, 개통 시 송도에서 여의도·용산까지 20분대 접근이 가능해집니다. 2026년 12월 인천발 KTX가 개통되면 송도역에서 부산까지 2시간 20분 소요됩니다. 송도트램 국토부 승인 완료, 인천지하철 3호선 추진 중, 수도권 제2외곽순환고속도로 추진 예정으로 교통 호재가 동시에 쏟아지고 있습니다.</p>
     <p>동탄역 롯데캐슬은 GTX-A 착공 전 84기준 9억대에서 개통 후 18억을 돌파했습니다. 송도는 지금 GTX 착공 전의 동탄과 같은 시점에 있습니다. 같은 송도 1공구 대장 아파트가 10~12억, 3공구 G5블록 분양 예정가가 11~12억대인 반면, 월드메르디앙은 6억대입니다. 부동산R114 기준 송도는 2026~2027년 입주 물량이 0세대로 공급 공백기에 진입했습니다.</p>
     <p>현재 잔여세대 한정 1억 5천만원 특별할인이 적용되고 있으며, 발코니 확장 무상, 3,000만원 상당의 무상옵션, 즉시입주 가능 등 파격적인 분양 혜택이 제공됩니다. 모델하우스는 방문예약제로 운영되며, 대표번호 1533-9077로 문의하시면 전문 상담사의 맞춤형 상담을 받으실 수 있습니다.</p>
   </section>
+
 
 </div>
 </div>
@@ -2321,27 +2322,6 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
     document.getElementById('crGap').textContent=fmtEok(gap);
   }
   if(typeEl&&loanEl){typeEl.addEventListener('change',calc);loanEl.addEventListener('change',calc);calc();}
-})();
-</script>
-
-<!-- ★ 블록 JS: 교통 타임라인 슬롯머신 -->
-<script>
-(function(){
-  var items=document.querySelectorAll('.blk-tl-item');
-  if(!items.length)return;
-  var now=new Date();
-  function animateSlot(item){
-    var target=new Date(item.getAttribute('data-target'));
-    var diff=Math.max(0,Math.ceil((target-now)/(1000*60*60*24)));
-    if(diff<=0){item.classList.add('past');var lb=item.querySelector('.blk-slot-label');if(lb)lb.textContent='개통 완료!';}
-    var str=String(diff).padStart(4,'0');
-    var digits=item.querySelectorAll('.blk-slot-digit .digit-inner');
-    digits.forEach(function(d,i){if(i<str.length){d.textContent=str[i];d.style.animationDelay=(i*0.15)+'s';}});
-  }
-  if('IntersectionObserver' in window){
-    var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){animateSlot(entry.target);obs.unobserve(entry.target);}});},{threshold:0.3});
-    items.forEach(function(item){obs.observe(item);});
-  }else{items.forEach(animateSlot);}
 })();
 </script>
 

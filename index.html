@@ -711,7 +711,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   }
 }
 
-/* ★ 수정: 체크박스 터치 영역 확대 + label 바깥 [자세히] 링크 레이아웃 */
+/* ★ FIX: 체크박스 터치 영역 확대 + label 바깥 [자세히] 링크 레이아웃 */
 @media screen and (max-width: 768px) {
 
   .lp-privacy-line,
@@ -724,6 +724,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     margin-right: 0;
     position: relative;
     z-index: 1100;
+    /* ★ FIX: 독립 스태킹 컨텍스트 생성하여 다른 요소에 가려지지 않도록 */
+    isolation: isolate;
   }
 
   .lp-privacy-line .lp-privacy-more,
@@ -745,6 +747,10 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     -webkit-tap-highlight-color: rgba(0,0,0,0.05);
     user-select: none;
     -webkit-user-select: none;
+    /* ★ FIX: label 자체의 z-index 보장 */
+    position: relative;
+    z-index: 1101;
+    min-height: 44px;
   }
 
   .lp-privacy-line input[type="checkbox"],
@@ -757,6 +763,9 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     flex-shrink: 0;
     accent-color: #2b6cb0;
     pointer-events: auto !important;
+    /* ★ FIX: 체크박스가 최상위에서 터치 가능하도록 */
+    position: relative;
+    z-index: 1102;
   }
 
   .lp-privacy-line *,
@@ -764,6 +773,46 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     -webkit-user-select: auto !important;
     user-select: auto !important;
     touch-action: manipulation !important;
+  }
+}
+
+/* ★ FIX: 토스트/말풍선이 폼 위를 가리지 않도록 숨김 클래스 */
+@media (max-width: 1023px) {
+  .lp-resv-bubble-fixed.hide-for-form {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .lp-toast-wrap.hide-for-form {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+}
+
+/* ★ FIX: 예약 폼이 다른 오버레이 요소보다 위에 오도록 */
+.lp-reserve-wrap {
+  position: relative;
+  z-index: 10;
+}
+
+/* ★ FIX: 체크박스와 버튼 사이 충분한 간격 확보 */
+@media screen and (max-width: 768px) {
+  .lp-privacy-line {
+    margin-bottom: 20px !important;
+  }
+  .lp-float-privacy {
+    margin-bottom: 20px !important;
+  }
+  .lp-submit-wrap {
+    margin-top: 0 !important;
+    padding-top: 0;
+  }
+  .lp-float-submit {
+    margin-top: 0 !important;
+    padding-top: 0;
   }
 }
 
@@ -2375,6 +2424,12 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
   var FIRST_DELAY = 5000;
 
   function showToast(){
+    /* ★ FIX: 폼이 화면에 보이면 토스트를 건너뜀 */
+    if(wrapEl.classList.contains('hide-for-form')){
+      setTimeout(showToast, 3000);
+      return;
+    }
+
     var msg = messages[idx % messages.length];
     idx++;
     textEl.innerHTML = '<strong>' + msg.area + ' ' + msg.name + '</strong>님이 방문예약을 등록했습니다.'
@@ -2586,13 +2641,14 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 </script>
 
 <!-- ═══════════ 보안: 우클릭·소스보기·개발자도구 차단 ═══════════ -->
+<!-- ★ FIX: 보안 스크립트에서 체크박스/label/폼 요소의 이벤트가 차단되지 않도록 예외 강화 -->
 <script>
 document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
 
 document.addEventListener('selectstart', function(e){
   var tag = e.target.tagName;
-  if(tag === 'INPUT' || tag === 'LABEL' || tag === 'TEXTAREA' || tag === 'SELECT') return;
-  if(e.target.closest && (e.target.closest('label') || e.target.closest('.lp-privacy-line') || e.target.closest('.lp-float-privacy') || e.target.closest('.lp-popup-today'))) return;
+  if(tag === 'INPUT' || tag === 'LABEL' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'SPAN') return;
+  if(e.target.closest && (e.target.closest('label') || e.target.closest('form') || e.target.closest('.lp-privacy-line') || e.target.closest('.lp-float-privacy') || e.target.closest('.lp-popup-today') || e.target.closest('.lp-reserve-wrap') || e.target.closest('.lp-float-form'))) return;
   e.preventDefault();
 });
 
@@ -2646,8 +2702,7 @@ document.addEventListener('keydown', function(e){
 
 (function(){
   var style = document.createElement('style');
-style.textContent = 'img{-webkit-user-drag:none;user-select:none;pointer-events:none;}a img,.ig-swiper img{pointer-events:auto;}';
-
+  style.textContent = 'img{-webkit-user-drag:none;user-select:none;pointer-events:none;}a img,.ig-swiper img{pointer-events:auto;}';
   document.head.appendChild(style);
 })();
 </script>
@@ -2722,6 +2777,63 @@ style.textContent = 'img{-webkit-user-drag:none;user-select:none;pointer-events:
   document.addEventListener('keydown', function(e){
     if(lb && lb.classList.contains('show') && e.key === 'Escape') lb.classList.remove('show');
   });
+})();
+</script>
+
+<!-- ★ FIX: 폼 영역이 화면에 보일 때 토스트/말풍선 자동 숨김 -->
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)) return;
+
+  var bubble = document.querySelector('.lp-resv-bubble-fixed');
+  var toast  = document.getElementById('lpToastWrap');
+  var formSections = document.querySelectorAll('.lp-reserve-wrap');
+
+  var visibleSet = new Set();
+
+  function updateVisibility(){
+    var anyFormVisible = visibleSet.size > 0;
+    if(anyFormVisible){
+      if(bubble) bubble.classList.add('hide-for-form');
+      if(toast)  toast.classList.add('hide-for-form');
+    } else {
+      if(bubble) bubble.classList.remove('hide-for-form');
+      if(toast)  toast.classList.remove('hide-for-form');
+    }
+  }
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        visibleSet.add(entry.target);
+      } else {
+        visibleSet.delete(entry.target);
+      }
+    });
+    updateVisibility();
+  }, {
+    threshold: 0,
+    rootMargin: '0px 0px -60px 0px'
+  });
+
+  formSections.forEach(function(el){
+    observer.observe(el);
+  });
+
+  /* 플로팅 폼이 열릴 때도 숨김 처리 */
+  var floatForm = document.getElementById('lpFloatForm');
+  if(floatForm){
+    var mo = new MutationObserver(function(){
+      if(floatForm.classList.contains('active')){
+        if(bubble) bubble.classList.add('hide-for-form');
+        if(toast)  toast.classList.add('hide-for-form');
+      } else if(visibleSet.size === 0) {
+        if(bubble) bubble.classList.remove('hide-for-form');
+        if(toast)  toast.classList.remove('hide-for-form');
+      }
+    });
+    mo.observe(floatForm, { attributes: true, attributeFilter: ['class'] });
+  }
 })();
 </script>
 

@@ -1905,37 +1905,111 @@ function validateForm(id){
 </script>
 
 <!-- ── 유입경로 판별 + 검색어 추출 + 히든 필드 세팅 ── -->
+<!-- ★ FIX: 네이버 검색광고 파라미터(n_media, n_query 등) 감지 추가 -->
 <script>
 (function(){
   var params = new URLSearchParams(location.search);
   var ref    = document.referrer || '';
   var src    = '';
+  var keyword = '';
 
-  if(ref.indexOf('ader.naver.com')>-1){                          src='네이버 검색광고';
-  }else if(ref.indexOf('search.naver.com')>-1||ref.indexOf('m.search.naver.com')>-1){ src='네이버 자연검색';
-  }else if(ref.indexOf('naver.com')>-1){                         src='네이버 기타';
-  }else if(ref.indexOf('googleads')>-1||params.get('gclid')){    src='구글 검색광고';
-  }else if(ref.indexOf('google.')>-1){                           src='구글 자연검색';
-  }else if(ref.indexOf('daum.net')>-1||ref.indexOf('kakao.com')>-1){ src='다음/카카오';
-  }else if(ref.indexOf('youtube.com')>-1){                       src='유튜브';
-  }else if(ref.indexOf('instagram.com')>-1){                     src='인스타그램';
-  }else if(ref.indexOf('facebook.com')>-1||ref.indexOf('fb.com')>-1){ src='페이스북';
-  }else if(ref.indexOf('blog.naver.com')>-1){                    src='네이버블로그';
-  }else if(ref.indexOf('cafe.naver.com')>-1){                    src='네이버카페';
-  }else if(ref.indexOf('band.us')>-1){                           src='밴드';
-  }else if(ref.indexOf('bing.com')>-1){                          src='빙';
-  }else if(ref){                                                  src=ref;
+  /* ── 1단계: URL 파라미터로 네이버 검색광고 판별 (가장 정확) ── */
+  var nMedia  = params.get('n_media');
+  var nQuery  = params.get('n_query');
+  var nRank   = params.get('n_rank');
+  var nAdId   = params.get('n_ad_group');
+  var nCampaign = params.get('n_campaign_type');
+
+  /* 네이버 검색광고는 n_media=27758 (검색) 또는 다른 값으로 구분 */
+  if(nMedia || nAdId || nCampaign){
+    if(nMedia === '27758'){
+      src = '네이버 검색광고(SA)';
+    } else if(nMedia === '27759'){
+      src = '네이버 쇼핑검색광고';
+    } else if(nMedia === '36683' || nMedia === '57962'){
+      src = '네이버 성과형디스플레이(GFA)';
+    } else {
+      src = '네이버 광고(n_media=' + (nMedia||'unknown') + ')';
+    }
+    if(nQuery){
+      try{ keyword = decodeURIComponent(nQuery); }catch(e){ keyword = nQuery; }
+    }
   }
 
-  var utmSrc=params.get('utm_source');
-  if(utmSrc) src=utmSrc+( params.get('utm_medium')?' / '+params.get('utm_medium'):'');
-  if(!src) src='직접방문';
+  /* ── 2단계: UTM 파라미터 확인 ── */
+  if(!src){
+    var utmSrc = (params.get('utm_source') || '').toLowerCase();
+    var utmMedium = (params.get('utm_medium') || '').toLowerCase();
+    var utmCampaign = params.get('utm_campaign') || '';
+    var utmTerm = params.get('utm_term') || '';
 
-  var keyword = params.get('utm_term')
-             || params.get('keyword')
-             || params.get('q')
-             || params.get('query')
-             || '';
+    if(utmSrc === 'naver' && utmMedium === 'cpc'){
+      src = '네이버 검색광고(UTM)';
+      if(utmTerm) keyword = utmTerm;
+    } else if(utmSrc === 'google' && utmMedium === 'cpc'){
+      src = '구글 검색광고(UTM)';
+      if(utmTerm) keyword = utmTerm;
+    } else if(utmSrc === 'naver' && utmMedium === 'display'){
+      src = '네이버 GFA(UTM)';
+    } else if(utmSrc){
+      src = utmSrc + (utmMedium ? ' / ' + utmMedium : '');
+      if(utmTerm) keyword = utmTerm;
+    }
+  }
+
+  /* ── 3단계: gclid (구글 광고) 확인 ── */
+  if(!src && params.get('gclid')){
+    src = '구글 검색광고(gclid)';
+  }
+
+  /* ── 4단계: referrer 기반 판별 ── */
+  if(!src && ref){
+    var refHost = '';
+    try{ refHost = new URL(ref).hostname; }catch(e){}
+
+    if(ref.indexOf('ader.naver.com') > -1 || ref.indexOf('ad.search.naver.com') > -1){
+      src = '네이버 검색광고(referrer)';
+    } else if(refHost.indexOf('search.naver.com') > -1 || refHost.indexOf('m.search.naver.com') > -1){
+      /* referrer가 search.naver.com이라도 n_media 파라미터가 있었으면 위에서 이미 잡힘 */
+      src = '네이버 자연검색';
+    } else if(refHost.indexOf('naver.com') > -1){
+      src = '네이버 기타';
+    } else if(ref.indexOf('googleads') > -1){
+      src = '구글 검색광고(referrer)';
+    } else if(refHost.indexOf('google.') > -1){
+      src = '구글 자연검색';
+    } else if(refHost.indexOf('daum.net') > -1 || refHost.indexOf('kakao.com') > -1){
+      src = '다음/카카오';
+    } else if(refHost.indexOf('youtube.com') > -1){
+      src = '유튜브';
+    } else if(refHost.indexOf('instagram.com') > -1){
+      src = '인스타그램';
+    } else if(refHost.indexOf('facebook.com') > -1 || refHost.indexOf('fb.com') > -1){
+      src = '페이스북';
+    } else if(refHost.indexOf('blog.naver.com') > -1){
+      src = '네이버블로그';
+    } else if(refHost.indexOf('cafe.naver.com') > -1){
+      src = '네이버카페';
+    } else if(refHost.indexOf('band.us') > -1){
+      src = '밴드';
+    } else if(refHost.indexOf('bing.com') > -1){
+      src = '빙';
+    } else {
+      src = ref;
+    }
+  }
+
+  if(!src) src = '직접방문';
+
+  /* ── 5단계: 검색어 추출 (아직 없으면) ── */
+  if(!keyword){
+    keyword = params.get('utm_term')
+           || params.get('keyword')
+           || params.get('q')
+           || params.get('query')
+           || params.get('n_query')
+           || '';
+  }
 
   if(!keyword && ref){
     try{
@@ -1945,15 +2019,15 @@ function validateForm(id){
 
       if(host.includes('naver.com')){
         keyword = refParams.get('query') || refParams.get('q') || '';
-      }else if(host.includes('google.')||host.includes('bing.com')){
+      } else if(host.includes('google.') || host.includes('bing.com')){
         keyword = refParams.get('q') || '';
-      }else if(host.includes('daum.net')){
+      } else if(host.includes('daum.net')){
         keyword = refParams.get('q') || refParams.get('query') || '';
-      }else if(host.includes('yahoo.com')||host.includes('yahoo.co')){
+      } else if(host.includes('yahoo.com') || host.includes('yahoo.co')){
         keyword = refParams.get('p') || '';
-      }else if(host.includes('youtube.com')){
+      } else if(host.includes('youtube.com')){
         keyword = refParams.get('search_query') || '';
-      }else{
+      } else {
         keyword = refParams.get('q') || refParams.get('query') || refParams.get('keyword') || '';
       }
     }catch(e){}
@@ -1963,6 +2037,7 @@ function validateForm(id){
     try{ keyword = decodeURIComponent(keyword); }catch(e){}
   }
 
+  /* ── 6단계: 히든 필드에 값 세팅 ── */
   var sourceValue = src;
   if(keyword) sourceValue += ' | 검색어: ' + keyword;
 
@@ -1972,9 +2047,10 @@ function validateForm(id){
 
   window.__lpSource  = src;
   window.__lpKeyword = keyword;
-  console.log('[유입경로-폼]', src, '| 검색어:', keyword||'(없음)', '| referrer=', ref);
+  console.log('[유입경로-폼]', src, '| 검색어:', keyword||'(없음)', '| referrer=', ref, '| n_media=', nMedia||'(없음)');
 })();
 </script>
+
 
 <!-- ── 초기화: AOS, 헤더 스크롤, vh 보정 ── -->
 <script>
@@ -2475,39 +2551,119 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 </script>
 
 <!-- ═══════════ 부정클릭 방지 스크립트 (실제 Google Forms) ═══════════ -->
+<!-- ★ FIX: 네이버 검색광고 파라미터(n_media, n_query 등) 감지 + 검색어 수집 추가 -->
 <script>
 (function(){
   document.addEventListener('DOMContentLoaded', function(){
     var ref = document.referrer || '';
     var params = new URLSearchParams(location.search);
     var source = '';
+    var searchKeyword = '';
 
-    if(ref.indexOf('ader.naver.com') > -1){
-      source = 'naver_ad';
+    /* ── 1단계: 네이버 검색광고 파라미터 확인 (가장 정확) ── */
+    var nMedia = params.get('n_media');
+    var nQuery = params.get('n_query');
+    var nAdId  = params.get('n_ad_group');
+    var nCampaign = params.get('n_campaign_type');
+
+    if(nMedia || nAdId || nCampaign){
+      if(nMedia === '27758'){
+        source = 'naver_sa';  /* 네이버 검색광고 */
+      } else if(nMedia === '27759'){
+        source = 'naver_shopping';
+      } else if(nMedia === '36683' || nMedia === '57962'){
+        source = 'naver_gfa';
+      } else {
+        source = 'naver_ad_' + (nMedia||'unknown');
+      }
+      if(nQuery){
+        try{ searchKeyword = decodeURIComponent(nQuery); }catch(e){ searchKeyword = nQuery; }
+      }
     }
-    if(!source){
-      var cParam = (params.get('c') || '').toLowerCase();
-      if(cParam.indexOf('naver.search') > -1) source = 'naver_ad';
-      else if(cParam.indexOf('naver') > -1) source = 'naver_ad_etc';
-    }
+
+    /* ── 2단계: UTM 파라미터 확인 ── */
     if(!source){
       var utmSource = (params.get('utm_source') || '').toLowerCase();
       var utmMedium = (params.get('utm_medium') || '').toLowerCase();
-      if(utmSource === 'naver' && utmMedium === 'cpc') source = 'naver_ad';
-      else if(utmSource === 'google' && utmMedium === 'cpc') source = 'google_ad';
-    }
-    if(!source){
-      if(ref.indexOf('search.naver.com') > -1) source = 'naver_organic';
-      else if(ref.indexOf('naver.com') > -1) source = 'naver_etc';
-      else if(ref.indexOf('google') > -1) source = 'google';
-      else if(ref.indexOf('daum.net') > -1) source = 'daum';
-      else if(ref.indexOf('facebook.com') > -1 || ref.indexOf('fb.com') > -1) source = 'facebook';
-      else if(ref.indexOf('instagram.com') > -1) source = 'instagram';
-      else if(ref.indexOf('kakao') > -1) source = 'kakao';
-      else if(!ref) source = 'direct';
-      else source = ref;
+      var utmTerm = params.get('utm_term') || '';
+
+      if(utmSource === 'naver' && utmMedium === 'cpc'){
+        source = 'naver_sa_utm';
+        if(utmTerm) searchKeyword = utmTerm;
+      } else if(utmSource === 'google' && utmMedium === 'cpc'){
+        source = 'google_ad_utm';
+        if(utmTerm) searchKeyword = utmTerm;
+      } else if(utmSource === 'naver' && utmMedium === 'display'){
+        source = 'naver_gfa_utm';
+      }
     }
 
+    /* ── 3단계: gclid 확인 ── */
+    if(!source && params.get('gclid')){
+      source = 'google_ad_gclid';
+    }
+
+    /* ── 4단계: referrer 기반 확인 ── */
+    if(!source && ref){
+      if(ref.indexOf('ader.naver.com') > -1 || ref.indexOf('ad.search.naver.com') > -1){
+        source = 'naver_ad_referrer';
+      } else if(ref.indexOf('search.naver.com') > -1 || ref.indexOf('m.search.naver.com') > -1){
+        source = 'naver_organic';
+      } else if(ref.indexOf('naver.com') > -1){
+        source = 'naver_etc';
+      } else if(ref.indexOf('googleads') > -1){
+        source = 'google_ad_referrer';
+      } else if(ref.indexOf('google') > -1){
+        source = 'google';
+      } else if(ref.indexOf('daum.net') > -1){
+        source = 'daum';
+      } else if(ref.indexOf('facebook.com') > -1 || ref.indexOf('fb.com') > -1){
+        source = 'facebook';
+      } else if(ref.indexOf('instagram.com') > -1){
+        source = 'instagram';
+      } else if(ref.indexOf('kakao') > -1){
+        source = 'kakao';
+      } else if(!ref){
+        source = 'direct';
+      } else {
+        source = ref;
+      }
+    }
+
+    if(!source) source = 'direct';
+
+    /* ── 5단계: 검색어 추출 (아직 없으면) ── */
+    if(!searchKeyword){
+      searchKeyword = params.get('n_query')
+                   || params.get('utm_term')
+                   || params.get('keyword')
+                   || params.get('q')
+                   || params.get('query')
+                   || '';
+    }
+    if(!searchKeyword && ref){
+      try{
+        var refUrl = new URL(ref);
+        var refParams = new URLSearchParams(refUrl.search);
+        var host = refUrl.hostname;
+        if(host.includes('naver.com')){
+          searchKeyword = refParams.get('query') || refParams.get('q') || '';
+        } else if(host.includes('google.') || host.includes('bing.com')){
+          searchKeyword = refParams.get('q') || '';
+        } else if(host.includes('daum.net')){
+          searchKeyword = refParams.get('q') || refParams.get('query') || '';
+        }
+      }catch(e){}
+    }
+    if(searchKeyword){
+      try{ searchKeyword = decodeURIComponent(searchKeyword); }catch(e){}
+    }
+
+    /* 검색어를 source에 합침 */
+    var sourceWithKeyword = source;
+    if(searchKeyword) sourceWithKeyword += ' | 검색어: ' + searchKeyword;
+
+    /* ── 방문 횟수 ── */
     var visitKey = 'lp_visit_count';
     var count = parseInt(localStorage.getItem(visitKey) || '0', 10) + 1;
     localStorage.setItem(visitKey, count);
@@ -2526,7 +2682,7 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
       form.append('entry.605185830', ip || 'unknown');
       form.append('entry.838856477', region || 'unknown');
       form.append('entry.1339679079', String(count));
-      form.append('entry.1214037773', source);
+      form.append('entry.1214037773', sourceWithKeyword);
       fetch('https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse', {
         method: 'POST', mode: 'no-cors', body: form
       }).catch(function(){});
@@ -2564,9 +2720,11 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
       done('error', 'all-failed');
     });
 
+    console.log('[부정클릭방지]', sourceWithKeyword, '| referrer=', ref, '| n_media=', nMedia||'(없음)', '| n_query=', nQuery||'(없음)');
   });
 })();
 </script>
+
 
 <!-- ★ 블록 JS: 자금계산기 -->
 <script>

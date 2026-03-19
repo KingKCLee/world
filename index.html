@@ -11,6 +11,18 @@
 
   gtag('config', 'AW-11324266200');
 </script>
+
+  <!-- ★ 추가: 네이버 프리미엄로그분석 공통 스크립트 (PV + 유입분석) -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+  if(!wcs_add) var wcs_add={};
+  wcs_add["wa"] = "s_294d4663b4";
+  if(window.wcs){
+    wcs.inflow("viphome.kr");
+    wcs_do();
+  }
+  </script>
+
   
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1892,12 +1904,22 @@ function validateForm(id){
   var phone = document.getElementById('real_phone_' + id).value;
   if(phone.length < 10){ alert('올바른 전화번호를 입력해주세요.'); return false; }
   
+  /* ── Google Ads 전환 ── */
   if(typeof gtag === 'function'){
     gtag('event', 'conversion', {
       'send_to': 'AW-11324266200/91H7CM_CgIocENit6pcq',
       'value': 1.0,
       'currency': 'KRW'
     });
+  }
+  
+  /* ── ★ 추가: 네이버 전환추적 (lead = 신청완료) ── */
+  if(window.wcs){
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "s_294d4663b4";
+    var _conv = {};
+    _conv.type = "lead";
+    wcs.trans(_conv);
   }
   
   submitted = true; return true;

@@ -451,7 +451,8 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-popup-today{background:rgba(245,245,245,.95);color:#333;font-size:12px;padding:8px 10px;border-top:1px solid rgba(0,0,0,.06);}
 .lp-popup-today label{display:flex;align-items:center;gap:6px;}
 
-.lp-urgency{text-align:center;padding:20px 16px;background:linear-gradient(135deg,#1a1a1a 0%,#333 100%);border-radius:0;margin:0 auto 40px;position:relative;overflow:hidden;width:100vw;margin-left:calc(-50vw + 50%);}
+.lp-urgency{text-align:center;padding:20px 16px;background:linear-gradient(135deg,#122e35 0%,#183a43 100%);border-radius:0;margin:0 auto 40px;position:relative;overflow:hidden;width:100vw;margin-left:calc(-50vw + 50%);}
+
 .lp-urgency::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(179,155,0,.08),transparent);animation:urgShine 3s ease-in-out infinite;}
 @keyframes urgShine{0%,100%{opacity:0}50%{opacity:1}}
 .lp-urgency-top{font-size:36px;color:#ccc;letter-spacing:-.3px;margin-bottom:6px;}
@@ -630,7 +631,8 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   .lp-benefit-cta-bottom .lp-submit-btn{font-size:18px;max-width:none;width:100%;}
 }
 
-.lp-market-cta{border-color:#1a1a1a!important;}
+.lp-market-cta{border-color:#183a43!important;}
+
 .lp-market-cta::before{background:var(--brand-color)!important;}
 .lp-market-cta .lp-benefit-cta-title{color:var(--brand-color-light)!important;}
 .lp-market-cta .lp-benefit-cta-sub{color:#ccc!important;}
@@ -846,10 +848,12 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 .blk-sub{text-align:center;font-size:15px;margin-bottom:30px;letter-spacing:-.5px;}
 .blk-light{background:#f7f8fa;color:#1a1a1a;}
 .blk-light .blk-sub{color:#888;}
-.blk-dark{background:#13132b;color:#eee;}
+.blk-dark{background:linear-gradient(135deg,#122e35 0%,#183a43 100%);color:#eee;}
+
 .blk-dark .blk-title{color:#ffdf00;}
 .blk-dark .blk-sub{color:#bbb;}
-.blk-navy-grad{background:linear-gradient(160deg,#0f1a3c 0%,#1b2d5e 100%);color:#fff;}
+.blk-navy-grad{background:linear-gradient(160deg,#0f2a30 0%,#183a43 100%);color:#fff;}
+
 .blk-navy-grad .blk-title{color:#ffdf00;}
 .blk-navy-grad .blk-sub{color:#b0c4de;}
 
@@ -876,8 +880,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 
 /* 블록 경계선 */
 .blk-section.blk-dark {
-  border-top: 1px solid rgba(255,223,0,.08);
-  border-bottom: 1px solid rgba(255,223,0,.08);
+  border-top: 1px solid rgba(179,155,0,.12);
+  border-bottom: 1px solid rgba(179,155,0,.12);
 }
 .blk-section.blk-navy-grad {
   border-top: 1px solid rgba(255,223,0,.1);
@@ -900,7 +904,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 .blk-calc-row{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
 .blk-calc-col{flex:1 1 48%;}
 .blk-calc-col label{font-size:14px;font-weight:700;margin-bottom:6px;display:block;color:#ffdf00;}
-.blk-calc-col select{width:100%;padding:13px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:#1d1d3a;color:#fff;font-size:15px;font-family:inherit;appearance:none;-webkit-appearance:none;}
+.blk-calc-col select{width:100%;padding:13px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:#15333b;color:#fff;font-size:15px;font-family:inherit;appearance:none;-webkit-appearance:none;}
+
 .blk-calc-result{background:rgba(255,255,255,.06);border-radius:12px;padding:22px;margin-top:14px;}
 .blk-calc-result dl{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;}
 .blk-calc-result dt{font-size:14px;color:#aaa;display:flex;align-items:center;}
@@ -2902,7 +2907,8 @@ body {
     </div>
   </section>
 
-  <section class="lp-benefit-cta lp-market-cta" data-aos="fade-up" style="background:#1a1a1a;border-color:#1a1a1a;">
+<section class="lp-benefit-cta lp-market-cta" data-aos="fade-up" style="background:linear-gradient(135deg,#122e35,#183a43);border-color:#183a43;">
+
     <h3 class="lp-benefit-cta-title">지금 시장이 말해주는 것</h3>
     <p class="lp-benefit-cta-sub">고민하는 사이, 기회는 줄어들고 있습니다</p>
     <div class="market-point">

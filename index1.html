@@ -11,6 +11,18 @@
 
   gtag('config', 'AW-11324266200');
 </script>
+
+  <!-- ★ 추가: 네이버 프리미엄로그분석 공통 스크립트 (PV + 유입분석) -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+  if(!wcs_add) var wcs_add={};
+  wcs_add["wa"] = "s_294d4663b4";
+  if(window.wcs){
+    wcs.inflow("viphome.kr");
+    wcs_do();
+  }
+  </script>
+
   
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -249,7 +261,7 @@
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://www.youtube.com" crossorigin>
 <link rel="preload" as="image" href="landing_page_main_images_309_0_1771463559.webp" type="image/webp">
-<link rel="preload" as="image" href="1551-3755_1772588926_9630.webp" type="image/webp">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.8.4/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@6.8.4/swiper-bundle.min.js"></script>
@@ -1104,7 +1116,313 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   .ig-counter .ig-current { font-size: 14px; }
 }
 
+/* ═══════════════════════════════════════════
+   메인 타이틀 텍스트 애니메이션
+   ═══════════════════════════════════════════ */
 
+.main-title-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+  max-width: 860px;
+  z-index: 5;
+  pointer-events: none;
+}
+.main-title-text a,
+.main-title-text button {
+  pointer-events: auto;
+}
+
+/* ── 공통 등장 애니메이션 기본값 ── */
+.mt-anim {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(.22,1,.36,1),
+              transform 0.7s cubic-bezier(.22,1,.36,1);
+}
+.mt-anim.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 1행: 태그 뱃지 ── */
+.mt-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  margin-bottom: 14px;
+}
+.mt-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: clamp(12px, 1.6vw, 17px);
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,0.25);
+  letter-spacing: -0.3px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+.mt-badge-dot {
+  color: rgba(255,255,255,0.5);
+  font-size: 18px;
+  font-weight: 300;
+}
+
+/* ── 2행: 교통 라인 ── */
+.mt-transport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin-bottom: 20px;
+  font-size: clamp(13px, 1.8vw, 19px);
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+.mt-transport-item {
+  background: linear-gradient(135deg, rgba(179,155,0,0.5), rgba(212,175,55,0.4));
+  padding: 4px 14px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,223,0,0.3);
+  font-weight: 700;
+}
+.mt-transport-plus {
+  color: rgba(255,223,0,0.7);
+  font-weight: 300;
+  font-size: 1.2em;
+}
+
+/* ── 3행: 강조 서브 ── */
+.mt-highlight {
+  margin-bottom: 16px;
+  font-size: clamp(18px, 3.2vw, 36px);
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  letter-spacing: -1px;
+  line-height: 1.3;
+}
+.mt-hl-text {
+  color: #97f56d;
+}
+.mt-hl-price {
+  display: inline-block;
+  color: #ffdf00;
+  position: relative;
+  margin-left: 4px;
+}
+.mt-hl-price::after {
+  content: '';
+  position: absolute;
+  left: -4px; right: -4px;
+  bottom: -2px;
+  height: 40%;
+  background: rgba(255,223,0,0.2);
+  border-radius: 4px;
+  z-index: -1;
+  animation: hlPulse 2s ease-in-out infinite;
+}
+@keyframes hlPulse {
+  0%, 100% { opacity: 0.3; transform: scaleX(0.95); }
+  50%      { opacity: 0.7; transform: scaleX(1.05); }
+}
+
+/* ── 4행: 메인 타이틀 (글자별) ── */
+.mt-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+}
+.mt-char {
+  font-size: clamp(36px, 7.5vw, 80px);
+  font-weight: 900;
+  color: #fff;
+  text-shadow:
+    0 0 20px rgba(255,223,0,0.4),
+    0 4px 20px rgba(0,0,0,0.6);
+  letter-spacing: -2px;
+  line-height: 1.1;
+  display: inline-block;
+}
+.mt-char-space {
+  width: clamp(10px, 2vw, 24px);
+  display: inline-block;
+}
+
+/* 글자 호버(PC) 이펙트 */
+@media (pointer: fine) {
+  .mt-char {
+    transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
+    cursor: default;
+    pointer-events: auto;
+  }
+  .mt-char:hover {
+    transform: translateY(-8px) scale(1.1);
+    color: #ffdf00;
+    text-shadow:
+      0 0 30px rgba(255,223,0,0.8),
+      0 0 60px rgba(255,223,0,0.4),
+      0 4px 20px rgba(0,0,0,0.5);
+  }
+}
+
+/* 글자 등장 후 물결 애니메이션 */
+.mt-char.is-visible {
+  animation: charWave 3s ease-in-out infinite;
+  animation-delay: calc(var(--char-i, 0) * 0.12s);
+}
+@keyframes charWave {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+/* ── 5행: 빛나는 라인 ── */
+.mt-line {
+  width: 0;
+  height: 2px;
+  margin: 0 auto 20px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255,223,0,0.6),
+    rgba(255,255,255,0.8),
+    rgba(255,223,0,0.6),
+    transparent);
+  border-radius: 2px;
+  transition: width 1s cubic-bezier(.22,1,.36,1) 0.1s;
+}
+.mt-line.is-visible {
+  width: 80%;
+  animation: lineShimmer 3s ease-in-out infinite 1.2s;
+}
+@keyframes lineShimmer {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+
+/* ── 6행: CTA 버튼 ── */
+.mt-cta {
+  display: flex;
+  justify-content: center;
+}
+.mt-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--brand-color), #d4af37);
+  color: #fff;
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 800;
+  padding: 14px 36px;
+  border-radius: 50px;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  box-shadow:
+    0 4px 20px rgba(179,155,0,0.4),
+    0 0 40px rgba(255,223,0,0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+  animation: ctaBtnPulse 2.5s ease-in-out infinite;
+}
+.mt-cta-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 8px 30px rgba(179,155,0,0.6),
+    0 0 60px rgba(255,223,0,0.25);
+}
+@keyframes ctaBtnPulse {
+  0%, 100% {
+    box-shadow:
+      0 4px 20px rgba(179,155,0,0.4),
+      0 0 40px rgba(255,223,0,0.15);
+  }
+  50% {
+    box-shadow:
+      0 4px 20px rgba(179,155,0,0.6),
+      0 0 60px rgba(255,223,0,0.3),
+      0 0 0 8px rgba(255,223,0,0.08);
+  }
+}
+.mt-cta-icon {
+  font-size: 1.1em;
+  animation: phoneRing 1.5s ease-in-out infinite;
+}
+@keyframes phoneRing {
+  0%, 100% { transform: rotate(0); }
+  20%      { transform: rotate(15deg); }
+  40%      { transform: rotate(-10deg); }
+  60%      { transform: rotate(8deg); }
+  80%      { transform: rotate(-5deg); }
+}
+
+/* ── 모바일 조정 ── */
+@media (max-width: 1023px) {
+  .main-title-text {
+    width: 94%;
+    top: 48%;
+  }
+  .mt-badges {
+    gap: 4px 6px;
+    margin-bottom: 10px;
+  }
+  .mt-badge {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  .mt-badge-dot {
+    font-size: 14px;
+  }
+  .mt-transport {
+    gap: 4px 5px;
+    margin-bottom: 14px;
+  }
+  .mt-transport-item {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+  .mt-highlight {
+    margin-bottom: 12px;
+  }
+  .mt-char {
+    letter-spacing: -1px;
+  }
+  .mt-cta-btn {
+    padding: 12px 28px;
+  }
+  .mt-line {
+    margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .mt-badge {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+  .mt-transport-item {
+    padding: 2px 6px;
+    font-size: 10px;
+  }
+  .mt-cta-btn {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+}
+
+
+  
 </style>
 </head>
 
@@ -1149,19 +1467,72 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
         <div class="img" style="background:url('landing_page_main_images_309_0_1771463559.webp') no-repeat 50% 0;background-size:cover;">
           <img class="only-pc" src="landing_page_main_images_309_0_1771463559.webp" alt="송도 월드메르디앙 아파트 외관 전경 - 인천 송도국제도시 1공구 신축" width="1920" height="1080">
         </div>
-        <div class="main-title-image">
-          <img src="1551-3755_1772588926_9630.webp" alt="송도 월드메르디앙 6억대 특별분양 안내" width="800" height="600">
-        </div>
+
       </li>
       <li class="swiper-slide">
         <div class="img" style="background:url('landing_page_main_images_309_1_1771463559.webp') no-repeat 50% 0;background-size:cover;">
           <img class="only-pc" src="landing_page_main_images_309_1_1771463559.webp" alt="송도 월드메르디앙 단지 조감도 - 4개동 128세대 남향 배치">
         </div>
-        <div class="main-title-image">
-          <img src="1551-3755_1772588926_9630.webp" alt="송도 월드메르디앙 6억대 특별분양 안내">
-        </div>
+
       </li>
     </ul>
+   
+    <!-- ★ 메인 타이틀 (텍스트 애니메이션 버전) -->
+<div class="main-title-text" id="mainTitleText">
+
+  <!-- 1행: 태그 뱃지 라인 -->
+  <div class="mt-badges">
+    <span class="mt-badge mt-anim" data-delay="0">명문학군</span>
+    <span class="mt-badge-dot mt-anim" data-delay="80">·</span>
+    <span class="mt-badge mt-anim" data-delay="160">최대학원가</span>
+    <span class="mt-badge-dot mt-anim" data-delay="240">·</span>
+    <span class="mt-badge mt-anim" data-delay="320">센트럴파크 도보권</span>
+  </div>
+
+  <!-- 2행: 교통 라인 -->
+  <div class="mt-transport mt-anim" data-delay="500">
+    <span class="mt-transport-item">GTX-B</span>
+    <span class="mt-transport-plus">+</span>
+    <span class="mt-transport-item">송도트램</span>
+    <span class="mt-transport-plus">+</span>
+    <span class="mt-transport-item">인천3호선</span>
+    <span class="mt-transport-plus">+</span>
+    <span class="mt-transport-item">제2외곽순환</span>
+  </div>
+
+  <!-- 3행: 강조 서브 -->
+  <div class="mt-highlight mt-anim" data-delay="800">
+    <span class="mt-hl-text">30평대 신축 송도 마지막</span>
+    <span class="mt-hl-price">6억대</span>
+  </div>
+
+  <!-- 4행: 메인 타이틀 (글자별 등장) -->
+  <div class="mt-main" id="mtMain">
+    <span class="mt-char mt-anim" data-delay="1100">송</span>
+    <span class="mt-char mt-anim" data-delay="1160">도</span>
+    <span class="mt-char-space"></span>
+    <span class="mt-char mt-anim" data-delay="1280">월</span>
+    <span class="mt-char mt-anim" data-delay="1340">드</span>
+    <span class="mt-char mt-anim" data-delay="1400">메</span>
+    <span class="mt-char mt-anim" data-delay="1460">르</span>
+    <span class="mt-char mt-anim" data-delay="1520">디</span>
+    <span class="mt-char mt-anim" data-delay="1580">앙</span>
+  </div>
+
+  <!-- 5행: 빛나는 라인 데코 -->
+  <div class="mt-line mt-anim" data-delay="1800"></div>
+
+  <!-- 6행: CTA 버튼 -->
+  <div class="mt-cta mt-anim" data-delay="2000">
+    <a href="tel:1533-9077" class="mt-cta-btn">
+      <span class="mt-cta-icon">📞</span>
+      <span>1533-9077</span>
+    </a>
+  </div>
+
+</div>
+
+    
     <div class="swiper-controler-renew-area">
       <div class="swiper-pagination"></div>
     </div>
@@ -1892,6 +2263,7 @@ function validateForm(id){
   var phone = document.getElementById('real_phone_' + id).value;
   if(phone.length < 10){ alert('올바른 전화번호를 입력해주세요.'); return false; }
   
+  /* ── Google Ads 전환 ── */
   if(typeof gtag === 'function'){
     gtag('event', 'conversion', {
       'send_to': 'AW-11324266200/91H7CM_CgIocENit6pcq',
@@ -1900,42 +2272,125 @@ function validateForm(id){
     });
   }
   
+  /* ── ★ 추가: 네이버 전환추적 (lead = 신청완료) ── */
+  if(window.wcs){
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "s_294d4663b4";
+    var _conv = {};
+    _conv.type = "lead";
+    wcs.trans(_conv);
+  }
+  
   submitted = true; return true;
 }
 </script>
 
 <!-- ── 유입경로 판별 + 검색어 추출 + 히든 필드 세팅 ── -->
+<!-- ★ FIX: 네이버 검색광고 파라미터(n_media, n_query 등) 감지 추가 -->
 <script>
 (function(){
   var params = new URLSearchParams(location.search);
   var ref    = document.referrer || '';
   var src    = '';
+  var keyword = '';
 
-  if(ref.indexOf('ader.naver.com')>-1){                          src='네이버 검색광고';
-  }else if(ref.indexOf('search.naver.com')>-1||ref.indexOf('m.search.naver.com')>-1){ src='네이버 자연검색';
-  }else if(ref.indexOf('naver.com')>-1){                         src='네이버 기타';
-  }else if(ref.indexOf('googleads')>-1||params.get('gclid')){    src='구글 검색광고';
-  }else if(ref.indexOf('google.')>-1){                           src='구글 자연검색';
-  }else if(ref.indexOf('daum.net')>-1||ref.indexOf('kakao.com')>-1){ src='다음/카카오';
-  }else if(ref.indexOf('youtube.com')>-1){                       src='유튜브';
-  }else if(ref.indexOf('instagram.com')>-1){                     src='인스타그램';
-  }else if(ref.indexOf('facebook.com')>-1||ref.indexOf('fb.com')>-1){ src='페이스북';
-  }else if(ref.indexOf('blog.naver.com')>-1){                    src='네이버블로그';
-  }else if(ref.indexOf('cafe.naver.com')>-1){                    src='네이버카페';
-  }else if(ref.indexOf('band.us')>-1){                           src='밴드';
-  }else if(ref.indexOf('bing.com')>-1){                          src='빙';
-  }else if(ref){                                                  src=ref;
+  /* ── 1단계: URL 파라미터로 네이버 검색광고 판별 (가장 정확) ── */
+  var nMedia  = params.get('n_media');
+  var nQuery  = params.get('n_query');
+  var nRank   = params.get('n_rank');
+  var nAdId   = params.get('n_ad_group');
+  var nCampaign = params.get('n_campaign_type');
+
+  /* 네이버 검색광고는 n_media=27758 (검색) 또는 다른 값으로 구분 */
+  if(nMedia || nAdId || nCampaign){
+    if(nMedia === '27758'){
+      src = '네이버 검색광고(SA)';
+    } else if(nMedia === '27759'){
+      src = '네이버 쇼핑검색광고';
+    } else if(nMedia === '36683' || nMedia === '57962'){
+      src = '네이버 성과형디스플레이(GFA)';
+    } else {
+      src = '네이버 광고(n_media=' + (nMedia||'unknown') + ')';
+    }
+    if(nQuery){
+      try{ keyword = decodeURIComponent(nQuery); }catch(e){ keyword = nQuery; }
+    }
   }
 
-  var utmSrc=params.get('utm_source');
-  if(utmSrc) src=utmSrc+( params.get('utm_medium')?' / '+params.get('utm_medium'):'');
-  if(!src) src='직접방문';
+  /* ── 2단계: UTM 파라미터 확인 ── */
+  if(!src){
+    var utmSrc = (params.get('utm_source') || '').toLowerCase();
+    var utmMedium = (params.get('utm_medium') || '').toLowerCase();
+    var utmCampaign = params.get('utm_campaign') || '';
+    var utmTerm = params.get('utm_term') || '';
 
-  var keyword = params.get('utm_term')
-             || params.get('keyword')
-             || params.get('q')
-             || params.get('query')
-             || '';
+    if(utmSrc === 'naver' && utmMedium === 'cpc'){
+      src = '네이버 검색광고(UTM)';
+      if(utmTerm) keyword = utmTerm;
+    } else if(utmSrc === 'google' && utmMedium === 'cpc'){
+      src = '구글 검색광고(UTM)';
+      if(utmTerm) keyword = utmTerm;
+    } else if(utmSrc === 'naver' && utmMedium === 'display'){
+      src = '네이버 GFA(UTM)';
+    } else if(utmSrc){
+      src = utmSrc + (utmMedium ? ' / ' + utmMedium : '');
+      if(utmTerm) keyword = utmTerm;
+    }
+  }
+
+  /* ── 3단계: gclid (구글 광고) 확인 ── */
+  if(!src && params.get('gclid')){
+    src = '구글 검색광고(gclid)';
+  }
+
+  /* ── 4단계: referrer 기반 판별 ── */
+  if(!src && ref){
+    var refHost = '';
+    try{ refHost = new URL(ref).hostname; }catch(e){}
+
+    if(ref.indexOf('ader.naver.com') > -1 || ref.indexOf('ad.search.naver.com') > -1){
+      src = '네이버 검색광고(referrer)';
+    } else if(refHost.indexOf('search.naver.com') > -1 || refHost.indexOf('m.search.naver.com') > -1){
+      /* referrer가 search.naver.com이라도 n_media 파라미터가 있었으면 위에서 이미 잡힘 */
+      src = '네이버 자연검색';
+    } else if(refHost.indexOf('naver.com') > -1){
+      src = '네이버 기타';
+    } else if(ref.indexOf('googleads') > -1){
+      src = '구글 검색광고(referrer)';
+    } else if(refHost.indexOf('google.') > -1){
+      src = '구글 자연검색';
+    } else if(refHost.indexOf('daum.net') > -1 || refHost.indexOf('kakao.com') > -1){
+      src = '다음/카카오';
+    } else if(refHost.indexOf('youtube.com') > -1){
+      src = '유튜브';
+    } else if(refHost.indexOf('instagram.com') > -1){
+      src = '인스타그램';
+    } else if(refHost.indexOf('facebook.com') > -1 || refHost.indexOf('fb.com') > -1){
+      src = '페이스북';
+    } else if(refHost.indexOf('blog.naver.com') > -1){
+      src = '네이버블로그';
+    } else if(refHost.indexOf('cafe.naver.com') > -1){
+      src = '네이버카페';
+    } else if(refHost.indexOf('band.us') > -1){
+      src = '밴드';
+    } else if(refHost.indexOf('bing.com') > -1){
+      src = '빙';
+    } else {
+      src = ref;
+    }
+  }
+
+  if(!src) src = '직접방문';
+
+  /* ── 5단계: 검색어 추출 (아직 없으면) ── */
+  if(!keyword){
+    keyword = params.get('utm_term')
+           || params.get('keyword')
+           || params.get('q')
+           || params.get('query')
+           || params.get('n_query')
+           || '';
+  }
 
   if(!keyword && ref){
     try{
@@ -1945,15 +2400,15 @@ function validateForm(id){
 
       if(host.includes('naver.com')){
         keyword = refParams.get('query') || refParams.get('q') || '';
-      }else if(host.includes('google.')||host.includes('bing.com')){
+      } else if(host.includes('google.') || host.includes('bing.com')){
         keyword = refParams.get('q') || '';
-      }else if(host.includes('daum.net')){
+      } else if(host.includes('daum.net')){
         keyword = refParams.get('q') || refParams.get('query') || '';
-      }else if(host.includes('yahoo.com')||host.includes('yahoo.co')){
+      } else if(host.includes('yahoo.com') || host.includes('yahoo.co')){
         keyword = refParams.get('p') || '';
-      }else if(host.includes('youtube.com')){
+      } else if(host.includes('youtube.com')){
         keyword = refParams.get('search_query') || '';
-      }else{
+      } else {
         keyword = refParams.get('q') || refParams.get('query') || refParams.get('keyword') || '';
       }
     }catch(e){}
@@ -1963,6 +2418,7 @@ function validateForm(id){
     try{ keyword = decodeURIComponent(keyword); }catch(e){}
   }
 
+  /* ── 6단계: 히든 필드에 값 세팅 ── */
   var sourceValue = src;
   if(keyword) sourceValue += ' | 검색어: ' + keyword;
 
@@ -1972,9 +2428,10 @@ function validateForm(id){
 
   window.__lpSource  = src;
   window.__lpKeyword = keyword;
-  console.log('[유입경로-폼]', src, '| 검색어:', keyword||'(없음)', '| referrer=', ref);
+  console.log('[유입경로-폼]', src, '| 검색어:', keyword||'(없음)', '| referrer=', ref, '| n_media=', nMedia||'(없음)');
 })();
 </script>
+
 
 <!-- ── 초기화: AOS, 헤더 스크롤, vh 보정 ── -->
 <script>
@@ -2027,6 +2484,42 @@ document.addEventListener('DOMContentLoaded',function(){
 })();
 </script>
 
+<!-- ── 메인 타이틀 텍스트 등장 애니메이션 ── -->
+<script>
+(function(){
+  var wrap = document.getElementById('mainTitleText');
+  if(!wrap) return;
+
+  var items = wrap.querySelectorAll('.mt-anim');
+
+  /* 글자별 wave delay를 CSS 변수로 주입 */
+  var chars = wrap.querySelectorAll('.mt-char');
+  chars.forEach(function(c, i){
+    c.style.setProperty('--char-i', i);
+  });
+
+  function trigger(){
+    items.forEach(function(el){
+      var delay = parseInt(el.getAttribute('data-delay')) || 0;
+      setTimeout(function(){
+        el.classList.add('is-visible');
+      }, delay);
+    });
+  }
+
+  /* 페이지 로드 후 약간의 딜레이를 주고 시작 */
+  if(document.readyState === 'complete'){
+    setTimeout(trigger, 300);
+  } else {
+    window.addEventListener('load', function(){
+      setTimeout(trigger, 300);
+    });
+  }
+
+  /* 스와이프 시 재트리거 (슬라이드가 바뀌어도 타이틀은 항상 보이므로 1회만) */
+})();
+</script>
+  
 <!-- ── 스크롤 텍스트 원형 배치 ── -->
 <script>
 (function(){
@@ -2475,39 +2968,119 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 </script>
 
 <!-- ═══════════ 부정클릭 방지 스크립트 (실제 Google Forms) ═══════════ -->
+<!-- ★ FIX: 네이버 검색광고 파라미터(n_media, n_query 등) 감지 + 검색어 수집 추가 -->
 <script>
 (function(){
   document.addEventListener('DOMContentLoaded', function(){
     var ref = document.referrer || '';
     var params = new URLSearchParams(location.search);
     var source = '';
+    var searchKeyword = '';
 
-    if(ref.indexOf('ader.naver.com') > -1){
-      source = 'naver_ad';
+    /* ── 1단계: 네이버 검색광고 파라미터 확인 (가장 정확) ── */
+    var nMedia = params.get('n_media');
+    var nQuery = params.get('n_query');
+    var nAdId  = params.get('n_ad_group');
+    var nCampaign = params.get('n_campaign_type');
+
+    if(nMedia || nAdId || nCampaign){
+      if(nMedia === '27758'){
+        source = 'naver_sa';  /* 네이버 검색광고 */
+      } else if(nMedia === '27759'){
+        source = 'naver_shopping';
+      } else if(nMedia === '36683' || nMedia === '57962'){
+        source = 'naver_gfa';
+      } else {
+        source = 'naver_ad_' + (nMedia||'unknown');
+      }
+      if(nQuery){
+        try{ searchKeyword = decodeURIComponent(nQuery); }catch(e){ searchKeyword = nQuery; }
+      }
     }
-    if(!source){
-      var cParam = (params.get('c') || '').toLowerCase();
-      if(cParam.indexOf('naver.search') > -1) source = 'naver_ad';
-      else if(cParam.indexOf('naver') > -1) source = 'naver_ad_etc';
-    }
+
+    /* ── 2단계: UTM 파라미터 확인 ── */
     if(!source){
       var utmSource = (params.get('utm_source') || '').toLowerCase();
       var utmMedium = (params.get('utm_medium') || '').toLowerCase();
-      if(utmSource === 'naver' && utmMedium === 'cpc') source = 'naver_ad';
-      else if(utmSource === 'google' && utmMedium === 'cpc') source = 'google_ad';
-    }
-    if(!source){
-      if(ref.indexOf('search.naver.com') > -1) source = 'naver_organic';
-      else if(ref.indexOf('naver.com') > -1) source = 'naver_etc';
-      else if(ref.indexOf('google') > -1) source = 'google';
-      else if(ref.indexOf('daum.net') > -1) source = 'daum';
-      else if(ref.indexOf('facebook.com') > -1 || ref.indexOf('fb.com') > -1) source = 'facebook';
-      else if(ref.indexOf('instagram.com') > -1) source = 'instagram';
-      else if(ref.indexOf('kakao') > -1) source = 'kakao';
-      else if(!ref) source = 'direct';
-      else source = ref;
+      var utmTerm = params.get('utm_term') || '';
+
+      if(utmSource === 'naver' && utmMedium === 'cpc'){
+        source = 'naver_sa_utm';
+        if(utmTerm) searchKeyword = utmTerm;
+      } else if(utmSource === 'google' && utmMedium === 'cpc'){
+        source = 'google_ad_utm';
+        if(utmTerm) searchKeyword = utmTerm;
+      } else if(utmSource === 'naver' && utmMedium === 'display'){
+        source = 'naver_gfa_utm';
+      }
     }
 
+    /* ── 3단계: gclid 확인 ── */
+    if(!source && params.get('gclid')){
+      source = 'google_ad_gclid';
+    }
+
+    /* ── 4단계: referrer 기반 확인 ── */
+    if(!source && ref){
+      if(ref.indexOf('ader.naver.com') > -1 || ref.indexOf('ad.search.naver.com') > -1){
+        source = 'naver_ad_referrer';
+      } else if(ref.indexOf('search.naver.com') > -1 || ref.indexOf('m.search.naver.com') > -1){
+        source = 'naver_organic';
+      } else if(ref.indexOf('naver.com') > -1){
+        source = 'naver_etc';
+      } else if(ref.indexOf('googleads') > -1){
+        source = 'google_ad_referrer';
+      } else if(ref.indexOf('google') > -1){
+        source = 'google';
+      } else if(ref.indexOf('daum.net') > -1){
+        source = 'daum';
+      } else if(ref.indexOf('facebook.com') > -1 || ref.indexOf('fb.com') > -1){
+        source = 'facebook';
+      } else if(ref.indexOf('instagram.com') > -1){
+        source = 'instagram';
+      } else if(ref.indexOf('kakao') > -1){
+        source = 'kakao';
+      } else if(!ref){
+        source = 'direct';
+      } else {
+        source = ref;
+      }
+    }
+
+    if(!source) source = 'direct';
+
+    /* ── 5단계: 검색어 추출 (아직 없으면) ── */
+    if(!searchKeyword){
+      searchKeyword = params.get('n_query')
+                   || params.get('utm_term')
+                   || params.get('keyword')
+                   || params.get('q')
+                   || params.get('query')
+                   || '';
+    }
+    if(!searchKeyword && ref){
+      try{
+        var refUrl = new URL(ref);
+        var refParams = new URLSearchParams(refUrl.search);
+        var host = refUrl.hostname;
+        if(host.includes('naver.com')){
+          searchKeyword = refParams.get('query') || refParams.get('q') || '';
+        } else if(host.includes('google.') || host.includes('bing.com')){
+          searchKeyword = refParams.get('q') || '';
+        } else if(host.includes('daum.net')){
+          searchKeyword = refParams.get('q') || refParams.get('query') || '';
+        }
+      }catch(e){}
+    }
+    if(searchKeyword){
+      try{ searchKeyword = decodeURIComponent(searchKeyword); }catch(e){}
+    }
+
+    /* 검색어를 source에 합침 */
+    var sourceWithKeyword = source;
+    if(searchKeyword) sourceWithKeyword += ' | 검색어: ' + searchKeyword;
+
+    /* ── 방문 횟수 ── */
     var visitKey = 'lp_visit_count';
     var count = parseInt(localStorage.getItem(visitKey) || '0', 10) + 1;
     localStorage.setItem(visitKey, count);
@@ -2526,7 +3099,7 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
       form.append('entry.605185830', ip || 'unknown');
       form.append('entry.838856477', region || 'unknown');
       form.append('entry.1339679079', String(count));
-      form.append('entry.1214037773', source);
+      form.append('entry.1214037773', sourceWithKeyword);
       fetch('https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse', {
         method: 'POST', mode: 'no-cors', body: form
       }).catch(function(){});
@@ -2564,9 +3137,11 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
       done('error', 'all-failed');
     });
 
+    console.log('[부정클릭방지]', sourceWithKeyword, '| referrer=', ref, '| n_media=', nMedia||'(없음)', '| n_query=', nQuery||'(없음)');
   });
 })();
 </script>
+
 
 <!-- ★ 블록 JS: 자금계산기 -->
 <script>

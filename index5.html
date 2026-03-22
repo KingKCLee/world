@@ -3064,13 +3064,10 @@ function validateForm(id){
     });
   }
   
-  if(window.wcs){
-    if(!wcs_add) var wcs_add = {};
+if(window.wcs){
     wcs_add["wa"] = "s_294d4663b4";
-    var _conv = {};
-    _conv.type = "lead";
-    wcs.trans(_conv);
-  }
+    wcs.trans({type: "lead"});
+}
   
   submitted = true; return true;
 }

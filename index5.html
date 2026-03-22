@@ -1661,7 +1661,8 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 }
 
 /* ════════════════════════════════════════════════════════
-   ★ 전체 최소 폰트 사이즈 보강 — 최소 15px 기준
+   ★ 전체 최소 폰트 사이즈 보강 — v3 (전면 교체)
+   데스크톱 최소 14px · 모바일 최소 13px · 420px 최소 12px
    ════════════════════════════════════════════════════════ */
 
 /* ── 기본 본문 ── */
@@ -1670,7 +1671,18 @@ body {
   line-height: 1.7;
 }
 
-/* ── 메인 비주얼 영역 ── */
+/* ── 헤더 ── */
+.h1_title {
+  font-size: clamp(15px, 2vw, 24px) !important;
+}
+.menu .btn-util .btn2 {
+  font-size: clamp(15px, 1.8vw, 20px) !important;
+}
+.menu .btn-util .btn3 {
+  font-size: clamp(20px, 2.5vw, 28px) !important;
+}
+
+/* ── 메인 비주얼 ── */
 .mt-badge {
   font-size: clamp(15px, 2.2vw, 20px) !important;
 }
@@ -1745,7 +1757,7 @@ body {
 
 /* ── 프리미엄 6 탭 ── */
 .p6-tab-label {
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 .p6-tab-num {
   font-size: 14px !important;
@@ -1773,10 +1785,11 @@ body {
   font-size: 15px !important;
 }
 .lp-price-table tbody td span {
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 .lp-price-tag {
-  font-size: 12px !important;
+  font-size: 14px !important;
+  padding: 3px 10px !important;
 }
 .lp-price-note {
   font-size: 14px !important;
@@ -1852,7 +1865,7 @@ body {
   font-size: 17px !important;
 }
 
-/* ── 블록 공통 (삽입 블록) ── */
+/* ── 블록 공통 ── */
 .blk-title {
   font-size: clamp(22px, 3.5vw, 28px) !important;
 }
@@ -1874,7 +1887,7 @@ body {
   font-size: 19px !important;
 }
 .blk-type-table td small {
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 .blk-type-note {
   font-size: 14px !important;
@@ -1920,35 +1933,46 @@ body {
   font-size: 14px !important;
 }
 
-/* ── 블록7: 동탄 vs 송도 ── */
-.blk-vs-card h4 {
-  font-size: clamp(17px, 2.5vw, 20px) !important;
-}
-.blk-vs-card .vs-num {
-  font-size: clamp(24px, 4vw, 30px) !important;
-}
-.blk-vs-card .vs-detail {
-  font-size: 16px !important;
-  line-height: 1.8 !important;
-}
-.blk-vs-card > div[style] {
-  font-size: 15px !important;
-}
+/* ── 블록7: 동탄 vs 송도 — 차트 + 카드 전체 ── */
 .blk-vs-chart-legend {
-  font-size: 14px !important;
-}
-.blk-vs-chart-note {
-  font-size: 13px !important;
-  line-height: 1.6 !important;
-}
-.blk-vs-dot-label {
-  font-size: 12px !important;
+  font-size: 16px !important;
 }
 .blk-vs-chart-y span {
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 .blk-vs-chart-x span {
-  font-size: 13px !important;
+  font-size: 15px !important;
+}
+.blk-vs-chart-x small {
+  font-size: 14px !important;
+}
+.blk-vs-dot-label {
+  font-size: 15px !important;
+  padding: 4px 10px !important;
+}
+.blk-vs-dot-label strong {
+  font-size: 14px !important;
+}
+.blk-vs-event-tag {
+  font-size: 14px !important;
+  padding: 4px 12px !important;
+}
+.blk-vs-chart-note {
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+.blk-vs-card h4 {
+  font-size: clamp(18px, 2.8vw, 22px) !important;
+}
+.blk-vs-card > div[style] {
+  font-size: 16px !important;
+}
+.blk-vs-card .vs-num {
+  font-size: clamp(26px, 4.5vw, 34px) !important;
+}
+.blk-vs-card .vs-detail {
+  font-size: 17px !important;
+  line-height: 1.8 !important;
 }
 
 /* ── 블록6: 자가진단 퀴즈 ── */
@@ -1984,7 +2008,7 @@ body {
   line-height: 1.8 !important;
 }
 .lp-footer-copy {
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 
 /* ── 퀵메뉴 / 플로팅 ── */
@@ -2006,7 +2030,7 @@ body {
   line-height: 1.6 !important;
 }
 .lp-toast-time {
-  font-size: 13px !important;
+  font-size: 14px !important;
 }
 
 /* ── 예약 카운터 버블 ── */
@@ -2019,22 +2043,44 @@ body {
   font-size: 14px !important;
 }
 
-/* ── 헤더 ── */
-.h1_title {
-  font-size: clamp(15px, 2vw, 24px) !important;
+/* ── 개인정보 레이어 ── */
+.lp-privacy-inner p {
+  font-size: 14px !important;
+  line-height: 1.7 !important;
 }
-.menu .btn-util .btn2 {
-  font-size: clamp(15px, 1.8vw, 20px) !important;
-}
-.menu .btn-util .btn3 {
-  font-size: clamp(20px, 2.5vw, 28px) !important;
+.privacy-title {
+  font-size: 18px !important;
 }
 
-/* ══════ 모바일 추가 보강 ══════ */
+/* ── Exit-intent 팝업 ── */
+#lpExitPopup p {
+  font-size: 16px !important;
+}
+
+/* ── 블록 하단 면책 문구 (인라인 style 대응) ── */
+.blk-section p[style*="font-size:13px"],
+.blk-section p[style*="font-size:12px"],
+.blk-section p[style*="font-size:11px"],
+.lp-body p[style*="font-size:13px"],
+.lp-body p[style*="font-size:12px"],
+.lp-body p[style*="font-size:11px"] {
+  font-size: 14px !important;
+}
+
+/* ── 비교 카드 내 인라인 style 부제 대응 ── */
+.blk-vs-card div[style*="font-size:13px"],
+.blk-vs-card div[style*="font-size:12px"] {
+  font-size: 15px !important;
+}
+
+
+/* ══════════════════════════════════════
+   모바일 1023px 이하
+   ══════════════════════════════════════ */
 @media (max-width: 1023px) {
 
   .p6-tab-label {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
   .p6-tab-num {
     font-size: 13px !important;
@@ -2055,10 +2101,19 @@ body {
   .lp-price-table tbody td {
     font-size: 14px !important;
   }
+  .lp-price-table tbody td span {
+    font-size: 13px !important;
+  }
 
   .blk-type-table th,
   .blk-type-table td {
     font-size: 14px !important;
+  }
+  .blk-type-table td small {
+    font-size: 13px !important;
+  }
+  .blk-type-note {
+    font-size: 13px !important;
   }
 
   .lp-faq-q {
@@ -2096,6 +2151,38 @@ body {
   .blk-vs-card .vs-detail {
     font-size: 15px !important;
   }
+  .blk-vs-card > div[style],
+  .blk-vs-card div[style*="font-size:13px"],
+  .blk-vs-card div[style*="font-size:12px"] {
+    font-size: 14px !important;
+  }
+
+  .blk-vs-chart-y span {
+    font-size: 13px !important;
+  }
+  .blk-vs-chart-x span {
+    font-size: 14px !important;
+  }
+  .blk-vs-chart-x small {
+    font-size: 13px !important;
+  }
+  .blk-vs-dot-label {
+    font-size: 13px !important;
+    padding: 3px 8px !important;
+  }
+  .blk-vs-dot-label strong {
+    font-size: 13px !important;
+  }
+  .blk-vs-event-tag {
+    font-size: 13px !important;
+  }
+  .blk-vs-chart-note {
+    font-size: 13px !important;
+  }
+
+  .blk-bar-badge {
+    font-size: 13px !important;
+  }
 
   .lp-resv-bubble {
     font-size: 13px !important;
@@ -2104,12 +2191,53 @@ body {
   .lp-footer-notice {
     font-size: 13px !important;
   }
+  .lp-footer-copy {
+    font-size: 13px !important;
+  }
+
+  .lp-popup-today label {
+    font-size: 13px !important;
+  }
+
+  .lp-toast-time {
+    font-size: 13px !important;
+  }
+
+  .lp-price-note {
+    font-size: 13px !important;
+  }
+  .lp-price-tag {
+    font-size: 13px !important;
+  }
+
+  .lp-privacy-inner p {
+    font-size: 13px !important;
+  }
+
+  .blk-gap-card .sub-info {
+    font-size: 14px !important;
+  }
+
+  .lp-royal-warn {
+    font-size: 13px !important;
+  }
+
+  .blk-section p[style*="font-size:13px"],
+  .blk-section p[style*="font-size:12px"],
+  .lp-body p[style*="font-size:13px"],
+  .lp-body p[style*="font-size:12px"] {
+    font-size: 13px !important;
+  }
 }
 
+
+/* ══════════════════════════════════════
+   초소형 420px 이하
+   ══════════════════════════════════════ */
 @media (max-width: 420px) {
 
   .p6-tab-label {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
   .p6-tab-num {
     font-size: 12px !important;
@@ -2128,6 +2256,16 @@ body {
   }
   .mt-transport-item {
     font-size: 13px !important;
+  }
+
+  .blk-vs-dot-label {
+    font-size: 12px !important;
+  }
+  .blk-vs-event-tag {
+    font-size: 12px !important;
+  }
+  .blk-vs-chart-y span {
+    font-size: 12px !important;
   }
 }
 

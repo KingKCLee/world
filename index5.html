@@ -1601,11 +1601,12 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 .blk-vs-chart-wrap.animated .blk-vs-dot-label {
   opacity: 1;
 }
-.blk-vs-dot-dt-start  { bottom: 73%; left: 1%; border-left: 2px solid #d4145a; transition-delay: .5s; }
-.blk-vs-dot-sd-start  { bottom: 60%; left: 1%; border-left: 2px solid var(--brand-color); transition-delay: .7s; }
-.blk-vs-dot-dt-now    { top: 1%;  right: 14%; border-left: 2px solid #d4145a; transition-delay: 1.5s; }
-.blk-vs-dot-sd-now    { top: 36%; right: 14%; border-left: 2px solid var(--brand-color); transition-delay: 1.8s; }
-.blk-vs-dot-sd-future { top: 18%; right: 1%; border-left: 2px solid rgba(179,155,0,.5); background: rgba(179,155,0,.1); transition-delay: 2.2s; }
+/* ★ 수정: 라벨 위치 — 송도 위 / 동탄 아래, 겹침 방지 */
+.blk-vs-dot-sd-start  { bottom: 72%; left: 1%;  border-left: 2px solid var(--brand-color); transition-delay: .5s; }
+.blk-vs-dot-dt-start  { bottom: 50%; left: 1%;  border-left: 2px solid #d4145a; transition-delay: .7s; }
+.blk-vs-dot-dt-now    { top: 1%;  right: 22%; border-left: 2px solid #d4145a; transition-delay: 1.5s; }
+.blk-vs-dot-sd-now    { top: 42%; right: 22%; border-left: 2px solid var(--brand-color); transition-delay: 1.8s; }
+.blk-vs-dot-sd-future { top: 14%; right: 1%;  border-left: 2px solid rgba(179,155,0,.5); background: rgba(179,155,0,.1); transition-delay: 2.2s; }
 
 /* 이벤트 마커 */
 .blk-vs-event-marker {
@@ -2549,12 +2550,14 @@ body {
             stroke-dasharray="12,8" stroke-linecap="round" opacity="0.6"/>
         </svg>
 
-        <!-- 라벨 -->
-        <div class="blk-vs-dot-label blk-vs-dot-dt-start"><strong>동탄</strong>4.82억</div>
-        <div class="blk-vs-dot-label blk-vs-dot-sd-start"><strong>송도</strong>7억</div>
-        <div class="blk-vs-dot-label blk-vs-dot-dt-now"><strong>동탄 현재</strong>18.8억</div>
-        <div class="blk-vs-dot-label blk-vs-dot-sd-now"><strong>송도 현재</strong>10~12억</div>
-        <div class="blk-vs-dot-label blk-vs-dot-sd-future"><strong>GTX-B 개통 후</strong>15억+ 예상</div>
+<!-- ★ 수정: 송도 라벨을 위에, 동탄 라벨을 아래에 배치 -->
+<div class="blk-vs-dot-label blk-vs-dot-sd-start"><strong>송도</strong>7억</div>
+<div class="blk-vs-dot-label blk-vs-dot-dt-start"><strong>동탄</strong>4.82억</div>
+<div class="blk-vs-dot-label blk-vs-dot-dt-now"><strong>동탄 현재</strong>18.8억</div>
+<div class="blk-vs-dot-label blk-vs-dot-sd-now"><strong>송도 현재</strong>10~12억</div>
+<div class="blk-vs-dot-label blk-vs-dot-sd-future"><strong>GTX-B 개통 후</strong>15억+</div>
+
+
 
         <!-- 이벤트 마커 -->
         <div class="blk-vs-event-marker" style="left:20%">

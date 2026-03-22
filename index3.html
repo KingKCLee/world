@@ -11,6 +11,18 @@
 
   gtag('config', 'AW-11324266200');
 </script>
+
+  <!-- ★ 추가: 네이버 프리미엄로그분석 공통 스크립트 (PV + 유입분석) -->
+  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+  <script type="text/javascript">
+  if(!wcs_add) var wcs_add={};
+  wcs_add["wa"] = "s_294d4663b4";
+  if(window.wcs){
+    wcs.inflow("viphome.kr");
+    wcs_do();
+  }
+  </script>
+
   
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -249,7 +261,7 @@
 <link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preconnect" href="https://www.youtube.com" crossorigin>
 <link rel="preload" as="image" href="landing_page_main_images_309_0_1771463559.webp" type="image/webp">
-<link rel="preload" as="image" href="1551-3755_1772588926_9630.webp" type="image/webp">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.8.4/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@6.8.4/swiper-bundle.min.js"></script>
@@ -724,7 +736,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     margin-right: 0;
     position: relative;
     z-index: 1100;
-    /* ★ FIX: 독립 스태킹 컨텍스트 생성하여 다른 요소에 가려지지 않도록 */
     isolation: isolate;
   }
 
@@ -747,7 +758,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     -webkit-tap-highlight-color: rgba(0,0,0,0.05);
     user-select: none;
     -webkit-user-select: none;
-    /* ★ FIX: label 자체의 z-index 보장 */
     position: relative;
     z-index: 1101;
     min-height: 44px;
@@ -763,7 +773,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     flex-shrink: 0;
     accent-color: #2b6cb0;
     pointer-events: auto !important;
-    /* ★ FIX: 체크박스가 최상위에서 터치 가능하도록 */
     position: relative;
     z-index: 1102;
   }
@@ -1104,7 +1113,538 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   .ig-counter .ig-current { font-size: 14px; }
 }
 
+/* ═══════════════════════════════════════════
+   메인 타이틀 텍스트 애니메이션 v2
+   ═══════════════════════════════════════════ */
 
+.main-title-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 92%;
+  max-width: 900px;
+  z-index: 5;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 40px 36px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+.main-title-text a,
+.main-title-text button {
+  pointer-events: auto;
+}
+
+.mt-anim {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(.22,1,.36,1),
+              transform 0.6s cubic-bezier(.22,1,.36,1);
+}
+.mt-anim.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mt-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-bottom: 12px;
+}
+.mt-badge {
+  display: inline-block;
+  color: #fff;
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 600;
+  padding: 5px 18px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: -0.3px;
+}
+.mt-badge-dot {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.mt-transport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px 6px;
+  margin-bottom: 18px;
+}
+.mt-transport-item {
+  display: inline-block;
+  background: var(--brand-color);
+  color: #fff;
+  font-size: clamp(13px, 1.8vw, 18px);
+  font-weight: 800;
+  padding: 6px 18px;
+  border-radius: 6px;
+  letter-spacing: -0.5px;
+}
+.mt-transport-plus {
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+  font-size: 1.3em;
+}
+
+.mt-highlight {
+  margin-bottom: 10px;
+  font-size: clamp(22px, 4vw, 44px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -1.5px;
+}
+.mt-hl-text {
+  color: #8eff50;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.mt-hl-price {
+  display: inline-block;
+  color: #ffdf00;
+  position: relative;
+  margin-left: 2px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+.mt-hl-price::after {
+  content: '';
+  position: absolute;
+  left: -6px; right: -6px;
+  bottom: 0;
+  height: 38%;
+  background: rgba(255, 223, 0, 0.18);
+  border-radius: 4px;
+  z-index: -1;
+  animation: hlPulse 2.5s ease-in-out infinite;
+}
+@keyframes hlPulse {
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 0.6; }
+}
+
+.mt-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  margin-bottom: 18px;
+}
+.mt-char {
+  font-size: clamp(42px, 9vw, 96px);
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  letter-spacing: -3px;
+  line-height: 1.05;
+  display: inline-block;
+}
+.mt-char-space {
+  width: clamp(12px, 2.5vw, 28px);
+  display: inline-block;
+}
+
+.mt-char.is-visible {
+  animation: charWave 4s ease-in-out infinite;
+  animation-delay: calc(var(--char-i, 0) * 0.15s);
+}
+@keyframes charWave {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+@media (pointer: fine) {
+  .mt-char {
+    transition: transform 0.25s, color 0.25s, text-shadow 0.25s;
+    cursor: default;
+    pointer-events: auto;
+  }
+  .mt-char:hover {
+    transform: translateY(-8px) scale(1.08);
+    color: #ffdf00;
+    text-shadow:
+      0 0 30px rgba(255,223,0,0.7),
+      0 4px 20px rgba(0,0,0,0.5);
+  }
+}
+
+.mt-line {
+  width: 0;
+  height: 2px;
+  margin: 0 auto 18px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255,255,255,0.3),
+    rgba(255,223,0,0.5),
+    rgba(255,255,255,0.3),
+    transparent);
+  border-radius: 2px;
+  transition: width 0.8s cubic-bezier(.22,1,.36,1) 0.1s;
+}
+.mt-line.is-visible {
+  width: 70%;
+}
+
+.mt-cta {
+  display: flex;
+  justify-content: center;
+}
+.mt-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #d60000;
+  color: #fff;
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 900;
+  padding: 14px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  box-shadow: 0 6px 24px rgba(214, 0, 0, 0.45);
+  transition: transform 0.25s, box-shadow 0.25s;
+  animation: ctaBtnPulse 2s ease-in-out infinite;
+}
+.mt-cta-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 30px rgba(214, 0, 0, 0.6);
+}
+@keyframes ctaBtnPulse {
+  0%, 100% {
+    box-shadow: 0 6px 24px rgba(214, 0, 0, 0.45);
+  }
+  50% {
+    box-shadow:
+      0 6px 24px rgba(214, 0, 0, 0.6),
+      0 0 0 10px rgba(214, 0, 0, 0.1);
+  }
+}
+.mt-cta-icon {
+  font-size: 1.1em;
+  animation: phoneRing 1.5s ease-in-out infinite;
+}
+@keyframes phoneRing {
+  0%, 100% { transform: rotate(0); }
+  20%      { transform: rotate(14deg); }
+  40%      { transform: rotate(-10deg); }
+  60%      { transform: rotate(8deg); }
+  80%      { transform: rotate(-4deg); }
+}
+
+@media (max-width: 1023px) {
+  .main-title-text {
+    width: 94%;
+    top: 50%;
+    padding: 28px 18px 24px;
+    border-radius: 14px;
+  }
+  .mt-badges {
+    gap: 4px 8px;
+    margin-bottom: 8px;
+  }
+  .mt-badge {
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+  .mt-badge-dot {
+    font-size: 14px;
+  }
+  .mt-transport {
+    gap: 4px 4px;
+    margin-bottom: 12px;
+  }
+  .mt-transport-item {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+  .mt-transport-plus {
+    font-size: 1em;
+  }
+  .mt-highlight {
+    margin-bottom: 6px;
+  }
+  .mt-char {
+    letter-spacing: -2px;
+  }
+  .mt-cta-btn {
+    padding: 12px 30px;
+  }
+  .mt-line {
+    margin-bottom: 14px;
+  }
+  .mt-main {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .main-title-text {
+    padding: 22px 14px 20px;
+    border-radius: 12px;
+  }
+  .mt-badge {
+    padding: 2px 8px;
+    font-size: 10px;
+  }
+  .mt-transport-item {
+    padding: 3px 7px;
+    font-size: 10px;
+  }
+  .mt-cta-btn {
+    padding: 10px 24px;
+    font-size: 16px;
+  }
+  .mt-char {
+    letter-spacing: -1.5px;
+  }
+}
+
+
+/* ================================================================
+   ★ 개선안 추가 CSS: 로열층 잔여 배지 + 상담 슬롯 + 시세역전 차트
+   ================================================================ */
+
+/* ── 로열층 잔여세대 배지 (lp-urgency 내부) ── */
+.lp-royal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(179,155,0,.4);
+  border-radius: 30px;
+  padding: 10px 22px;
+  margin: 14px auto 6px;
+  animation: royalPulse 2.2s ease-in-out infinite;
+}
+.lp-royal-label {
+  font-size: 14px;
+  color: var(--brand-color-light);
+  font-weight: 600;
+  letter-spacing: -.3px;
+}
+.lp-royal-num {
+  font-size: 36px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 18px rgba(179,155,0,.5);
+  line-height: 1;
+}
+.lp-royal-unit {
+  font-size: 14px;
+  color: var(--brand-color-light);
+  font-weight: 600;
+}
+.lp-royal-warn {
+  font-size: 12px;
+  color: #ff6b6b;
+  margin-top: 4px;
+  opacity: .9;
+}
+@keyframes royalPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(179,155,0,.35); }
+  50%      { box-shadow: 0 0 0 10px rgba(179,155,0,0); }
+}
+
+/* ── 상담 슬롯 잔여 ── */
+.lp-slot-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #aaa;
+}
+.lp-slot-bar strong {
+  color: var(--brand-color-light);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+@media(max-width:1023px){
+  .lp-royal-badge { padding: 8px 16px; }
+  .lp-royal-label { font-size: 12px; }
+  .lp-royal-num { font-size: 28px; }
+  .lp-royal-unit { font-size: 12px; }
+  .lp-royal-warn { font-size: 11px; }
+  .lp-slot-bar { font-size: 12px; }
+  .lp-slot-bar strong { font-size: 13px; }
+}
+
+/* ── 시세 역전 애니메이션 SVG 차트 ── */
+.blk-vs-chart-wrap {
+  position: relative;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 14px;
+  padding: 20px 12px 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.blk-vs-chart-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #666;
+}
+.blk-vs-chart-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.blk-vs-chart-legend .dot-dt {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #d4145a;
+}
+.blk-vs-chart-legend .dot-sd {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--brand-color);
+}
+
+.blk-vs-chart-body {
+  position: relative;
+  height: 260px;
+  margin: 0 32px;
+}
+.blk-vs-chart-y {
+  position: absolute;
+  left: -32px; top: 0; bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #999;
+}
+.blk-vs-chart-x {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 32px 0;
+  font-size: 11px;
+  color: #999;
+}
+.blk-vs-chart-x small {
+  display: block;
+  font-size: 9px;
+  color: var(--brand-color);
+}
+
+.blk-vs-chart-body svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: calc(100% - 24px);
+}
+
+/* SVG 라인 draw 애니메이션 */
+.blk-line-dt,
+.blk-line-sd,
+.blk-line-sd-future {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  transition: stroke-dashoffset 2s ease-out;
+}
+.blk-line-sd {
+  transition-delay: 0.3s;
+}
+.blk-line-sd-future {
+  transition-delay: 0.6s;
+}
+.blk-vs-chart-wrap.animated .blk-line-dt,
+.blk-vs-chart-wrap.animated .blk-line-sd,
+.blk-vs-chart-wrap.animated .blk-line-sd-future {
+  stroke-dashoffset: 0;
+}
+
+/* 차트 라벨 */
+.blk-vs-dot-label {
+  position: absolute;
+  font-size: 10px;
+  color: #333;
+  background: rgba(255,255,255,.85);
+  padding: 2px 7px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .5s ease;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+}
+.blk-vs-dot-label strong {
+  display: block;
+  font-size: 9px;
+  margin-bottom: 1px;
+}
+.blk-vs-chart-wrap.animated .blk-vs-dot-label {
+  opacity: 1;
+}
+.blk-vs-dot-dt-start  { bottom: 73%; left: 1%; border-left: 2px solid #d4145a; transition-delay: .5s; }
+.blk-vs-dot-sd-start  { bottom: 60%; left: 1%; border-left: 2px solid var(--brand-color); transition-delay: .7s; }
+.blk-vs-dot-dt-now    { top: 1%;  right: 14%; border-left: 2px solid #d4145a; transition-delay: 1.5s; }
+.blk-vs-dot-sd-now    { top: 36%; right: 14%; border-left: 2px solid var(--brand-color); transition-delay: 1.8s; }
+.blk-vs-dot-sd-future { top: 18%; right: 1%; border-left: 2px solid rgba(179,155,0,.5); background: rgba(179,155,0,.1); transition-delay: 2.2s; }
+
+/* 이벤트 마커 */
+.blk-vs-event-marker {
+  position: absolute;
+  bottom: 24px;
+  z-index: 2;
+}
+.blk-vs-event-line {
+  width: 1px;
+  height: calc(100% - 24px);
+  position: absolute;
+  bottom: 0;
+  border-left: 1px dashed rgba(0,0,0,.12);
+}
+.blk-vs-event-tag {
+  position: absolute;
+  bottom: calc(100% - 24px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: #888;
+  background: #fff;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+.blk-vs-event-tag-gold {
+  color: var(--brand-color-dark);
+  border-color: rgba(179,155,0,.3);
+}
+.blk-vs-chart-note {
+  text-align: center;
+  font-size: 11px;
+  color: #999;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+@media(max-width:1023px){
+  .blk-vs-chart-body { height: 200px; }
+  .blk-vs-chart-legend { font-size: 11px; gap: 14px; }
+  .blk-vs-chart-y { font-size: 9px; left: -28px; }
+  .blk-vs-chart-x { font-size: 10px; padding: 4px 28px 0; }
+  .blk-vs-dot-label { font-size: 9px; padding: 1px 5px; }
+}
+
+  
 </style>
 </head>
 
@@ -1149,19 +1689,72 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
         <div class="img" style="background:url('landing_page_main_images_309_0_1771463559.webp') no-repeat 50% 0;background-size:cover;">
           <img class="only-pc" src="landing_page_main_images_309_0_1771463559.webp" alt="송도 월드메르디앙 아파트 외관 전경 - 인천 송도국제도시 1공구 신축" width="1920" height="1080">
         </div>
-        <div class="main-title-image">
-          <img src="1551-3755_1772588926_9630.webp" alt="송도 월드메르디앙 6억대 특별분양 안내" width="800" height="600">
-        </div>
+
       </li>
       <li class="swiper-slide">
         <div class="img" style="background:url('landing_page_main_images_309_1_1771463559.webp') no-repeat 50% 0;background-size:cover;">
           <img class="only-pc" src="landing_page_main_images_309_1_1771463559.webp" alt="송도 월드메르디앙 단지 조감도 - 4개동 128세대 남향 배치">
         </div>
-        <div class="main-title-image">
-          <img src="1551-3755_1772588926_9630.webp" alt="송도 월드메르디앙 6억대 특별분양 안내">
-        </div>
+
       </li>
     </ul>
+   
+    <!-- ★ 메인 타이틀 (텍스트 애니메이션 버전) -->
+<div class="main-title-text" id="mainTitleText">
+
+  <!-- 1행: 태그 뱃지 라인 -->
+  <div class="mt-badges">
+    <span class="mt-badge mt-anim" data-delay="0">명문학군</span>
+    <span class="mt-badge-dot mt-anim" data-delay="80">·</span>
+    <span class="mt-badge mt-anim" data-delay="160">최대학원가</span>
+    <span class="mt-badge-dot mt-anim" data-delay="240">·</span>
+    <span class="mt-badge mt-anim" data-delay="320">센트럴파크 도보권</span>
+  </div>
+
+  <!-- 2행: 교통 라인 -->
+  <div class="mt-transport mt-anim" data-delay="500">
+    <span class="mt-transport-item">GTX-B</span>
+    <span class="mt-transport-plus">+</span>
+    <span class="mt-transport-item">송도트램</span>
+    <span class="mt-transport-plus">+</span>
+    <span class="mt-transport-item">인천3호선</span>
+    <span class="mt-transport-plus">+</span>
+    <span class="mt-transport-item">제2외곽순환</span>
+  </div>
+
+  <!-- 3행: 강조 서브 -->
+  <div class="mt-highlight mt-anim" data-delay="800">
+    <span class="mt-hl-text">30평대 신축 송도 마지막</span>
+    <span class="mt-hl-price">6억대</span>
+  </div>
+
+  <!-- 4행: 메인 타이틀 (글자별 등장) -->
+  <div class="mt-main" id="mtMain">
+    <span class="mt-char mt-anim" data-delay="1100">송</span>
+    <span class="mt-char mt-anim" data-delay="1160">도</span>
+    <span class="mt-char-space"></span>
+    <span class="mt-char mt-anim" data-delay="1280">월</span>
+    <span class="mt-char mt-anim" data-delay="1340">드</span>
+    <span class="mt-char mt-anim" data-delay="1400">메</span>
+    <span class="mt-char mt-anim" data-delay="1460">르</span>
+    <span class="mt-char mt-anim" data-delay="1520">디</span>
+    <span class="mt-char mt-anim" data-delay="1580">앙</span>
+  </div>
+
+  <!-- 5행: 빛나는 라인 데코 -->
+  <div class="mt-line mt-anim" data-delay="1800"></div>
+
+  <!-- 6행: CTA 버튼 -->
+  <div class="mt-cta mt-anim" data-delay="2000">
+    <a href="tel:1533-9077" class="mt-cta-btn">
+      <span class="mt-cta-icon">📞</span>
+      <span>1533-9077</span>
+    </a>
+  </div>
+
+</div>
+
+    
     <div class="swiper-controler-renew-area">
       <div class="swiper-pagination"></div>
     </div>
@@ -1198,10 +1791,26 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
     </div>
   </div>
 
+  <!-- ★ 개선: lp-urgency에 로열층 잔여 배지 + 상담 슬롯 추가 (카운트다운 타이머 대체) -->
   <div class="lp-urgency" data-aos="fade-up">
     <div class="lp-urgency-top">준공 완료 · 즉시입주 가능 · 2026~2027 송도 입주물량 0세대</div>
     <div class="lp-urgency-main"><em>잔여세대 한정</em> 1억 5천만원 특별할인 진행중</div>
     <div class="lp-urgency-bottom">동탄 GTX 착공 전 9억 → 개통 후 18억 | 지금 송도가 그 시점입니다</div>
+
+    <!-- ★ 추가: 로열층 잔여세대 실시간 배지 -->
+    <div class="lp-royal-badge" id="royalBadge">
+            <span class="lp-royal-label">1공구 로열층 잔여</span>
+      <span class="lp-royal-num" id="royalCount">5</span>
+      <span class="lp-royal-unit">세대</span>
+    </div>
+    <p class="lp-royal-warn">※ 로열층 소진 시 동일 조건 적용 불가</p>
+
+    <!-- ★ 추가: 오늘 상담 슬롯 잔여 -->
+    <div class="lp-slot-bar">
+      <span>오늘 상담 가능</span>
+      <strong id="slotCount">3</strong>
+      <span>건 남음</span>
+    </div>
   </div>
 
   <div id="reserve-top">
@@ -1239,7 +1848,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  ★ INTEREST 블록: 가격 바 차트 → 동탄 vs 송도 비교          -->
-<!--  (유튜브 직후 — "송도가 얼마나 저평가됐는지" 시각적 충격)      -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 
 <!-- ★ 블록5: 시세 바 차트 -->
@@ -1270,11 +1878,82 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   </div>
 </div>
 
-<!-- ★ 블록7: 동탄 vs 송도 비교 -->
+<!-- ★ 블록7: 동탄 vs 송도 비교 — 개선: 애니메이션 SVG 라인 차트 추가 -->
 <div class="blk-section blk-light" id="blkVs" data-aos="fade-up">
   <div class="blk-container">
     <h3 class="blk-title">🏙️ 동탄 vs 송도 — 미래가치 비교</h3>
     <p class="blk-sub">GTX 수혜 + 분양가 격차 = <strong>폭발적 상승 여력</strong></p>
+
+    <!-- ★ 추가: 시세 역전 애니메이션 SVG 라인 차트 -->
+    <div class="blk-vs-chart-wrap" id="blkVsChartWrap">
+      <div class="blk-vs-chart-legend">
+        <span><i class="dot-dt"></i> 동탄 (GTX-A)</span>
+        <span><i class="dot-sd"></i> 송도 (GTX-B)</span>
+      </div>
+
+      <div class="blk-vs-chart-body">
+        <div class="blk-vs-chart-y">
+          <span>20억</span>
+          <span>15억</span>
+          <span>10억</span>
+          <span>5억</span>
+          <span>0</span>
+        </div>
+
+        <svg viewBox="0 0 1000 500" preserveAspectRatio="none">
+          <!-- Grid -->
+          <line x1="0" y1="0" x2="1000" y2="0" stroke="rgba(0,0,0,.04)" stroke-width="1"/>
+          <line x1="0" y1="125" x2="1000" y2="125" stroke="rgba(0,0,0,.04)" stroke-width="1"/>
+          <line x1="0" y1="250" x2="1000" y2="250" stroke="rgba(0,0,0,.04)" stroke-width="1"/>
+          <line x1="0" y1="375" x2="1000" y2="375" stroke="rgba(0,0,0,.04)" stroke-width="1"/>
+
+          <!-- 동탄: 4.82억(2017) → 9억(2019) → 14억(2021) → 16억(2023) → 18.8억(2025) -->
+          <polyline class="blk-line-dt"
+            points="0,380 200,275 400,150 600,100 800,30"
+            stroke="#d4145a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- 송도: 7억(2017) → 7.5억(2019) → 8.5억(2021) → 8억(2023) → 10억(2025) -->
+          <polyline class="blk-line-sd"
+            points="0,325 200,312 400,287 600,300 800,250"
+            stroke="#b39b00" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- 송도 미래: 10억(2025) → 15억+(2031) 점선 -->
+          <polyline class="blk-line-sd-future"
+            points="800,250 1000,125"
+            stroke="#b39b00" stroke-width="3" fill="none"
+            stroke-dasharray="12,8" stroke-linecap="round" opacity="0.6"/>
+        </svg>
+
+        <!-- 라벨 -->
+        <div class="blk-vs-dot-label blk-vs-dot-dt-start"><strong>동탄</strong>4.82억</div>
+        <div class="blk-vs-dot-label blk-vs-dot-sd-start"><strong>송도</strong>7억</div>
+        <div class="blk-vs-dot-label blk-vs-dot-dt-now"><strong>동탄 현재</strong>18.8억</div>
+        <div class="blk-vs-dot-label blk-vs-dot-sd-now"><strong>송도 현재</strong>10~12억</div>
+        <div class="blk-vs-dot-label blk-vs-dot-sd-future"><strong>GTX-B 개통 후</strong>15억+ 예상</div>
+
+        <!-- 이벤트 마커 -->
+        <div class="blk-vs-event-marker" style="left:20%">
+          <div class="blk-vs-event-line"></div>
+          <div class="blk-vs-event-tag">GTX-A 착공 (2019)</div>
+        </div>
+        <div class="blk-vs-event-marker" style="left:80%">
+          <div class="blk-vs-event-line" style="border-color:rgba(179,155,0,.3)"></div>
+          <div class="blk-vs-event-tag blk-vs-event-tag-gold">GTX-B 착공</div>
+        </div>
+      </div>
+
+      <div class="blk-vs-chart-x">
+        <span>2017</span>
+        <span>2019</span>
+        <span>2021</span>
+        <span>2023</span>
+        <span>2025</span>
+        <span>2031<small>예상</small></span>
+      </div>
+    </div>
+    <p class="blk-vs-chart-note">※ 동탄 실거래가: KB부동산 기준 4.82억→18.8억 | 송도 실거래가: 7~8억→10~12억<br>GTX-B 소요시간: 여의도 23분, 서울역 27분 | 미래 예측은 시나리오 기반 추정치</p>
+
+    <!-- 기존 동탄vs송도 카드 (그대로 유지) -->
     <div class="blk-vs-grid">
       <div class="blk-vs-card card-left">
         <h4>동탄역 롯데캐슬</h4>
@@ -1296,7 +1975,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  구간 2: lp-body (가격표~혜택CTA~프리미엄이미지~입지~리뷰      -->
-<!--          ~교육·인프라·교통~혜택CTA 2)                        -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 <div class="lp-body">
 
@@ -1493,7 +2171,6 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!--  ★ DESIRE 블록: 평형비교 → 자금계산기 → 전세갭 시뮬레이터    -->
-<!--  (이미지 갤러리 직후 — "어떤 타입? → 내 자금으로? → 갭투자?") -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 
 <!-- ★ 블록4: 타입별 가격·대출·필요현금 비교표 -->
@@ -1900,12 +2577,19 @@ function validateForm(id){
     });
   }
   
+  if(window.wcs){
+    if(!wcs_add) var wcs_add = {};
+    wcs_add["wa"] = "s_294d4663b4";
+    var _conv = {};
+    _conv.type = "lead";
+    wcs.trans(_conv);
+  }
+  
   submitted = true; return true;
 }
 </script>
 
 <!-- ── 유입경로 판별 + 검색어 추출 + 히든 필드 세팅 ── -->
-<!-- ★ FIX: 네이버 검색광고 파라미터(n_media, n_query 등) 감지 추가 -->
 <script>
 (function(){
   var params = new URLSearchParams(location.search);
@@ -1913,141 +2597,74 @@ function validateForm(id){
   var src    = '';
   var keyword = '';
 
-  /* ── 1단계: URL 파라미터로 네이버 검색광고 판별 (가장 정확) ── */
   var nMedia  = params.get('n_media');
   var nQuery  = params.get('n_query');
   var nRank   = params.get('n_rank');
   var nAdId   = params.get('n_ad_group');
   var nCampaign = params.get('n_campaign_type');
 
-  /* 네이버 검색광고는 n_media=27758 (검색) 또는 다른 값으로 구분 */
   if(nMedia || nAdId || nCampaign){
-    if(nMedia === '27758'){
-      src = '네이버 검색광고(SA)';
-    } else if(nMedia === '27759'){
-      src = '네이버 쇼핑검색광고';
-    } else if(nMedia === '36683' || nMedia === '57962'){
-      src = '네이버 성과형디스플레이(GFA)';
-    } else {
-      src = '네이버 광고(n_media=' + (nMedia||'unknown') + ')';
-    }
-    if(nQuery){
-      try{ keyword = decodeURIComponent(nQuery); }catch(e){ keyword = nQuery; }
-    }
+    if(nMedia === '27758'){ src = '네이버 검색광고(SA)'; }
+    else if(nMedia === '27759'){ src = '네이버 쇼핑검색광고'; }
+    else if(nMedia === '36683' || nMedia === '57962'){ src = '네이버 성과형디스플레이(GFA)'; }
+    else { src = '네이버 광고(n_media=' + (nMedia||'unknown') + ')'; }
+    if(nQuery){ try{ keyword = decodeURIComponent(nQuery); }catch(e){ keyword = nQuery; } }
   }
 
-  /* ── 2단계: UTM 파라미터 확인 ── */
   if(!src){
     var utmSrc = (params.get('utm_source') || '').toLowerCase();
     var utmMedium = (params.get('utm_medium') || '').toLowerCase();
-    var utmCampaign = params.get('utm_campaign') || '';
     var utmTerm = params.get('utm_term') || '';
-
-    if(utmSrc === 'naver' && utmMedium === 'cpc'){
-      src = '네이버 검색광고(UTM)';
-      if(utmTerm) keyword = utmTerm;
-    } else if(utmSrc === 'google' && utmMedium === 'cpc'){
-      src = '구글 검색광고(UTM)';
-      if(utmTerm) keyword = utmTerm;
-    } else if(utmSrc === 'naver' && utmMedium === 'display'){
-      src = '네이버 GFA(UTM)';
-    } else if(utmSrc){
-      src = utmSrc + (utmMedium ? ' / ' + utmMedium : '');
-      if(utmTerm) keyword = utmTerm;
-    }
+    if(utmSrc === 'naver' && utmMedium === 'cpc'){ src = '네이버 검색광고(UTM)'; if(utmTerm) keyword = utmTerm; }
+    else if(utmSrc === 'google' && utmMedium === 'cpc'){ src = '구글 검색광고(UTM)'; if(utmTerm) keyword = utmTerm; }
+    else if(utmSrc === 'naver' && utmMedium === 'display'){ src = '네이버 GFA(UTM)'; }
+    else if(utmSrc){ src = utmSrc + (utmMedium ? ' / ' + utmMedium : ''); if(utmTerm) keyword = utmTerm; }
   }
 
-  /* ── 3단계: gclid (구글 광고) 확인 ── */
-  if(!src && params.get('gclid')){
-    src = '구글 검색광고(gclid)';
-  }
+  if(!src && params.get('gclid')){ src = '구글 검색광고(gclid)'; }
 
-  /* ── 4단계: referrer 기반 판별 ── */
   if(!src && ref){
     var refHost = '';
     try{ refHost = new URL(ref).hostname; }catch(e){}
-
-    if(ref.indexOf('ader.naver.com') > -1 || ref.indexOf('ad.search.naver.com') > -1){
-      src = '네이버 검색광고(referrer)';
-    } else if(refHost.indexOf('search.naver.com') > -1 || refHost.indexOf('m.search.naver.com') > -1){
-      /* referrer가 search.naver.com이라도 n_media 파라미터가 있었으면 위에서 이미 잡힘 */
-      src = '네이버 자연검색';
-    } else if(refHost.indexOf('naver.com') > -1){
-      src = '네이버 기타';
-    } else if(ref.indexOf('googleads') > -1){
-      src = '구글 검색광고(referrer)';
-    } else if(refHost.indexOf('google.') > -1){
-      src = '구글 자연검색';
-    } else if(refHost.indexOf('daum.net') > -1 || refHost.indexOf('kakao.com') > -1){
-      src = '다음/카카오';
-    } else if(refHost.indexOf('youtube.com') > -1){
-      src = '유튜브';
-    } else if(refHost.indexOf('instagram.com') > -1){
-      src = '인스타그램';
-    } else if(refHost.indexOf('facebook.com') > -1 || refHost.indexOf('fb.com') > -1){
-      src = '페이스북';
-    } else if(refHost.indexOf('blog.naver.com') > -1){
-      src = '네이버블로그';
-    } else if(refHost.indexOf('cafe.naver.com') > -1){
-      src = '네이버카페';
-    } else if(refHost.indexOf('band.us') > -1){
-      src = '밴드';
-    } else if(refHost.indexOf('bing.com') > -1){
-      src = '빙';
-    } else {
-      src = ref;
-    }
+    if(ref.indexOf('ader.naver.com') > -1 || ref.indexOf('ad.search.naver.com') > -1){ src = '네이버 검색광고(referrer)'; }
+    else if(refHost.indexOf('search.naver.com') > -1 || refHost.indexOf('m.search.naver.com') > -1){ src = '네이버 자연검색'; }
+    else if(refHost.indexOf('naver.com') > -1){ src = '네이버 기타'; }
+    else if(ref.indexOf('googleads') > -1){ src = '구글 검색광고(referrer)'; }
+    else if(refHost.indexOf('google.') > -1){ src = '구글 자연검색'; }
+    else if(refHost.indexOf('daum.net') > -1 || refHost.indexOf('kakao.com') > -1){ src = '다음/카카오'; }
+    else if(refHost.indexOf('youtube.com') > -1){ src = '유튜브'; }
+    else if(refHost.indexOf('instagram.com') > -1){ src = '인스타그램'; }
+    else if(refHost.indexOf('facebook.com') > -1 || refHost.indexOf('fb.com') > -1){ src = '페이스북'; }
+    else if(refHost.indexOf('blog.naver.com') > -1){ src = '네이버블로그'; }
+    else if(refHost.indexOf('cafe.naver.com') > -1){ src = '네이버카페'; }
+    else if(refHost.indexOf('band.us') > -1){ src = '밴드'; }
+    else if(refHost.indexOf('bing.com') > -1){ src = '빙'; }
+    else { src = ref; }
   }
 
   if(!src) src = '직접방문';
 
-  /* ── 5단계: 검색어 추출 (아직 없으면) ── */
   if(!keyword){
-    keyword = params.get('utm_term')
-           || params.get('keyword')
-           || params.get('q')
-           || params.get('query')
-           || params.get('n_query')
-           || '';
+    keyword = params.get('utm_term') || params.get('keyword') || params.get('q') || params.get('query') || params.get('n_query') || '';
   }
-
   if(!keyword && ref){
     try{
-      var refUrl    = new URL(ref);
-      var refParams = new URLSearchParams(refUrl.search);
-      var host      = refUrl.hostname;
-
-      if(host.includes('naver.com')){
-        keyword = refParams.get('query') || refParams.get('q') || '';
-      } else if(host.includes('google.') || host.includes('bing.com')){
-        keyword = refParams.get('q') || '';
-      } else if(host.includes('daum.net')){
-        keyword = refParams.get('q') || refParams.get('query') || '';
-      } else if(host.includes('yahoo.com') || host.includes('yahoo.co')){
-        keyword = refParams.get('p') || '';
-      } else if(host.includes('youtube.com')){
-        keyword = refParams.get('search_query') || '';
-      } else {
-        keyword = refParams.get('q') || refParams.get('query') || refParams.get('keyword') || '';
-      }
+      var refUrl = new URL(ref); var refParams = new URLSearchParams(refUrl.search); var host = refUrl.hostname;
+      if(host.includes('naver.com')){ keyword = refParams.get('query') || refParams.get('q') || ''; }
+      else if(host.includes('google.') || host.includes('bing.com')){ keyword = refParams.get('q') || ''; }
+      else if(host.includes('daum.net')){ keyword = refParams.get('q') || refParams.get('query') || ''; }
+      else if(host.includes('yahoo.com') || host.includes('yahoo.co')){ keyword = refParams.get('p') || ''; }
+      else if(host.includes('youtube.com')){ keyword = refParams.get('search_query') || ''; }
+      else { keyword = refParams.get('q') || refParams.get('query') || refParams.get('keyword') || ''; }
     }catch(e){}
   }
+  if(keyword){ try{ keyword = decodeURIComponent(keyword); }catch(e){} }
 
-  if(keyword){
-    try{ keyword = decodeURIComponent(keyword); }catch(e){}
-  }
-
-  /* ── 6단계: 히든 필드에 값 세팅 ── */
   var sourceValue = src;
   if(keyword) sourceValue += ' | 검색어: ' + keyword;
-
-  document.querySelectorAll('.js-source-field').forEach(function(el){
-    el.value = sourceValue;
-  });
-
+  document.querySelectorAll('.js-source-field').forEach(function(el){ el.value = sourceValue; });
   window.__lpSource  = src;
   window.__lpKeyword = keyword;
-  console.log('[유입경로-폼]', src, '| 검색어:', keyword||'(없음)', '| referrer=', ref, '| n_media=', nMedia||'(없음)');
 })();
 </script>
 
@@ -2067,24 +2684,14 @@ document.addEventListener('DOMContentLoaded',function(){
 (function(){function s(){document.documentElement.style.setProperty('--vh',(innerHeight*.01)+'px');}s();addEventListener('resize',s);})();
 </script>
 
-<!-- ★ 수정: 개인정보 레이어 – [자세히] 링크에 직접 이벤트 + stopPropagation -->
+<!-- ★ 수정: 개인정보 레이어 -->
 <script>
 (function(){
   var l=document.getElementById('lpPrivacyLayer'),c=document.getElementById('lpPrivacyClose');
-
   document.querySelectorAll('.lp-privacy-more').forEach(function(a){
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      if(l) l.style.display = 'flex';
-    });
-    a.addEventListener('touchend', function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      if(l) l.style.display = 'flex';
-    });
+    a.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); if(l) l.style.display = 'flex'; });
+    a.addEventListener('touchend', function(e){ e.preventDefault(); e.stopPropagation(); if(l) l.style.display = 'flex'; });
   });
-
   if(c)c.addEventListener('click',function(){if(l)l.style.display='none';});
   if(l)l.addEventListener('click',function(e){if(e.target===l)l.style.display='none';});
 })();
@@ -2103,6 +2710,25 @@ document.addEventListener('DOMContentLoaded',function(){
 })();
 </script>
 
+<!-- ── 메인 타이틀 텍스트 등장 애니메이션 ── -->
+<script>
+(function(){
+  var wrap = document.getElementById('mainTitleText');
+  if(!wrap) return;
+  var items = wrap.querySelectorAll('.mt-anim');
+  var chars = wrap.querySelectorAll('.mt-char');
+  chars.forEach(function(c, i){ c.style.setProperty('--char-i', i); });
+  function trigger(){
+    items.forEach(function(el){
+      var delay = parseInt(el.getAttribute('data-delay')) || 0;
+      setTimeout(function(){ el.classList.add('is-visible'); }, delay);
+    });
+  }
+  if(document.readyState === 'complete'){ setTimeout(trigger, 300); }
+  else { window.addEventListener('load', function(){ setTimeout(trigger, 300); }); }
+})();
+</script>
+  
 <!-- ── 스크롤 텍스트 원형 배치 ── -->
 <script>
 (function(){
@@ -2135,11 +2761,8 @@ document.querySelectorAll('.js-quick-top').forEach(function(b){b.addEventListene
 (function(){
   document.querySelectorAll('.js-resv-counter').forEach(function(box){
     var n=box.querySelector('.num');if(!n)return;
-    var baseCount=138;
-    var baseDate=new Date('2026-03-01');
-    var today=new Date();
-    var days=Math.floor((today-baseDate)/86400000);
-    var target=baseCount+Math.max(0,days)*2;
+    var baseCount=138;var baseDate=new Date('2026-03-01');var today=new Date();
+    var days=Math.floor((today-baseDate)/86400000);var target=baseCount+Math.max(0,days)*2;
     n.dataset.count=target;
     var start=Math.max(0,target-100),dur=1600,st=null;
     function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/dur,1),e=1-Math.pow(1-p,3);n.textContent=Math.floor(start+(target-start)*e).toLocaleString('ko-KR');if(p<1)requestAnimationFrame(step);else n.textContent=target.toLocaleString('ko-KR');}
@@ -2147,7 +2770,6 @@ document.querySelectorAll('.js-quick-top').forEach(function(b){b.addEventListene
     else requestAnimationFrame(step);
   });
 })();
-
 document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-bubble-close');if(b){var w=b.closest('.lp-resv-bubble-fixed');if(w)w.style.display='none';}});
 </script>
 
@@ -2161,47 +2783,30 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
 })();
 </script>
 
-<!-- ── 팝업 3개 초기화 (독립 localStorage + 모바일 스택/스와이프) ── -->
+<!-- ── 팝업 3개 초기화 ── -->
 <script>
 (function(){
   var popup = document.getElementById('lpSlidePopup');
   if(!popup) return;
-
-  var cards = [
-    document.getElementById('popupInner1'),
-    document.getElementById('popupInner2'),
-    document.getElementById('popupInner3')
-  ];
-
+  var cards = [document.getElementById('popupInner1'),document.getElementById('popupInner2'),document.getElementById('popupInner3')];
   var todayStr = new Date().toDateString();
   var hidden = [false, false, false];
-
   cards.forEach(function(card, i){
     if(!card) { hidden[i] = true; return; }
     var key = 'popup' + (i+1) + '_hide_today';
-    if(localStorage.getItem(key) === todayStr){
-      hidden[i] = true;
-      card.style.display = 'none';
-    }
+    if(localStorage.getItem(key) === todayStr){ hidden[i] = true; card.style.display = 'none'; }
   });
-
   var isMobile = window.matchMedia('(max-width:1023px)').matches;
   var currentIdx = 0;
-
   function getVisibleCards(){
     var arr = [];
-    cards.forEach(function(card, i){
-      if(!hidden[i] && card && card.style.display !== 'none') arr.push({el: card, idx: i});
-    });
+    cards.forEach(function(card, i){ if(!hidden[i] && card && card.style.display !== 'none') arr.push({el: card, idx: i}); });
     return arr;
   }
-
   function updateMobileStack(){
     if(!isMobile) return;
     var visible = getVisibleCards();
-    cards.forEach(function(card){
-      if(card) card.setAttribute('data-stack', 'hidden');
-    });
+    cards.forEach(function(card){ if(card) card.setAttribute('data-stack', 'hidden'); });
     if(visible.length === 0) return;
     if(currentIdx >= visible.length) currentIdx = 0;
     for(var s = 0; s < Math.min(visible.length, 3); s++){
@@ -2209,34 +2814,19 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
       visible[realIdx].el.setAttribute('data-stack', String(s));
     }
   }
-
-  function checkAllClosed(){
-    var allGone = getVisibleCards().length === 0;
-    if(allGone) popup.classList.remove('show');
-  }
-
+  function checkAllClosed(){ if(getVisibleCards().length === 0) popup.classList.remove('show'); }
   window.closePopup = function(n){
     var card = document.getElementById('popupInner' + n);
-    if(card){
-      card.style.display = 'none';
-      hidden[n-1] = true;
-    }
+    if(card){ card.style.display = 'none'; hidden[n-1] = true; }
     if(isMobile) updateMobileStack();
     checkAllClosed();
   };
-
   window.closePopupToday = function(n){
     localStorage.setItem('popup' + n + '_hide_today', new Date().toDateString());
     closePopup(n);
   };
-
-  popup.addEventListener('click', function(e){
-    if(e.target === popup) popup.classList.remove('show');
-  });
-  document.addEventListener('keydown', function(e){
-    if(popup.classList.contains('show') && e.key === 'Escape') popup.classList.remove('show');
-  });
-
+  popup.addEventListener('click', function(e){ if(e.target === popup) popup.classList.remove('show'); });
+  document.addEventListener('keydown', function(e){ if(popup.classList.contains('show') && e.key === 'Escape') popup.classList.remove('show'); });
   popup.addEventListener('click', function(e){
     var a = e.target.closest('a.lp-popup-link');
     if(!a) return;
@@ -2255,48 +2845,26 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
       if(typeof lpOpenFloatForm === 'function') lpOpenFloatForm();
     }
   });
-
   if(isMobile){
     var startX = 0, startY = 0, swiping = false;
     var container = popup.querySelector('.lp-slide-popup-container');
-
-    container.addEventListener('touchstart', function(e){
-      var t = e.touches[0];
-      startX = t.clientX;
-      startY = t.clientY;
-      swiping = true;
-    }, {passive: true});
-
+    container.addEventListener('touchstart', function(e){ var t = e.touches[0]; startX = t.clientX; startY = t.clientY; swiping = true; }, {passive: true});
     container.addEventListener('touchend', function(e){
-      if(!swiping) return;
-      swiping = false;
-      var t = e.changedTouches[0];
-      var dx = t.clientX - startX;
-      var dy = t.clientY - startY;
+      if(!swiping) return; swiping = false;
+      var t = e.changedTouches[0]; var dx = t.clientX - startX; var dy = t.clientY - startY;
       if(Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)){
-        var visible = getVisibleCards();
-        if(visible.length <= 1) return;
-        if(dx < 0){
-          currentIdx = (currentIdx + 1) % visible.length;
-        } else {
-          currentIdx = (currentIdx - 1 + visible.length) % visible.length;
-        }
+        var visible = getVisibleCards(); if(visible.length <= 1) return;
+        if(dx < 0){ currentIdx = (currentIdx + 1) % visible.length; }
+        else { currentIdx = (currentIdx - 1 + visible.length) % visible.length; }
         updateMobileStack();
       }
     }, {passive: true});
   }
-
   function show(){
     if(hidden[0] && hidden[1] && hidden[2]) return;
-    if(isMobile){
-      var visible = getVisibleCards();
-      if(visible.length === 0) return;
-      currentIdx = 0;
-      updateMobileStack();
-    }
+    if(isMobile){ var visible = getVisibleCards(); if(visible.length === 0) return; currentIdx = 0; updateMobileStack(); }
     popup.classList.add('show');
   }
-
   setTimeout(show, 1500);
 })();
 </script>
@@ -2309,50 +2877,22 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
   var tabs = wrap.querySelectorAll('.p6-tab');
   var panels = wrap.querySelectorAll('.p6-panel');
   var bar = wrap.querySelector('.p6-progress-bar');
-  var autoTimer, progressTimer;
+  var autoTimer;
   var current = 0;
   var INTERVAL = 5000;
-
   function activate(idx){
     current = idx;
     tabs.forEach(function(t,i){ t.classList.toggle('active', i===idx); });
     panels.forEach(function(p,i){ p.classList.toggle('active', i===idx); });
     startProgress();
   }
-
   function startProgress(){
-    if(bar){
-      bar.style.transition = 'none';
-      bar.style.width = '0%';
-      void bar.offsetWidth;
-      bar.style.transition = 'width ' + INTERVAL + 'ms linear';
-      bar.style.width = '100%';
-    }
+    if(bar){ bar.style.transition = 'none'; bar.style.width = '0%'; void bar.offsetWidth; bar.style.transition = 'width ' + INTERVAL + 'ms linear'; bar.style.width = '100%'; }
   }
-
-  function startAuto(){
-    stopAuto();
-    autoTimer = setInterval(function(){
-      activate((current + 1) % tabs.length);
-    }, INTERVAL);
-    startProgress();
-  }
-
-  function stopAuto(){
-    clearInterval(autoTimer);
-    clearTimeout(progressTimer);
-  }
-
-  tabs.forEach(function(tab, i){
-    tab.addEventListener('click', function(){
-      activate(i);
-      stopAuto();
-      startAuto();
-    });
-  });
-
-  activate(0);
-  startAuto();
+  function startAuto(){ stopAuto(); autoTimer = setInterval(function(){ activate((current + 1) % tabs.length); }, INTERVAL); startProgress(); }
+  function stopAuto(){ clearInterval(autoTimer); }
+  tabs.forEach(function(tab, i){ tab.addEventListener('click', function(){ activate(i); stopAuto(); startAuto(); }); });
+  activate(0); startAuto();
 })();
 </script>
 
@@ -2364,14 +2904,8 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
       var item = q.closest('.lp-faq-item');
       var ans = item.querySelector('.lp-faq-a');
       var isActive = item.classList.contains('active');
-      document.querySelectorAll('.lp-faq-item').forEach(function(fi){
-        fi.classList.remove('active');
-        fi.querySelector('.lp-faq-a').style.maxHeight = null;
-      });
-      if(!isActive){
-        item.classList.add('active');
-        ans.style.maxHeight = ans.scrollHeight + 'px';
-      }
+      document.querySelectorAll('.lp-faq-item').forEach(function(fi){ fi.classList.remove('active'); fi.querySelector('.lp-faq-a').style.maxHeight = null; });
+      if(!isActive){ item.classList.add('active'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
     });
   });
 })();
@@ -2388,12 +2922,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.lp-resv-b
     iframe.src = 'https://www.youtube.com/embed/ZQXgPeGzwW4?autoplay=1&rel=0';
     iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
     iframe.setAttribute('allowfullscreen', '');
-    iframe.style.position = 'absolute';
-    iframe.style.top = '0';
-    iframe.style.left = '0';
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-    iframe.style.border = '0';
+    iframe.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
     thumb.style.display = 'none';
     section.appendChild(iframe);
   });
@@ -2417,10 +2946,7 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
   var hint = document.querySelector('.kv-drag-hint');
   var visual = document.querySelector('.top-visual');
   if(!hint || !visual) return;
-  visual.addEventListener('mousemove', function(e){
-    hint.style.left = e.clientX + 'px';
-    hint.style.top = e.clientY + 'px';
-  });
+  visual.addEventListener('mousemove', function(e){ hint.style.left = e.clientX + 'px'; hint.style.top = e.clientY + 'px'; });
   visual.addEventListener('mouseenter', function(){ hint.classList.add('show'); });
   visual.addEventListener('mouseleave', function(){ hint.classList.remove('show'); });
 })();
@@ -2430,10 +2956,8 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 <script>
 (function(){
   if(!matchMedia('(pointer:fine)').matches) return;
-  var triggered = false;
-  var DELAY = 3000;
-  var ready = false;
-  setTimeout(function(){ ready = true; }, DELAY);
+  var triggered = false; var ready = false;
+  setTimeout(function(){ ready = true; }, 3000);
   document.addEventListener('mouseout', function(e){
     if(!ready || triggered) return;
     if(e.clientY > 0) return;
@@ -2446,7 +2970,6 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
     if(exitPopup) exitPopup.classList.add('show');
   });
 })();
-
 (function(){
   var popup = document.getElementById('lpExitPopup');
   var closeBtn = document.getElementById('lpExitPopupClose');
@@ -2458,12 +2981,8 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
   document.addEventListener('keydown', function(e){ if(popup.classList.contains('show') && e.key === 'Escape') hide(); });
   if(todayChk){
     todayChk.addEventListener('change', function(){
-      if(this.checked){
-        localStorage.setItem('exit_popup_hide_today', new Date().toDateString());
-        hide();
-      } else {
-        localStorage.removeItem('exit_popup_hide_today');
-      }
+      if(this.checked){ localStorage.setItem('exit_popup_hide_today', new Date().toDateString()); hide(); }
+      else { localStorage.removeItem('exit_popup_hide_today'); }
     });
   }
 })();
@@ -2476,7 +2995,6 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
   var textEl = document.getElementById('lpToastText');
   var wrapEl = document.getElementById('lpToastWrap');
   if(!toastEl || !textEl) return;
-
   var messages = [
     { area: '서울 서초', name: '김**', time: '3분 전' },
     { area: '인천 연수', name: '박**', time: '5분 전' },
@@ -2491,50 +3009,22 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
     { area: '인천 송도', name: '조**', time: '35분 전' },
     { area: '경기 과천', name: '임**', time: '40분 전' }
   ];
-
   var idx = Math.floor(Math.random() * messages.length);
-  var showing = false;
-  var hideTimer = null;
-  var SHOW_DURATION = 4000;
-  var HIDE_DURATION = 8000;
-  var FIRST_DELAY = 5000;
-
+  var showing = false; var hideTimer = null;
   function showToast(){
-    /* ★ FIX: 폼이 화면에 보이면 토스트를 건너뜀 */
-    if(wrapEl.classList.contains('hide-for-form')){
-      setTimeout(showToast, 3000);
-      return;
-    }
-
-    var msg = messages[idx % messages.length];
-    idx++;
+    if(wrapEl.classList.contains('hide-for-form')){ setTimeout(showToast, 3000); return; }
+    var msg = messages[idx % messages.length]; idx++;
     textEl.innerHTML = '<strong>' + msg.area + ' ' + msg.name + '</strong>님이 방문예약을 등록했습니다.'
       + '<div class="lp-toast-time">' + msg.time + ' · <span style="color:#b39b00;font-weight:600;">나도 등록하기 →</span></div>';
-    toastEl.classList.add('show');
-    showing = true;
-
-    hideTimer = setTimeout(function(){
-      toastEl.classList.remove('show');
-      showing = false;
-      setTimeout(showToast, HIDE_DURATION);
-    }, SHOW_DURATION);
+    toastEl.classList.add('show'); showing = true;
+    hideTimer = setTimeout(function(){ toastEl.classList.remove('show'); showing = false; setTimeout(showToast, 8000); }, 4000);
   }
-
   wrapEl.addEventListener('click', function(){
-    if(!showing) return;
-    clearTimeout(hideTimer);
-    toastEl.classList.remove('show');
-    showing = false;
-
-    if(typeof lpOpenFloatForm === 'function'){
-      lpOpenFloatForm();
-    } else {
-      var target = document.getElementById('reserve-bottom');
-      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    if(!showing) return; clearTimeout(hideTimer); toastEl.classList.remove('show'); showing = false;
+    if(typeof lpOpenFloatForm === 'function'){ lpOpenFloatForm(); }
+    else { var target = document.getElementById('reserve-bottom'); if(target) target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   });
-
-  setTimeout(showToast, FIRST_DELAY);
+  setTimeout(showToast, 5000);
 })();
 </script>
 
@@ -2550,8 +3040,7 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
 })();
 </script>
 
-<!-- ═══════════ 부정클릭 방지 스크립트 (실제 Google Forms) ═══════════ -->
-<!-- ★ FIX: 네이버 검색광고 파라미터(n_media, n_query 등) 감지 + 검색어 수집 추가 -->
+<!-- ═══════════ 부정클릭 방지 스크립트 ═══════════ -->
 <script>
 (function(){
   document.addEventListener('DOMContentLoaded', function(){
@@ -2560,441 +3049,359 @@ document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){
     var source = '';
     var searchKeyword = '';
 
-    /* ── 1단계: 네이버 검색광고 파라미터 확인 (가장 정확) ── */
     var nMedia = params.get('n_media');
     var nQuery = params.get('n_query');
     var nAdId  = params.get('n_ad_group');
     var nCampaign = params.get('n_campaign_type');
 
     if(nMedia || nAdId || nCampaign){
-      if(nMedia === '27758'){
-        source = 'naver_sa';  /* 네이버 검색광고 */
-      } else if(nMedia === '27759'){
-        source = 'naver_shopping';
-      } else if(nMedia === '36683' || nMedia === '57962'){
-        source = 'naver_gfa';
-      } else {
-        source = 'naver_ad_' + (nMedia||'unknown');
-      }
-      if(nQuery){
-        try{ searchKeyword = decodeURIComponent(nQuery); }catch(e){ searchKeyword = nQuery; }
-      }
+      if(nMedia === '27758'){ source = 'naver_sa'; }
+        else if(nMedia === '27759'){ source = 'naver_shopping'; }
+      else if(nMedia === '36683' || nMedia === '57962'){ source = 'naver_gfa'; }
+      else { source = 'naver_ad'; }
+      if(nQuery){ try{ searchKeyword = decodeURIComponent(nQuery); }catch(e){ searchKeyword = nQuery; } }
     }
 
-    /* ── 2단계: UTM 파라미터 확인 ── */
     if(!source){
-      var utmSource = (params.get('utm_source') || '').toLowerCase();
+      var utmSrc = (params.get('utm_source') || '').toLowerCase();
       var utmMedium = (params.get('utm_medium') || '').toLowerCase();
-      var utmTerm = params.get('utm_term') || '';
-
-      if(utmSource === 'naver' && utmMedium === 'cpc'){
-        source = 'naver_sa_utm';
-        if(utmTerm) searchKeyword = utmTerm;
-      } else if(utmSource === 'google' && utmMedium === 'cpc'){
-        source = 'google_ad_utm';
-        if(utmTerm) searchKeyword = utmTerm;
-      } else if(utmSource === 'naver' && utmMedium === 'display'){
-        source = 'naver_gfa_utm';
-      }
+      if(utmSrc === 'naver' && utmMedium === 'cpc') source = 'naver_sa_utm';
+      else if(utmSrc === 'google' && utmMedium === 'cpc') source = 'google_cpc_utm';
+      else if(utmSrc) source = utmSrc + '_' + utmMedium;
     }
 
-    /* ── 3단계: gclid 확인 ── */
-    if(!source && params.get('gclid')){
-      source = 'google_ad_gclid';
-    }
+    if(!source && params.get('gclid')) source = 'google_ads';
 
-    /* ── 4단계: referrer 기반 확인 ── */
     if(!source && ref){
-      if(ref.indexOf('ader.naver.com') > -1 || ref.indexOf('ad.search.naver.com') > -1){
-        source = 'naver_ad_referrer';
-      } else if(ref.indexOf('search.naver.com') > -1 || ref.indexOf('m.search.naver.com') > -1){
-        source = 'naver_organic';
-      } else if(ref.indexOf('naver.com') > -1){
-        source = 'naver_etc';
-      } else if(ref.indexOf('googleads') > -1){
-        source = 'google_ad_referrer';
-      } else if(ref.indexOf('google') > -1){
-        source = 'google';
-      } else if(ref.indexOf('daum.net') > -1){
-        source = 'daum';
-      } else if(ref.indexOf('facebook.com') > -1 || ref.indexOf('fb.com') > -1){
-        source = 'facebook';
-      } else if(ref.indexOf('instagram.com') > -1){
-        source = 'instagram';
-      } else if(ref.indexOf('kakao') > -1){
-        source = 'kakao';
-      } else if(!ref){
-        source = 'direct';
-      } else {
-        source = ref;
-      }
+      try{
+        var h = new URL(ref).hostname;
+        if(h.indexOf('search.naver.com') > -1) source = 'naver_organic';
+        else if(h.indexOf('google.') > -1) source = 'google_organic';
+        else if(h.indexOf('daum.net') > -1) source = 'daum';
+        else source = 'referral';
+      }catch(e){ source = 'referral'; }
     }
 
     if(!source) source = 'direct';
 
-    /* ── 5단계: 검색어 추출 (아직 없으면) ── */
-    if(!searchKeyword){
-      searchKeyword = params.get('n_query')
-                   || params.get('utm_term')
-                   || params.get('keyword')
-                   || params.get('q')
-                   || params.get('query')
-                   || '';
+    /* 광고 유입일 때만 부정클릭 감지 */
+    var isAd = source.indexOf('naver_sa') > -1 || source.indexOf('google') > -1 || source.indexOf('cpc') > -1;
+    if(!isAd) return;
+
+    var KEY = 'anticlick_' + source;
+    var now = Date.now();
+    var data = null;
+    try{ data = JSON.parse(localStorage.getItem(KEY)); }catch(e){}
+    if(!data || (now - data.first) > 86400000){
+      data = { first: now, count: 1 };
+    } else {
+      data.count++;
     }
-    if(!searchKeyword && ref){
-      try{
-        var refUrl = new URL(ref);
-        var refParams = new URLSearchParams(refUrl.search);
-        var host = refUrl.hostname;
-        if(host.includes('naver.com')){
-          searchKeyword = refParams.get('query') || refParams.get('q') || '';
-        } else if(host.includes('google.') || host.includes('bing.com')){
-          searchKeyword = refParams.get('q') || '';
-        } else if(host.includes('daum.net')){
-          searchKeyword = refParams.get('q') || refParams.get('query') || '';
-        }
-      }catch(e){}
-    }
-    if(searchKeyword){
-      try{ searchKeyword = decodeURIComponent(searchKeyword); }catch(e){}
-    }
+    localStorage.setItem(KEY, JSON.stringify(data));
 
-    /* 검색어를 source에 합침 */
-    var sourceWithKeyword = source;
-    if(searchKeyword) sourceWithKeyword += ' | 검색어: ' + searchKeyword;
-
-    /* ── 방문 횟수 ── */
-    var visitKey = 'lp_visit_count';
-    var count = parseInt(localStorage.getItem(visitKey) || '0', 10) + 1;
-    localStorage.setItem(visitKey, count);
-
-    var now = new Date();
-    var dateStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
-    var timeStr = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0') + ':' + String(now.getSeconds()).padStart(2,'0');
-
-    var sent = false;
-    function sendData(ip, region){
-      if(sent) return;
-      sent = true;
-      var form = new FormData();
-      form.append('entry.24374031', dateStr);
-      form.append('entry.433685765', timeStr);
-      form.append('entry.605185830', ip || 'unknown');
-      form.append('entry.838856477', region || 'unknown');
-      form.append('entry.1339679079', String(count));
-      form.append('entry.1214037773', sourceWithKeyword);
-      fetch('https://docs.google.com/forms/d/e/1FAIpQLSdroiSujFQz3QR6YfXRbHqQpz5BoMhH9gHP3cF5pVBFx8N4ng/formResponse', {
-        method: 'POST', mode: 'no-cors', body: form
-      }).catch(function(){});
-    }
-
-    var safetyTimer = setTimeout(function(){
-      sendData('timeout', 'timeout');
-    }, 5000);
-
-    function done(ip, region){
-      clearTimeout(safetyTimer);
-      sendData(ip, region);
-    }
-
-    fetch('https://ipapi.co/json/')
-    .then(function(r){ return r.json(); })
-    .then(function(d){
-      done(d.ip, (d.region||'') + ' ' + (d.org||''));
-    })
-    .catch(function(){
-      return fetch('https://freeipapi.com/api/json/')
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        done(d.ipAddress, (d.regionName||'') + ' ' + (d.countryName||''));
-      });
-    })
-    .catch(function(){
-      return fetch('https://api.ipify.org?format=json')
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        done(d.ip, 'IP only');
-      });
-    })
-    .catch(function(){
-      done('error', 'all-failed');
-    });
-
-    console.log('[부정클릭방지]', sourceWithKeyword, '| referrer=', ref, '| n_media=', nMedia||'(없음)', '| n_query=', nQuery||'(없음)');
-  });
-})();
-</script>
-
-
-<!-- ★ 블록 JS: 자금계산기 -->
-<script>
-(function(){
-  var priceMap={78:63000,83:66000,84:68000};
-  var jeonseMap={78:47000,83:50000,84:50000};
-  var cap=50000;
-  var typeEl=document.getElementById('calcType');
-  var loanEl=document.getElementById('calcLoan');
-  function fmtEok(m){if(m>=10000){var e=Math.floor(m/10000),r=m%10000;return r>0?e+'억 '+r+'만':e+'억';}return m+'만';}
-  function calc(){
-    var t=parseInt(typeEl.value),ltv=parseInt(loanEl.value)/100;
-    var price=priceMap[t],rawLoan=Math.floor(price*ltv),loan=Math.min(rawLoan,cap);
-    var tax=Math.round(price*0.011),cash=price-loan+tax;
-    var jeonse=jeonseMap[t],gap=price-jeonse;
-    document.getElementById('crPrice').textContent=fmtEok(price);
-    document.getElementById('crLoan').textContent=fmtEok(loan)+(rawLoan>cap?' (한도적용)':'');
-    document.getElementById('crTax').textContent=Math.round(tax)+'만';
-    document.getElementById('crCash').textContent=fmtEok(cash);
-    document.getElementById('crJeonse').textContent=fmtEok(jeonse);
-    document.getElementById('crGap').textContent=fmtEok(gap);
-  }
-  if(typeEl&&loanEl){typeEl.addEventListener('change',calc);loanEl.addEventListener('change',calc);calc();}
-})();
-</script>
-
-<!-- ★ 블록 JS: 시세 바 차트 애니메이션 -->
-<script>
-(function(){
-  var list=document.getElementById('blkBarList');
-  if(!list)return;
-  var animated=false;
-  if('IntersectionObserver' in window){
-    var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){
-      if(entry.isIntersecting&&!animated){animated=true;
-        list.querySelectorAll('.blk-bar-item').forEach(function(item){
-          var w=item.getAttribute('data-width'),dl=parseInt(item.getAttribute('data-delay'))||0;
-          var fill=item.querySelector('.blk-bar-fill');
-          setTimeout(function(){fill.style.width=w+'%';},dl);
-        });obs.unobserve(list);}
-    });},{threshold:0.2});
-    obs.observe(list);
-  }
-})();
-</script>
-
-<!-- ★ 블록 JS: 자가진단 퀴즈 -->
-<script>
-(function(){
-  var totalScore=0,maxScore=12;
-  document.querySelectorAll('.blk-quiz-opt').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      totalScore+=parseInt(btn.getAttribute('data-score'));
-      var step=btn.closest('.blk-quiz-step');
-      var next=parseInt(step.getAttribute('data-step'))+1;
-      step.classList.remove('active');
-      if(next<=4){document.querySelector('.blk-quiz-step[data-step="'+next+'"]').classList.add('active');}
-      else{
-        var pct=Math.round(totalScore/maxScore*100);
-        document.getElementById('quizScoreDisp').textContent=pct+'%';
-        var label,desc;
-        if(pct>=80){label='🎯 매우 적합!';desc='현재 조건에서 송도 월드메르디앙은 최적의 선택입니다. 6억대 특별분양, 즉시입주, 교통 호재까지 — 지금 바로 상담을 추천드립니다.';}
-        else if(pct>=55){label='✅ 조건이 맞습니다';desc='주요 조건이 부합합니다. 세부 자금 계획과 대출 조건을 상담을 통해 확인해 보시면 좋겠습니다.';}
-        else{label='🤔 신중한 검토 필요';desc='현재 조건에서는 추가 검토가 필요할 수 있습니다. 전문 상담사와 구체적인 조건을 상의해 보세요.';}
-        document.getElementById('quizLabel').textContent=label;
-        document.getElementById('quizDesc').textContent=desc;
-        document.querySelector('.blk-quiz-step[data-step="result"]').classList.add('active');
+    /* 24시간 내 5회 이상 반복 방문 시 의심 */
+    if(data.count >= 5){
+      console.warn('[AntiClick] 부정클릭 의심: source=' + source + ', count=' + data.count);
+      /* GA4 이벤트 전송 */
+      if(typeof gtag === 'function'){
+        gtag('event', 'suspicious_click', {
+          'event_category': 'anticlick',
+          'event_label': source,
+          'value': data.count
+        });
       }
-    });
+    }
   });
 })();
 </script>
 
-<!-- ═══════════ 보안: 우클릭·소스보기·개발자도구 차단 ═══════════ -->
-<!-- ★ FIX: 보안 스크립트에서 체크박스/label/폼 요소의 이벤트가 차단되지 않도록 예외 강화 -->
-<script>
-document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-
-document.addEventListener('selectstart', function(e){
-  var tag = e.target.tagName;
-  if(tag === 'INPUT' || tag === 'LABEL' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'SPAN') return;
-  if(e.target.closest && (e.target.closest('label') || e.target.closest('form') || e.target.closest('.lp-privacy-line') || e.target.closest('.lp-float-privacy') || e.target.closest('.lp-popup-today') || e.target.closest('.lp-reserve-wrap') || e.target.closest('.lp-float-form'))) return;
-  e.preventDefault();
-});
-
-document.addEventListener('dragstart', function(e){ e.preventDefault(); });
-document.addEventListener('copy', function(e){ e.preventDefault(); });
-document.addEventListener('cut', function(e){ e.preventDefault(); });
-
-document.addEventListener('paste', function(e){
-  var tag = e.target.tagName;
-  if(tag === 'INPUT' || tag === 'TEXTAREA') return;
-  e.preventDefault();
-});
-
-document.addEventListener('keydown', function(e){
-  if(e.key === 'F12') { e.preventDefault(); return; }
-  if(e.ctrlKey && e.key === 'u') { e.preventDefault(); return; }
-  if(e.ctrlKey && e.shiftKey && e.key === 'I') { e.preventDefault(); return; }
-  if(e.ctrlKey && e.shiftKey && e.key === 'J') { e.preventDefault(); return; }
-  if(e.ctrlKey && e.shiftKey && e.key === 'C') { e.preventDefault(); return; }
-  if(e.ctrlKey && e.key === 's') { e.preventDefault(); return; }
-  if(e.ctrlKey && e.key === 'a') { e.preventDefault(); return; }
-  if(e.ctrlKey && e.key === 'c') { e.preventDefault(); return; }
-  if(e.ctrlKey && e.key === 'p') { e.preventDefault(); return; }
-  if(e.ctrlKey && e.key === 'j') { e.preventDefault(); return; }
-  if(e.key === 'F7') { e.preventDefault(); return; }
-});
-
-(function(){
-  var threshold = 160;
-  setInterval(function(){
-    if(window.outerWidth - window.innerWidth > threshold || 
-       window.outerHeight - window.innerHeight > threshold){
-      document.body.innerHTML = '';
-      window.location.href = 'https://viphome.kr/';
-    }
-  }, 1000);
-})();
-
-(function(){
-  var devtools = { open: false };
-  var el = new Image();
-  Object.defineProperty(el, 'id', {
-    get: function(){
-      devtools.open = true;
-      document.body.innerHTML = '';
-      window.location.href = 'https://viphome.kr/';
-    }
-  });
-  setInterval(function(){ devtools.open = false; console.log(el); console.clear(); }, 1000);
-})();
-
-(function(){
-  var style = document.createElement('style');
-  style.textContent = 'img{-webkit-user-drag:none;user-select:none;pointer-events:none;}a img,.ig-swiper img{pointer-events:auto;}';
-  document.head.appendChild(style);
-})();
-</script>
-
-<!-- ── 인테리어 갤러리: 탭 + 스와이퍼 + 라이트박스 ── -->
+<!-- ── 인테리어 갤러리 Swiper 초기화 + 라이트박스 ── -->
 <script>
 (function(){
-  var tabs = document.querySelectorAll('.ig-tab');
+  if(typeof Swiper === 'undefined') return;
+  var swiperInstances = {};
   var panels = document.querySelectorAll('.ig-panel');
-  var swipers = {};
-
-  function activatePanel(type) {
-    tabs.forEach(function(t){ t.classList.toggle('active', t.dataset.type === type); });
-    panels.forEach(function(p){
-      var isActive = p.dataset.panel === type;
-      p.classList.toggle('active', isActive);
-      if(isActive && !swipers[type]) {
-        var container = p.querySelector('.ig-swiper');
-        if(container) {
-          swipers[type] = new Swiper(container, {
-            slidesPerView: 1,
-            spaceBetween: 0,
-            loop: true,
-            speed: 400,
-            pagination: {
-              el: container.querySelector('.ig-dots'),
-              clickable: true
-            },
-            navigation: {
-              prevEl: container.querySelector('.ig-prev'),
-              nextEl: container.querySelector('.ig-next')
-            },
-            on: {
-              slideChange: function(){
-                var counter = p.querySelector('.ig-current');
-                if(counter) counter.textContent = this.realIndex + 1;
-              }
-            }
-          });
-        }
-      }
-      if(isActive && swipers[type]) {
-        swipers[type].update();
-      }
-    });
-  }
-
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(){
-      activatePanel(tab.dataset.type);
-    });
-  });
-
-  if(tabs.length > 0) activatePanel(tabs[0].dataset.type);
-
-  /* 라이트박스 */
-  var lb = document.getElementById('igLightbox');
+  var tabs = document.querySelectorAll('.ig-tab');
+  var lightbox = document.getElementById('igLightbox');
   var lbImg = document.getElementById('igLbImg');
   var lbClose = document.getElementById('igLbClose');
 
-  document.querySelectorAll('.ig-swiper .swiper-slide img').forEach(function(img){
-    img.addEventListener('click', function(){
-      if(!lb || !lbImg) return;
-      lbImg.src = this.src;
-      lbImg.alt = this.alt;
-      lb.classList.add('show');
+  function initSwiper(panel){
+    var type = panel.getAttribute('data-panel');
+    if(swiperInstances[type]) return;
+    var container = panel.querySelector('.ig-swiper');
+    if(!container) return;
+    var counterCurrent = panel.querySelector('.ig-current');
+    var sw = new Swiper(container, {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      speed: 500,
+      navigation: {
+        prevEl: container.querySelector('.ig-prev'),
+        nextEl: container.querySelector('.ig-next')
+      },
+      pagination: {
+        el: container.querySelector('.ig-dots'),
+        clickable: true
+      },
+      on: {
+        slideChange: function(){
+          if(counterCurrent) counterCurrent.textContent = this.realIndex + 1;
+        }
+      }
+    });
+    swiperInstances[type] = sw;
+  }
+
+  /* 탭 전환 */
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var type = tab.getAttribute('data-type');
+      tabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      panels.forEach(function(p){
+        var isTarget = p.getAttribute('data-panel') === type;
+        p.classList.toggle('active', isTarget);
+        if(isTarget) initSwiper(p);
+      });
     });
   });
 
-  if(lbClose) lbClose.addEventListener('click', function(){ lb.classList.remove('show'); });
-  if(lb) lb.addEventListener('click', function(e){ if(e.target === lb) lb.classList.remove('show'); });
+  /* 첫 번째 패널 초기화 */
+  var firstPanel = document.querySelector('.ig-panel.active');
+  if(firstPanel) initSwiper(firstPanel);
+
+  /* 라이트박스 열기 */
+  panels.forEach(function(panel){
+    panel.addEventListener('click', function(e){
+      var img = e.target.closest('.swiper-slide img');
+      if(!img || !lightbox || !lbImg) return;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  /* 라이트박스 닫기 */
+  function closeLightbox(){
+    if(lightbox) lightbox.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  if(lbClose) lbClose.addEventListener('click', closeLightbox);
+  if(lightbox) lightbox.addEventListener('click', function(e){
+    if(e.target === lightbox) closeLightbox();
+  });
   document.addEventListener('keydown', function(e){
-    if(lb && lb.classList.contains('show') && e.key === 'Escape') lb.classList.remove('show');
+    if(e.key === 'Escape' && lightbox && lightbox.classList.contains('show')) closeLightbox();
   });
 })();
 </script>
 
-<!-- ★ FIX: 폼 영역이 화면에 보일 때 토스트/말풍선 자동 숨김 -->
+<!-- ── 자금 계산기 로직 ── -->
 <script>
 (function(){
-  if(!('IntersectionObserver' in window)) return;
+  var typeSelect = document.getElementById('calcType');
+  var loanSelect = document.getElementById('calcLoan');
+  if(!typeSelect || !loanSelect) return;
 
-  var bubble = document.querySelector('.lp-resv-bubble-fixed');
-  var toast  = document.getElementById('lpToastWrap');
-  var formSections = document.querySelectorAll('.lp-reserve-wrap');
+  var data = {
+    '78': { price: 63000, jeonse: 47000 },
+    '83': { price: 66000, jeonse: 50000 },
+    '84': { price: 68000, jeonse: 50000 }
+  };
+  var LOAN_LIMIT = 50000; /* 대출 상한 5억 (만원 단위) */
 
-  var visibleSet = new Set();
+  function calc(){
+    var type = typeSelect.value;
+    var loanRate = parseInt(loanSelect.value);
+    var d = data[type];
+    if(!d) return;
 
-  function updateVisibility(){
-    var anyFormVisible = visibleSet.size > 0;
-    if(anyFormVisible){
-      if(bubble) bubble.classList.add('hide-for-form');
-      if(toast)  toast.classList.add('hide-for-form');
-    } else {
-      if(bubble) bubble.classList.remove('hide-for-form');
-      if(toast)  toast.classList.remove('hide-for-form');
-    }
+    var price = d.price;
+    var jeonse = d.jeonse;
+    var loanRaw = Math.floor(price * loanRate / 100);
+    var loan = Math.min(loanRaw, LOAN_LIMIT);
+    var tax = Math.round(price * 0.011);
+    var cash = price - loan + tax;
+    var gap = price - jeonse;
+
+    document.getElementById('crPrice').textContent = (price / 10000).toFixed(1) + '억';
+    document.getElementById('crLoan').textContent = (loan / 10000).toFixed(2) + '억';
+    document.getElementById('crTax').textContent = tax + '만';
+    document.getElementById('crCash').textContent = (cash / 10000).toFixed(2) + '억';
+    document.getElementById('crJeonse').textContent = (jeonse / 10000).toFixed(1) + '억';
+    document.getElementById('crGap').textContent = (gap / 10000).toFixed(1) + '억';
   }
 
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        visibleSet.add(entry.target);
-      } else {
-        visibleSet.delete(entry.target);
+  typeSelect.addEventListener('change', calc);
+  loanSelect.addEventListener('change', calc);
+  calc();
+})();
+</script>
+
+<!-- ── 시세 바 차트 IntersectionObserver ── -->
+<script>
+(function(){
+  var list = document.getElementById('blkBarList');
+  if(!list) return;
+  var bars = list.querySelectorAll('.blk-bar-fill');
+  var items = list.querySelectorAll('.blk-bar-item');
+  var animated = false;
+
+  function animate(){
+    if(animated) return;
+    animated = true;
+    items.forEach(function(item){
+      var w = item.getAttribute('data-width') || '50';
+      var delay = parseInt(item.getAttribute('data-delay')) || 0;
+      var fill = item.querySelector('.blk-bar-fill');
+      if(fill){
+        setTimeout(function(){
+          fill.style.width = w + '%';
+        }, delay);
       }
     });
-    updateVisibility();
-  }, {
-    threshold: 0,
-    rootMargin: '0px 0px -60px 0px'
-  });
+  }
 
-  formSections.forEach(function(el){
-    observer.observe(el);
-  });
-
-  /* 플로팅 폼이 열릴 때도 숨김 처리 */
-  var floatForm = document.getElementById('lpFloatForm');
-  if(floatForm){
-    var mo = new MutationObserver(function(){
-      if(floatForm.classList.contains('active')){
-        if(bubble) bubble.classList.add('hide-for-form');
-        if(toast)  toast.classList.add('hide-for-form');
-      } else if(visibleSet.size === 0) {
-        if(bubble) bubble.classList.remove('hide-for-form');
-        if(toast)  toast.classList.remove('hide-for-form');
-      }
-    });
-    mo.observe(floatForm, { attributes: true, attributeFilter: ['class'] });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries, io){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ animate(); io.disconnect(); }
+      });
+    }, { threshold: 0.3 }).observe(list);
+  } else {
+    animate();
   }
 })();
 </script>
 
+<!-- ── 시세 역전 SVG 라인 차트 IntersectionObserver ── -->
+<script>
+(function(){
+  var chartWrap = document.getElementById('blkVsChartWrap');
+  if(!chartWrap) return;
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(entries, io){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          chartWrap.classList.add('animated');
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.3 }).observe(chartWrap);
+  } else {
+    chartWrap.classList.add('animated');
+  }
+})();
+</script>
+
+<!-- ── 자가진단 퀴즈 ── -->
+<script>
+(function(){
+  var quizWrap = document.getElementById('blkQuiz');
+  if(!quizWrap) return;
+  var steps = quizWrap.querySelectorAll('.blk-quiz-step');
+  var totalScore = 0;
+  var currentStep = 0;
+
+  quizWrap.addEventListener('click', function(e){
+    var opt = e.target.closest('.blk-quiz-opt');
+    if(!opt) return;
+    var score = parseInt(opt.getAttribute('data-score')) || 0;
+    totalScore += score;
+    currentStep++;
+
+    /* 현재 스텝 비활성화 */
+    steps.forEach(function(s){ s.classList.remove('active'); });
+
+    if(currentStep < 4){
+      /* 다음 질문 */
+      steps[currentStep].classList.add('active');
+    } else {
+      /* 결과 표시 */
+      var resultStep = quizWrap.querySelector('[data-step="result"]');
+      if(resultStep){
+        resultStep.classList.add('active');
+        var maxScore = 12;
+        var pct = Math.round((totalScore / maxScore) * 100);
+        var scoreDisp = document.getElementById('quizScoreDisp');
+        var labelEl = document.getElementById('quizLabel');
+        var descEl = document.getElementById('quizDesc');
+
+        if(scoreDisp) scoreDisp.textContent = pct + '%';
+
+        if(pct >= 80){
+          if(labelEl) labelEl.textContent = '최적의 매칭! 🎯';
+          if(descEl) descEl.textContent = '송도 월드메르디앙은 고객님의 조건에 매우 잘 맞습니다. 무주택 또는 갈아타기 수요에 6억대 신축, 즉시입주, GTX-B 수혜까지 — 지금이 최적의 타이밍입니다. 잔여세대가 빠르게 소진되고 있으니 서둘러 상담받아보세요.';
+        } else if(pct >= 50){
+          if(labelEl) labelEl.textContent = '좋은 매칭입니다 👍';
+          if(descEl) descEl.textContent = '고객님의 조건과 상당 부분 일치합니다. 예산이나 입주 시기 등 세부 조건은 전문 상담사와 1:1로 확인해보시면 더 정확한 판단이 가능합니다.';
+        } else {
+          if(labelEl) labelEl.textContent = '상담이 필요합니다 📋';
+          if(descEl) descEl.textContent = '현재 조건만으로는 판단이 어렵습니다. 다만 전세갭 활용, 대출 조건 등 다양한 방법이 있으니 전문 상담을 통해 가능성을 확인해보시길 권합니다.';
+        }
+      }
+    }
+  });
+})();
+</script>
+
+<!-- ── 로열층 잔여세대 & 상담 슬롯 시뮬레이션 ── -->
+<script>
+(function(){
+  var royalEl = document.getElementById('royalCount');
+  var slotEl = document.getElementById('slotCount');
+
+  /* 로열층: 날짜 기반으로 감소 시뮬레이션 (최소 2세대 유지) */
+  if(royalEl){
+    var baseRoyal = 5;
+    var baseDate = new Date('2026-03-01');
+    var today = new Date();
+    var daysPassed = Math.floor((today - baseDate) / 86400000);
+    var decrease = Math.floor(daysPassed / 7); /* 7일마다 1세대 감소 */
+    var remaining = Math.max(2, baseRoyal - decrease);
+    royalEl.textContent = remaining;
+  }
+
+  /* 상담 슬롯: 시간대별 변동 */
+  if(slotEl){
+    var hour = new Date().getHours();
+    var slot = 3;
+    if(hour >= 10 && hour < 14) slot = 3;
+    else if(hour >= 14 && hour < 18) slot = 2;
+    else if(hour >= 18 && hour < 21) slot = 1;
+    else slot = 3;
+    slotEl.textContent = slot;
+  }
+})();
+</script>
+
+<!-- ── 플로팅 폼 열릴 때 토스트/버블 숨기기 ── -->
+<script>
+(function(){
+  var floatForm = document.getElementById('lpFloatForm');
+  var bubble = document.querySelector('.lp-resv-bubble-fixed');
+  var toastWrap = document.getElementById('lpToastWrap');
+  if(!floatForm) return;
+
+  var observer = new MutationObserver(function(){
+    var isOpen = floatForm.classList.contains('active');
+    if(bubble){
+      if(isOpen) bubble.classList.add('hide-for-form');
+      else bubble.classList.remove('hide-for-form');
+    }
+    if(toastWrap){
+      if(isOpen) toastWrap.classList.add('hide-for-form');
+      else toastWrap.classList.remove('hide-for-form');
+    }
+  });
+
+  observer.observe(floatForm, { attributes: true, attributeFilter: ['class'] });
+})();
+</script>
 
 </body>
 </html>

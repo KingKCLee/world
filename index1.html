@@ -1117,7 +1117,7 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 }
 
 /* ═══════════════════════════════════════════
-   메인 타이틀 텍스트 애니메이션
+   메인 타이틀 텍스트 애니메이션 v2
    ═══════════════════════════════════════════ */
 
 .main-title-text {
@@ -1126,194 +1126,189 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  width: 90%;
-  max-width: 860px;
+  width: 92%;
+  max-width: 900px;
   z-index: 5;
   pointer-events: none;
+  /* ★ 핵심: 어두운 반투명 배경으로 가독성 확보 */
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 40px 36px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
 }
 .main-title-text a,
 .main-title-text button {
   pointer-events: auto;
 }
 
-/* ── 공통 등장 애니메이션 기본값 ── */
+/* ── 공통 등장 애니메이션 ── */
 .mt-anim {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s cubic-bezier(.22,1,.36,1),
-              transform 0.7s cubic-bezier(.22,1,.36,1);
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(.22,1,.36,1),
+              transform 0.6s cubic-bezier(.22,1,.36,1);
 }
 .mt-anim.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ── 1행: 태그 뱃지 ── */
+/* ── 1행: 태그 뱃지 (원본 PNG 상단 텍스트 느낌) ── */
 .mt-badges {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 6px 10px;
-  margin-bottom: 14px;
+  gap: 6px 14px;
+  margin-bottom: 12px;
 }
 .mt-badge {
   display: inline-block;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   color: #fff;
-  font-size: clamp(12px, 1.6vw, 17px);
+  font-size: clamp(14px, 2vw, 20px);
   font-weight: 600;
-  padding: 6px 16px;
-  border-radius: 30px;
-  border: 1px solid rgba(255,255,255,0.25);
+  padding: 5px 18px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   letter-spacing: -0.3px;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 .mt-badge-dot {
-  color: rgba(255,255,255,0.5);
-  font-size: 18px;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 20px;
   font-weight: 300;
 }
 
-/* ── 2행: 교통 라인 ── */
+/* ── 2행: 교통 라인 (원본 PNG 2행 그대로) ── */
 .mt-transport {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 6px 8px;
-  margin-bottom: 20px;
-  font-size: clamp(13px, 1.8vw, 19px);
-  color: #fff;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
-  font-weight: 500;
-  letter-spacing: -0.3px;
+  gap: 6px 6px;
+  margin-bottom: 18px;
 }
 .mt-transport-item {
-  background: linear-gradient(135deg, rgba(179,155,0,0.5), rgba(212,175,55,0.4));
-  padding: 4px 14px;
+  display: inline-block;
+  background: var(--brand-color);
+  color: #fff;
+  font-size: clamp(13px, 1.8vw, 18px);
+  font-weight: 800;
+  padding: 6px 18px;
   border-radius: 6px;
-  border: 1px solid rgba(255,223,0,0.3);
-  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 .mt-transport-plus {
-  color: rgba(255,223,0,0.7);
-  font-weight: 300;
-  font-size: 1.2em;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 400;
+  font-size: 1.3em;
 }
 
-/* ── 3행: 강조 서브 ── */
+/* ── 3행: 강조 서브 (초록색 + 노란색 가격) ── */
 .mt-highlight {
-  margin-bottom: 16px;
-  font-size: clamp(18px, 3.2vw, 36px);
-  font-weight: 800;
-  color: #fff;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
-  letter-spacing: -1px;
-  line-height: 1.3;
+  margin-bottom: 10px;
+  font-size: clamp(22px, 4vw, 44px);
+  font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -1.5px;
 }
 .mt-hl-text {
-  color: #97f56d;
+  color: #8eff50;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 .mt-hl-price {
   display: inline-block;
   color: #ffdf00;
   position: relative;
-  margin-left: 4px;
+  margin-left: 2px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 .mt-hl-price::after {
   content: '';
   position: absolute;
-  left: -4px; right: -4px;
-  bottom: -2px;
-  height: 40%;
-  background: rgba(255,223,0,0.2);
+  left: -6px; right: -6px;
+  bottom: 0;
+  height: 38%;
+  background: rgba(255, 223, 0, 0.18);
   border-radius: 4px;
   z-index: -1;
-  animation: hlPulse 2s ease-in-out infinite;
+  animation: hlPulse 2.5s ease-in-out infinite;
 }
 @keyframes hlPulse {
-  0%, 100% { opacity: 0.3; transform: scaleX(0.95); }
-  50%      { opacity: 0.7; transform: scaleX(1.05); }
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 0.6; }
 }
 
-/* ── 4행: 메인 타이틀 (글자별) ── */
+/* ── 4행: 메인 타이틀 (큰 흰색 글씨 — 원본 PNG 메인) ── */
 .mt-main {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 .mt-char {
-  font-size: clamp(36px, 7.5vw, 80px);
+  font-size: clamp(42px, 9vw, 96px);
   font-weight: 900;
   color: #fff;
-  text-shadow:
-    0 0 20px rgba(255,223,0,0.4),
-    0 4px 20px rgba(0,0,0,0.6);
-  letter-spacing: -2px;
-  line-height: 1.1;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  letter-spacing: -3px;
+  line-height: 1.05;
   display: inline-block;
 }
 .mt-char-space {
-  width: clamp(10px, 2vw, 24px);
+  width: clamp(12px, 2.5vw, 28px);
   display: inline-block;
-}
-
-/* 글자 호버(PC) 이펙트 */
-@media (pointer: fine) {
-  .mt-char {
-    transition: transform 0.3s, color 0.3s, text-shadow 0.3s;
-    cursor: default;
-    pointer-events: auto;
-  }
-  .mt-char:hover {
-    transform: translateY(-8px) scale(1.1);
-    color: #ffdf00;
-    text-shadow:
-      0 0 30px rgba(255,223,0,0.8),
-      0 0 60px rgba(255,223,0,0.4),
-      0 4px 20px rgba(0,0,0,0.5);
-  }
 }
 
 /* 글자 등장 후 물결 애니메이션 */
 .mt-char.is-visible {
-  animation: charWave 3s ease-in-out infinite;
-  animation-delay: calc(var(--char-i, 0) * 0.12s);
+  animation: charWave 4s ease-in-out infinite;
+  animation-delay: calc(var(--char-i, 0) * 0.15s);
 }
 @keyframes charWave {
   0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-6px); }
+  50%      { transform: translateY(-5px); }
 }
 
-/* ── 5행: 빛나는 라인 ── */
+/* PC 호버 */
+@media (pointer: fine) {
+  .mt-char {
+    transition: transform 0.25s, color 0.25s, text-shadow 0.25s;
+    cursor: default;
+    pointer-events: auto;
+  }
+  .mt-char:hover {
+    transform: translateY(-8px) scale(1.08);
+    color: #ffdf00;
+    text-shadow:
+      0 0 30px rgba(255,223,0,0.7),
+      0 4px 20px rgba(0,0,0,0.5);
+  }
+}
+
+/* ── 5행: 라인 ── */
 .mt-line {
   width: 0;
   height: 2px;
-  margin: 0 auto 20px;
+  margin: 0 auto 18px;
   background: linear-gradient(90deg,
     transparent,
-    rgba(255,223,0,0.6),
-    rgba(255,255,255,0.8),
-    rgba(255,223,0,0.6),
+    rgba(255,255,255,0.3),
+    rgba(255,223,0,0.5),
+    rgba(255,255,255,0.3),
     transparent);
   border-radius: 2px;
-  transition: width 1s cubic-bezier(.22,1,.36,1) 0.1s;
+  transition: width 0.8s cubic-bezier(.22,1,.36,1) 0.1s;
 }
 .mt-line.is-visible {
-  width: 80%;
-  animation: lineShimmer 3s ease-in-out infinite 1.2s;
-}
-@keyframes lineShimmer {
-  0%, 100% { opacity: 0.6; }
-  50%      { opacity: 1; }
+  width: 70%;
 }
 
-/* ── 6행: CTA 버튼 ── */
+/* ── 6행: CTA 전화 버튼 ── */
 .mt-cta {
   display: flex;
   justify-content: center;
@@ -1322,37 +1317,30 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: linear-gradient(135deg, var(--brand-color), #d4af37);
+  background: #d60000;
   color: #fff;
-  font-size: clamp(16px, 2.5vw, 22px);
-  font-weight: 800;
-  padding: 14px 36px;
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 900;
+  padding: 14px 40px;
   border-radius: 50px;
   text-decoration: none;
   letter-spacing: -0.5px;
-  box-shadow:
-    0 4px 20px rgba(179,155,0,0.4),
-    0 0 40px rgba(255,223,0,0.15);
-  transition: transform 0.3s, box-shadow 0.3s;
-  animation: ctaBtnPulse 2.5s ease-in-out infinite;
+  box-shadow: 0 6px 24px rgba(214, 0, 0, 0.45);
+  transition: transform 0.25s, box-shadow 0.25s;
+  animation: ctaBtnPulse 2s ease-in-out infinite;
 }
 .mt-cta-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow:
-    0 8px 30px rgba(179,155,0,0.6),
-    0 0 60px rgba(255,223,0,0.25);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 30px rgba(214, 0, 0, 0.6);
 }
 @keyframes ctaBtnPulse {
   0%, 100% {
-    box-shadow:
-      0 4px 20px rgba(179,155,0,0.4),
-      0 0 40px rgba(255,223,0,0.15);
+    box-shadow: 0 6px 24px rgba(214, 0, 0, 0.45);
   }
   50% {
     box-shadow:
-      0 4px 20px rgba(179,155,0,0.6),
-      0 0 60px rgba(255,223,0,0.3),
-      0 0 0 8px rgba(255,223,0,0.08);
+      0 6px 24px rgba(214, 0, 0, 0.6),
+      0 0 0 10px rgba(214, 0, 0, 0.1);
   }
 }
 .mt-cta-icon {
@@ -1361,66 +1349,84 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
 }
 @keyframes phoneRing {
   0%, 100% { transform: rotate(0); }
-  20%      { transform: rotate(15deg); }
+  20%      { transform: rotate(14deg); }
   40%      { transform: rotate(-10deg); }
   60%      { transform: rotate(8deg); }
-  80%      { transform: rotate(-5deg); }
+  80%      { transform: rotate(-4deg); }
 }
 
-/* ── 모바일 조정 ── */
+/* ════════════════════════════════
+   반응형
+   ════════════════════════════════ */
 @media (max-width: 1023px) {
   .main-title-text {
     width: 94%;
-    top: 48%;
+    top: 50%;
+    padding: 28px 18px 24px;
+    border-radius: 14px;
   }
   .mt-badges {
-    gap: 4px 6px;
-    margin-bottom: 10px;
+    gap: 4px 8px;
+    margin-bottom: 8px;
   }
   .mt-badge {
-    padding: 4px 10px;
-    font-size: 11px;
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 4px;
   }
   .mt-badge-dot {
     font-size: 14px;
   }
   .mt-transport {
-    gap: 4px 5px;
-    margin-bottom: 14px;
-  }
-  .mt-transport-item {
-    padding: 3px 8px;
-    font-size: 11px;
-  }
-  .mt-highlight {
+    gap: 4px 4px;
     margin-bottom: 12px;
   }
+  .mt-transport-item {
+    padding: 4px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+  .mt-transport-plus {
+    font-size: 1em;
+  }
+  .mt-highlight {
+    margin-bottom: 6px;
+  }
   .mt-char {
-    letter-spacing: -1px;
+    letter-spacing: -2px;
   }
   .mt-cta-btn {
-    padding: 12px 28px;
+    padding: 12px 30px;
   }
   .mt-line {
     margin-bottom: 14px;
   }
+  .mt-main {
+    margin-bottom: 12px;
+  }
 }
 
 @media (max-width: 420px) {
+  .main-title-text {
+    padding: 22px 14px 20px;
+    border-radius: 12px;
+  }
   .mt-badge {
-    padding: 3px 8px;
+    padding: 2px 8px;
     font-size: 10px;
   }
   .mt-transport-item {
-    padding: 2px 6px;
+    padding: 3px 7px;
     font-size: 10px;
   }
   .mt-cta-btn {
-    padding: 10px 22px;
-    font-size: 14px;
+    padding: 10px 24px;
+    font-size: 16px;
+  }
+  .mt-char {
+    letter-spacing: -1.5px;
   }
 }
-
 
   
 </style>

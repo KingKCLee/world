@@ -1660,19 +1660,476 @@ body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!import
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
-  /* ★ 추가: 작은 폰트 크기 보강 */
-.mt-badge            { font-size: 14.5px; }
-.mt-transport-item   { font-size: 14px; }
+/* ════════════════════════════════════════════════════════
+   ★ 전체 최소 폰트 사이즈 보강 — 최소 15px 기준
+   ════════════════════════════════════════════════════════ */
 
-.urgency-count-label { font-size: 14.5px; }
-.urgency-sub         { font-size: 16px; }
-.privacy-check       { font-size: 14.5px; }
-.reserve-form label  { font-size: 14.5px; }
-.bar-label           { font-size: 15px; }
-.bar-value           { font-size: 15px; }
-.site-footer         { font-size: 14px; }
-.quiz-opt            { font-size: 16px; }
-.calc-box label      { font-size: 14.5px; }
+/* ── 기본 본문 ── */
+body {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ── 메인 비주얼 영역 ── */
+.mt-badge {
+  font-size: clamp(15px, 2.2vw, 20px) !important;
+}
+.mt-transport-item {
+  font-size: clamp(15px, 2vw, 18px) !important;
+}
+.mt-badge-dot {
+  font-size: 20px !important;
+}
+.mt-transport-plus {
+  font-size: 1.4em !important;
+}
+
+/* ── 긴급 배너 (lp-urgency) ── */
+.lp-urgency-top {
+  font-size: clamp(16px, 2.5vw, 36px) !important;
+}
+.lp-urgency-main {
+  font-size: clamp(22px, 4vw, 55px) !important;
+}
+.lp-urgency-bottom {
+  font-size: clamp(15px, 2.2vw, 34px) !important;
+}
+.lp-royal-label {
+  font-size: 15px !important;
+}
+.lp-royal-unit {
+  font-size: 15px !important;
+}
+.lp-royal-warn {
+  font-size: 14px !important;
+}
+.lp-slot-bar {
+  font-size: 15px !important;
+}
+.lp-slot-bar strong {
+  font-size: 17px !important;
+}
+
+/* ── 섹션 제목/서브 ── */
+.lp-section-title {
+  font-size: clamp(22px, 3.5vw, 28px) !important;
+}
+.lp-section-sub {
+  font-size: 16px !important;
+}
+
+/* ── 예약 폼 ── */
+.lp-reserve-sub {
+  font-size: 16px !important;
+}
+.lp-input {
+  font-size: 16px !important;
+}
+.lp-input::placeholder {
+  font-size: 15px !important;
+}
+.lp-privacy-line,
+.lp-privacy-line label,
+.lp-privacy-line span,
+.lp-float-privacy,
+.lp-float-privacy label,
+.lp-float-privacy span {
+  font-size: 15px !important;
+}
+.lp-privacy-more {
+  font-size: 15px !important;
+}
+.lp-submit-btn {
+  font-size: clamp(18px, 3vw, 22px) !important;
+}
+
+/* ── 프리미엄 6 탭 ── */
+.p6-tab-label {
+  font-size: 13px !important;
+}
+.p6-tab-num {
+  font-size: 14px !important;
+}
+.p6-panel-text h3 {
+  font-size: clamp(18px, 2.5vw, 22px) !important;
+}
+.p6-panel-text p {
+  font-size: 16px !important;
+  line-height: 1.9 !important;
+}
+.p6-panel-text .p6-sub {
+  font-size: 15px !important;
+  line-height: 1.8 !important;
+}
+
+/* ── 가격표 ── */
+.lp-price-sub {
+  font-size: 16px !important;
+}
+.lp-price-table thead th {
+  font-size: 15px !important;
+}
+.lp-price-table tbody td {
+  font-size: 15px !important;
+}
+.lp-price-table tbody td span {
+  font-size: 13px !important;
+}
+.lp-price-tag {
+  font-size: 12px !important;
+}
+.lp-price-note {
+  font-size: 14px !important;
+  line-height: 1.7 !important;
+}
+
+/* ── 혜택 CTA 박스 ── */
+.lp-benefit-cta-sub {
+  font-size: 16px !important;
+}
+.lp-benefit-cta-item .cta-label {
+  font-size: 15px !important;
+}
+.lp-benefit-cta-item .cta-value {
+  font-size: clamp(18px, 3vw, 20px) !important;
+}
+.lp-benefit-cta-bottom p {
+  font-size: 15px !important;
+}
+
+/* ── 마켓 CTA (어두운 배경) ── */
+.lp-market-cta .market-point {
+  font-size: 16px !important;
+  line-height: 1.9 !important;
+}
+.lp-market-cta .market-point em {
+  font-size: 16px !important;
+}
+.lp-market-cta .lp-benefit-cta-bottom p {
+  font-size: 15px !important;
+}
+
+/* ── 리뷰 카드 ── */
+.lp-review-text {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+.lp-review-author {
+  font-size: 14px !important;
+}
+.lp-review-stars {
+  font-size: 18px !important;
+}
+.lp-reviews-sub {
+  font-size: 16px !important;
+}
+
+/* ── FAQ ── */
+.lp-faq-sub {
+  font-size: 16px !important;
+}
+.lp-faq-q {
+  font-size: 17px !important;
+}
+.lp-faq-a-inner {
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+}
+
+/* ── 유튜브 섹션 ── */
+.lp-youtube-section .lp-section-sub {
+  font-size: 16px !important;
+}
+
+/* ── 인테리어 갤러리 ── */
+.ig-tab {
+  font-size: 15px !important;
+}
+.ig-counter {
+  font-size: 15px !important;
+}
+.ig-counter .ig-current {
+  font-size: 17px !important;
+}
+
+/* ── 블록 공통 (삽입 블록) ── */
+.blk-title {
+  font-size: clamp(22px, 3.5vw, 28px) !important;
+}
+.blk-sub {
+  font-size: 16px !important;
+}
+.blk-sub strong {
+  font-size: 16px !important;
+}
+
+/* ── 블록4: 타입 비교표 ── */
+.blk-type-table th {
+  font-size: 15px !important;
+}
+.blk-type-table td {
+  font-size: 15px !important;
+}
+.blk-type-table .em-val {
+  font-size: 19px !important;
+}
+.blk-type-table td small {
+  font-size: 13px !important;
+}
+.blk-type-note {
+  font-size: 14px !important;
+}
+
+/* ── 블록1: 자금 계산기 ── */
+.blk-calc-col label {
+  font-size: 16px !important;
+}
+.blk-calc-col select {
+  font-size: 16px !important;
+}
+.blk-calc-result dt {
+  font-size: 16px !important;
+}
+.blk-calc-result dd {
+  font-size: 19px !important;
+}
+.blk-calc-result dd.em-cash {
+  font-size: 22px !important;
+}
+
+/* ── 블록2: 전세갭 카드 ── */
+.blk-gap-card .type-label {
+  font-size: 16px !important;
+}
+.blk-gap-card .price-tag {
+  font-size: clamp(22px, 3.5vw, 26px) !important;
+}
+.blk-gap-card .sub-info {
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+
+/* ── 블록5: 시세 바 차트 ── */
+.blk-bar-label {
+  font-size: 16px !important;
+}
+.blk-bar-fill {
+  font-size: 16px !important;
+}
+.blk-bar-badge {
+  font-size: 14px !important;
+}
+
+/* ── 블록7: 동탄 vs 송도 ── */
+.blk-vs-card h4 {
+  font-size: clamp(17px, 2.5vw, 20px) !important;
+}
+.blk-vs-card .vs-num {
+  font-size: clamp(24px, 4vw, 30px) !important;
+}
+.blk-vs-card .vs-detail {
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+}
+.blk-vs-card > div[style] {
+  font-size: 15px !important;
+}
+.blk-vs-chart-legend {
+  font-size: 14px !important;
+}
+.blk-vs-chart-note {
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+.blk-vs-dot-label {
+  font-size: 12px !important;
+}
+.blk-vs-chart-y span {
+  font-size: 12px !important;
+}
+.blk-vs-chart-x span {
+  font-size: 13px !important;
+}
+
+/* ── 블록6: 자가진단 퀴즈 ── */
+.blk-quiz-q {
+  font-size: clamp(19px, 3vw, 24px) !important;
+}
+.blk-quiz-opt {
+  font-size: 17px !important;
+}
+.blk-quiz-result .result-label {
+  font-size: clamp(20px, 3vw, 24px) !important;
+}
+.blk-quiz-result .result-desc {
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+}
+.blk-quiz-cta {
+  font-size: 18px !important;
+}
+
+/* ── 푸터 ── */
+.lp-footer-info {
+  font-size: clamp(15px, 2vw, 18px) !important;
+}
+.lp-footer-call .label {
+  font-size: clamp(16px, 2vw, 20px) !important;
+}
+.lp-footer-call .number {
+  font-size: clamp(30px, 5vw, 42px) !important;
+}
+.lp-footer-notice {
+  font-size: 14px !important;
+  line-height: 1.8 !important;
+}
+.lp-footer-copy {
+  font-size: 13px !important;
+}
+
+/* ── 퀵메뉴 / 플로팅 ── */
+.lp-quick-btn-label {
+  font-size: 15px !important;
+}
+.lp-float-title {
+  font-size: clamp(26px, 4vw, 34px) !important;
+}
+.lp-float-privacy,
+.lp-float-privacy label,
+.lp-float-privacy span {
+  font-size: 15px !important;
+}
+
+/* ── 토스트 알림 ── */
+.lp-toast-text {
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+}
+.lp-toast-time {
+  font-size: 13px !important;
+}
+
+/* ── 예약 카운터 버블 ── */
+.lp-resv-bubble {
+  font-size: 14px !important;
+}
+
+/* ── 팝업 ── */
+.lp-popup-today label {
+  font-size: 14px !important;
+}
+
+/* ── 헤더 ── */
+.h1_title {
+  font-size: clamp(15px, 2vw, 24px) !important;
+}
+.menu .btn-util .btn2 {
+  font-size: clamp(15px, 1.8vw, 20px) !important;
+}
+.menu .btn-util .btn3 {
+  font-size: clamp(20px, 2.5vw, 28px) !important;
+}
+
+/* ══════ 모바일 추가 보강 ══════ */
+@media (max-width: 1023px) {
+
+  .p6-tab-label {
+    font-size: 12px !important;
+  }
+  .p6-tab-num {
+    font-size: 13px !important;
+  }
+  .p6-panel-text h3 {
+    font-size: 17px !important;
+  }
+  .p6-panel-text p {
+    font-size: 15px !important;
+  }
+  .p6-panel-text .p6-sub {
+    font-size: 14px !important;
+  }
+
+  .lp-price-table thead th {
+    font-size: 14px !important;
+  }
+  .lp-price-table tbody td {
+    font-size: 14px !important;
+  }
+
+  .blk-type-table th,
+  .blk-type-table td {
+    font-size: 14px !important;
+  }
+
+  .lp-faq-q {
+    font-size: 16px !important;
+  }
+  .lp-faq-a-inner {
+    font-size: 15px !important;
+  }
+
+  .blk-quiz-opt {
+    font-size: 16px !important;
+  }
+
+  .ig-tab {
+    font-size: 14px !important;
+  }
+
+  .lp-market-cta .market-point {
+    font-size: 15px !important;
+  }
+
+  .blk-calc-col label {
+    font-size: 15px !important;
+  }
+  .blk-calc-col select {
+    font-size: 15px !important;
+  }
+  .blk-calc-result dt {
+    font-size: 15px !important;
+  }
+  .blk-calc-result dd {
+    font-size: 18px !important;
+  }
+
+  .blk-vs-card .vs-detail {
+    font-size: 15px !important;
+  }
+
+  .lp-resv-bubble {
+    font-size: 13px !important;
+  }
+
+  .lp-footer-notice {
+    font-size: 13px !important;
+  }
+}
+
+@media (max-width: 420px) {
+
+  .p6-tab-label {
+    font-size: 11px !important;
+  }
+  .p6-tab-num {
+    font-size: 12px !important;
+  }
+  .p6-panel-text p {
+    font-size: 14px !important;
+  }
+
+  .blk-type-table th,
+  .blk-type-table td {
+    font-size: 13px !important;
+  }
+
+  .mt-badge {
+    font-size: 13px !important;
+  }
+  .mt-transport-item {
+    font-size: 13px !important;
+  }
+}
 
   
 </style>

@@ -290,10 +290,24 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .lp-input:focus{border-color:var(--brand-color);box-shadow:0 0 0 3px rgba(179,155,0,.12);}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
-#header{position:fixed;left:0;top:0;width:100%;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:10px 24px;z-index:100;transition:padding .3s,box-shadow .3s,transform .4s ease,opacity .4s ease;box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-100%);opacity:0;}
-#header.header-visible{transform:translateY(0);opacity:1;}
-
-#header.on{padding:10px 24px;box-shadow:0 4px 16px rgba(0,0,0,.08);}
+#header{
+  position:fixed;left:0;top:0;width:100%;
+  background:transparent;                    /* ★ 처음엔 투명 */
+  backdrop-filter:none;                      /* ★ 처음엔 블러 없음 */
+  -webkit-backdrop-filter:none;
+  padding:10px 24px;z-index:100;
+  transition:background .3s ease, backdrop-filter .3s ease, -webkit-backdrop-filter .3s ease, padding .3s, box-shadow .3s;
+  box-shadow:none;                           /* ★ 처음엔 그림자 없음 */
+  transform:none;                            /* ★ 항상 보임 (숨기지 않음) */
+  opacity:1;                                 /* ★ 항상 보임 */
+}
+#header.on{
+  background:rgba(255,255,255,.85);          /* ★ 스크롤 시 흰 배경 */
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  padding:10px 24px;
+  box-shadow:0 4px 16px rgba(0,0,0,.08);    /* ★ 스크롤 시 그림자 */
+}
 .header-content{margin:0 auto;max-width:1600px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:nowrap;}
 #header:not(.on) .header-content{transform:none;}
 #header .menu a{text-decoration:none!important;}
@@ -651,7 +665,19 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 }
 html,body{overflow-y:auto;}
 body.lp-landing{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important;}
-body.lp-landing.lp-brand-dark #header,body.lp-landing.lp-brand-dark #header.on{background:rgba(255,255,255,.85)!important;backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important;box-shadow:0 4px 16px rgba(0,0,0,.08)!important;}
+/* ── 변경 후 ── */
+body.lp-landing.lp-brand-dark #header{
+  background:transparent!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  box-shadow:none!important;
+}
+body.lp-landing.lp-brand-dark #header.on{
+  background:rgba(255,255,255,.85)!important;
+  backdrop-filter:blur(12px)!important;
+  -webkit-backdrop-filter:blur(12px)!important;
+  box-shadow:0 4px 16px rgba(0,0,0,.08)!important;
+}
 
 .lp-toast-wrap{position:fixed;z-index:10000;pointer-events:none;cursor:pointer;}
 @media(min-width:1024px){.lp-toast-wrap{left:30px;bottom:30px;}}
@@ -1787,10 +1813,8 @@ var mainSwiper=new Swiper('.swiper1',{loop:true,autoplay:{delay:4000,disableOnIn
   window.addEventListener('scroll',function(){
     if(window.pageYOffset>threshold){
       header.classList.add('on');
-      header.classList.add('header-visible');
     }else{
       header.classList.remove('on');
-      header.classList.remove('header-visible');
     }
   },{passive:true});
 })();
@@ -2072,4 +2096,3 @@ document.addEventListener('keydown',function(e){if(e.key==='F12'){e.preventDefau
 
 </body>
 </html>
-

@@ -270,9 +270,15 @@
 @media(pointer:coarse){
   html,body{overflow-x:hidden!important;overflow-y:auto!important;height:auto!important;-webkit-overflow-scrolling:touch;}
   #header .header-content{transform:none!important;}
-  .h1_logo a{width:auto!important;min-width:88px;height:50px;display:inline-flex;align-items:center;}
+
+  /* ★ 수정: min-width 제거, 높이 축소 → 전화번호 공간 확보 */
+  .h1_logo a{width:auto!important;min-width:0;height:40px;display:inline-flex;align-items:center;}
   .h1_logo a img{width:auto!important;height:100%!important;object-fit:contain;}
+
+  /* ★ 추가: 메뉴 영역 축소 금지 */
+  .menu{flex-shrink:0!important;}
 }
+
 @media(pointer:fine){
   html{overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:var(--brand-color) transparent;}
   html::-webkit-scrollbar{width:10px;}
@@ -656,11 +662,37 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   #header.on{padding:9px 12px;}
   .header-content{gap:8px;}
   #header:not(.on) .header-content{transform:none;}
-  .h1_logo a{width:auto;height:50px;}
+@media(max-width:1023px){
+  #header{padding:9px 12px;}
+  #header.on{padding:9px 12px;}
+  .header-content{gap:8px;}
+  #header:not(.on) .header-content{transform:none;}
+
+  /* ★ 수정: 로고 래퍼가 남은 공간만 차지하도록 (전화번호 밀어내기 방지) */
+  .h1_logo-wrap{
+    flex:1 1 0;        /* 남은 공간만 차지 (기존: flex:1 1 auto) */
+    min-width:0;       /* flex 축소 정상 작동 */
+    overflow:hidden;   /* 넘치는 부분 숨김 */
+  }
+
+  /* ★ 수정: 로고 이미지 높이 제한 */
+  .h1_logo a{width:auto;height:40px;}  /* 기존 50px → 40px */
+  .h1_logo a img{
+    width:auto;
+    height:100%;
+    object-fit:contain;
+  }
+
   .h1_title{font-size:14px;max-width:200px;}
+
+  /* ★ 수정: 메뉴(전화번호) 영역이 절대 줄어들지 않도록 */
+  .menu{
+    flex:0 0 auto;     /* 축소 금지 → 항상 원래 크기 유지 */
+  }
   .menu .btn-util{gap:10px;}
   .menu .btn-util .btn2{font-size:.8rem;}
-  .menu .btn-util .btn3{font-size:1.5rem;}
+  .menu .btn-util .btn3{font-size:1.5rem;white-space:nowrap;}  /* ★ nowrap 추가 */ 
+
   .top-visual .swiper-slide .only-pc{display:none;}
   .top-visual .main-title-image{width:100%;}
   .top-visual{height:680px;max-height:none;}
@@ -691,7 +723,25 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 @media(max-width:420px){
   .menu .btn-util .btn3{font-size:1.2rem;}
   .h1_title{display:none;}
+
+  /* ★ 추가: 아주 작은 화면에서 로고 더 축소 */
+  .h1_logo a{height:32px;}
+
+  /* ★ 추가: 상담문의 숨기고 전화번호만 표시 (공간 확보) */
+  .menu .btn-util .btn2{display:none;}
+
+  /* ★ 추가: 전화번호 버튼 스타일 강화 */
+  .menu .btn-util .btn3{
+    font-size:1.1rem;
+    padding:4px 10px;
+    background:var(--brand-color);
+    color:#fff!important;
+    border-radius:6px;
+    text-shadow:none!important;
+    white-space:nowrap;
+  }
 }
+
 html,body{overflow-y:auto;}
 body.lp-landing{overflow-y:auto!important;overflow-x:hidden!important;height:auto!important;}
 /* ── 변경 후 ── */

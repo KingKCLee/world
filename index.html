@@ -907,7 +907,7 @@ function scrollToForm(id){var t=document.getElementById(id);if(!t)return;var rec
         <span style="color:#f6c90e;">🏠 실입주자</span>
         <div style="background:rgba(246,201,14,0.35);"></div>
       </div>
-      <dl><dt>분양가</dt><dd id="crPrice">6.3억</dd><dt>대출 가능액</dt><dd id="crLoan">4.41억</dd><dt>취득세(≈1.1%)</dt><dd id="crTax">693만</dd><dt><strong>필요 현금</strong></dt><dd id="crCash" class="em-cash">1.96억</dd></dl>
+      <dl><dt>분양가</dt><dd id="crPrice">6.3억</dd><dt>대출 가능액</dt><dd id="crLoan">4.41억</dd><dt><strong>필요 현금</strong></dt><dd id="crCash" class="em-cash">1.96억</dd></dl>
       <div class="calc-section-label" style="margin-top:24px;">
         <span style="color:#4acfbc;">📈 투자자</span>
         <div style="background:rgba(74,207,188,0.35);"></div>
@@ -1452,12 +1452,11 @@ function calcResult(){
   var loanRatio = loanEl ? parseFloat(loanEl.dataset.loan) : 0.8;
 
   var price=priceMap[area], rawLoan=Math.floor(price*loanRatio), loan=Math.min(rawLoan,cap);
-  var tax=Math.round(price*0.011), cash=price-loan+tax;
+  var cash=price-loan;
   var jeonse=jeonseMap[area], gap=price-jeonse;
 
   document.getElementById('crPrice').textContent=fmtEok(price);
   document.getElementById('crLoan').textContent=fmtEok(loan)+(rawLoan>cap?' (한도적용)':'');
-  document.getElementById('crTax').textContent=Math.round(tax)+'만';
   document.getElementById('crCash').textContent=fmtEok(cash);
   document.getElementById('crJeonse').textContent=fmtEok(jeonse);
   document.getElementById('crGap').textContent=fmtEok(gap);

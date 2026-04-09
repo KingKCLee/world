@@ -1184,3 +1184,9 @@ div[style*="text-align: center"]{
 .lp-price-table tr:last-child td:last-child{font-size:1.3em!important;font-weight:900!important;color:#c00!important;}
 }
 
+/* ===== Edge 모바일 깜빡임 방지 ===== */
+@media(max-width:768px){
+#header,#header.on{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:rgba(255,255,255,.95)!important;transition:background .2s!important;}
+.top-visual,.top-visual .swiper-slide,.top-visual .swiper-slide .img{will-change:transform;-webkit-transform:translateZ(0);transform:translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+}
+

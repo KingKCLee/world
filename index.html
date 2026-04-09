@@ -1278,7 +1278,7 @@ var mainSwiper=new Swiper('.swiper1',{loop:true,autoplay:{delay:4000,disableOnIn
 </script>
 
 <!-- AOS -->
-<script>AOS.init({duration:700,once:true,offset:80,easing:'ease-out-cubic'});</script>
+<script>AOS.init({disable:'mobile',once:true,duration:400,offset:0});</script>
 
 <!-- 헤더 스크롤: 초기 숨김 → 스크롤 시 나타남 -->
 <script>
@@ -1286,11 +1286,15 @@ var mainSwiper=new Swiper('.swiper1',{loop:true,autoplay:{delay:4000,disableOnIn
   var header=document.getElementById('header');
   if(!header)return;
   var threshold=80;
+  var ticking=false;
   window.addEventListener('scroll',function(){
-    if(window.pageYOffset>threshold){
-      header.classList.add('on');
-    }else{
-      header.classList.remove('on');
+    if(!ticking){
+      requestAnimationFrame(function(){
+        if(window.pageYOffset>threshold){header.classList.add('on');}
+        else{header.classList.remove('on');}
+        ticking=false;
+      });
+      ticking=true;
     }
   },{passive:true});
 })();
@@ -1509,7 +1513,7 @@ window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(f
 
 <!-- 스크롤 다운 인디케이터 숨기기 -->
 <script>
-(function(){var indicator=document.querySelector('.scroll-down-indicator');if(!indicator)return;window.addEventListener('scroll',function(){if(window.pageYOffset>100){indicator.style.opacity='0';indicator.style.pointerEvents='none';}else{indicator.style.opacity='1';indicator.style.pointerEvents='auto';}},{passive:true});})();
+(function(){var indicator=document.querySelector('.scroll-down-indicator');if(!indicator)return;var t=false;window.addEventListener('scroll',function(){if(!t){requestAnimationFrame(function(){if(window.pageYOffset>100){indicator.style.opacity='0';indicator.style.pointerEvents='none';}else{indicator.style.opacity='1';indicator.style.pointerEvents='auto';}t=false;});t=true;}},{passive:true});})();
 </script>
 
 <!-- 로열층 잔여 카운트 + 상담 슬롯 자동 감소 -->

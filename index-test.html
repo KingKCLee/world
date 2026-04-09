@@ -503,6 +503,11 @@
           <text x="1050" y="-88"  text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
           <text x="1050" y="-62"  text-anchor="middle" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2031)</text>
 
+          <!-- 현재(2026) 수직선 x=675 -->
+          <line x1="675" y1="-150" x2="675" y2="580" stroke="#333" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.3"/>
+          <text x="675" y="-115" text-anchor="middle" font-size="22" fill="#333" font-weight="700" font-family="Pretendard,sans-serif">현재</text>
+          <text x="675" y="-90" text-anchor="middle" font-size="20" fill="#333" font-family="Pretendard,sans-serif">(2026)</text>
+
           <!-- 동탄 라인 -->
           <polyline id="dtLine"
             points="0,444 75,421 150,392 225,319 300,319 375,174 450,174 525,131 600,101 675,29"
@@ -516,7 +521,7 @@
           <!-- 송도 예상 점선 2026→2031 -->
           <polyline id="sdFutureLine"
             points="675,348 1050,203"
-            stroke="#b39b00" stroke-width="4" fill="none" stroke-dasharray="14,8" stroke-linecap="round"/>
+            stroke="#b39b00" stroke-width="6" fill="none" stroke-dasharray="20,10" stroke-linecap="round"/>
 
           <!-- 레이어: dot 먼저, 말풍선 나중 -->
           <g id="dotsLayer"></g>
@@ -1211,15 +1216,15 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
   var dotsLayer = document.getElementById('dotsLayer');
 
   var DT_PTS = [
-    [0,   444, '동탄 분양가', '4.7억 (2017)', 'top',   80,   0],
-    [675, 29,  '동탄 신고가', '19억 (2026)',  'top',  -90,  90]
+    [0,   444, '동탄 분양가', '4.7억 (2017)', 'top',    80,   0],
+    [675, 29,  '동탄 신고가', '19억 (2026)',  'bottom',  0, -530]
   ];
 
   var SD_PTS = [
     [0,   449, '송도 평균',      '4.5억 (2017)',     'top',   20, 140],
     [300, 261, '불장 고점',      '11억 (2021)',      'top',   80,   0],
-    [675, 348, '송도 현재',      '8억 (2026)',       'top', -130,   0],
-    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', 'top',  -90,  40]
+    [675, 348, '송도 현재',      '8억 (2026)',       'top', -140,   0],
+    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', 'top', -100,  50]
   ];
 
   var ANIM_DT = 2000;
@@ -1232,38 +1237,44 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
   function getLen(el){ try{ return el.getTotalLength(); } catch(e){ return 1500; } }
 
   function makeBubble(x, y, title, sub, color, dir, offsetX, offsetY){
-    offsetX = offsetX || 0;
-    offsetY = offsetY || 0;
     var g = document.createElementNS('http://www.w3.org/2000/svg','g');
     g.style.opacity = '0';
     g.style.transition = 'opacity 0.35s ease';
+    offsetX = offsetX || 0;
+    offsetY = offsetY || 0;
 
     var bw = Math.max(title.length * 14, sub.length * 12) + 28;
     var bh = 54;
     var tail = 16;
     var r = 8;
+
     var bx, by, pathD;
+    var actualAbove;
 
     if(dir === 'top'){
-      bx = x - bw/2;
       by = y - bh - tail - 30 + offsetY;
-      if(bx < 2) bx = 2;
-      if(bx + bw > 998) bx = 998 - bw;
-      var tx = Math.min(Math.max(x, bx + r + tail), bx + bw - r - tail);
+      actualAbove = true;
+    } else {
+      by = y + tail + 10 + offsetY;
+      actualAbove = (by + bh) < y;
+    }
+
+    bx = x - bw/2 + offsetX;
+    if(bx < 2) bx = 2;
+    if(bx + bw > 1098) bx = 1098 - bw;
+
+    var tx = Math.min(Math.max(x, bx + r + tail), bx + bw - r - tail);
+
+    if(actualAbove){
       pathD = 'M'+(bx+r)+','+by
         +' H'+(bx+bw-r)+' Q'+(bx+bw)+','+by+' '+(bx+bw)+','+(by+r)
         +' V'+(by+bh-r)+' Q'+(bx+bw)+','+(by+bh)+' '+(bx+bw-r)+','+(by+bh)
-        +' H'+(tx+tail)+' L'+tx+','+(by+bh+tail)+' L'+(tx-tail)+','+(by+bh)
+        +' H'+(tx+tail)+' L'+tx+','+(y-2)+' L'+(tx-tail)+','+(by+bh)
         +' H'+(bx+r)+' Q'+bx+','+(by+bh)+' '+bx+','+(by+bh-r)
         +' V'+(by+r)+' Q'+bx+','+by+' '+(bx+r)+','+by+' Z';
     } else {
-      bx = x - bw/2;
-      by = y + tail + 10 + offsetY;
-      if(bx < 2) bx = 2;
-      if(bx + bw > 998) bx = 998 - bw;
-      var tx = Math.min(Math.max(x, bx + r + tail), bx + bw - r - tail);
       pathD = 'M'+(bx+r)+','+by
-        +' H'+(tx-tail)+' L'+tx+','+(by-tail)+' L'+(tx+tail)+','+by
+        +' H'+(tx-tail)+' L'+tx+','+(y+2)+' L'+(tx+tail)+','+by
         +' H'+(bx+bw-r)+' Q'+(bx+bw)+','+by+' '+(bx+bw)+','+(by+r)
         +' V'+(by+bh-r)+' Q'+(bx+bw)+','+(by+bh)+' '+(bx+bw-r)+','+(by+bh)
         +' H'+(bx+r)+' Q'+bx+','+(by+bh)+' '+bx+','+(by+bh-r)

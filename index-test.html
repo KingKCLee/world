@@ -577,7 +577,7 @@
         <button class="p6-tab" data-index="4"><span class="p6-tab-num">05</span><span class="p6-tab-label">희소가치</span></button>
         <button class="p6-tab" data-index="5"><span class="p6-tab-num">06</span><span class="p6-tab-label">완성생활</span></button>
       </div>
-      <div class="p6-panels" style="height:260px;">
+      <div class="p6-panels">
         <div class="p6-panel active" data-panel="0"><div class="p6-panel-inner"><div class="p6-panel-icon">🌏</div><div class="p6-panel-text"><h3>01. 대한민국 유일의 국제도시, 송도</h3><p>송도는 단순한 신도시가 아닙니다. 국가 전략으로 설계된 유일한 국제도시입니다. 삼성바이오로직스·셀트리온 등 바이오 세계 1위 클러스터가 집결해 있고, 해외 직접투자 8조 원 이상이 유치된 외국 자본이 검증한 도시입니다.</p><span class="p6-sub">바이오 산업 세계 1위 클러스터 · 해외 직접투자 8조+ · 수도권 마지막 국제도시</span></div></div></div>
         <div class="p6-panel" data-panel="1"><div class="p6-panel-inner"><div class="p6-panel-icon">📍</div><div class="p6-panel-text"><h3>02. 송도 안에서도 가장 핵심, 1공구</h3><p>아파트 가치의 90%는 입지가 결정합니다. 이곳은 IBD 국제업무지구 도보 접근 가능한 직주근접 최적 입지입니다. 1공구는 더 이상 지을 땅이 없어 사실상 마지막 기회이며, 3공구 G5블록 84기준 분양 예정가가 11~12억대인 점이 이 입지의 가치를 증명합니다.</p><span class="p6-sub">IBD 국제업무지구 도보권 · 1공구 신규 공급 불가 · 3공구 분양가 11~12억대</span></div></div></div>
         <div class="p6-panel" data-panel="2"><div class="p6-panel-inner"><div class="p6-panel-icon">🚄</div><div class="p6-panel-text"><h3>03. 동탄의 기적이 송도에서 반복됩니다</h3><p>동탄역 롯데캐슬은 분양가 4.7억에서 GTX-A 개통 후 19억 신고가를 돌파 (약 4배 상승)했습니다. 부동산 가격은 결국 교통이 결정합니다. 송도는 지금 GTX-B 전 구간 착공 중이고, 올해 12월 인천발 KTX까지 개통됩니다. GTX + KTX가 동시에 들어오는 전례 없는 교통 혁신이 시작됩니다.</p><span class="p6-sub">GTX-B 2031 개통 · 인천발 KTX 2026.12 개통 · 송도트램 승인 · 인천3호선 추진</span></div></div></div>
@@ -1034,10 +1034,8 @@ var mainSwiper=new Swiper('.swiper1',{loop:true,autoplay:{delay:4000,disableOnIn
   var tabs = document.querySelectorAll('.p6-tab');
   var panels = document.querySelectorAll('.p6-panel');
   if(!tabs.length) return;
-
   var current = 0;
   var total = tabs.length;
-  var INTERVAL = 4000;
   var timer = null;
 
   function activate(idx){
@@ -1048,17 +1046,15 @@ var mainSwiper=new Swiper('.swiper1',{loop:true,autoplay:{delay:4000,disableOnIn
     current = idx;
   }
 
-  function next(){
-    activate((current + 1) % total);
-  }
-
   function startAuto(){
     stopAuto();
-    timer = setInterval(next, INTERVAL);
+    timer = setInterval(function(){
+      activate((current+1) % total);
+    }, 4000);
   }
 
   function stopAuto(){
-    if(timer){ clearInterval(timer); timer = null; }
+    if(timer){ clearInterval(timer); timer=null; }
   }
 
   tabs.forEach(function(tab, i){

@@ -1740,7 +1740,7 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     if(bx + bw > 690) bx = 690 - bw;
     var tbx = bx + bw/2;
     tbx = Math.min(Math.max(tbx, bx + r + tailW + 2), bx + bw - r - tailW - 2);
-    var isAbove = (by + bh + 10) < y;
+    var isAbove = (by + bh) < y;
     var pathD;
     if(isAbove){
       pathD = 'M'+(bx+r)+','+by

@@ -1031,3 +1031,9 @@ table th{font-size:18px!important;}
 .p6-panels-vertical{margin-bottom:0!important;padding-bottom:0!important;}
 }
 
+@media(max-width:767px){
+.lp-interior-gallery{margin-bottom:0!important;padding-bottom:0!important;}
+.section-images{margin-bottom:0!important;padding-bottom:0!important;}
+.ig-panel{margin-bottom:0!important;padding-bottom:0!important;}
+}
+

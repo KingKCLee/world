@@ -270,9 +270,9 @@
 
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none"
     onload="if(submitted){
-        alert('방문예약이 신청되었습니다!\n\n담당자가 곧 연락드리겠습니다.\n감사합니다.\n\n📞 1533-9077');
+        var modal = document.getElementById('reserveSuccessModal');
+        modal.style.display = 'flex';
         submitted=false;
-        location.reload();
     }"></iframe>
 
 <div id="top"></div>
@@ -1617,5 +1617,39 @@ window.addEventListener('afterprint',function(){document.body.style.display='';}
   updatePendulum();
 })();
 </script>
+<div id="reserveSuccessModal" style="display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:20px;padding:48px 40px;max-width:480px;width:90%;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.18);animation:modalPop .35s ease;">
+    <div style="font-size:52px;margin-bottom:16px;">🎉</div>
+    <div style="font-size:22px;font-weight:800;color:#093687;margin-bottom:10px;letter-spacing:-0.5px;">방문예약이 완료되었습니다</div>
+    <div style="width:40px;height:3px;background:#b8960c;margin:0 auto 20px;border-radius:2px;"></div>
+    <p style="font-size:15px;color:#555;line-height:1.8;margin-bottom:8px;">
+      <strong style="color:#222;">송도 월드메르디앙</strong> 방문예약 신청이<br>정상적으로 접수되었습니다.
+    </p>
+    <p style="font-size:15px;color:#555;line-height:1.8;margin-bottom:28px;">
+      담당 상담사가 확인 후<br><strong style="color:#093687;">빠른 시간 내 연락</strong>드리겠습니다.
+    </p>
+    <div style="background:#f8f6f0;border-radius:12px;padding:14px 20px;margin-bottom:28px;font-size:14px;color:#888;">
+      📞 상담 문의 &nbsp;<strong style="color:#222;font-size:16px;">1533-9077</strong>
+    </div>
+    <button onclick="document.getElementById('reserveSuccessModal').style.display='none';"
+      style="background:linear-gradient(135deg,#b8960c,#d4ab0f);color:#fff;border:none;border-radius:50px;padding:14px 48px;font-size:17px;font-weight:700;cursor:pointer;letter-spacing:-0.3px;">
+      확인
+    </button>
+  </div>
+</div>
+
+<style>
+@keyframes modalPop{
+  from{opacity:0;transform:scale(.85) translateY(20px);}
+  to{opacity:1;transform:scale(1) translateY(0);}
+}
+</style>
+
+<script>
+document.getElementById('reserveSuccessModal').addEventListener('click', function(e){
+  if(e.target === this) this.style.display = 'none';
+});
+</script>
+
 </body>
 </html>

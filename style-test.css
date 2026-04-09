@@ -995,23 +995,9 @@ body{font-size:18px!important;}
 .calc-section-label span{font-size:17px;font-weight:700;letter-spacing:0.3px;white-space:nowrap;}
 .calc-section-label div{flex:1;height:1.5px;}
 
-/* 깜박임 애니메이션 */
-@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.05;}}
-.blink-text{animation:blink-highlight 1s ease-in-out infinite!important;display:inline-block;}
-
 /* 시세 테이블 폰트 확대 */
 .lp-price-table td,.lp-price-table th{font-size:20px!important;padding:16px 12px!important;}
 @media(max-width:1023px){.lp-price-table th,.lp-price-table td,.blk-price-table th,.blk-price-table td,[class*="price"] th,[class*="price"] td{font-size:16px!important;padding:12px 10px!important;}}
-
-/* 깜빡임 강제 (맨 아래 우선순위) */
-@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.05;}}
-.blink-text{display:inline-block!important;animation:blink-highlight 1s ease-in-out infinite!important;}
-
-@keyframes priceBlink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.2;transform:scale(0.95);}}
-.price-blink{display:inline-block;animation:priceBlink 1s ease-in-out infinite;}
-
-/* 깜빡임 최종 */
-@keyframes priceBlink{0%,100%{opacity:1;}50%{opacity:0.1;}}
 
 /* Paperlogy 헤딩 강제 */
 h1,h2,h3,h4,h5,.blk-title,.lp-section-title,.sec-title,[class*="-title"],[class*="-heading"]{font-family:'Paperlogy','Pretendard',sans-serif!important;font-weight:800!important;}

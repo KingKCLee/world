@@ -1191,14 +1191,14 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
 
   var DT_PTS = [
     [0,   444, '동탄 분양가', '4.7억 (2017)', 'bottom'],
-    [875, 29,  '동탄 신고가', '19억 (2026)',  'top']
+    [875, 29,  '동탄 신고가', '19억 (2026)',  'bottom']
   ];
 
   var SD_PTS = [
-    [0,   449, '송도 평균',    '4.5억 (2017)', 'top'],
-    [462, 261, '불장 고점',    '11억 (2021)',  'top'],
+    [0,   449, '송도 평균',    '4.5억 (2017)', 'bottom'],
+    [462, 261, '불장 고점',    '11억 (2021)',  'bottom'],
     [875, 348, '송도 현재',    '8억 (2026)',   'bottom'],
-    [987, 203, 'GTX-B 개통 후','13억 (2031) 예상', 'top']
+    [987, 203, 'GTX-B 개통 후','13억 (2031) 예상', 'bottom']
   ];
 
   var ANIM_DT = 2000;
@@ -1217,30 +1217,30 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
 
     var bw = Math.max(title.length * 14, sub.length * 12) + 28;
     var bh = 54;
-    var tail = 10;
+    var tail = 16;
     var r = 8;
     var bx, by, pathD;
 
     if(dir === 'top'){
       bx = x - bw/2;
-      by = y - bh - tail - 50;
+      by = y - bh - tail - 60;
       if(bx < 2) bx = 2;
       if(bx + bw > 998) bx = 998 - bw;
-      var tx = Math.min(Math.max(x, bx+r+tail), bx+bw-r-tail);
+      var tx = Math.min(Math.max(x, bx + r + tail), bx + bw - r - tail);
       pathD = 'M'+(bx+r)+','+by
         +' H'+(bx+bw-r)+' Q'+(bx+bw)+','+by+' '+(bx+bw)+','+(by+r)
         +' V'+(by+bh-r)+' Q'+(bx+bw)+','+(by+bh)+' '+(bx+bw-r)+','+(by+bh)
-        +' H'+(tx+tail)+' L'+tx+','+(y-2)+' L'+(tx-tail)+','+(by+bh)
+        +' H'+(tx+tail)+' L'+tx+','+(by+bh+tail)+' L'+(tx-tail)+','+(by+bh)
         +' H'+(bx+r)+' Q'+bx+','+(by+bh)+' '+bx+','+(by+bh-r)
         +' V'+(by+r)+' Q'+bx+','+by+' '+(bx+r)+','+by+' Z';
     } else {
       bx = x - bw/2;
-      by = y + tail + 6;
+      by = y + tail + 10;
       if(bx < 2) bx = 2;
       if(bx + bw > 998) bx = 998 - bw;
-      var tx = Math.min(Math.max(x, bx+r+tail), bx+bw-r-tail);
+      var tx = Math.min(Math.max(x, bx + r + tail), bx + bw - r - tail);
       pathD = 'M'+(bx+r)+','+by
-        +' H'+(tx-tail)+' L'+tx+','+(y+2)+' L'+(tx+tail)+','+by
+        +' H'+(tx-tail)+' L'+tx+','+(by-tail)+' L'+(tx+tail)+','+by
         +' H'+(bx+bw-r)+' Q'+(bx+bw)+','+by+' '+(bx+bw)+','+(by+r)
         +' V'+(by+bh-r)+' Q'+(bx+bw)+','+(by+bh)+' '+(bx+bw-r)+','+(by+bh)
         +' H'+(bx+r)+' Q'+bx+','+(by+bh)+' '+bx+','+(by+bh-r)
@@ -1250,7 +1250,7 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
     var path = document.createElementNS('http://www.w3.org/2000/svg','path');
     path.setAttribute('d', pathD);
     path.setAttribute('fill', 'white');
-    path.setAttribute('fill-opacity', '0.96');
+    path.setAttribute('fill-opacity', '0.97');
     path.setAttribute('stroke', color);
     path.setAttribute('stroke-width', '1.8');
     g.appendChild(path);

@@ -1419,15 +1419,15 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
   var dotsLayer = document.getElementById('dotsLayer');
 
   var DT_PTS = [
-    [0,   444, '동탄 분양가', '4.7억 (2017)', '#d4145a', 140,  0],
-    [675, 29,  '동탄 신고가', '19억 (2026)',  '#d4145a',   0, 80]
+    [0,   444, '동탄 분양가', '4.7억 (2017)', '#d4145a',  60, -30],
+    [675, 29,  '동탄 신고가', '19억 (2026)',  '#d4145a', -80, 390]
   ];
 
   var SD_PTS = [
-    [0,   449, '송도 평균',      '4.5억 (2017)',     '#b39b00',  20, 200],
-    [300, 261, '불장 고점',      '11억 (2021)',      '#b39b00',  90,   0],
-    [675, 348, '송도 현재',      '8억 (2026)',       '#b39b00',-140,   0],
-    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', '#b39b00', -100,  50]
+    [0,   449, '송도 평균',      '4.5억 (2017)',     '#b39b00',  60, 180],
+    [300, 261, '불장 고점',      '11억 (2021)',      '#b39b00', -90,   0],
+    [675, 348, '송도 현재',      '8억 (2026)',       '#b39b00',  60,   0],
+    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', '#b39b00',-110,   0]
   ];
 
   var ANIM_DT = 2000;
@@ -1471,7 +1471,7 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     var g = document.createElementNS('http://www.w3.org/2000/svg','g');
     g.style.opacity='0'; g.style.transition='opacity 0.35s ease';
     var bw = Math.max(title.length*14, sub.length*12) + 32;
-    var bh = 54; var tail = 14; var r = 8;
+    var bh = 54; var tail = 7; var r = 8;
     var bx = x - bw/2 + offsetX;
     var by = y - bh - tail - 30 + offsetY;
     if(bx < 2) bx = 2;
@@ -1547,8 +1547,8 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     dtLine.setAttribute('stroke-dashoffset', dtLen);
     sdLine.setAttribute('stroke-dasharray', sdLen);
     sdLine.setAttribute('stroke-dashoffset', sdLen);
-    sdFutureLine.setAttribute('stroke-dasharray', '20,10');
-    sdFutureLine.setAttribute('stroke-dashoffset', sdFutureLen);
+    sdFutureLine.setAttribute('stroke-dasharray', String(sdFutureLen));
+    sdFutureLine.setAttribute('stroke-dashoffset', String(sdFutureLen));
     allBubbles.forEach(function(b){ b.obj.g.style.opacity='0'; b.obj.dot.style.opacity='0'; });
   }
 

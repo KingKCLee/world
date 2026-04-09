@@ -1118,3 +1118,19 @@ body{padding-bottom:80px!important;}
 #chartSvg{margin-top:0!important;padding-top:0!important;}
 }
 
+/* ===== 모바일 주석/설명글 좌측정렬 ===== */
+@media(max-width:768px){
+.blk-vs-chart-note,
+.lp-price-note,
+.blk-type-note,
+.blk-note-text,
+.lp-footer-notice,
+[class*="-note"],
+[class*="-desc"]{
+  text-align:left!important;
+  padding-left:16px!important;
+  padding-right:16px!important;
+  box-sizing:border-box;
+}
+}
+

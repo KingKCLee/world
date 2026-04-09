@@ -451,7 +451,7 @@
       <div class="blk-vs-chart-legend"><span><i class="dot-dt"></i> 동탄 (GTX-A)</span><span><i class="dot-sd"></i> 송도 (GTX-B)</span></div>
       <div class="blk-vs-chart-body">
         <div class="blk-vs-chart-y"><span>20억</span><span>15억</span><span>10억</span><span>5억</span><span>0</span></div>
-        <svg viewBox="0 0 1000 500" preserveAspectRatio="none">
+        <svg viewBox="0 -50 1000 550" preserveAspectRatio="none">
           <line x1="0" y1="0" x2="1000" y2="0" stroke="rgba(0,0,0,.04)" stroke-width="1"/>
           <line x1="0" y1="125" x2="1000" y2="125" stroke="rgba(0,0,0,.04)" stroke-width="1"/>
           <line x1="0" y1="250" x2="1000" y2="250" stroke="rgba(0,0,0,.04)" stroke-width="1"/>
@@ -459,14 +459,24 @@
           <polyline class="blk-line-dt" points="0,383 200,275 400,150 600,80 800,25" stroke="#d4145a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           <polyline class="blk-line-sd" points="0,325 200,312 400,287 600,300 800,250" stroke="#b39b00" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           <polyline class="blk-line-sd-future" points="800,250 1000,125" stroke="#b39b00" stroke-width="3" fill="none" stroke-dasharray="12,8" stroke-linecap="round" opacity="0.6"/>
+          <!-- GTX-A 착공 마커 -->
+          <line x1="200" y1="0" x2="200" y2="500" stroke="#d4145a" stroke-width="2" stroke-dasharray="8,5" opacity="0.6"/>
+          <text x="200" y="-8" text-anchor="middle" font-size="28" fill="#d4145a" font-weight="700">GTX-A 착공</text>
+          <text x="200" y="-30" text-anchor="middle" font-size="24" fill="#d4145a">(2018)</text>
+          <!-- GTX-A 개통 마커 -->
+          <line x1="700" y1="0" x2="700" y2="500" stroke="#d4145a" stroke-width="2" stroke-dasharray="8,5" opacity="0.9"/>
+          <text x="700" y="-8" text-anchor="middle" font-size="28" fill="#d4145a" font-weight="700">GTX-A 개통</text>
+          <text x="700" y="-30" text-anchor="middle" font-size="24" fill="#d4145a">(2024)</text>
+          <!-- GTX-B 착공 마커 -->
+          <line x1="840" y1="0" x2="840" y2="500" stroke="#b39b00" stroke-width="2" stroke-dasharray="8,5" opacity="0.7"/>
+          <text x="840" y="-8" text-anchor="middle" font-size="28" fill="#b39b00" font-weight="700">GTX-B 착공</text>
+          <text x="840" y="-30" text-anchor="middle" font-size="24" fill="#b39b00">(2025)</text>
         </svg>
         <div class="blk-vs-dot-label blk-vs-dot-sd-start"><strong>송도</strong>7억</div>
         <div class="blk-vs-dot-label blk-vs-dot-dt-start"><strong>동탄</strong>4.7억</div>
         <div class="blk-vs-dot-label blk-vs-dot-dt-now"><strong>동탄 신고가</strong>19억</div>
         <div class="blk-vs-dot-label blk-vs-dot-sd-now"><strong>송도 현재</strong>10~12억</div>
         <div class="blk-vs-dot-label blk-vs-dot-sd-future"><strong>GTX-B 개통 후</strong>15억+</div>
-        <div class="blk-vs-event-marker" style="left:20%"><div class="blk-vs-event-line"></div><div class="blk-vs-event-tag">GTX-A 착공 (2019)</div></div>
-        <div class="blk-vs-event-marker" style="left:80%"><div class="blk-vs-event-line" style="border-color:rgba(179,155,0,.3)"></div><div class="blk-vs-event-tag blk-vs-event-tag-gold">GTX-B 착공</div></div>
       </div>
       <div class="blk-vs-chart-x"><span>2017</span><span>2019</span><span>2021</span><span>2023</span><span>2025</span><span>2031<small>예상</small></span></div>
     </div>

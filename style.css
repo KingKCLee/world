@@ -1003,3 +1003,9 @@ table th{font-size:18px!important;}
 .lp-toast-time{font-size:10px!important;}
 }
 
+@media(max-width:767px){
+.lp-reserve-wrap{margin-bottom:20px!important;padding-bottom:20px!important;}
+#blkChart{margin-top:0!important;padding-top:24px!important;}
+.lp-body{padding-bottom:0!important;}
+}
+

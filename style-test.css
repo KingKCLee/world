@@ -978,14 +978,19 @@ body{font-size:18px!important;}
 .blk-quiz-opt{font-size:18px!important;}
 
 /* 계산기 chip UI */
-.calc-chip{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:14px 18px;border-radius:12px;border:1.5px solid #e0ddd5;background:rgba(255,255,255,0.08);cursor:pointer;min-width:90px;transition:border-color .15s,background .15s;}
-.calc-chip:hover{border-color:#c8c4b8;background:rgba(255,255,255,0.13);}
-.calc-chip.active{border:2px solid #b8960c;background:rgba(184,150,12,0.13);}
-.calc-chip-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
-.calc-chip-val{font-size:18px;font-weight:600;color:#fff;}
-.calc-chip-sub{font-size:12px;color:rgba(255,255,255,0.6);}
+.calc-chip{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:10px;padding:16px 20px;border-radius:12px;border:1.5px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);cursor:pointer;flex:1;min-width:0;transition:border-color .15s,background .15s;}
+.calc-chip:hover{border-color:rgba(184,150,12,0.5);background:rgba(184,150,12,0.1);}
+.calc-chip.active{border:2px solid #b8960c;background:rgba(184,150,12,0.18);}
+.calc-chip-icon{width:40px;height:40px;min-width:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.calc-chip-val{font-size:22px;font-weight:700;color:#fff;white-space:nowrap;}
+.calc-chip-sub{font-size:14px;color:rgba(255,255,255,0.6);white-space:nowrap;}
 .calc-chip.active .calc-chip-val{color:#f6c90e;}
-.calc-chip.active .calc-chip-sub{color:#b8960c;}
+.calc-chip.active .calc-chip-sub{color:#d4ab0f;}
+.calc-chip-group{display:flex;gap:10px;width:100%;margin-bottom:24px;}
+@media(max-width:640px){.calc-chip{padding:14px 10px;gap:6px;}.calc-chip-val{font-size:18px;}.calc-chip-sub{font-size:12px;}.calc-chip-icon{width:32px;height:32px;min-width:32px;}}
+.calc-section-label{display:flex;align-items:center;gap:12px;margin-bottom:16px;margin-top:8px;}
+.calc-section-label span{font-size:17px;font-weight:700;letter-spacing:0.3px;white-space:nowrap;}
+.calc-section-label div{flex:1;height:1.5px;}
 
 /* 깜박임 애니메이션 */
 @keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.3;}}

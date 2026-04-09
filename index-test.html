@@ -683,67 +683,79 @@
   <div class="blk-container">
     <h3 class="blk-title">🧮 자금 계산기</h3>
     <p class="blk-sub">타입과 대출 조건을 선택하면 필요 현금을 바로 확인</p>
-    <!-- 전용면적 chip -->
-    <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:10px;font-weight:500;">전용면적</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;" id="areaGroup">
+    <!-- 전용면적 -->
+    <p style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:12px;font-weight:600;">전용면적</p>
+    <div class="calc-chip-group" id="areaGroup">
       <div class="calc-chip active" data-area="78" onclick="calcChipSelect(this,'areaGroup');calcResult()">
-        <div class="calc-chip-icon" style="background:rgba(184,150,12,0.18);">
-          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="rgba(184,150,12,0.35)" stroke-width="1.5" stroke-dasharray="2,1"/></svg>
+        <div class="calc-chip-icon" style="background:rgba(184,150,12,0.2);">
+          <svg width="22" height="22" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="rgba(184,150,12,0.35)" stroke-width="1.5" stroke-dasharray="2,1"/></svg>
         </div>
-        <span class="calc-chip-val">78㎡</span>
-        <span class="calc-chip-sub">약 23평</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;">
+          <span class="calc-chip-val">78㎡</span>
+          <span class="calc-chip-sub">약 23평</span>
+        </div>
       </div>
       <div class="calc-chip" data-area="83" onclick="calcChipSelect(this,'areaGroup');calcResult()">
-        <div class="calc-chip-icon" style="background:rgba(184,150,12,0.18);">
-          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="10" width="4" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/></svg>
+        <div class="calc-chip-icon" style="background:rgba(184,150,12,0.2);">
+          <svg width="22" height="22" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="10" width="4" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/></svg>
         </div>
-        <span class="calc-chip-val">83㎡</span>
-        <span class="calc-chip-sub">약 25평</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;">
+          <span class="calc-chip-val">83㎡</span>
+          <span class="calc-chip-sub">약 25평</span>
+        </div>
       </div>
       <div class="calc-chip" data-area="84" onclick="calcChipSelect(this,'areaGroup');calcResult()">
-        <div class="calc-chip-icon" style="background:rgba(184,150,12,0.18);">
-          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/></svg>
+        <div class="calc-chip-icon" style="background:rgba(184,150,12,0.2);">
+          <svg width="22" height="22" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/></svg>
         </div>
-        <span class="calc-chip-val">84㎡</span>
-        <span class="calc-chip-sub">약 25.4평</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;">
+          <span class="calc-chip-val">84㎡</span>
+          <span class="calc-chip-sub">약 25.4평</span>
+        </div>
       </div>
     </div>
 
-    <!-- 대출조건 chip -->
-    <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:10px;font-weight:500;">대출 조건</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;" id="loanGroup">
+    <!-- 대출조건 -->
+    <p style="font-size:15px;color:rgba(255,255,255,0.7);margin-bottom:12px;font-weight:600;">대출 조건</p>
+    <div class="calc-chip-group" id="loanGroup">
       <div class="calc-chip" data-loan="0.6" onclick="calcChipSelect(this,'loanGroup');calcResult()">
-        <div class="calc-chip-icon" style="background:rgba(58,111,216,0.18);">
-          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M9 2L3 7v9h4v-5h4v5h4V7L9 2z" stroke="#3a6fd8" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <div class="calc-chip-icon" style="background:rgba(58,111,216,0.2);">
+          <svg width="22" height="22" viewBox="0 0 18 18" fill="none"><path d="M9 2L3 7v9h4v-5h4v5h4V7L9 2z" stroke="#3a6fd8" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
-        <span class="calc-chip-val">60%</span>
-        <span class="calc-chip-sub">1주택자</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;">
+          <span class="calc-chip-val">60%</span>
+          <span class="calc-chip-sub">1주택자</span>
+        </div>
       </div>
       <div class="calc-chip" data-loan="0.7" onclick="calcChipSelect(this,'loanGroup');calcResult()">
-        <div class="calc-chip-icon" style="background:rgba(58,154,58,0.18);">
-          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="#3a9a3a" stroke-width="1.5"/><path d="M3 15c0-3 2.7-5 6-5s6 2 6 5" stroke="#3a9a3a" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div class="calc-chip-icon" style="background:rgba(58,154,58,0.2);">
+          <svg width="22" height="22" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="#3a9a3a" stroke-width="1.5"/><path d="M3 15c0-3 2.7-5 6-5s6 2 6 5" stroke="#3a9a3a" stroke-width="1.5" stroke-linecap="round"/></svg>
         </div>
-        <span class="calc-chip-val">70%</span>
-        <span class="calc-chip-sub">무주택자</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;">
+          <span class="calc-chip-val">70%</span>
+          <span class="calc-chip-sub">무주택자</span>
+        </div>
       </div>
       <div class="calc-chip active" data-loan="0.8" onclick="calcChipSelect(this,'loanGroup');calcResult()">
-        <div class="calc-chip-icon" style="background:rgba(212,58,122,0.18);">
-          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M9 3l1.5 3.5 3.5.5-2.5 2.5.5 3.5L9 11.5 6 13l.5-3.5L4 7l3.5-.5L9 3z" stroke="#d43a7a" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <div class="calc-chip-icon" style="background:rgba(212,58,122,0.2);">
+          <svg width="22" height="22" viewBox="0 0 18 18" fill="none"><path d="M9 3l1.5 3.5 3.5.5-2.5 2.5.5 3.5L9 11.5 6 13l.5-3.5L4 7l3.5-.5L9 3z" stroke="#d43a7a" stroke-width="1.5" stroke-linejoin="round"/></svg>
         </div>
-        <span class="calc-chip-val">80%</span>
-        <span class="calc-chip-sub">생애최초</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-start;">
+          <span class="calc-chip-val">80%</span>
+          <span class="calc-chip-sub">생애최초</span>
+        </div>
       </div>
     </div>
 
     <div class="blk-calc-result" id="calcResultBox">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;margin-top:4px;">
-        <span style="font-size:13px;font-weight:600;color:#f6c90e;letter-spacing:0.5px;">🏠 실입주자</span>
-        <div style="flex:1;height:1px;background:rgba(246,201,14,0.3);"></div>
+      <div class="calc-section-label">
+        <span style="color:#f6c90e;">🏠 실입주자</span>
+        <div style="background:rgba(246,201,14,0.35);"></div>
       </div>
       <dl><dt>분양가</dt><dd id="crPrice">6.3억</dd><dt>대출 가능액</dt><dd id="crLoan">4.41억</dd><dt>취득세(≈1.1%)</dt><dd id="crTax">693만</dd><dt><strong>필요 현금</strong></dt><dd id="crCash" class="em-cash">1.96억</dd></dl>
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;margin-top:20px;">
-        <span style="font-size:13px;font-weight:600;color:#4acfbc;letter-spacing:0.5px;">📈 투자자</span>
-        <div style="flex:1;height:1px;background:rgba(74,207,188,0.3);"></div>
+      <div class="calc-section-label" style="margin-top:24px;">
+        <span style="color:#4acfbc;">📈 투자자</span>
+        <div style="background:rgba(74,207,188,0.35);"></div>
       </div>
       <div class="blk-jeonse-row"><dl><dt>전세보증금</dt><dd id="crJeonse">4.7억</dd><dt>전세 갭</dt><dd id="crGap">1.6억</dd></dl></div>
     </div>

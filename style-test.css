@@ -990,3 +990,5 @@ table th{font-size:18px!important;}
 .header-tel,.h-tel,[class*="tel"],[class*="phone"],.header-content a[href^="tel"]{font-size:20px!important;font-weight:700!important;}
 }
 
+@keyframes priceBlink{0%,100%{opacity:1;}50%{opacity:0.15;}}
+

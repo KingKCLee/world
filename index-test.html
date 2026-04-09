@@ -523,7 +523,7 @@
             stroke-linecap="round" stroke-linejoin="round"
             stroke-dasharray="30 14"
             stroke-dashoffset="10000"
-            opacity="1"/>
+            visibility="hidden"/>
 
           <!-- dot 레이어 먼저 -->
           <g id="dotsLayer"></g>
@@ -1555,6 +1555,7 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     sdFutureLen = getLen(sdFutureLine);
     sdFutureLine.setAttribute('stroke-dasharray','30 14');
     sdFutureLine.setAttribute('stroke-dashoffset','10000');
+    sdFutureLine.setAttribute('visibility','hidden');
     allBubbles.forEach(function(b){ b.obj.g.style.opacity='0'; b.obj.dot.style.opacity='0'; });
   }
 
@@ -1639,6 +1640,7 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
         sdPauseRatios.sort(function(a,b){ return a-b; });
         makePausedAnimator(sdLine, sdLen, sdPts, sdDists, ANIM_SD, allBubbles, 'sd', sdPauseRatios, function(){
           setTimeout(function(){
+            sdFutureLine.setAttribute('visibility','visible');
             var futureStart = performance.now();
             var futureTotal = 10000;
             function futureStep(){

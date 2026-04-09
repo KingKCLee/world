@@ -1419,10 +1419,16 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
   var idx=Math.floor(Math.random()*messages.length);var showing=false;var hideTimer=null;
   function showToast(){
     if(wrapEl.classList.contains('hide-for-form')){setTimeout(showToast,3000);return;}
+    var isMo=window.innerWidth<768;
     var msg=messages[idx%messages.length];idx++;
-    textEl.innerHTML='<strong>'+msg.area+' '+msg.name+'</strong>님이 방문예약을 등록했습니다.<div class="lp-toast-time">'+msg.time+' · <span style="color:#b39b00;font-weight:600;">나도 등록하기 →</span></div>';
+    if(isMo){
+      textEl.innerHTML='<strong>'+msg.area+' '+msg.name+'</strong>님 방문예약 등록<div class="lp-toast-time">'+msg.time+'</div>';
+    } else {
+      textEl.innerHTML='<strong>'+msg.area+' '+msg.name+'</strong>님이 방문예약을 등록했습니다.<div class="lp-toast-time">'+msg.time+' · <span style="color:#b39b00;font-weight:600;">나도 등록하기 →</span></div>';
+    }
     toastEl.classList.add('show');showing=true;
-    hideTimer=setTimeout(function(){toastEl.classList.remove('show');showing=false;setTimeout(showToast,8000);},4000);
+    var stayTime=isMo?1500:2000;
+    hideTimer=setTimeout(function(){toastEl.classList.remove('show');showing=false;setTimeout(showToast,isMo?10000:8000);},stayTime);
   }
   wrapEl.addEventListener('click',function(){if(!showing)return;clearTimeout(hideTimer);toastEl.classList.remove('show');showing=false;
     if(typeof lpOpenFloatForm==='function')lpOpenFloatForm();

@@ -447,7 +447,7 @@
         <svg id="chartSvg" viewBox="-50 -150 1160 760" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:580px;display:block;overflow:visible;">
 
           <!-- Y축 레이블 (SVG 내부 - 항상 정확히 일치) -->
-          <text x="-8" y="2"   text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">20억</text>
+          <text x="-8" y="0"   text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">20억</text>
           <text x="-8" y="145" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">15억</text>
           <text x="-8" y="290" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">10억</text>
           <text x="-8" y="435" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">5억</text>
@@ -510,7 +510,7 @@
 
           <!-- 송도 라인 -->
           <polyline id="sdLine"
-            points="0,449 75,421 150,392 225,362 300,261 375,377 450,392 525,377 600,362 675,348"
+            points="0,449 75,421 150,392 225,362 300,261 375,319 450,362 525,377 600,362 675,348"
             stroke="#b39b00" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
           <!-- 송도 예상 점선 2026→2031 -->
@@ -1211,15 +1211,15 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
   var dotsLayer = document.getElementById('dotsLayer');
 
   var DT_PTS = [
-    [0,   444, '동탄 분양가', '4.7억 (2017)', 'top',   20,   0],
-    [675, 29,  '동탄 신고가', '19억 (2026)',  'top',    0,  70]
+    [0,   444, '동탄 분양가', '4.7억 (2017)', 'top',   80,   0],
+    [675, 29,  '동탄 신고가', '19억 (2026)',  'top',  -90,  90]
   ];
 
   var SD_PTS = [
-    [0,   449, '송도 평균',      '4.5억 (2017)',     'bottom',  20,    0],
-    [300, 261, '불장 고점',      '11억 (2021)',      'top',      0,    0],
-    [675, 348, '송도 현재',      '8억 (2026)',       'bottom', -120,   0],
-    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', 'top',    -90,  30]
+    [0,   449, '송도 평균',      '4.5억 (2017)',     'top',   20, 140],
+    [300, 261, '불장 고점',      '11억 (2021)',      'top',   80,   0],
+    [675, 348, '송도 현재',      '8억 (2026)',       'top', -130,   0],
+    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', 'top',  -90,  40]
   ];
 
   var ANIM_DT = 2000;
@@ -1246,7 +1246,7 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
 
     if(dir === 'top'){
       bx = x - bw/2;
-      by = y - bh - tail - 20 + offsetY;
+      by = y - bh - tail - 30 + offsetY;
       if(bx < 2) bx = 2;
       if(bx + bw > 998) bx = 998 - bw;
       var tx = Math.min(Math.max(x, bx + r + tail), bx + bw - r - tail);
@@ -1273,7 +1273,7 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
     var path = document.createElementNS('http://www.w3.org/2000/svg','path');
     path.setAttribute('d', pathD);
     path.setAttribute('fill', 'white');
-    path.setAttribute('fill-opacity', '0.97');
+    path.setAttribute('fill-opacity', '1');
     path.setAttribute('stroke', color);
     path.setAttribute('stroke-width', '1.8');
     g.appendChild(path);

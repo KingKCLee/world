@@ -519,8 +519,8 @@
           <!-- 송도 예상 점선 -->
           <polyline id="sdFutureLine"
             points="675,348 1050,203"
-            stroke="#b39b00" stroke-width="6" fill="none"
-            stroke-dasharray="20,10" stroke-linecap="round"/>
+            stroke="#b39b00" stroke-width="8" fill="none"
+            stroke-dasharray="28,12" stroke-linecap="round"/>
 
           <!-- dot 레이어 먼저 -->
           <g id="dotsLayer"></g>
@@ -1419,15 +1419,15 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
   var dotsLayer = document.getElementById('dotsLayer');
 
   var DT_PTS = [
-    [0,   444, '동탄 분양가', '4.7억 (2017)', '#d4145a',  60, -30],
-    [675, 29,  '동탄 신고가', '19억 (2026)',  '#d4145a', -80, 390]
+    [0,   444, '동탄 분양가', '4.7억 (2017)', '#d4145a',  80, -60],
+    [675, 29,  '동탄 신고가', '19억 (2026)',  '#d4145a', -60,   0]
   ];
 
   var SD_PTS = [
     [0,   449, '송도 평균',      '4.5억 (2017)',     '#b39b00',  60, 180],
-    [300, 261, '불장 고점',      '11억 (2021)',      '#b39b00', -90,   0],
-    [675, 348, '송도 현재',      '8억 (2026)',       '#b39b00',  60,   0],
-    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', '#b39b00',-110,   0]
+    [300, 261, '불장 고점',      '11억 (2021)',      '#b39b00', -80,   0],
+    [675, 348, '송도 현재',      '8억 (2026)',       '#b39b00',  70,   0],
+    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', '#b39b00',-100,   0]
   ];
 
   var ANIM_DT = 2000;
@@ -1471,24 +1471,25 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     var g = document.createElementNS('http://www.w3.org/2000/svg','g');
     g.style.opacity='0'; g.style.transition='opacity 0.35s ease';
     var bw = Math.max(title.length*14, sub.length*12) + 32;
-    var bh = 54; var tail = 7; var r = 8;
+    var bh = 54; var tailW = 6; var r = 8;
     var bx = x - bw/2 + offsetX;
-    var by = y - bh - tail - 30 + offsetY;
+    var by = y - bh - 40 + offsetY;
     if(bx < 2) bx = 2;
     if(bx + bw > 1098) bx = 1098 - bw;
-    var tx = Math.min(Math.max(x, bx + r + tail), bx + bw - r - tail);
-    var isAbove = (by + bh) < y;
+    var tbx = bx + bw/2;
+    tbx = Math.min(Math.max(tbx, bx + r + tailW + 2), bx + bw - r - tailW - 2);
+    var isAbove = (by + bh + 10) < y;
     var pathD;
     if(isAbove){
       pathD = 'M'+(bx+r)+','+by
         +' H'+(bx+bw-r)+' Q'+(bx+bw)+','+by+' '+(bx+bw)+','+(by+r)
         +' V'+(by+bh-r)+' Q'+(bx+bw)+','+(by+bh)+' '+(bx+bw-r)+','+(by+bh)
-        +' H'+(tx+tail)+' L'+tx+','+(y-3)+' L'+(tx-tail)+','+(by+bh)
+        +' H'+(tbx+tailW)+' L'+x+','+(y-2)+' L'+(tbx-tailW)+','+(by+bh)
         +' H'+(bx+r)+' Q'+bx+','+(by+bh)+' '+bx+','+(by+bh-r)
         +' V'+(by+r)+' Q'+bx+','+by+' '+(bx+r)+','+by+' Z';
     } else {
       pathD = 'M'+(bx+r)+','+by
-        +' H'+(tx-tail)+' L'+tx+','+(y+3)+' L'+(tx+tail)+','+by
+        +' H'+(tbx-tailW)+' L'+x+','+(y+2)+' L'+(tbx+tailW)+','+by
         +' H'+(bx+bw-r)+' Q'+(bx+bw)+','+by+' '+(bx+bw)+','+(by+r)
         +' V'+(by+bh-r)+' Q'+(bx+bw)+','+(by+bh)+' '+(bx+bw-r)+','+(by+bh)
         +' H'+(bx+r)+' Q'+bx+','+(by+bh)+' '+bx+','+(by+bh-r)

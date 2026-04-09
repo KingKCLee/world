@@ -242,7 +242,7 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   .lp-urgency-bottom{font-size:15px;word-break:keep-all;line-height:1.5;padding:0 8px;}
 }
 
-.lp-benefits{margin:56px auto;padding:48px 0 0;border-top:none;border-bottom:none;margin-bottom:120px;}
+.lp-benefits{margin:56px auto;padding:48px 24px 0;border-top:none;border-bottom:none;margin-bottom:120px;box-sizing:border-box;}
 .lp-benefits-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:0 0 6px;}
 .lp-benefits-sub{text-align:center;font-size:14px;color:#888;margin-bottom:20px;letter-spacing:-.5px;}
 
@@ -258,7 +258,7 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .p6-sub{display:block;margin-top:14px;padding:10px 14px;background:#fdf9ee;border-left:3px solid #b8960c;border-radius:0 8px 8px 0;font-size:12px;color:#b8960c;font-weight:700;line-height:1.7;}
 
 @media(max-width:1023px){
-  .lp-benefits{margin:40px auto;padding:36px 0 0;margin-bottom:80px;}
+  .lp-benefits{margin:40px auto;padding:36px 16px 0;margin-bottom:80px;}
   .lp-benefits-title{font-size:22px;}
   .section-images.no-border-top{margin-top:16px;}
 }

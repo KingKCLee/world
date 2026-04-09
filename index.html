@@ -319,17 +319,17 @@ function scrollToForm(id){var t=document.getElementById(id);if(!t)return;var rec
     </ul>
 
     <div class="main-title-text" id="mainTitleText">
-      <div style="width:calc(100% - 20px);margin:0 auto 10px;box-sizing:border-box;">
-        <div style="display:flex;gap:6px;width:100%;margin-bottom:6px;">
-          <span style="flex:1;min-width:0;text-align:center;background:rgba(40,40,40,0.7);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:clamp(11px,2.8vw,13px);font-weight:700;padding:8px 4px;border-radius:6px;white-space:nowrap;box-sizing:border-box;line-height:1.2;">명문학군</span>
-          <span style="flex:1;min-width:0;text-align:center;background:rgba(40,40,40,0.7);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:clamp(11px,2.8vw,13px);font-weight:700;padding:8px 4px;border-radius:6px;white-space:nowrap;box-sizing:border-box;line-height:1.2;">최대학원가</span>
-          <span style="flex:1;min-width:0;text-align:center;background:rgba(40,40,40,0.7);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:clamp(11px,2.8vw,13px);font-weight:700;padding:8px 4px;border-radius:6px;white-space:nowrap;box-sizing:border-box;line-height:1.2;">센트럴파크</span>
+      <div class="mo-badge-wrap">
+        <div class="mo-badge-row">
+          <span class="mo-badge mo-badge-top">명문학군</span>
+          <span class="mo-badge mo-badge-top">최대학원가</span>
+          <span class="mo-badge mo-badge-top">센트럴파크</span>
         </div>
-        <div style="display:flex;gap:6px;width:100%;">
-          <span style="flex:1;min-width:0;text-align:center;background:var(--brand-color);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:clamp(11px,2.8vw,13px);font-weight:700;padding:8px 4px;border-radius:6px;white-space:nowrap;box-sizing:border-box;line-height:1.2;">GTX-B</span>
-          <span style="flex:1;min-width:0;text-align:center;background:var(--brand-color);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:clamp(11px,2.8vw,13px);font-weight:700;padding:8px 4px;border-radius:6px;white-space:nowrap;box-sizing:border-box;line-height:1.2;">송도트램</span>
-          <span style="flex:1;min-width:0;text-align:center;background:var(--brand-color);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:clamp(11px,2.8vw,13px);font-weight:700;padding:8px 4px;border-radius:6px;white-space:nowrap;box-sizing:border-box;line-height:1.2;">인천3호선</span>
-          <span style="flex:1;min-width:0;text-align:center;background:var(--brand-color);border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:clamp(11px,2.8vw,13px);font-weight:700;padding:8px 4px;border-radius:6px;white-space:nowrap;box-sizing:border-box;line-height:1.2;">제2외곽순환</span>
+        <div class="mo-badge-row">
+          <span class="mo-badge mo-badge-bot">GTX-B</span>
+          <span class="mo-badge mo-badge-bot">송도트램</span>
+          <span class="mo-badge mo-badge-bot">인천3호선</span>
+          <span class="mo-badge mo-badge-bot">제2외곽순환</span>
         </div>
       </div>
       <div class="mt-highlight mt-anim" data-delay="800">
@@ -1683,6 +1683,14 @@ window.addEventListener('afterprint',function(){document.body.style.display='';}
 @keyframes modalPop{
   from{opacity:0;transform:scale(.85) translateY(20px);}
   to{opacity:1;transform:scale(1) translateY(0);}
+}
+@media(max-width:768px){
+  .mo-badge-wrap{width:calc(100% - 20px)!important;margin:0 auto 10px!important;box-sizing:border-box!important;}
+  .mo-badge-row{display:flex!important;gap:6px!important;width:100%!important;margin-bottom:6px!important;}
+  .mo-badge-row:last-child{margin-bottom:0!important;}
+  .mo-badge{flex:1!important;min-width:0!important;text-align:center!important;font-size:clamp(11px,2.8vw,13px)!important;font-weight:700!important;padding:8px 4px!important;border-radius:6px!important;white-space:nowrap!important;box-sizing:border-box!important;line-height:1.2!important;border:1px solid rgba(255,255,255,0.3)!important;color:#fff!important;}
+  .mo-badge-top{background:rgba(40,40,40,0.7)!important;}
+  .mo-badge-bot{background:var(--brand-color)!important;}
 }
 </style>
 

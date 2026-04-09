@@ -1004,3 +1004,6 @@ body{font-size:18px!important;}
 @keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.05;}}
 .blink-text{display:inline-block!important;animation:blink-highlight 1s ease-in-out infinite!important;}
 
+@keyframes priceBlink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.2;transform:scale(0.95);}}
+.price-blink{display:inline-block;animation:priceBlink 1s ease-in-out infinite;}
+

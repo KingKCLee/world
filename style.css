@@ -1046,3 +1046,7 @@ table th{font-size:18px!important;}
 .main-title-text{position:absolute!important;top:50%!important;left:50%!important;transform:translate(-50%,-50%)!important;width:100%!important;padding-bottom:0!important;margin:0!important;}
 }
 
+@media(max-width:767px){
+.lp-market-cta{margin-bottom:20px!important;padding-bottom:20px!important;}
+}
+

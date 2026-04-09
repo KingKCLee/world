@@ -1010,3 +1010,13 @@ body{font-size:18px!important;}
 @keyframes priceBlink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.2;transform:scale(0.95);}}
 .price-blink{display:inline-block;animation:priceBlink 1s ease-in-out infinite;}
 
+/* 깜빡임 최종 */
+@keyframes priceBlink{0%,100%{opacity:1;}50%{opacity:0.1;}}
+
+/* Paperlogy 헤딩 강제 */
+h1,h2,h3,h4,h5,.blk-title,.lp-section-title,.sec-title,[class*="-title"],[class*="-heading"]{font-family:'Paperlogy','Pretendard',sans-serif!important;font-weight:800!important;}
+
+/* 테이블 폰트 강제 */
+table td{font-size:20px!important;}
+table th{font-size:18px!important;}
+

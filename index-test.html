@@ -1470,7 +1470,7 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     offsetX = offsetX||0; offsetY = offsetY||0;
     var g = document.createElementNS('http://www.w3.org/2000/svg','g');
     g.style.opacity='0'; g.style.transition='opacity 0.35s ease';
-    var bw = Math.max(title.length*14, sub.length*12) + 32;
+    var bw = Math.max(title.length*18, sub.length*15) + 48;
     var bh = 80; var tailW = 6; var r = 8;
     var bx = x - bw/2 + offsetX;
     var tailGap = 20;
@@ -1554,50 +1554,92 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     allBubbles.forEach(function(b){ b.obj.g.style.opacity='0'; b.obj.dot.style.opacity='0'; });
   }
 
-  function animate(){
-    var elapsed = performance.now() - startTime;
-    var totalAnim = ANIM_DT + DELAY_SD + ANIM_SD + DELAY_FUTURE + ANIM_FUTURE;
-    var ratio;
+  var PAUSE_MS = 300;
 
-    if(elapsed < ANIM_DT){
-      ratio = easeInOut(elapsed/ANIM_DT);
-      dtLine.setAttribute('stroke-dashoffset', dtLen*(1-ratio));
-      allBubbles.forEach(function(b){
-        if(b.line==='dt' && !b.isFuture && ratio>=b.ratio && b.obj.g.style.opacity==='0'){
-          b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1';
+  function makePausedAnimator(line, totalLen, pts, dists, duration, bubbles, lineKey, onDone){
+    var pauseQueue = [];
+    pts.forEach(function(_, i){
+      if(i > 0) pauseQueue.push(dists[i]/dists[dists.length-1]);
+    });
+
+    var startT = null;
+    var pausedUntil = null;
+    var lastRatio = 0;
+    var pauseAccum = 0;
+
+    function step(){
+      var now = performance.now();
+      if(!startT) startT = now;
+
+      if(pausedUntil && now < pausedUntil){
+        requestAnimationFrame(step);
+        return;
+      }
+      if(pausedUntil && now >= pausedUntil){
+        pauseAccum += PAUSE_MS;
+        pausedUntil = null;
+      }
+
+      var elapsed = now - startT - pauseAccum;
+      var rawRatio = Math.min(elapsed / duration, 1);
+      var ratio = easeInOut(rawRatio);
+
+      line.setAttribute('stroke-dashoffset', totalLen*(1-ratio));
+
+      bubbles.forEach(function(b){
+        if(b.line===lineKey && !b.isFuture && ratio>=b.ratio && b.obj.g.style.opacity==='0'){
+          b.obj.g.style.opacity='1';
+          b.obj.dot.style.opacity='1';
         }
       });
-    } else {
-      dtLine.setAttribute('stroke-dashoffset','0');
-      allBubbles.forEach(function(b){ if(b.line==='dt' && !b.isFuture){ b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1'; } });
-      var sdE = elapsed - ANIM_DT - DELAY_SD;
-      if(sdE>=0 && sdE<ANIM_SD){
-        ratio = easeInOut(sdE/ANIM_SD);
-        sdLine.setAttribute('stroke-dashoffset', sdLen*(1-ratio));
-        allBubbles.forEach(function(b){
-          if(b.line==='sd' && !b.isFuture && ratio>=b.ratio && b.obj.g.style.opacity==='0'){
-            b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1';
-          }
-        });
-      } else if(sdE>=ANIM_SD){
-        sdLine.setAttribute('stroke-dashoffset','0');
-        allBubbles.forEach(function(b){ if(b.line==='sd' && !b.isFuture){ b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1'; } });
-        var fE = elapsed - ANIM_DT - DELAY_SD - ANIM_SD - DELAY_FUTURE;
-        if(fE>=0 && fE<ANIM_FUTURE){
-          ratio = easeInOut(fE/ANIM_FUTURE);
-          sdFutureLine.setAttribute('stroke-dashoffset', sdFutureLen*(1-ratio));
-        } else if(fE>=ANIM_FUTURE){
-          sdFutureLine.setAttribute('stroke-dashoffset','0');
-          allBubbles.forEach(function(b){ if(b.isFuture){ b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1'; } });
-          if(elapsed > totalAnim + REPLAY_DELAY){
-            resetAll();
-            setTimeout(function(){ startTime = performance.now(); requestAnimationFrame(animate); }, 100);
-            return;
-          }
+
+      for(var i=0; i<pauseQueue.length; i++){
+        if(lastRatio < pauseQueue[i] && ratio >= pauseQueue[i]){
+          pausedUntil = now + PAUSE_MS;
+          pauseQueue.splice(i,1);
+          break;
         }
       }
+      lastRatio = ratio;
+
+      if(rawRatio < 1){
+        requestAnimationFrame(step);
+      } else {
+        line.setAttribute('stroke-dashoffset','0');
+        onDone();
+      }
     }
-    requestAnimationFrame(animate);
+    requestAnimationFrame(step);
+  }
+
+  function startAnimation(){
+    makePausedAnimator(dtLine, dtLen, dtPts, dtDists, ANIM_DT, allBubbles, 'dt', function(){
+      setTimeout(function(){
+        makePausedAnimator(sdLine, sdLen, sdPts, sdDists, ANIM_SD, allBubbles, 'sd', function(){
+          setTimeout(function(){
+            var futureStart = performance.now();
+            function futureStep(){
+              var elapsed = performance.now() - futureStart;
+              var ratio = easeInOut(Math.min(elapsed/ANIM_FUTURE, 1));
+              sdFutureLine.setAttribute('stroke-dashoffset', sdFutureLen*(1-ratio));
+              if(ratio < 1){
+                requestAnimationFrame(futureStep);
+              } else {
+                sdFutureLine.setAttribute('stroke-dashoffset','0');
+                allBubbles.forEach(function(b){
+                  if(b.isFuture){ b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1'; }
+                });
+                setTimeout(function(){
+                  resetAll();
+                  setTimeout(function(){ startAnimation(); }, 200);
+                }, REPLAY_DELAY);
+              }
+            }
+            requestAnimationFrame(futureStep);
+          }, DELAY_FUTURE);
+        });
+      }, DELAY_SD);
+    });
   }
 
   var observed = false;
@@ -1605,7 +1647,7 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     if(observed || !entries[0].isIntersecting) return;
     observed = true; observer.disconnect();
     resetAll();
-    setTimeout(function(){ startTime = performance.now(); requestAnimationFrame(animate); }, 300);
+    setTimeout(function(){ startAnimation(); }, 300);
   }, {threshold:0.3});
 
   observer.observe(wrap);

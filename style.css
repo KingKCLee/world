@@ -1009,3 +1009,9 @@ table th{font-size:18px!important;}
 .lp-body{padding-bottom:0!important;}
 }
 
+@media(max-width:767px){
+.lp-slide-popup{display:flex;align-items:center;justify-content:center;}
+.lp-slide-popup-container{position:relative;left:auto!important;right:auto!important;bottom:auto!important;top:auto!important;transform:none!important;width:90%;max-width:340px;}
+.lp-slide-popup-inner{width:100%!important;margin:0 auto!important;}
+}
+

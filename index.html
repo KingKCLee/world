@@ -981,6 +981,31 @@ function scrollToForm(id){var t=document.getElementById(id);if(!t)return;var rec
 
     var started=false;
 
+    /* ── 높이 사전 확보: 최종 텍스트 기준으로 min-height 고정 ── */
+    (function preCalcHeight(){
+      var fullBody='';
+      BODY.forEach(function(seg){
+        var isBold=BOLD.indexOf(seg)>-1;
+        var html=seg.replace(/\n/g,'<br>');
+        fullBody+=isBold?'<strong style="color:#f6c90e">'+html+'</strong>':html;
+      });
+      var fullClosing=CLOSING.replace(/\n/g,'<br>');
+
+      bodyEl.innerHTML=fullBody;
+      closingEl.style.opacity='1';
+      closingEl.innerHTML=fullClosing;
+
+      var bh=bodyEl.offsetHeight;
+      var ch=closingEl.offsetHeight;
+
+      bodyEl.style.minHeight=bh+'px';
+      closingEl.style.minHeight=ch+'px';
+
+      bodyEl.innerHTML='';
+      closingEl.innerHTML='';
+      closingEl.style.opacity='0';
+    })();
+
     function renderChar(el,text,i,speed,onDone){
       if(i>=text.length){if(onDone)onDone();return;}
       if(text[i]==='\n'){el.innerHTML+='<br>';}

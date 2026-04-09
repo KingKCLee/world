@@ -908,6 +908,131 @@
     if(section)observer.observe(section);
   })();
   </script>
+
+<section style="padding:60px 24px;background:#f0f0f0;" data-aos="fade-up">
+  <h2 style="text-align:center;font-size:24px;font-weight:900;color:#111;margin-bottom:8px;font-family:'Paperlogy','Pretendard',sans-serif;">실제로 이런 대화가 오가고 있습니다</h2>
+  <p style="text-align:center;font-size:14px;color:#888;margin-bottom:32px;">동탄에서 먼저 잡은 친구의 이야기</p>
+
+  <div style="display:flex;flex-direction:column;align-items:center;">
+    <div id="kkPhone" style="width:100%;max-width:360px;background:#b2c7d9;border-radius:40px;overflow:hidden;border:8px solid #222;font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;">
+      <div style="background:#222;height:28px;display:flex;align-items:center;justify-content:center;">
+        <div style="width:80px;height:14px;background:#111;border-radius:0 0 12px 12px;"></div>
+      </div>
+      <div style="background:#a8b8c8;padding:12px 16px;display:flex;align-items:center;gap:10px;">
+        <div style="width:32px;height:32px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;">🏠</div>
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#222;">송도 부동산 스터디</div>
+          <div style="font-size:12px;color:#555;">3명</div>
+        </div>
+      </div>
+      <div id="kkBody" style="background:#b2c7d9;padding:16px 12px;height:480px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;"></div>
+      <div id="kkCta" style="background:#fff;padding:16px;opacity:0;visibility:hidden;transition:opacity 0.5s;">
+        <div style="background:#fee500;border-radius:12px;padding:14px 16px;margin-bottom:10px;">
+          <div style="font-size:13px;font-weight:700;color:#222;margin-bottom:4px;">📌 송도 월드메르디앙 특별분양</div>
+          <div style="font-size:12px;color:#555;line-height:1.6;">잔여세대 한정 · 총 1억 5천만원 혜택<br>지금 방문예약하시면 동·호수를 직접 확인하실 수 있습니다.</div>
+        </div>
+        <button onclick="var t=document.getElementById('reserve-bottom');if(t){var y=t.getBoundingClientRect().top+window.pageYOffset-80;window.scrollTo({top:y,behavior:'smooth'});}" style="width:100%;background:#093687;color:#fff;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;">나도 동탄 친구처럼 결정하기 →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var msgs=[
+    {side:'left',name:'친구 (동탄 거주)',avatar:'👤',text:'야 나 동탄 4.7억에 샀던 거 기억하지?'},
+    {side:'right',name:'나',avatar:'🙋',text:'어 그때 왜 그걸 사냐고 했었잖아 ㅋㅋ'},
+    {side:'left',name:'친구 (동탄 거주)',avatar:'👤',text:'지금 19억이야 😎'},
+    {side:'right',name:'나',avatar:'🙋',text:'...진짜?? 4배가 올랐어?'},
+    {side:'left',name:'친구 (동탄 거주)',avatar:'👤',text:'GTX 착공 직후에 샀거든. 그 타이밍이 전부였어.'},
+    {side:'left',name:'친구 (동탄 거주)',avatar:'👤',text:'지금 송도가 딱 그 시점이야. GTX-B 착공됐잖아.'},
+    {side:'right',name:'나',avatar:'🙋',text:'근데 송도는 이미 많이 오른 거 아니야?'},
+    {side:'left',name:'친구 (동탄 거주)',avatar:'👤',text:'월드메르디앙은 아직 6억대야. 1공구 신축인데.'},
+    {side:'right',name:'나',avatar:'🙋',text:'6억대? 1공구가? 거기 10억 넘지 않아?'},
+    {side:'left',name:'친구 (동탄 거주)',avatar:'👤',text:'그래서 기회라는 거지. 3공구 분양 예정가가 11~12억이야 😅'},
+    {side:'right',name:'나',avatar:'🙋',text:'2026년 신축 들어오는 거 있지 않아?'},
+    {side:'left',name:'친구 (동탄 거주)',avatar:'👤',text:'0세대야. 매년 1만 2천명이 송도로 이사 오는데 공급이 없어.'},
+    {side:'right',name:'나',avatar:'🙋',text:'...동탄이랑 완전 같은 패턴이네'},
+    {side:'left',name:'친구 (동탄 거주)',avatar:'👤',text:'그때 살껄 하는 사람 진짜 많았어. 지금 네가 그 위치야.'},
+    {side:'right',name:'나',avatar:'🙋',text:'일단 방문예약 해볼게...'},
+    {side:'left',name:'친구 (동탄 거주)',avatar:'👤',text:'빨리해 진짜로 😂 나중에 후회하지 말고!'},
+  ];
+
+  var body=document.getElementById('kkBody');
+  var cta=document.getElementById('kkCta');
+  var i=0;
+  var started=false;
+
+  function timeStr(){var now=new Date();return now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');}
+
+  function addMsg(){
+    if(i>=msgs.length){
+      cta.style.opacity='1';
+      cta.style.visibility='visible';
+      return;
+    }
+    var m=msgs[i];
+    var nameEl=document.createElement('div');
+    nameEl.style.cssText=(m.side==='right'?'text-align:right;margin-right:44px;':'margin-left:44px;')+'font-size:11px;color:#444;margin-bottom:2px;';
+    nameEl.textContent=m.name;
+
+    var typingRow=document.createElement('div');
+    typingRow.style.cssText='display:flex;align-items:flex-end;gap:8px;'+(m.side==='right'?'flex-direction:row-reverse;':'');
+    var av=document.createElement('div');
+    av.style.cssText='width:36px;height:36px;border-radius:50%;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;';
+    av.textContent=m.avatar;
+    var typing=document.createElement('div');
+    typing.style.cssText='display:flex;gap:4px;padding:10px 14px;background:#fff;border-radius:18px;border-top-left-radius:4px;width:52px;align-items:center;';
+    typing.innerHTML='<div style="width:6px;height:6px;background:#aaa;border-radius:50%;animation:kkb 1s infinite;"></div><div style="width:6px;height:6px;background:#aaa;border-radius:50%;animation:kkb 1s 0.15s infinite;"></div><div style="width:6px;height:6px;background:#aaa;border-radius:50%;animation:kkb 1s 0.3s infinite;"></div>';
+    if(m.side==='left'){typingRow.appendChild(av);typingRow.appendChild(typing);}
+    else{typingRow.appendChild(typing);typingRow.appendChild(av);}
+    body.appendChild(nameEl);
+    body.appendChild(typingRow);
+    body.scrollTop=body.scrollHeight;
+
+    setTimeout(function(){
+      body.removeChild(typingRow);
+      body.removeChild(nameEl);
+
+      var nameEl2=document.createElement('div');
+      nameEl2.style.cssText=(m.side==='right'?'text-align:right;margin-right:44px;':'margin-left:44px;')+'font-size:11px;color:#444;margin-bottom:2px;';
+      nameEl2.textContent=m.name;
+      body.appendChild(nameEl2);
+
+      var row=document.createElement('div');
+      row.style.cssText='display:flex;align-items:flex-end;gap:8px;'+(m.side==='right'?'flex-direction:row-reverse;':'');
+      var av2=document.createElement('div');
+      av2.style.cssText='width:36px;height:36px;border-radius:50%;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;';
+      av2.textContent=m.avatar;
+      var bubble=document.createElement('div');
+      bubble.style.cssText='max-width:210px;padding:10px 13px;border-radius:18px;font-size:13px;line-height:1.6;color:#111;'+(m.side==='left'?'background:#fff;border-top-left-radius:4px;':'background:#fee500;border-top-right-radius:4px;');
+      bubble.textContent=m.text;
+      var time=document.createElement('div');
+      time.style.cssText='font-size:10px;color:#666;white-space:nowrap;';
+      time.textContent=timeStr();
+      if(m.side==='left'){row.appendChild(av2);row.appendChild(bubble);row.appendChild(time);}
+      else{row.appendChild(time);row.appendChild(bubble);row.appendChild(av2);}
+      body.appendChild(row);
+      body.scrollTop=body.scrollHeight;
+      i++;
+      setTimeout(addMsg,1100);
+    },800);
+  }
+
+  var style=document.createElement('style');
+  style.textContent='@keyframes kkb{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-6px);}}';
+  document.head.appendChild(style);
+
+  var observer=new IntersectionObserver(function(entries){
+    if(!started&&entries[0].isIntersecting){
+      started=true;observer.disconnect();
+      setTimeout(addMsg,600);
+    }
+  },{threshold:0.3});
+  observer.observe(document.getElementById('kkPhone'));
+})();
+</script>
+
 </div>
 
 <div class="blk-section blk-dark" id="blkQuiz" data-aos="fade-up">

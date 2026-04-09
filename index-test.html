@@ -752,7 +752,7 @@ body.lp-landing.lp-brand-dark #header.on{
 .lp-toast-time{font-size:11px;color:#999;margin-top:2px;}
 
 .top-visual{position:relative;}
-.pendulum{position:fixed;top:0px;left:30px;width:130px;height:auto;transform-origin:top center;animation:swing 2s infinite ease-in-out;z-index:200;filter:drop-shadow(0 4px 10px rgba(0,0,0,.3));pointer-events:none;}
+.pendulum{position:fixed;top:200px;left:30px;width:130px;height:auto;transform-origin:top center;animation:swing 2s infinite ease-in-out;z-index:200;filter:drop-shadow(0 4px 10px rgba(0,0,0,.3));pointer-events:none;transition:top 0.3s ease;}
 @keyframes swing{0%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}100%{transform:rotate(-5deg)}}
 @media(max-width:1023px){.pendulum{display:none;}}
 
@@ -2198,5 +2198,23 @@ document.addEventListener('keydown',function(e){if(e.key==='F12'){e.preventDefau
 })();
 </script>
 
+<script>
+(function(){
+  var pendulum = document.querySelector('.pendulum');
+  if(!pendulum) return;
+  var header = document.getElementById('header');
+  function updatePendulum(){
+    var scrollY = window.pageYOffset;
+    var headerH = header ? header.offsetHeight : 60;
+    if(scrollY < 100){
+      pendulum.style.top = (200 - scrollY) + 'px';
+    } else {
+      pendulum.style.top = headerH + 'px';
+    }
+  }
+  window.addEventListener('scroll', updatePendulum, {passive:true});
+  updatePendulum();
+})();
+</script>
 </body>
 </html>

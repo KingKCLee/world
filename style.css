@@ -1190,3 +1190,12 @@ div[style*="text-align: center"]{
 .top-visual,.top-visual .swiper-slide,.top-visual .swiper-slide .img{will-change:transform;-webkit-transform:translateZ(0);transform:translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden;}
 }
 
+/* ===== 히어로-준공완료 사이 여백 제거 ===== */
+@media(max-width:768px){
+.top-visual{margin-bottom:0!important;padding-bottom:70px!important;}
+.lp-body{margin-top:0!important;padding-top:0!important;}
+.lp-reserve-wrap:first-child{margin-top:0!important;}
+.lp-urgency{margin-top:0!important;padding-top:16px!important;}
+.lp-privacy-layer{margin:0!important;padding:0!important;}
+}
+

@@ -519,8 +519,8 @@
           <!-- 송도 예상 점선 -->
           <polyline id="sdFutureLine"
             points="675,348 1050,203"
-            stroke="#b39b00" stroke-width="8" fill="none"
-            stroke-dasharray="28,12" stroke-linecap="round"/>
+            stroke="#b39b00" stroke-width="10" fill="none"
+            stroke-dasharray="30,14" stroke-linecap="round" stroke-linejoin="round"/>
 
           <!-- dot 레이어 먼저 -->
           <g id="dotsLayer"></g>
@@ -1549,8 +1549,9 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     dtLine.setAttribute('stroke-dashoffset', dtLen);
     sdLine.setAttribute('stroke-dasharray', sdLen);
     sdLine.setAttribute('stroke-dashoffset', sdLen);
-    sdFutureLine.setAttribute('stroke-dasharray', String(sdFutureLen));
-    sdFutureLine.setAttribute('stroke-dashoffset', String(sdFutureLen));
+    sdFutureLen = getLen(sdFutureLine);
+    sdFutureLine.setAttribute('stroke-dasharray', sdFutureLen);
+    sdFutureLine.setAttribute('stroke-dashoffset', sdFutureLen);
     allBubbles.forEach(function(b){ b.obj.g.style.opacity='0'; b.obj.dot.style.opacity='0'; });
   }
 
@@ -1558,9 +1559,12 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
 
   function makePausedAnimator(line, totalLen, pts, dists, duration, bubbles, lineKey, onDone){
     var pauseQueue = [];
-    pts.forEach(function(_, i){
-      if(i > 0) pauseQueue.push(dists[i]/dists[dists.length-1]);
+    bubbles.forEach(function(b){
+      if(b.line === lineKey && !b.isFuture){
+        pauseQueue.push(b.ratio);
+      }
     });
+    pauseQueue.sort(function(a,b){ return a-b; });
 
     var startT = null;
     var pausedUntil = null;

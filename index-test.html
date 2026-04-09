@@ -447,17 +447,17 @@
   <div class="blk-container">
     <h3 class="blk-title">🏙️ 동탄 vs 송도 — 미래가치 비교</h3>
     <p class="blk-sub">GTX 수혜 + 분양가 격차 = <strong>폭발적 상승 여력</strong></p>
-    <div class="blk-vs-chart-wrap" id="blkVsChartWrap" style="padding:20px 12px 12px;">
+    <div class="blk-vs-chart-wrap" id="blkVsChartWrap" style="padding:20px 12px 12px;background:#fff;border-radius:14px;">
       <div class="blk-vs-chart-legend" style="font-size:16px;margin-bottom:16px;font-weight:600;">
         <span><i class="dot-dt"></i> 동탄역 롯데캐슬 84㎡</span>
         <span><i class="dot-sd"></i> 송도 아파트 평균 84㎡</span>
       </div>
       <div style="position:relative;width:100%;">
-        <div style="position:absolute;left:0;top:0;bottom:30px;width:40px;display:flex;flex-direction:column;justify-content:space-between;font-size:14px;color:#999;text-align:right;padding-right:6px;">
+        <div style="position:absolute;left:0;top:0;bottom:30px;width:40px;display:flex;flex-direction:column;justify-content:space-between;font-size:13px;color:#999;text-align:right;padding-right:6px;">
           <span>20억</span><span>15억</span><span>10억</span><span>5억</span><span>0</span>
         </div>
         <div style="margin-left:44px;position:relative;">
-          <svg id="chartSvg" viewBox="0 -80 1000 660" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:560px;display:block;">
+          <svg id="chartSvg" viewBox="0 -80 1000 660" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:560px;display:block;overflow:visible;">
 
             <!-- 그리드 -->
             <line x1="0" y1="0"   x2="1000" y2="0"   stroke="rgba(0,0,0,.07)" stroke-width="1"/>
@@ -491,67 +491,26 @@
             <text x="987" y="-52" text-anchor="middle" font-size="26" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B 개통</text>
             <text x="987" y="-28" text-anchor="middle" font-size="22" fill="#b39b00" font-family="Pretendard,sans-serif">(2031)</text>
 
-            <!-- 동탄 라인 (먼저) -->
-            <polyline id="dtLine" class="blk-line-dt"
+            <!-- 동탄 라인 -->
+            <polyline id="dtLine"
               points="0,444 125,421 237,392 350,319 462,319 575,174 637,174 700,130 812,100 875,29"
-              stroke="#d4145a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"
-              stroke-dasharray="2000" stroke-dashoffset="2000"/>
-            <circle cx="0"   cy="444" r="6" fill="#d4145a" opacity="0"/>
-            <circle cx="875" cy="29"  r="8" fill="#d4145a" opacity="0" id="dtEndDot"/>
+              stroke="#d4145a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
-            <!-- 송도 실선 (동탄 후) -->
-            <polyline id="sdLine" class="blk-line-sd"
+            <!-- 송도 실선 -->
+            <polyline id="sdLine"
               points="0,449 125,421 237,392 350,362 462,261 575,377 637,392 700,377 812,362 875,348"
-              stroke="#b39b00" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"
-              stroke-dasharray="2000" stroke-dashoffset="2000"/>
-            <circle cx="0"   cy="449" r="6" fill="#b39b00" opacity="0" id="sdStartDot"/>
-            <circle cx="462" cy="261" r="7" fill="#b39b00" opacity="0" id="sdPeakDot"/>
-            <circle cx="875" cy="348" r="6" fill="#b39b00" opacity="0" id="sdEndDot"/>
+              stroke="#b39b00" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
-            <!-- 송도 예상 점선 (실선 끝난 후) -->
-            <polyline id="sdFutureLine" class="blk-line-sd-future"
+            <!-- 송도 예상 점선 -->
+            <polyline id="sdFutureLine"
               points="875,348 987,203"
-              stroke="#b39b00" stroke-width="4" fill="none" stroke-dasharray="12,8"
-              stroke-linecap="round" opacity="0"
-              style="transition:opacity 0.3s;"/>
-            <circle cx="987" cy="203" r="7" fill="#b39b00" opacity="0" id="sdFutureDot"/>
+              stroke="#b39b00" stroke-width="4" fill="none" stroke-dasharray="14,8" stroke-linecap="round"/>
 
-            <!-- 라벨들 (초기 opacity=0) -->
-            <g id="lbl-dt-start" opacity="0" style="transition:opacity 0.4s">
-              <rect x="2" y="455" width="136" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#d4145a" stroke-width="1.5"/>
-              <text x="10" y="472" font-size="15" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">동탄 분양가</text>
-              <text x="10" y="491" font-size="14" fill="#555" font-family="Pretendard,sans-serif">4.7억 (2017)</text>
-            </g>
+            <!-- 말풍선 레이어 (JS로 동적 생성) -->
+            <g id="bubblesLayer"></g>
 
-            <g id="lbl-sd-start" opacity="0" style="transition:opacity 0.4s">
-              <rect x="2" y="400" width="136" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#b39b00" stroke-width="1.5"/>
-              <text x="10" y="417" font-size="15" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">송도 평균</text>
-              <text x="10" y="436" font-size="14" fill="#555" font-family="Pretendard,sans-serif">4.5억 (2017)</text>
-            </g>
-
-            <g id="lbl-sd-peak" opacity="0" style="transition:opacity 0.4s">
-              <rect x="390" y="218" width="145" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#b39b00" stroke-width="1.5"/>
-              <text x="398" y="235" font-size="15" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">불장 고점</text>
-              <text x="398" y="254" font-size="14" fill="#555" font-family="Pretendard,sans-serif">11억 (2021)</text>
-            </g>
-
-            <g id="lbl-dt-now" opacity="0" style="transition:opacity 0.4s">
-              <rect x="718" y="0" width="155" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#d4145a" stroke-width="1.5"/>
-              <text x="726" y="17" font-size="15" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">동탄 신고가</text>
-              <text x="726" y="36" font-size="14" fill="#555" font-family="Pretendard,sans-serif">19억 (2026)</text>
-            </g>
-
-            <g id="lbl-sd-now" opacity="0" style="transition:opacity 0.4s">
-              <rect x="718" y="358" width="136" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#b39b00" stroke-width="1.5"/>
-              <text x="726" y="375" font-size="15" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">송도 현재</text>
-              <text x="726" y="394" font-size="14" fill="#555" font-family="Pretendard,sans-serif">8억 (2026)</text>
-            </g>
-
-            <g id="lbl-sd-future" opacity="0" style="transition:opacity 0.4s">
-              <rect x="838" y="158" width="168" height="44" rx="6" fill="rgba(179,155,0,0.08)" fill-opacity="0.95" stroke="#b39b00" stroke-width="1.5"/>
-              <text x="846" y="175" font-size="15" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B 개통 후</text>
-              <text x="846" y="194" font-size="14" fill="#555" font-family="Pretendard,sans-serif">13억 예상 (2031)</text>
-            </g>
+            <!-- 포인트 도트 레이어 -->
+            <g id="dotsLayer"></g>
 
           </svg>
 
@@ -1217,66 +1176,237 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
   var dtLine = document.getElementById('dtLine');
   var sdLine = document.getElementById('sdLine');
   var sdFutureLine = document.getElementById('sdFutureLine');
+  var bubblesLayer = document.getElementById('bubblesLayer');
+  var dotsLayer = document.getElementById('dotsLayer');
+
+  var DT_PTS = [
+    [0,   444, '동탄 분양가', '4.7억 (2017)', 'bottom'],
+    [875, 29,  '동탄 신고가', '19억 (2026)',  'top']
+  ];
+
+  var SD_PTS = [
+    [0,   449, '송도 평균',    '4.5억 (2017)', 'top'],
+    [462, 261, '불장 고점',    '11억 (2021)',  'top'],
+    [875, 348, '송도 현재',    '8억 (2026)',   'bottom'],
+    [987, 203, 'GTX-B 개통 후','13억 (2031) 예상', 'top']
+  ];
+
+  var ANIM_DT = 2000;
+  var DELAY_SD = 500;
+  var ANIM_SD = 1800;
+  var DELAY_FUTURE = 400;
+  var ANIM_FUTURE = 700;
+  var REPLAY_DELAY = 2500;
 
   function getLen(el){ try{ return el.getTotalLength(); } catch(e){ return 1500; } }
 
-  var ANIM_DT = 1800;
-  var ANIM_SD = 1600;
-  var DELAY_SD = 400;
-  var DELAY_FUTURE = 300;
-  var ANIM_FUTURE = 800;
+  function makeBubble(x, y, title, sub, color, dir){
+    var g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.style.opacity = '0';
+    g.style.transition = 'opacity 0.35s ease';
 
-  var labels = [
-    { id:'lbl-dt-start',  delay: 0 },
-    { id:'lbl-sd-start',  delay: DELAY_SD },
-    { id:'lbl-sd-peak',   delay: DELAY_SD + Math.round(462/875 * ANIM_SD) },
-    { id:'lbl-dt-now',    delay: Math.round(875/875 * ANIM_DT) - 200 },
-    { id:'lbl-sd-now',    delay: DELAY_SD + ANIM_SD - 100 },
-    { id:'lbl-sd-future', delay: DELAY_SD + ANIM_SD + DELAY_FUTURE + ANIM_FUTURE },
-  ];
+    var bw = Math.max(title.length, sub.length) * 13 + 20;
+    var bh = 52;
+    var tailSize = 8;
+    var bx, by;
+
+    if(dir === 'top'){
+      bx = x - bw/2; by = y - bh - tailSize - 10;
+    } else if(dir === 'bottom'){
+      bx = x - bw/2; by = y + tailSize + 10;
+    } else {
+      bx = x - bw - tailSize - 10; by = y - bh/2;
+    }
+
+    if(bx < 2) bx = 2;
+    if(bx + bw > 998) bx = 998 - bw;
+
+    var rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect.setAttribute('x', bx); rect.setAttribute('y', by);
+    rect.setAttribute('width', bw); rect.setAttribute('height', bh);
+    rect.setAttribute('rx', '7'); rect.setAttribute('fill', 'white');
+    rect.setAttribute('fill-opacity', '0.95'); rect.setAttribute('stroke', color);
+    rect.setAttribute('stroke-width', '1.5');
+    g.appendChild(rect);
+
+    var poly = document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    var pts;
+    if(dir === 'top'){
+      pts = (x-tailSize)+','+(by+bh)+' '+(x+tailSize)+','+(by+bh)+' '+x+','+(y-4);
+    } else if(dir === 'bottom'){
+      pts = (x-tailSize)+','+(by)+' '+(x+tailSize)+','+(by)+' '+x+','+(y+4);
+    } else {
+      pts = (bx+bw)+','+(y-tailSize)+' '+(bx+bw)+','+(y+tailSize)+' '+(x-4)+','+y;
+    }
+    poly.setAttribute('points', pts); poly.setAttribute('fill', 'white');
+    poly.setAttribute('stroke', color); poly.setAttribute('stroke-width', '1.5');
+    poly.setAttribute('stroke-linejoin', 'round');
+    g.appendChild(poly);
+
+    var rect2 = document.createElementNS('http://www.w3.org/2000/svg','rect');
+    rect2.setAttribute('x', bx+1); rect2.setAttribute('y', by+1);
+    rect2.setAttribute('width', bw-2); rect2.setAttribute('height', bh-2);
+    rect2.setAttribute('rx', '6'); rect2.setAttribute('fill', 'white');
+    rect2.setAttribute('fill-opacity', '0.97');
+    g.appendChild(rect2);
+
+    var t1 = document.createElementNS('http://www.w3.org/2000/svg','text');
+    t1.setAttribute('x', bx + bw/2); t1.setAttribute('y', by + 20);
+    t1.setAttribute('text-anchor', 'middle'); t1.setAttribute('font-size', '15');
+    t1.setAttribute('font-weight', '700'); t1.setAttribute('fill', color);
+    t1.setAttribute('font-family', 'Pretendard,sans-serif');
+    t1.textContent = title;
+    g.appendChild(t1);
+
+    var t2 = document.createElementNS('http://www.w3.org/2000/svg','text');
+    t2.setAttribute('x', bx + bw/2); t2.setAttribute('y', by + 40);
+    t2.setAttribute('text-anchor', 'middle'); t2.setAttribute('font-size', '14');
+    t2.setAttribute('fill', '#555'); t2.setAttribute('font-family', 'Pretendard,sans-serif');
+    t2.textContent = sub;
+    g.appendChild(t2);
+
+    var dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    dot.setAttribute('cx', x); dot.setAttribute('cy', y);
+    dot.setAttribute('r', '6'); dot.setAttribute('fill', color);
+    dotsLayer.appendChild(dot);
+    dot.style.opacity = '0'; dot.style.transition = 'opacity 0.3s';
+
+    return {g: g, dot: dot};
+  }
+
+  function getCumDists(pts){
+    var dists = [0];
+    for(var i=1;i<pts.length;i++){
+      var dx = pts[i][0]-pts[i-1][0];
+      var dy = pts[i][1]-pts[i-1][1];
+      dists.push(dists[i-1]+Math.sqrt(dx*dx+dy*dy));
+    }
+    return dists;
+  }
+
+  function parsePts(el){
+    var pts=[];
+    var raw=el.getAttribute('points').trim().split(/\s+/);
+    raw.forEach(function(p){ var xy=p.split(','); pts.push([parseFloat(xy[0]),parseFloat(xy[1])]); });
+    return pts;
+  }
+
+  var dtPts = parsePts(dtLine);
+  var sdPts = parsePts(sdLine);
+  var dtDists = getCumDists(dtPts);
+  var sdDists = getCumDists(sdPts);
+
+  function getDistRatioForX(ptsArr, distsArr, targetX){
+    for(var i=0;i<ptsArr.length;i++){
+      if(Math.abs(ptsArr[i][0]-targetX)<2) return distsArr[i]/distsArr[distsArr.length-1];
+    }
+    return 1;
+  }
+
+  var dtBubbles = [];
+  DT_PTS.forEach(function(pt){
+    var obj = makeBubble(pt[0],pt[1],pt[2],pt[3],'#d4145a',pt[4]);
+    bubblesLayer.appendChild(obj.g);
+    dtBubbles.push({obj:obj, ratio: getDistRatioForX(dtPts,dtDists,pt[0])});
+  });
+
+  var sdBubbles = [];
+  SD_PTS.forEach(function(pt){
+    var obj = makeBubble(pt[0],pt[1],pt[2],pt[3],'#b39b00',pt[4]);
+    bubblesLayer.appendChild(obj.g);
+    sdBubbles.push({obj:obj, ratio: pt[0]<=875 ? getDistRatioForX(sdPts,sdDists,pt[0]) : 1.2});
+  });
+
+  var dtLen, sdLen, sdFutureLen;
+  var startTime = null;
+
+  function resetAll(){
+    dtLen = getLen(dtLine);
+    sdLen = getLen(sdLine);
+    sdFutureLen = getLen(sdFutureLine);
+
+    dtLine.setAttribute('stroke-dasharray', dtLen);
+    dtLine.setAttribute('stroke-dashoffset', dtLen);
+    sdLine.setAttribute('stroke-dasharray', sdLen);
+    sdLine.setAttribute('stroke-dashoffset', sdLen);
+    sdFutureLine.setAttribute('stroke-dasharray', sdFutureLen+','+sdFutureLen);
+    sdFutureLine.setAttribute('stroke-dashoffset', sdFutureLen);
+
+    dtBubbles.forEach(function(b){ b.obj.g.style.opacity='0'; b.obj.dot.style.opacity='0'; });
+    sdBubbles.forEach(function(b){ b.obj.g.style.opacity='0'; b.obj.dot.style.opacity='0'; });
+  }
+
+  function easeInOut(t){ return t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2; }
+
+  function animate(){
+    var now = performance.now();
+    var elapsed = now - startTime;
+    var t, ratio;
+
+    if(elapsed < ANIM_DT){
+      t = elapsed/ANIM_DT;
+      ratio = easeInOut(t);
+      dtLine.setAttribute('stroke-dashoffset', dtLen*(1-ratio));
+      dtBubbles.forEach(function(b){
+        if(ratio >= b.ratio && b.obj.g.style.opacity==='0'){
+          b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1';
+        }
+      });
+    } else {
+      dtLine.setAttribute('stroke-dashoffset','0');
+      dtBubbles.forEach(function(b){ b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1'; });
+
+      var sdElapsed = elapsed - ANIM_DT - DELAY_SD;
+      if(sdElapsed >= 0 && sdElapsed < ANIM_SD){
+        t = sdElapsed/ANIM_SD;
+        ratio = easeInOut(t);
+        sdLine.setAttribute('stroke-dashoffset', sdLen*(1-ratio));
+        sdBubbles.forEach(function(b){
+          if(b.ratio<=1 && ratio>=b.ratio && b.obj.g.style.opacity==='0'){
+            b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1';
+          }
+        });
+      } else if(sdElapsed >= ANIM_SD){
+        sdLine.setAttribute('stroke-dashoffset','0');
+        sdBubbles.forEach(function(b){
+          if(b.ratio<=1){ b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1'; }
+        });
+
+        var futureElapsed = elapsed - ANIM_DT - DELAY_SD - ANIM_SD - DELAY_FUTURE;
+        if(futureElapsed >= 0 && futureElapsed < ANIM_FUTURE){
+          t = futureElapsed/ANIM_FUTURE;
+          ratio = easeInOut(t);
+          sdFutureLine.setAttribute('stroke-dashoffset', sdFutureLen*(1-ratio));
+        } else if(futureElapsed >= ANIM_FUTURE){
+          sdFutureLine.setAttribute('stroke-dashoffset','0');
+          sdBubbles.forEach(function(b){
+            if(b.ratio>1){ b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1'; }
+          });
+
+          var totalAnim = ANIM_DT + DELAY_SD + ANIM_SD + DELAY_FUTURE + ANIM_FUTURE;
+          if(elapsed > totalAnim + REPLAY_DELAY){
+            resetAll();
+            setTimeout(function(){ startTime=performance.now(); requestAnimationFrame(animate); }, 100);
+            return;
+          }
+        }
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
 
   var observed = false;
   var observer = new IntersectionObserver(function(entries){
     if(observed || !entries[0].isIntersecting) return;
     observed = true;
     observer.disconnect();
-
-    var dtLen = getLen(dtLine);
-    var sdLen = getLen(sdLine);
-    var sdFutureLen = getLen(sdFutureLine);
-
-    dtLine.style.strokeDasharray = dtLen;
-    dtLine.style.strokeDashoffset = dtLen;
-
+    resetAll();
     setTimeout(function(){
-      dtLine.style.transition = 'stroke-dashoffset '+ANIM_DT+'ms ease-out';
-      dtLine.style.strokeDashoffset = '0';
-    }, 100);
-
-    sdLine.style.strokeDasharray = sdLen;
-    sdLine.style.strokeDashoffset = sdLen;
-    setTimeout(function(){
-      sdLine.style.transition = 'stroke-dashoffset '+ANIM_SD+'ms ease-out';
-      sdLine.style.strokeDashoffset = '0';
-    }, 100 + ANIM_DT + DELAY_SD);
-
-    sdFutureLine.style.strokeDasharray = sdFutureLen + ','+sdFutureLen;
-    sdFutureLine.style.strokeDashoffset = sdFutureLen;
-    setTimeout(function(){
-      sdFutureLine.style.opacity = '1';
-      sdFutureLine.style.transition = 'stroke-dashoffset '+ANIM_FUTURE+'ms ease-out, opacity 0.3s';
-      sdFutureLine.style.strokeDashoffset = '0';
-    }, 100 + ANIM_DT + DELAY_SD + ANIM_SD + DELAY_FUTURE);
-
-    labels.forEach(function(item){
-      var el = document.getElementById(item.id);
-      if(!el) return;
-      setTimeout(function(){
-        el.style.opacity = '1';
-      }, 100 + item.delay);
-    });
-
-  }, {threshold: 0.3});
+      startTime = performance.now();
+      requestAnimationFrame(animate);
+    }, 300);
+  }, {threshold:0.3});
 
   observer.observe(wrap);
 })();

@@ -2162,5 +2162,29 @@ document.addEventListener('keydown',function(e){if(e.key==='F12'){e.preventDefau
 (function(){var style=document.createElement('style');style.textContent='img{-webkit-user-drag:none;user-select:none;pointer-events:none;}a img,.ig-swiper img{pointer-events:auto;}';document.head.appendChild(style);})();
 </script>
 
+<!-- viphome Click Tracker (비동기, 실패 무시) -->
+<script>
+(function() {
+  try {
+    var url = 'https://viphome-click-tracker.noble-kclee.workers.dev/track';
+    var payload = {
+      source: window.__lpSource || '',
+      keyword: window.__lpKeyword || '',
+      referrer: document.referrer,
+      url: location.href,
+      ts: Date.now()
+    };
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, JSON.stringify(payload));
+    } else {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', url, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify(payload));
+    }
+  } catch(e) {}
+})();
+</script>
+
 </body>
 </html>

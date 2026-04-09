@@ -126,7 +126,7 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .section-images img{width:100%;display:block;cursor:zoom-in;}
 .section-images > div{margin-bottom:20px;}
 .section-images a img{cursor:pointer;}
-.section-images.no-border-top{border-top:none;padding-top:0;margin-top:0;}
+.section-images.no-border-top{border-top:none;padding-top:0;margin-top:0;padding-left:24px;padding-right:24px;box-sizing:border-box;}
 .section-images .lp-section-title{border-top:1px solid #eee;padding-top:48px;margin-top:48px;}
 .section-images .lp-section-title:first-child{border-top:none;padding-top:0;margin-top:0;}
 
@@ -260,7 +260,7 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 @media(max-width:1023px){
   .lp-benefits{margin:40px auto;padding:36px 16px 0;margin-bottom:80px;}
   .lp-benefits-title{font-size:22px;}
-  .section-images.no-border-top{margin-top:16px;}
+  .section-images.no-border-top{margin-top:16px;padding-left:16px;padding-right:16px;}
 }
 @media(max-width:767px){
   .p6-panels-vertical{grid-template-columns:1fr;gap:14px;}

@@ -1148,12 +1148,21 @@ body{padding-bottom:80px!important;}
 .blk-type-note,
 .blk-note-text,
 .lp-footer-notice,
+.lp-royal-warn,
 [class*="-note"],
 [class*="-desc"]{
   text-align:left!important;
-  padding-left:16px!important;
-  padding-right:16px!important;
+  padding-left:4px!important;
+  padding-right:4px!important;
   box-sizing:border-box;
+}
+/* 인라인 text-align:center 강제 override */
+p[style*="text-align:center"],
+p[style*="text-align: center"],
+div[style*="text-align:center"],
+div[style*="text-align: center"]{
+  text-align:left!important;
+  padding-left:4px;
 }
 }
 

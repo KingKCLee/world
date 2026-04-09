@@ -457,7 +457,7 @@
           <span>20억</span><span>15억</span><span>10억</span><span>5억</span><span>0</span>
         </div>
         <div style="margin-left:44px;position:relative;">
-          <svg id="chartSvg" viewBox="0 -80 1000 660" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:560px;display:block;overflow:visible;">
+          <svg id="chartSvg" viewBox="0 -140 1000 720" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:560px;display:block;overflow:visible;">
 
             <!-- 그리드 -->
             <line x1="0" y1="0"   x2="1000" y2="0"   stroke="rgba(0,0,0,.07)" stroke-width="1"/>
@@ -472,24 +472,28 @@
             <!-- 13억=203, 14억=174, 15억=145, 16.5억=100, 19억=29 -->
 
             <!-- GTX-A 착공 (2018) x=125 -->
-            <line x1="125" y1="-80" x2="125" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.4"/>
-            <text x="125" y="-52" text-anchor="middle" font-size="26" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A 착공</text>
-            <text x="125" y="-28" text-anchor="middle" font-size="22" fill="#d4145a" font-family="Pretendard,sans-serif">(2018)</text>
+            <line x1="125" y1="-140" x2="125" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.4"/>
+            <text x="125" y="-100" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
+            <text x="125" y="-74" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
+            <text x="125" y="-48" text-anchor="middle" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2018)</text>
 
             <!-- GTX-A 개통 (2024) x=700 -->
-            <line x1="700" y1="-80" x2="700" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.7"/>
-            <text x="700" y="-52" text-anchor="middle" font-size="26" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A 개통</text>
-            <text x="700" y="-28" text-anchor="middle" font-size="22" fill="#d4145a" font-family="Pretendard,sans-serif">(2024)</text>
+            <line x1="700" y1="-140" x2="700" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.7"/>
+            <text x="700" y="-100" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
+            <text x="700" y="-74" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
+            <text x="700" y="-48" text-anchor="middle" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2024)</text>
 
             <!-- GTX-B 착공 (2025) x=812 -->
-            <line x1="812" y1="-80" x2="812" y2="580" stroke="#b39b00" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.55"/>
-            <text x="780" y="-52" text-anchor="middle" font-size="26" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B 착공</text>
-            <text x="780" y="-28" text-anchor="middle" font-size="22" fill="#b39b00" font-family="Pretendard,sans-serif">(2025)</text>
+            <line x1="812" y1="-140" x2="812" y2="580" stroke="#b39b00" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.55"/>
+            <text x="812" y="-100" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
+            <text x="812" y="-74" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
+            <text x="812" y="-48" text-anchor="middle" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2025)</text>
 
             <!-- GTX-B 개통 (2031) x=987 -->
-            <line x1="987" y1="-80" x2="987" y2="580" stroke="#b39b00" stroke-width="2" stroke-dasharray="8,5" opacity="0.85"/>
-            <text x="1000" y="-52" text-anchor="end" font-size="26" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B 개통</text>
-            <text x="1000" y="-28" text-anchor="end" font-size="22" fill="#b39b00" font-family="Pretendard,sans-serif">(2031)</text>
+            <line x1="987" y1="-140" x2="987" y2="580" stroke="#b39b00" stroke-width="2" stroke-dasharray="8,5" opacity="0.85"/>
+            <text x="987" y="-100" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
+            <text x="987" y="-74" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
+            <text x="987" y="-48" text-anchor="middle" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2031)</text>
 
             <!-- 동탄 라인 -->
             <polyline id="dtLine"
@@ -1219,7 +1223,7 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
 
     if(dir === 'top'){
       bx = x - bw/2;
-      by = y - bh - tail - 6;
+      by = y - bh - tail - 50;
       if(bx < 2) bx = 2;
       if(bx + bw > 998) bx = 998 - bw;
       var tx = Math.min(Math.max(x, bx+r+tail), bx+bw-r-tail);

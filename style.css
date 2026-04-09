@@ -1025,3 +1025,9 @@ table th{font-size:18px!important;}
 #blkVs{padding-bottom:0!important;}
 }
 
+@media(max-width:767px){
+.lp-benefits{margin-bottom:0!important;padding-bottom:0!important;}
+.premium6-interactive{margin-bottom:0!important;padding-bottom:0!important;}
+.p6-panels-vertical{margin-bottom:0!important;padding-bottom:0!important;}
+}
+

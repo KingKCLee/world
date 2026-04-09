@@ -701,7 +701,7 @@
     if(i>=msgs.length){
       var ctaDiv=document.createElement('div');
       ctaDiv.style.cssText='background:#fff;padding:16px;border-radius:16px;margin-top:8px;';
-      ctaDiv.innerHTML='<div style="background:#fee500;border-radius:12px;padding:14px 16px;margin-bottom:10px;"><div style="font-size:14px;font-weight:700;color:#222;margin-bottom:4px;">📌 송도 월드메르디앙 특별분양</div><div style="font-size:13px;color:#555;line-height:1.6;">잔여세대 한정 · 총 1억 5천만원 혜택<br>지금 방문예약하시면 동·호수를 직접 확인하실 수 있습니다.</div></div><button onclick="var t=document.getElementById(\'reserve-bottom\');if(t){var y=t.getBoundingClientRect().top+window.pageYOffset-80;window.scrollTo({top:y,behavior:\'smooth\'});}" style="width:100%;background:#093687;color:#fff;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:Pretendard,sans-serif;">나도 동탄 친구처럼 결정하기 →</button>';
+      ctaDiv.innerHTML='<div style="background:#fee500;border-radius:12px;padding:14px 16px;margin-bottom:10px;"><div style="font-size:14px;font-weight:700;color:#222;margin-bottom:4px;">📌 송도 월드메르디앙 특별분양</div><div style="font-size:13px;color:#555;line-height:1.6;">잔여세대 한정 · 총 1억 5천만원 혜택<br>지금 방문예약하시면 동·호수를 직접 확인하실 수 있습니다.</div></div><button onclick="var t=document.getElementById(\'reserve-bottom\');if(t){var y=t.getBoundingClientRect().top+window.pageYOffset-20;window.scrollTo({top:y,behavior:\'smooth\'});}" style="width:100%;background:#093687;color:#fff;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:Pretendard,sans-serif;">나도 동탄 친구처럼 결정하기 →</button>';
       body.appendChild(ctaDiv);
       body.scrollTop=body.scrollHeight;
       return;
@@ -961,7 +961,7 @@
     <div class="market-point" id="marketBody" style="font-size:17px;line-height:2;min-height:200px;"></div>
     <div id="marketClosing" style="margin-top:24px;padding:20px 24px;border-left:4px solid #b8960c;background:rgba(184,150,12,0.08);border-radius:0 8px 8px 0;font-size:16px;color:#f6c90e;font-weight:700;line-height:1.9;opacity:0;transition:opacity 0.6s;"></div>
     <div class="lp-benefit-cta-bottom" style="margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.15);">
-      <button type="button" class="lp-submit-btn" onclick="var t=document.getElementById('reserve-bottom');if(t){var y=t.getBoundingClientRect().top+window.pageYOffset-80;window.scrollTo({top:y,behavior:'smooth'});}">동·호수 함께 확인하기</button>
+      <button type="button" class="lp-submit-btn" onclick="var t=document.getElementById('reserve-bottom');if(t){var y=t.getBoundingClientRect().top+window.pageYOffset-20;window.scrollTo({top:y,behavior:'smooth'});}">동·호수 함께 확인하기</button>
     </div>
   </section>
 
@@ -1344,7 +1344,7 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
 <script>document.querySelectorAll('.js-quick-top').forEach(function(btn){btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});});</script>
 
 <!-- 스크롤 to 예약 폼 -->
-<script>document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){btn.addEventListener('click',function(){var target=document.getElementById('reserve-top');if(target){var y=target.getBoundingClientRect().top+window.pageYOffset-80;window.scrollTo({top:y,behavior:'smooth'});}});});</script>
+<script>document.querySelectorAll('.js-scroll-to-register').forEach(function(btn){btn.addEventListener('click',function(){var target=document.getElementById('reserve-top');if(target){var y=target.getBoundingClientRect().top+window.pageYOffset-20;window.scrollTo({top:y,behavior:'smooth'});}});});</script>
 
 <!-- ★ 예약 버블 카운터 (두 번째 코드의 날짜 기반 증가 로직 적용) -->
 <script>
@@ -1379,7 +1379,7 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
   window.closePopup=function(id){var card=document.getElementById('popupInner'+id);if(card){card.style.display='none';closedCount++;}if(isMobile)updateMobileStack();checkAllClosed();};
   window.closePopupToday=function(id){localStorage.setItem('popup_today_'+id,todayStr());window.closePopup(id);};
   var wineCta=document.querySelector('.lp-popup-wine-cta');
-  if(wineCta){wineCta.addEventListener('click',function(e){e.preventDefault();popup.classList.remove('show');setTimeout(function(){var target=document.getElementById('reserve-top');if(target){var y=target.getBoundingClientRect().top+window.pageYOffset-80;window.scrollTo({top:y,behavior:'smooth'});}},300);});}
+  if(wineCta){wineCta.addEventListener('click',function(e){e.preventDefault();popup.classList.remove('show');setTimeout(function(){var target=document.getElementById('reserve-top');if(target){var y=target.getBoundingClientRect().top+window.pageYOffset-20;window.scrollTo({top:y,behavior:'smooth'});}},300);});}
   popup.addEventListener('click',function(e){if(e.target===popup||e.target.classList.contains('lp-slide-popup-container')){cards.forEach(function(card,i){if(card&&card.style.display!=='none')window.closePopup(i+1);});}});
   if(isMobile){var startX=0,startY=0,swiping=false;var container=popup.querySelector('.lp-slide-popup-container');
   container.addEventListener('touchstart',function(e){var t=e.touches[0];startX=t.clientX;startY=t.clientY;swiping=true;},{passive:true});

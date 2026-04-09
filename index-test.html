@@ -444,94 +444,85 @@
         <span><i class="dot-sd"></i> 송도 아파트 평균 84㎡</span>
       </div>
       <div style="position:relative;width:100%;">
-        <div style="position:absolute;left:0;top:0;width:40px;font-size:13px;color:#999;text-align:right;padding-right:6px;">
-          <span style="position:absolute;top:0%;transform:translateY(0%)">20억</span>
-          <span style="position:absolute;top:25%;transform:translateY(-50%)">15억</span>
-          <span style="position:absolute;top:50%;transform:translateY(-50%)">10억</span>
-          <span style="position:absolute;top:75%;transform:translateY(-50%)">5억</span>
-          <span style="position:absolute;top:100%;transform:translateY(-100%)">0</span>
-        </div>
-        <div style="margin-left:44px;position:relative;">
-          <svg id="chartSvg" viewBox="0 -150 1100 760" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:560px;display:block;overflow:visible;">
+        <svg id="chartSvg" viewBox="-50 -150 1160 760" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:580px;display:block;overflow:visible;">
 
-            <!-- 그리드 (y = 580-(가격/20)*580) -->
-            <!-- 20억=0, 15억=145, 10억=290, 5억=435, 0=580 -->
-            <line x1="0" y1="0"   x2="1100" y2="0"   stroke="rgba(0,0,0,.07)" stroke-width="1"/>
-            <line x1="0" y1="145" x2="1100" y2="145" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
-            <line x1="0" y1="290" x2="1100" y2="290" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
-            <line x1="0" y1="435" x2="1100" y2="435" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
-            <line x1="0" y1="580" x2="1100" y2="580" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
-            <line x1="0" y1="0" x2="0" y2="580" stroke="rgba(0,0,0,.15)" stroke-width="1"/>
+          <!-- Y축 레이블 (SVG 내부 - 항상 정확히 일치) -->
+          <text x="-8" y="0"   text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">20억</text>
+          <text x="-8" y="145" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">15억</text>
+          <text x="-8" y="290" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">10억</text>
+          <text x="-8" y="435" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">5억</text>
+          <text x="-8" y="580" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">0</text>
 
-            <!-- 가격별 y: 3.5억=479, 4.5억=449, 4.7억=444, 5.5억=421, 6.5억=392 -->
-            <!-- 7억=377, 7.5억=362, 8억=348, 9억=319, 10억=290, 11억=261 -->
-            <!-- 13억=203, 14억=174, 15억=145, 15.5억=131, 19억=29 -->
+          <!-- 그리드 라인 (y=580-(가격/20)*580) -->
+          <line x1="0" y1="0"   x2="1100" y2="0"   stroke="rgba(0,0,0,.07)" stroke-width="1"/>
+          <line x1="0" y1="145" x2="1100" y2="145" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
+          <line x1="0" y1="290" x2="1100" y2="290" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
+          <line x1="0" y1="435" x2="1100" y2="435" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
+          <line x1="0" y1="580" x2="1100" y2="580" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
 
-            <!-- GTX-A 착공 (2018) x=75 -->
-            <line x1="75" y1="-150" x2="75" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.4"/>
-            <text x="75" y="-110" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
-            <text x="75" y="-84" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
-            <text x="75" y="-58" text-anchor="middle" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2018)</text>
+          <!-- X축 레이블 (SVG 내부) -->
+          <text x="0"    y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2017</text>
+          <text x="75"   y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2018</text>
+          <text x="150"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2019</text>
+          <text x="225"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2020</text>
+          <text x="300"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2021</text>
+          <text x="375"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2022</text>
+          <text x="450"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2023</text>
+          <text x="525"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2024</text>
+          <text x="600"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2025</text>
+          <text x="675"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2026</text>
+          <text x="750"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2027</text>
+          <text x="825"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2028</text>
+          <text x="900"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2029</text>
+          <text x="975"  y="610" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2030</text>
+          <text x="1050" y="610" text-anchor="middle" font-size="22" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">2031</text>
+          <text x="1050" y="632" text-anchor="middle" font-size="18" fill="#b39b00" font-family="Pretendard,sans-serif">예상</text>
 
-            <!-- GTX-A 개통 (2024) x=525 -->
-            <line x1="525" y1="-150" x2="525" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.7"/>
-            <text x="525" y="-110" text-anchor="end" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
-            <text x="525" y="-84" text-anchor="end" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
-            <text x="525" y="-58" text-anchor="end" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2024)</text>
+          <!-- GTX 수직 점선 -->
+          <!-- GTX-A 착공(2018) x=75 -->
+          <line x1="75"  y1="-150" x2="75"  y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.4"/>
+          <text x="75"  y="-115" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
+          <text x="75"  y="-88"  text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
+          <text x="75"  y="-62"  text-anchor="middle" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2018)</text>
 
-            <!-- GTX-B 착공 (2025) x=600 -->
-            <line x1="600" y1="-150" x2="600" y2="580" stroke="#b39b00" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.55"/>
-            <text x="600" y="-110" text-anchor="start" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
-            <text x="600" y="-84" text-anchor="start" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
-            <text x="600" y="-58" text-anchor="start" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2025)</text>
+          <!-- GTX-A 개통(2024) x=525 -->
+          <line x1="525" y1="-150" x2="525" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.7"/>
+          <text x="510" y="-115" text-anchor="end" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
+          <text x="510" y="-88"  text-anchor="end" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
+          <text x="510" y="-62"  text-anchor="end" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2024)</text>
 
-            <!-- GTX-B 개통 (2031) x=1050 -->
-            <line x1="1050" y1="-150" x2="1050" y2="580" stroke="#b39b00" stroke-width="2" stroke-dasharray="8,5" opacity="0.85"/>
-            <text x="1050" y="-110" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
-            <text x="1050" y="-84" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
-            <text x="1050" y="-58" text-anchor="middle" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2031)</text>
+          <!-- GTX-B 착공(2025) x=600 -->
+          <line x1="600" y1="-150" x2="600" y2="580" stroke="#b39b00" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.55"/>
+          <text x="615" y="-115" text-anchor="start" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
+          <text x="615" y="-88"  text-anchor="start" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
+          <text x="615" y="-62"  text-anchor="start" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2025)</text>
 
-            <!-- 동탄 라인 -->
-            <polyline id="dtLine"
-              points="0,444 75,421 150,392 225,319 300,319 375,174 450,174 525,131 600,101 675,29"
-              stroke="#d4145a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- GTX-B 개통(2031) x=1050 -->
+          <line x1="1050" y1="-150" x2="1050" y2="580" stroke="#b39b00" stroke-width="2" stroke-dasharray="8,5" opacity="0.85"/>
+          <text x="1050" y="-115" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
+          <text x="1050" y="-88"  text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
+          <text x="1050" y="-62"  text-anchor="middle" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2031)</text>
 
-            <!-- 송도 실선 -->
-            <polyline id="sdLine"
-              points="0,449 75,421 150,392 225,362 300,261 375,377 450,392 525,377 600,362 675,348"
-              stroke="#b39b00" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- 동탄 라인 -->
+          <polyline id="dtLine"
+            points="0,444 75,421 150,392 225,319 300,319 375,174 450,174 525,131 600,101 675,29"
+            stroke="#d4145a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
-            <!-- 송도 예상 점선 -->
-            <polyline id="sdFutureLine"
-              points="675,348 1050,203"
-              stroke="#b39b00" stroke-width="4" fill="none" stroke-dasharray="14,8" stroke-linecap="round"/>
+          <!-- 송도 라인 -->
+          <polyline id="sdLine"
+            points="0,449 75,421 150,392 225,362 300,261 375,377 450,392 525,377 600,362 675,348"
+            stroke="#b39b00" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
-            <!-- 포인트 dot 레이어 (말풍선 아래) -->
-            <g id="dotsLayer"></g>
+          <!-- 송도 예상 점선 2026→2031 -->
+          <polyline id="sdFutureLine"
+            points="675,348 1050,203"
+            stroke="#b39b00" stroke-width="4" fill="none" stroke-dasharray="14,8" stroke-linecap="round"/>
 
-            <!-- 말풍선 레이어 (dot 위) -->
-            <g id="bubblesLayer"></g>
+          <!-- 레이어: dot 먼저, 말풍선 나중 -->
+          <g id="dotsLayer"></g>
+          <g id="bubblesLayer"></g>
 
-          </svg>
-
-          <div style="position:relative;height:36px;font-size:13px;color:#999;margin-top:4px;">
-            <span style="position:absolute;left:0%;transform:translateX(0%)">2017</span>
-            <span style="position:absolute;left:7.1%;transform:translateX(-50%)">2018</span>
-            <span style="position:absolute;left:14.3%;transform:translateX(-50%)">2019</span>
-            <span style="position:absolute;left:21.4%;transform:translateX(-50%)">2020</span>
-            <span style="position:absolute;left:28.6%;transform:translateX(-50%)">2021</span>
-            <span style="position:absolute;left:35.7%;transform:translateX(-50%)">2022</span>
-            <span style="position:absolute;left:42.9%;transform:translateX(-50%)">2023</span>
-            <span style="position:absolute;left:50%;transform:translateX(-50%)">2024</span>
-            <span style="position:absolute;left:57.1%;transform:translateX(-50%)">2025</span>
-            <span style="position:absolute;left:64.3%;transform:translateX(-50%)">2026</span>
-            <span style="position:absolute;left:71.4%;transform:translateX(-50%)">2027</span>
-            <span style="position:absolute;left:78.6%;transform:translateX(-50%)">2028</span>
-            <span style="position:absolute;left:85.7%;transform:translateX(-50%)">2029</span>
-            <span style="position:absolute;left:92.9%;transform:translateX(-50%)">2030</span>
-            <span style="position:absolute;left:100%;transform:translateX(-100%);color:#b39b00;font-weight:700;text-align:center;line-height:1.3;">2031<br><small>예상</small></span>
-          </div>
-        </div>
+        </svg>
       </div>
     </div>
     <p class="blk-vs-chart-note">
@@ -1221,14 +1212,14 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
 
   var DT_PTS = [
     [0,   444, '동탄 분양가', '4.7억 (2017)', 'top',   20,   0],
-    [675, 29,  '동탄 신고가', '19억 (2026)',  'top',    0,  80]
+    [675, 29,  '동탄 신고가', '19억 (2026)',  'top',    0,  70]
   ];
 
   var SD_PTS = [
-    [0,   449, '송도 평균',      '4.5억 (2017)',     'bottom',  20,   0],
-    [300, 261, '불장 고점',      '11억 (2021)',      'bottom',  60,   0],
-    [675, 348, '송도 현재',      '8억 (2026)',       'bottom',-110,   0],
-    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', 'top',   -80,   0]
+    [0,   449, '송도 평균',      '4.5억 (2017)',     'bottom',  20,    0],
+    [300, 261, '불장 고점',      '11억 (2021)',      'bottom',  70,    0],
+    [675, 348, '송도 현재',      '8억 (2026)',       'bottom', -120,   0],
+    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', 'top',    -90,   0]
   ];
 
   var ANIM_DT = 2000;

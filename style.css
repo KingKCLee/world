@@ -1166,3 +1166,14 @@ div[style*="text-align: center"]{
 }
 }
 
+/* ===== 모바일 헤더 간격 확보 ===== */
+@media(max-width:768px){
+.header-content{gap:6px!important;padding:0 8px!important;justify-content:space-between!important;}
+.h1_logo a,.h1-logo a{height:34px!important;max-width:110px!important;}
+.h1_logo img{height:34px!important;}
+.h1_title{font-size:clamp(11px,3.2vw,16px)!important;letter-spacing:-0.5px!important;}
+.menu .btn-util .btn3{font-size:1.3rem!important;}
+.menu .btn-util .btn2{font-size:1.1rem!important;}
+.menu .btn-util{gap:6px!important;}
+}
+

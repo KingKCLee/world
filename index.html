@@ -449,93 +449,81 @@ function scrollToForm(id){var t=document.getElementById(id);if(!t)return;var rec
         <span><i class="dot-dt"></i> 동탄역 롯데캐슬 84㎡</span>
         <span><i class="dot-sd"></i> 송도 아파트 평균 84㎡</span>
       </div>
-      <div style="position:relative;width:100%;">
-        <svg id="chartSvg" viewBox="-60 -140 1220 820" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:clamp(280px,50vw,600px);display:block;overflow:visible;">
+      <div style="position:relative;width:100%;margin:0;padding:0;">
+        <svg id="chartSvg" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;overflow:visible;">
+          <!-- plotArea: x=55..680, y=40..340, width=625, height=300 -->
+          <!-- Y = 40 + (1 - price/20)*300 -->
+          <!-- X: 2017=55, step=44.6 → 2018=100,2019=144,2020=189,2021=233,2022=278,2023=322,2024=367,2025=411,2026=456,2031=680 -->
 
           <!-- Y축 레이블 -->
-          <text x="-12" y="0"   text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">20억</text>
-          <text x="-12" y="145" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">15억</text>
-          <text x="-12" y="290" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">10억</text>
-          <text x="-12" y="435" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">5억</text>
-          <text x="-12" y="580" text-anchor="end" font-size="24" fill="#999" font-family="Pretendard,sans-serif" dominant-baseline="middle">0</text>
+          <text x="50" y="40"  text-anchor="end" font-size="11" fill="#999" dominant-baseline="middle">20억</text>
+          <text x="50" y="115" text-anchor="end" font-size="11" fill="#999" dominant-baseline="middle">15억</text>
+          <text x="50" y="190" text-anchor="end" font-size="11" fill="#999" dominant-baseline="middle">10억</text>
+          <text x="50" y="265" text-anchor="end" font-size="11" fill="#999" dominant-baseline="middle">5억</text>
+          <text x="50" y="340" text-anchor="end" font-size="11" fill="#999" dominant-baseline="middle">0</text>
 
           <!-- 그리드 라인 -->
-          <line x1="0" y1="0"   x2="1100" y2="0"   stroke="rgba(0,0,0,.07)" stroke-width="1"/>
-          <line x1="0" y1="145" x2="1100" y2="145" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
-          <line x1="0" y1="290" x2="1100" y2="290" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
-          <line x1="0" y1="435" x2="1100" y2="435" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
-          <line x1="0" y1="580" x2="1100" y2="580" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
+          <line x1="55" y1="40"  x2="680" y2="40"  stroke="rgba(0,0,0,.07)" stroke-width="1"/>
+          <line x1="55" y1="115" x2="680" y2="115" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
+          <line x1="55" y1="190" x2="680" y2="190" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
+          <line x1="55" y1="265" x2="680" y2="265" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
+          <line x1="55" y1="340" x2="680" y2="340" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
 
-          <!-- X축 레이블 -->
-          <text x="0"    y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2017</text>
-          <text x="75"   y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2018</text>
-          <text x="150"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2019</text>
-          <text x="225"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2020</text>
-          <text x="300"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2021</text>
-          <text x="375"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2022</text>
-          <text x="450"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2023</text>
-          <text x="525"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2024</text>
-          <text x="600"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2025</text>
-          <text x="675"  y="618" text-anchor="middle" font-size="22" fill="#333" font-weight="700" font-family="Pretendard,sans-serif">2026</text>
-          <text x="750"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2027</text>
-          <text x="825"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2028</text>
-          <text x="900"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2029</text>
-          <text x="975"  y="618" text-anchor="middle" font-size="22" fill="#999" font-family="Pretendard,sans-serif">2030</text>
-          <text x="1050" y="618" text-anchor="middle" font-size="22" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">2031</text>
-          <text x="1050" y="640" text-anchor="middle" font-size="18" fill="#b39b00" font-family="Pretendard,sans-serif">예상</text>
+          <!-- X축 레이블 (주요 연도만) -->
+          <text x="55"  y="360" text-anchor="middle" font-size="10" fill="#999">2017</text>
+          <text x="100" y="360" text-anchor="middle" font-size="10" fill="#999">18</text>
+          <text x="144" y="360" text-anchor="middle" font-size="10" fill="#999">19</text>
+          <text x="189" y="360" text-anchor="middle" font-size="10" fill="#999">20</text>
+          <text x="233" y="360" text-anchor="middle" font-size="10" fill="#999">21</text>
+          <text x="278" y="360" text-anchor="middle" font-size="10" fill="#999">22</text>
+          <text x="322" y="360" text-anchor="middle" font-size="10" fill="#999">23</text>
+          <text x="367" y="360" text-anchor="middle" font-size="10" fill="#999">24</text>
+          <text x="411" y="360" text-anchor="middle" font-size="10" fill="#999">25</text>
+          <text x="456" y="360" text-anchor="middle" font-size="10" fill="#333" font-weight="700">2026</text>
+          <text x="680" y="360" text-anchor="middle" font-size="10" fill="#b39b00" font-weight="700">2031</text>
+          <text x="680" y="372" text-anchor="middle" font-size="9" fill="#b39b00">예상</text>
 
-          <!-- 현재(2026) 표시 -->
-          <line x1="675" y1="-145" x2="675" y2="580" stroke="#333" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.25"/>
-          <text x="675" y="-170" text-anchor="middle" font-size="22" fill="#333" font-weight="700" font-family="Pretendard,sans-serif">▶ 현재(2026)</text>
+          <!-- 현재(2026) 수직선 -->
+          <line x1="456" y1="10" x2="456" y2="340" stroke="#333" stroke-width="1" stroke-dasharray="3,3" opacity="0.25"/>
+          <text x="456" y="8" text-anchor="middle" font-size="9" fill="#333" font-weight="700">▶ 현재</text>
 
-          <!-- GTX-A 착공(2018) x=75 -->
-          <line x1="75" y1="-55" x2="75" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.4"/>
-          <text x="75" y="-135" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
-          <text x="75" y="-108" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
-          <text x="75" y="-82"  text-anchor="middle" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2018)</text>
+          <!-- GTX-A 착공(2018) -->
+          <line x1="100" y1="10" x2="100" y2="340" stroke="#d4145a" stroke-width="1" stroke-dasharray="6,4" opacity="0.35"/>
+          <text x="100" y="18" text-anchor="middle" font-size="9" fill="#d4145a" font-weight="700">A착공</text>
 
-          <!-- GTX-A 개통(2024) x=525 -->
-          <line x1="525" y1="-55" x2="525" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.7"/>
-          <text x="512" y="-135" text-anchor="end" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
-          <text x="512" y="-108" text-anchor="end" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
-          <text x="512" y="-82"  text-anchor="end" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2024)</text>
+          <!-- GTX-A 개통(2024) -->
+          <line x1="367" y1="10" x2="367" y2="340" stroke="#d4145a" stroke-width="1" stroke-dasharray="6,4" opacity="0.6"/>
+          <text x="358" y="18" text-anchor="end" font-size="9" fill="#d4145a" font-weight="700">A개통</text>
 
-          <!-- GTX-B 착공(2025) x=600 -->
-          <line x1="600" y1="-55" x2="600" y2="580" stroke="#b39b00" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.55"/>
-          <text x="612" y="-135" text-anchor="start" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
-          <text x="612" y="-108" text-anchor="start" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
-          <text x="612" y="-82"  text-anchor="start" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2025)</text>
+          <!-- GTX-B 착공(2025) -->
+          <line x1="411" y1="10" x2="411" y2="340" stroke="#b39b00" stroke-width="1" stroke-dasharray="6,4" opacity="0.5"/>
+          <text x="420" y="18" text-anchor="start" font-size="9" fill="#b39b00" font-weight="700">B착공</text>
 
-          <!-- GTX-B 개통(2031) x=1050 -->
-          <line x1="1050" y1="-55" x2="1050" y2="580" stroke="#b39b00" stroke-width="2" stroke-dasharray="8,5" opacity="0.85"/>
-          <text x="1050" y="-135" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
-          <text x="1050" y="-108" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
-          <text x="1050" y="-82"  text-anchor="middle" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2031)</text>
+          <!-- GTX-B 개통(2031) -->
+          <line x1="680" y1="10" x2="680" y2="340" stroke="#b39b00" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.8"/>
+          <text x="680" y="18" text-anchor="middle" font-size="9" fill="#b39b00" font-weight="700">B개통</text>
 
-          <!-- 동탄 라인 -->
+          <!-- 동탄 라인: 4.7→5.5→6.5→9→9→14→14→15.5→16.5→19억 -->
           <polyline id="dtLine"
-            points="0,444 75,421 150,392 225,319 300,319 375,174 450,174 525,131 600,101 675,29"
-            stroke="#d4145a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            points="55,270 100,258 144,243 189,205 233,205 278,130 322,130 367,108 411,93 456,55"
+            stroke="#d4145a" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
-          <!-- 송도 실선 -->
+          <!-- 송도 라인: 4.5→5.5→6.5→7.5→11→9→6.5→7→7.5→8억 -->
           <polyline id="sdLine"
-            points="0,449 75,421 150,392 225,362 300,261 375,319 450,362 525,377 600,362 675,348"
-            stroke="#b39b00" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            points="55,273 100,258 144,243 189,228 233,175 278,205 322,243 367,235 411,228 456,220"
+            stroke="#b39b00" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
-          <!-- 송도 예상 점선 -->
+          <!-- 송도 예상 점선: 8→13억 -->
           <polyline id="sdFutureLine"
-            points="675,348 1050,203"
-            stroke="#b39b00" stroke-width="5" fill="none"
+            points="456,220 680,145"
+            stroke="#b39b00" stroke-width="3" fill="none"
             stroke-linecap="round" stroke-linejoin="round"
-            stroke-dasharray="30 14"
-            stroke-dashoffset="10000"
+            stroke-dasharray="14 8"
+            stroke-dashoffset="5000"
             visibility="hidden"/>
 
-          <!-- dot 레이어 먼저 -->
           <g id="dotsLayer"></g>
-          <!-- 말풍선 레이어 나중에 -->
           <g id="bubblesLayer"></g>
-
         </svg>
       </div>
     </div>
@@ -1692,15 +1680,15 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
   var dotsLayer = document.getElementById('dotsLayer');
 
   var DT_PTS = [
-    [0,   444, '동탄 분양가', '4.7억 (2017)', '#d4145a',  80, -60],
-    [675, 29,  '동탄 신고가', '19억 (2026)',  '#d4145a', -60,   0]
+    [55,  270, '동탄 분양가', '4.7억 (2017)', '#d4145a',  40, -30],
+    [456, 55,  '동탄 신고가', '19억 (2026)',  '#d4145a', -30,   0]
   ];
 
   var SD_PTS = [
-    [0,   449, '송도 평균',      '4.5억 (2017)',     '#b39b00',  60, 180],
-    [300, 261, '송도 불장 고점',  '11억 (2021)',      '#b39b00', -80,   0],
-    [675, 348, '송도 현재',      '8억 (2026)',       '#b39b00',  70,   0],
-    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', '#b39b00',-100,   0]
+    [55,  273, '송도 평균',      '4.5억 (2017)',     '#b39b00',  40, 90],
+    [233, 175, '송도 불장 고점',  '11억 (2021)',      '#b39b00', -40,   0],
+    [456, 220, '송도 현재',      '8억 (2026)',       '#b39b00',  40,   0],
+    [680, 145, 'GTX-B 개통 후', '13억 (2031) 예상', '#b39b00', -50,   0]
   ];
 
   var ANIM_DT = 2000;
@@ -1743,13 +1731,13 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     offsetX = offsetX||0; offsetY = offsetY||0;
     var g = document.createElementNS('http://www.w3.org/2000/svg','g');
     g.style.opacity='0'; g.style.transition='opacity 0.35s ease';
-    var bw = Math.max(title.length*18, sub.length*15) + 48;
-    var bh = 80; var tailW = 6; var r = 8;
+    var bw = Math.max(title.length*9, sub.length*7) + 24;
+    var bh = 32; var tailW = 4; var r = 5;
     var bx = x - bw/2 + offsetX;
-    var tailGap = 20;
+    var tailGap = 10;
     var by = y - bh - tailGap + offsetY;
     if(bx < 2) bx = 2;
-    if(bx + bw > 1098) bx = 1098 - bw;
+    if(bx + bw > 690) bx = 690 - bw;
     var tbx = bx + bw/2;
     tbx = Math.min(Math.max(tbx, bx + r + tailW + 2), bx + bw - r - tailW - 2);
     var isAbove = (by + bh + 10) < y;
@@ -1774,19 +1762,19 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     path.setAttribute('fill-opacity','1'); path.setAttribute('stroke',color);
     path.setAttribute('stroke-width','1.8'); g.appendChild(path);
     var t1 = document.createElementNS('http://www.w3.org/2000/svg','text');
-    t1.setAttribute('x',bx+bw/2); t1.setAttribute('y',by+35);
-    t1.setAttribute('text-anchor','middle'); t1.setAttribute('font-size','30');
+    t1.setAttribute('x',bx+bw/2); t1.setAttribute('y',by+13);
+    t1.setAttribute('text-anchor','middle'); t1.setAttribute('font-size','10');
     t1.setAttribute('font-weight','700'); t1.setAttribute('fill',color);
     t1.setAttribute('font-family','Pretendard,sans-serif');
     t1.textContent=title; g.appendChild(t1);
     var t2 = document.createElementNS('http://www.w3.org/2000/svg','text');
-    t2.setAttribute('x',bx+bw/2); t2.setAttribute('y',by+65);
-    t2.setAttribute('text-anchor','middle'); t2.setAttribute('font-size','26');
+    t2.setAttribute('x',bx+bw/2); t2.setAttribute('y',by+25);
+    t2.setAttribute('text-anchor','middle'); t2.setAttribute('font-size','9');
     t2.setAttribute('fill','#666'); t2.setAttribute('font-family','Pretendard,sans-serif');
     t2.textContent=sub; g.appendChild(t2);
     var dot = document.createElementNS('http://www.w3.org/2000/svg','circle');
     dot.setAttribute('cx',x); dot.setAttribute('cy',y);
-    dot.setAttribute('r','6'); dot.setAttribute('fill',color);
+    dot.setAttribute('r','4'); dot.setAttribute('fill',color);
     dotsLayer.appendChild(dot); dot.style.opacity='0'; dot.style.transition='opacity 0.3s';
     return {g:g, dot:dot};
   }

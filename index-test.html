@@ -520,7 +520,10 @@
           <polyline id="sdFutureLine"
             points="675,348 1050,203"
             stroke="#b39b00" stroke-width="10" fill="none"
-            stroke-linecap="round"/>
+            stroke-linecap="round"
+            stroke-dasharray="30 14"
+            stroke-dashoffset="10000"
+            opacity="1"/>
 
           <!-- dot 레이어 먼저 -->
           <g id="dotsLayer"></g>
@@ -1550,11 +1553,8 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     sdLine.setAttribute('stroke-dasharray', sdLen);
     sdLine.setAttribute('stroke-dashoffset', sdLen);
     sdFutureLen = getLen(sdFutureLine);
-    var dashUnit = 44;
-    var dashCount = Math.ceil(sdFutureLen / dashUnit) + 1;
-    var totalDash = dashCount * dashUnit;
-    sdFutureLine.setAttribute('stroke-dasharray', '30 14');
-    sdFutureLine.setAttribute('stroke-dashoffset', String(totalDash));
+    sdFutureLine.setAttribute('stroke-dasharray','30 14');
+    sdFutureLine.setAttribute('stroke-dashoffset','10000');
     allBubbles.forEach(function(b){ b.obj.g.style.opacity='0'; b.obj.dot.style.opacity='0'; });
   }
 
@@ -1625,17 +1625,16 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
         makePausedAnimator(sdLine, sdLen, sdPts, sdDists, ANIM_SD, allBubbles, 'sd', function(){
           setTimeout(function(){
             var futureStart = performance.now();
+            var futureTotal = 10000;
             function futureStep(){
               var elapsed = performance.now() - futureStart;
               var ratio = easeInOut(Math.min(elapsed/ANIM_FUTURE, 1));
-              var dashUnit = 44;
-              var dashCount = Math.ceil(sdFutureLen / dashUnit) + 1;
-              var totalDash = dashCount * dashUnit;
-              sdFutureLine.setAttribute('stroke-dashoffset', totalDash*(1-ratio));
+              var offset = 10000 - (sdFutureLen * ratio);
+              sdFutureLine.setAttribute('stroke-dashoffset', offset);
               if(ratio < 1){
                 requestAnimationFrame(futureStep);
               } else {
-                sdFutureLine.setAttribute('stroke-dashoffset','0');
+                sdFutureLine.setAttribute('stroke-dashoffset', String(10000 - sdFutureLen));
                 allBubbles.forEach(function(b){
                   if(b.isFuture){ b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1'; }
                 });

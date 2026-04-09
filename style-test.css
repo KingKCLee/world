@@ -26,6 +26,9 @@
   body{margin:0;padding:0;overflow-x:hidden!important;overflow-y:visible!important;height:auto!important;}
 }
 body{margin:0;font-family:'Pretendard',-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif;background:#fff;color:#111;}
+h1,h2,h3,h4,h5{font-family:'Paperlogy','Pretendard',-apple-system,sans-serif;font-weight:800;}
+.blk-title,.lp-section-title,.sec-title,.chart-title,[class*="-title"],[class*="-heading"]{font-family:'Paperlogy','Pretendard',-apple-system,sans-serif;font-weight:800;}
+.blk-badge,.badge,.price-tag,.highlight,strong{font-family:'Paperlogy','Pretendard',-apple-system,sans-serif;font-weight:700;}
 input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-moz-appearance:none;appearance:none;font-family:inherit;}
 .lp-input{background:#fff!important;color:#222!important;height:48px;padding:0 14px;box-sizing:border-box;width:100%;border-radius:6px;font-size:14px;border:1px solid #ccc;outline:none;transition:border-color .2s,box-shadow .2s;}
 .lp-input::placeholder{color:#bbb!important;}

@@ -36,11 +36,12 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
 
 #header{
-  position:fixed;left:0;top:0;width:100%;height:72px;
+  position:fixed;left:0;top:0;width:100%;height:80px;
+  display:flex;align-items:center;
   background:transparent;
   backdrop-filter:none;
   -webkit-backdrop-filter:none;
-  padding:0 24px;z-index:100;
+  padding:0;z-index:100;
   transition:background .3s ease, backdrop-filter .3s ease, -webkit-backdrop-filter .3s ease, padding .3s, box-shadow .3s;
   box-shadow:none;
   transform:none;
@@ -75,16 +76,17 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   animation:hTxt 1.8s ease-in-out infinite;
 }
 
-.header-content{margin:0 auto;max-width:1200px;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:nowrap;}
+.header-content{margin:0 auto;max-width:1200px;padding:0 40px;height:80px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:nowrap;box-sizing:border-box;}
 #header:not(.on) .header-content{transform:none;}
 #header .menu a{text-decoration:none!important;}
-.h1_logo{flex:0 0 auto;margin-right:10px;}
-.h1_logo a{display:inline-block;width:auto;height:52px;max-width:220px;}
-.h1_logo img{height:52px;width:auto;margin:10px 0;}
+.h1_logo-wrap{display:flex;align-items:center;gap:12px;height:80px;flex:1 1 auto;min-width:0;}
+.h1_logo{display:flex;align-items:center;height:80px;flex:0 0 auto;margin-right:10px;}
+.h1_logo a{display:inline-block;width:auto;height:56px;max-width:220px;}
+.h1_logo img{height:56px;width:auto;}
 .h1_logo a img{width:100%;height:100%;object-fit:contain;}
-.h1_logo-wrap{display:flex;align-items:center;gap:12px;flex:1 1 auto;min-width:0;}
-.h1_title{flex:1 1 auto;min-width:0;font-weight:500;color:var(--brand-color);letter-spacing:-1px;white-space:nowrap;overflow:hidden;font-size:clamp(13px,2vw,24px);}
-.menu{flex:0 0 auto;display:flex;justify-content:flex-end;}
+.h1_title{display:flex;align-items:center;font-size:17px;flex:1 1 auto;min-width:0;font-weight:500;color:var(--brand-color);letter-spacing:-1px;white-space:nowrap;overflow:hidden;}
+.menu{display:flex;align-items:center;height:80px;flex:0 0 auto;justify-content:flex-end;}
+.btn-util{display:flex;align-items:center;gap:16px;}
 .menu .btn-util{display:flex;align-items:center;gap:14px;flex-wrap:nowrap;white-space:nowrap;}
 .menu .btn-util .btn2{font-size:1.55rem;font-weight:600;color:var(--brand-color);animation:hTxt 1.8s ease-in-out infinite;}
 .menu .btn-util .btn3{font-size:2rem;font-weight:800;color:var(--brand-color);animation:hTxt 1.8s ease-in-out infinite;}

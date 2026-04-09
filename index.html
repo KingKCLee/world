@@ -836,60 +836,50 @@
   </section>
 
   <section class="lp-benefit-cta lp-market-cta" data-aos="fade-up">
-    <h3 class="lp-benefit-cta-title" id="marketTitle"></h3>
-    <p class="lp-benefit-cta-sub" id="marketSub"></p>
-    <div class="market-point" id="marketBody"></div>
+    <h3 class="lp-benefit-cta-title" style="font-size:28px;font-weight:900;color:#f6c90e;">지금 이 순간을 놓치면, 당신은 5년 후 후회합니다</h3>
+    <p class="lp-benefit-cta-sub">숫자가 말합니다. 감이 아닙니다.</p>
+    <div class="market-point" id="marketBody" style="font-size:17px;line-height:2;min-height:200px;"></div>
     <div id="marketClosing" style="margin-top:24px;padding:20px 24px;border-left:4px solid #b8960c;background:rgba(184,150,12,0.08);border-radius:0 8px 8px 0;font-size:16px;color:#f6c90e;font-weight:700;line-height:1.9;opacity:0;transition:opacity 0.6s;"></div>
-    <div class="lp-benefit-cta-bottom" id="marketCta" style="opacity:0;transition:opacity 0.6s;margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.15);">
+    <div class="lp-benefit-cta-bottom" style="margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.15);">
       <button type="button" class="lp-submit-btn" onclick="var t=document.getElementById('reserve-bottom');if(t){var y=t.getBoundingClientRect().top+window.pageYOffset-80;window.scrollTo({top:y,behavior:'smooth'});}">동·호수 함께 확인하기</button>
     </div>
   </section>
 
   <script>
   (function(){
-    var titleEl=document.getElementById('marketTitle');
-    var subEl=document.getElementById('marketSub');
     var bodyEl=document.getElementById('marketBody');
     var closingEl=document.getElementById('marketClosing');
-    var ctaEl=document.getElementById('marketCta');
 
-    var TITLE='지금 이 순간을 놓치면, 당신은 5년 후 후회합니다';
-    var SUB='숫자가 말합니다. 감이 아닙니다.';
     var BODY=[
       '동탄역 롯데캐슬을 분양가 4.7억에 잡은 사람들, 지금 19억을 받습니다.',
       ' 그들이 특별히 용감했을까요? 아닙니다.',
       ' 단지 GTX 착공 직후에 샀을 뿐입니다.\n\n',
       '지금 송도는 그 시점입니다.\n\n',
       'GTX-B 착공 완료. 올해 12월 KTX 개통.',
-      ' 매년 ',
-      '1만 2천 명',
-      '이 유입되는 도시에 2026년 신규 입주 물량은 ',
-      '0세대',
+      ' 매년 ','1만 2천 명','이 유입되는 도시에 2026년 신규 입주 물량은 ','0세대',
       '. 수요는 쌓이고 공급은 없습니다.\n\n',
       '강남 규제로 밀려난 자금이 경기·인천으로 향하고 있습니다.',
       ' 동탄·수원·과천이 이미 신고가입니다.',
       ' 다음은 인천, 그 시작점은 송도입니다.\n\n',
       '3공구 G5블록 분양 예정가가 11~12억입니다.',
-      ' 지금 월드메르디앙은 ',
-      '6억대',
-      '입니다.'
+      ' 지금 월드메르디앙은 ','6억대','입니다.'
     ];
-    var BOLD_WORDS=['1만 2천 명','0세대','6억대'];
+    var BOLD=['1만 2천 명','0세대','6억대'];
     var CLOSING='3공구 분양 시작되는 순간 6억대는 사라집니다.\n동탄 4.7억 시절 망설였던 사람들은 지금 무슨 생각을 할까요?\n기회는 항상 "그때 살걸" 하고 나서야 보입니다.';
 
     var started=false;
 
-    function renderChar(el, text, i, speed, onDone){
+    function renderChar(el,text,i,speed,onDone){
       if(i>=text.length){if(onDone)onDone();return;}
       if(text[i]==='\n'){el.innerHTML+='<br>';}
       else{el.innerHTML+=text[i];}
       setTimeout(function(){renderChar(el,text,i+1,speed,onDone);},speed);
     }
 
-    function renderSegs(el, segs, si, onDone){
+    function renderSegs(el,segs,si,onDone){
       if(si>=segs.length){if(onDone)onDone();return;}
       var seg=segs[si];
-      var isBold=BOLD_WORDS.indexOf(seg)>-1;
+      var isBold=BOLD.indexOf(seg)>-1;
       var span=document.createElement(isBold?'strong':'span');
       if(isBold)span.style.color='#f6c90e';
       el.appendChild(span);
@@ -897,32 +887,20 @@
       var hasNl=seg.indexOf('\n')>-1;
       renderChar(span,plain,0,16,function(){
         if(hasNl){el.innerHTML+='<br><br>';}
-        var delay=hasNl?200:30;
-        setTimeout(function(){renderSegs(el,segs,si+1,onDone);},delay);
+        setTimeout(function(){renderSegs(el,segs,si+1,onDone);},hasNl?180:20);
       });
     }
 
     function startTyping(){
-      renderChar(titleEl,TITLE,0,35,function(){
-        setTimeout(function(){
-          renderChar(subEl,SUB,0,25,function(){
-            setTimeout(function(){
-              renderSegs(bodyEl,BODY,0,function(){
-                closingEl.style.opacity='1';
-                renderChar(closingEl,CLOSING,0,22,function(){
-                  ctaEl.style.opacity='1';
-                });
-              });
-            },300);
-          });
-        },200);
+      renderSegs(bodyEl,BODY,0,function(){
+        closingEl.style.opacity='1';
+        renderChar(closingEl,CLOSING,0,22,null);
       });
     }
 
     var observer=new IntersectionObserver(function(entries){
       if(!started&&entries[0].isIntersecting){
-        started=true;
-        observer.disconnect();
+        started=true;observer.disconnect();
         setTimeout(startTyping,400);
       }
     },{threshold:0.3});

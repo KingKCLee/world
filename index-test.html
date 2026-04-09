@@ -755,12 +755,6 @@
   </div>
 </footer>
 
-<div class="lp-resv-bubble-fixed">
-  <div class="lp-resv-bubble js-resv-counter">
-    <button type="button" class="lp-resv-bubble-close" aria-label="닫기">×</button>
-    현재까지 총 <span class="num" data-count="138">0</span>명 예약신청 완료했습니다!
-  </div>
-</div>
 
 <div class="lp-float-dim" id="lpFloatDim"></div>
 <div class="lp-float-form" id="lpFloatForm">
@@ -1096,7 +1090,7 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
     if(typeof lpOpenFloatForm==='function')lpOpenFloatForm();
     else{var target=document.getElementById('reserve-bottom');if(target)target.scrollIntoView({behavior:'smooth',block:'center'});}
   });
-  setTimeout(showToast,5000);
+  setTimeout(showToast,1500);
 })();
 </script>
 

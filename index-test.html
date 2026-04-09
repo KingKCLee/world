@@ -683,12 +683,68 @@
   <div class="blk-container">
     <h3 class="blk-title">🧮 자금 계산기</h3>
     <p class="blk-sub">타입과 대출 조건을 선택하면 필요 현금을 바로 확인</p>
-    <div class="blk-calc-row">
-      <div class="blk-calc-col"><label for="calcType">전용면적</label><select id="calcType"><option value="78" selected>78㎡ (6.3억)</option><option value="83">83㎡ (6.6억)</option><option value="84">84㎡ (6.8억)</option></select></div>
-      <div class="blk-calc-col"><label for="calcLoan">대출 조건</label><select id="calcLoan"><option value="70" selected>무주택자 70%</option><option value="80">생애최초 80%</option></select></div>
+    <!-- 전용면적 chip -->
+    <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:10px;font-weight:500;">전용면적</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;" id="areaGroup">
+      <div class="calc-chip active" data-area="78" onclick="calcChipSelect(this,'areaGroup');calcResult()">
+        <div class="calc-chip-icon" style="background:rgba(184,150,12,0.18);">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="rgba(184,150,12,0.35)" stroke-width="1.5" stroke-dasharray="2,1"/></svg>
+        </div>
+        <span class="calc-chip-val">78㎡</span>
+        <span class="calc-chip-sub">약 23평</span>
+      </div>
+      <div class="calc-chip" data-area="83" onclick="calcChipSelect(this,'areaGroup');calcResult()">
+        <div class="calc-chip-icon" style="background:rgba(184,150,12,0.18);">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="10" width="4" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/></svg>
+        </div>
+        <span class="calc-chip-val">83㎡</span>
+        <span class="calc-chip-sub">약 25평</span>
+      </div>
+      <div class="calc-chip" data-area="84" onclick="calcChipSelect(this,'areaGroup');calcResult()">
+        <div class="calc-chip-icon" style="background:rgba(184,150,12,0.18);">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="2" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="2" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/><rect x="10" y="10" width="6" height="6" rx="1" stroke="#b8960c" stroke-width="1.5"/></svg>
+        </div>
+        <span class="calc-chip-val">84㎡</span>
+        <span class="calc-chip-sub">약 25.4평</span>
+      </div>
     </div>
-    <div class="blk-calc-result" id="calcResult">
+
+    <!-- 대출조건 chip -->
+    <p style="font-size:14px;color:rgba(255,255,255,0.7);margin-bottom:10px;font-weight:500;">대출 조건</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;" id="loanGroup">
+      <div class="calc-chip" data-loan="0.6" onclick="calcChipSelect(this,'loanGroup');calcResult()">
+        <div class="calc-chip-icon" style="background:rgba(58,111,216,0.18);">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M9 2L3 7v9h4v-5h4v5h4V7L9 2z" stroke="#3a6fd8" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="calc-chip-val">60%</span>
+        <span class="calc-chip-sub">1주택자</span>
+      </div>
+      <div class="calc-chip" data-loan="0.7" onclick="calcChipSelect(this,'loanGroup');calcResult()">
+        <div class="calc-chip-icon" style="background:rgba(58,154,58,0.18);">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="#3a9a3a" stroke-width="1.5"/><path d="M3 15c0-3 2.7-5 6-5s6 2 6 5" stroke="#3a9a3a" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <span class="calc-chip-val">70%</span>
+        <span class="calc-chip-sub">무주택자</span>
+      </div>
+      <div class="calc-chip active" data-loan="0.8" onclick="calcChipSelect(this,'loanGroup');calcResult()">
+        <div class="calc-chip-icon" style="background:rgba(212,58,122,0.18);">
+          <svg width="20" height="20" viewBox="0 0 18 18" fill="none"><path d="M9 3l1.5 3.5 3.5.5-2.5 2.5.5 3.5L9 11.5 6 13l.5-3.5L4 7l3.5-.5L9 3z" stroke="#d43a7a" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <span class="calc-chip-val">80%</span>
+        <span class="calc-chip-sub">생애최초</span>
+      </div>
+    </div>
+
+    <div class="blk-calc-result" id="calcResultBox">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;margin-top:4px;">
+        <span style="font-size:13px;font-weight:600;color:#f6c90e;letter-spacing:0.5px;">🏠 실입주자</span>
+        <div style="flex:1;height:1px;background:rgba(246,201,14,0.3);"></div>
+      </div>
       <dl><dt>분양가</dt><dd id="crPrice">6.3억</dd><dt>대출 가능액</dt><dd id="crLoan">4.41억</dd><dt>취득세(≈1.1%)</dt><dd id="crTax">693만</dd><dt><strong>필요 현금</strong></dt><dd id="crCash" class="em-cash">1.96억</dd></dl>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;margin-top:20px;">
+        <span style="font-size:13px;font-weight:600;color:#4acfbc;letter-spacing:0.5px;">📈 투자자</span>
+        <div style="flex:1;height:1px;background:rgba(74,207,188,0.3);"></div>
+      </div>
       <div class="blk-jeonse-row"><dl><dt>전세보증금</dt><dd id="crJeonse">4.7억</dd><dt>전세 갭</dt><dd id="crGap">1.6억</dd></dl></div>
     </div>
   </div>
@@ -1192,14 +1248,36 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
 
 <!-- 자금 계산기 -->
 <script>
-(function(){
-  var priceMap={78:63000,83:66000,84:68000};var jeonseMap={78:47000,83:50000,84:50000};var cap=50000;
-  var typeEl=document.getElementById('calcType');var loanEl=document.getElementById('calcLoan');
-  function fmtEok(m){if(m>=10000){var e=Math.floor(m/10000),r=m%10000;return r>0?e+'억 '+r+'만':e+'억';}return m+'만';}
-  function calc(){var t=parseInt(typeEl.value),ltv=parseInt(loanEl.value)/100;var price=priceMap[t],rawLoan=Math.floor(price*ltv),loan=Math.min(rawLoan,cap);var tax=Math.round(price*0.011),cash=price-loan+tax;var jeonse=jeonseMap[t],gap=price-jeonse;
-  document.getElementById('crPrice').textContent=fmtEok(price);document.getElementById('crLoan').textContent=fmtEok(loan)+(rawLoan>cap?' (한도적용)':'');document.getElementById('crTax').textContent=Math.round(tax)+'만';document.getElementById('crCash').textContent=fmtEok(cash);document.getElementById('crJeonse').textContent=fmtEok(jeonse);document.getElementById('crGap').textContent=fmtEok(gap);}
-  if(typeEl&&loanEl){typeEl.addEventListener('change',calc);loanEl.addEventListener('change',calc);calc();}
-})();
+var priceMap={78:63000,83:66000,84:68000};
+var jeonseMap={78:47000,83:50000,84:50000};
+var cap=50000;
+
+function fmtEok(m){if(m>=10000){var e=Math.floor(m/10000),r=m%10000;return r>0?e+'억 '+r+'만':e+'억';}return m+'만';}
+
+function calcChipSelect(el, groupId){
+  document.querySelectorAll('#'+groupId+' .calc-chip').forEach(function(c){c.classList.remove('active');});
+  el.classList.add('active');
+}
+
+function calcResult(){
+  var areaEl = document.querySelector('#areaGroup .calc-chip.active');
+  var loanEl = document.querySelector('#loanGroup .calc-chip.active');
+  var area = areaEl ? parseInt(areaEl.dataset.area) : 78;
+  var loanRatio = loanEl ? parseFloat(loanEl.dataset.loan) : 0.8;
+
+  var price=priceMap[area], rawLoan=Math.floor(price*loanRatio), loan=Math.min(rawLoan,cap);
+  var tax=Math.round(price*0.011), cash=price-loan+tax;
+  var jeonse=jeonseMap[area], gap=price-jeonse;
+
+  document.getElementById('crPrice').textContent=fmtEok(price);
+  document.getElementById('crLoan').textContent=fmtEok(loan)+(rawLoan>cap?' (한도적용)':'');
+  document.getElementById('crTax').textContent=Math.round(tax)+'만';
+  document.getElementById('crCash').textContent=fmtEok(cash);
+  document.getElementById('crJeonse').textContent=fmtEok(jeonse);
+  document.getElementById('crGap').textContent=fmtEok(gap);
+}
+
+document.addEventListener('DOMContentLoaded', function(){ if(typeof calcResult==='function') calcResult(); });
 </script>
 
 <!-- 시세 바 차트 애니메이션 -->

@@ -520,7 +520,6 @@
           <polyline id="sdFutureLine"
             points="675,348 1050,203"
             stroke="#b39b00" stroke-width="10" fill="none"
-            stroke-dasharray="9999" stroke-dashoffset="9999"
             stroke-linecap="round"/>
 
           <!-- dot 레이어 먼저 -->
@@ -1550,10 +1549,12 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
     dtLine.setAttribute('stroke-dashoffset', dtLen);
     sdLine.setAttribute('stroke-dasharray', sdLen);
     sdLine.setAttribute('stroke-dashoffset', sdLen);
-    sdFutureLen = 9999;
-    sdFutureLine.style.transition = 'none';
-    sdFutureLine.setAttribute('stroke-dasharray', '9999');
-    sdFutureLine.setAttribute('stroke-dashoffset', '9999');
+    sdFutureLen = getLen(sdFutureLine);
+    var dashUnit = 44;
+    var dashCount = Math.ceil(sdFutureLen / dashUnit) + 1;
+    var totalDash = dashCount * dashUnit;
+    sdFutureLine.setAttribute('stroke-dasharray', '30 14');
+    sdFutureLine.setAttribute('stroke-dashoffset', String(totalDash));
     allBubbles.forEach(function(b){ b.obj.g.style.opacity='0'; b.obj.dot.style.opacity='0'; });
   }
 
@@ -1627,11 +1628,13 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
             function futureStep(){
               var elapsed = performance.now() - futureStart;
               var ratio = easeInOut(Math.min(elapsed/ANIM_FUTURE, 1));
-              sdFutureLine.setAttribute('stroke-dashoffset', 9999*(1-ratio));
+              var dashUnit = 44;
+              var dashCount = Math.ceil(sdFutureLen / dashUnit) + 1;
+              var totalDash = dashCount * dashUnit;
+              sdFutureLine.setAttribute('stroke-dashoffset', totalDash*(1-ratio));
               if(ratio < 1){
                 requestAnimationFrame(futureStep);
               } else {
-                sdFutureLine.setAttribute('stroke-dasharray','30 14');
                 sdFutureLine.setAttribute('stroke-dashoffset','0');
                 allBubbles.forEach(function(b){
                   if(b.isFuture){ b.obj.g.style.opacity='1'; b.obj.dot.style.opacity='1'; }

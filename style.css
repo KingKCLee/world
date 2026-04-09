@@ -1177,3 +1177,10 @@ div[style*="text-align: center"]{
 .menu .btn-util{gap:6px!important;}
 }
 
+/* ===== 모바일 가격비교 테이블 ===== */
+@media(max-width:768px){
+.lp-price-table{font-size:12px!important;width:100%!important;table-layout:fixed!important;word-break:keep-all!important;}
+.lp-price-table td,.lp-price-table th{padding:8px 4px!important;font-size:11px!important;}
+.lp-price-table tr:last-child td:last-child{font-size:1.3em!important;font-weight:900!important;color:#c00!important;}
+}
+

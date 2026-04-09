@@ -1050,3 +1050,11 @@ table th{font-size:18px!important;}
 .lp-market-cta{margin-bottom:20px!important;padding-bottom:20px!important;}
 }
 
+@media(max-width:767px){
+.top-visual{height:100vh!important;height:calc(var(--vh,1vh)*100)!important;min-height:100vh!important;min-height:calc(var(--vh,1vh)*100)!important;overflow:hidden!important;}
+.top-visual .swiper-container,.top-visual .swiper1{height:100%!important;}
+.top-visual .swiper-slide{height:100%!important;}
+.top-visual .swiper-slide .img{height:100%!important;background-size:cover!important;background-position:center center!important;}
+.top-visual .swiper-slide img.only-pc{display:none!important;}
+}
+

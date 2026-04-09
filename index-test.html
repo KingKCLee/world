@@ -480,15 +480,15 @@
 
             <!-- GTX-A 개통 (2024) x=788 -->
             <line x1="788" y1="-150" x2="788" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.7"/>
-            <text x="788" y="-110" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
-            <text x="788" y="-84" text-anchor="middle" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
-            <text x="788" y="-58" text-anchor="middle" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2024)</text>
+            <text x="788" y="-110" text-anchor="end" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A</text>
+            <text x="788" y="-84" text-anchor="end" font-size="24" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">개통</text>
+            <text x="788" y="-58" text-anchor="end" font-size="20" fill="#d4145a" font-family="Pretendard,sans-serif">(2024)</text>
 
             <!-- GTX-B 착공 (2025) x=875 -->
             <line x1="875" y1="-150" x2="875" y2="580" stroke="#b39b00" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.55"/>
-            <text x="875" y="-110" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
-            <text x="875" y="-84" text-anchor="middle" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
-            <text x="875" y="-58" text-anchor="middle" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2025)</text>
+            <text x="875" y="-110" text-anchor="start" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B</text>
+            <text x="875" y="-84" text-anchor="start" font-size="24" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">착공</text>
+            <text x="875" y="-58" text-anchor="start" font-size="20" fill="#b39b00" font-family="Pretendard,sans-serif">(2025)</text>
 
             <!-- GTX-B 개통 (2031) x=1050 -->
             <line x1="1050" y1="-150" x2="1050" y2="580" stroke="#b39b00" stroke-width="2" stroke-dasharray="8,5" opacity="0.85"/>
@@ -1222,14 +1222,14 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
 
   var DT_PTS = [
     [0,   444, '동탄 분양가', '4.7억 (2017)', 'top',  20,  0],
-    [919, 29,  '동탄 신고가', '19억 (2026)',  'top', -80,  0]
+    [919, 29,  '동탄 신고가', '19억 (2026)',  'top', -80,  80]
   ];
 
   var SD_PTS = [
-    [0,   449, '송도 평균',      '4.5억 (2017)',     'bottom',  20,  0],
+    [0,   449, '송도 평균',      '4.5억 (2017)',     'top',     20,  100],
     [525, 261, '불장 고점',      '11억 (2021)',      'bottom',  60,  0],
     [919, 348, '송도 현재',      '8억 (2026)',       'bottom', -100, 0],
-    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', 'bottom', -110, 0]
+    [1050,203, 'GTX-B 개통 후', '13억 (2031) 예상', 'top',    -110, 0]
   ];
 
   var ANIM_DT = 2000;

@@ -319,17 +319,17 @@ function scrollToForm(id){var t=document.getElementById(id);if(!t)return;var rec
     </ul>
 
     <div class="main-title-text" id="mainTitleText">
-      <div class="mo-badge-wrap">
-        <div class="mo-badge-row">
-          <span class="mo-badge mo-badge-top">명문학군</span>
-          <span class="mo-badge mo-badge-top">최대학원가</span>
-          <span class="mo-badge mo-badge-top">센트럴파크</span>
+      <div class="badge-area">
+        <div class="badge-row">
+          <span class="badge badge-dark">명문학군</span>
+          <span class="badge badge-dark">최대학원가</span>
+          <span class="badge badge-dark">센트럴파크</span>
         </div>
-        <div class="mo-badge-row">
-          <span class="mo-badge mo-badge-bot">GTX-B</span>
-          <span class="mo-badge mo-badge-bot">송도트램</span>
-          <span class="mo-badge mo-badge-bot">인천3호선</span>
-          <span class="mo-badge mo-badge-bot">제2외곽순환</span>
+        <div class="badge-row">
+          <span class="badge badge-gold">GTX-B</span>
+          <span class="badge badge-gold">송도트램</span>
+          <span class="badge badge-gold">인천3호선</span>
+          <span class="badge badge-gold">제2외곽순환</span>
         </div>
       </div>
       <div class="mt-highlight mt-anim" data-delay="800">
@@ -1684,37 +1684,74 @@ window.addEventListener('afterprint',function(){document.body.style.display='';}
   from{opacity:0;transform:scale(.85) translateY(20px);}
   to{opacity:1;transform:scale(1) translateY(0);}
 }
+/* ===== 히어로 뱃지 ===== */
+.badge-area{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  margin-bottom:16px;
+}
+.badge-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  flex-wrap:nowrap;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Pretendard',sans-serif;
+  font-size:14px;
+  font-weight:700;
+  line-height:1;
+  padding:8px 14px;
+  border-radius:6px;
+  white-space:nowrap;
+  border:1px solid rgba(255,255,255,0.3);
+  color:#fff;
+  box-sizing:border-box;
+}
+.badge-dark{
+  background:rgba(40,40,40,0.75);
+}
+.badge-gold{
+  background:var(--brand-color);
+}
 @media(max-width:768px){
-  .mo-badge-wrap{
-    width:calc(100% - 20px)!important;
-    margin:0 auto 10px!important;
-    box-sizing:border-box!important;
+  .badge-area{
+    width:calc(100% - 16px);
+    margin:0 auto 10px;
+    gap:6px;
   }
-  .mo-badge-row{
-    display:flex!important;
-    gap:6px!important;
-    width:100%!important;
-    margin-bottom:6px!important;
+  .badge-row{
+    width:100%;
+    gap:5px;
   }
-  .mo-badge-row span{
-    flex:1!important;
-    min-width:0!important;
-    text-align:center!important;
-    color:#fff!important;
-    font-size:clamp(11px,2.8vw,13px)!important;
-    font-weight:700!important;
-    padding:8px 4px!important;
-    border-radius:6px!important;
-    white-space:nowrap!important;
-    box-sizing:border-box!important;
-    line-height:1.2!important;
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    border:1px solid rgba(255,255,255,0.3)!important;
+  .badge{
+    flex:1;
+    min-width:0;
+    font-size:clamp(11px,2.8vw,13px);
+    font-weight:700;
+    padding:8px 4px;
+    border-radius:6px;
+    line-height:1;
+    white-space:nowrap;
+    border:1px solid rgba(255,255,255,0.3);
+    color:#fff;
+    box-sizing:border-box;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
-  .mo-badge-top{background:rgba(40,40,40,0.7)!important;}
-  .mo-badge-bot{background:var(--brand-color)!important;}
+  .badge-dark{
+    background:rgba(40,40,40,0.75);
+  }
+  .badge-gold{
+    background:var(--brand-color);
+  }
 }
 </style>
 

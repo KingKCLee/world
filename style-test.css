@@ -1020,3 +1020,10 @@ h1,h2,h3,h4,h5,.blk-title,.lp-section-title,.sec-title,[class*="-title"],[class*
 table td{font-size:20px!important;}
 table th{font-size:18px!important;}
 
+/* 모바일 헤더 최적화 */
+@media(max-width:767px){
+.h1_logo-wrap .h-title,.header-title,.h1_logo span,.h1_logo p,.h1_logo div:not(:has(img)){display:none!important;}
+.h1_logo img,.h1_logo-wrap img{height:44px!important;width:auto!important;}
+.header-tel,.h-tel,[class*="tel"],[class*="phone"],.header-content a[href^="tel"]{font-size:20px!important;font-weight:700!important;}
+}
+

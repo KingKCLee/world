@@ -993,7 +993,7 @@ body{font-size:18px!important;}
 .calc-section-label div{flex:1;height:1.5px;}
 
 /* 깜박임 애니메이션 */
-@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.15;}}
+@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.05;}}
 .blink-text{animation:blink-highlight 1s ease-in-out infinite!important;display:inline-block;}
 
 /* 시세 테이블 폰트 확대 */
@@ -1001,6 +1001,6 @@ body{font-size:18px!important;}
 @media(max-width:1023px){.lp-price-table th,.lp-price-table td,.blk-price-table th,.blk-price-table td,[class*="price"] th,[class*="price"] td{font-size:16px!important;padding:12px 10px!important;}}
 
 /* 깜빡임 강제 (맨 아래 우선순위) */
-@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.1;}}
+@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.05;}}
 .blink-text{display:inline-block!important;animation:blink-highlight 1s ease-in-out infinite!important;}
 

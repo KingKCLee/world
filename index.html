@@ -1684,7 +1684,7 @@ window.addEventListener('afterprint',function(){document.body.style.display='';}
   from{opacity:0;transform:scale(.85) translateY(20px);}
   to{opacity:1;transform:scale(1) translateY(0);}
 }
-/* ===== 히어로 뱃지 ===== */
+/* ===== 히어로 뱃지 공통 (구조만) ===== */
 .badge-area{
   display:flex;
   flex-direction:column;
@@ -1704,22 +1704,29 @@ window.addEventListener('afterprint',function(){document.body.style.display='';}
   align-items:center;
   justify-content:center;
   font-family:'Pretendard',sans-serif;
-  font-size:14px;
   font-weight:700;
   line-height:1;
-  padding:8px 14px;
-  border-radius:6px;
   white-space:nowrap;
   border:1px solid rgba(255,255,255,0.3);
   color:#fff;
   box-sizing:border-box;
+  border-radius:6px;
 }
-.badge-dark{
-  background:rgba(40,40,40,0.75);
+.badge-dark{ background:rgba(40,40,40,0.75); }
+.badge-gold{ background:var(--brand-color); }
+
+/* ===== PC 전용 (769px 이상) ===== */
+@media(min-width:769px){
+  .badge-area{ gap:10px; margin-bottom:20px; }
+  .badge-row{ gap:10px; }
+  .badge{
+    font-size:16px;
+    padding:10px 20px;
+    border-radius:8px;
+  }
 }
-.badge-gold{
-  background:var(--brand-color);
-}
+
+/* ===== 모바일 전용 (768px 이하) ===== */
 @media(max-width:768px){
   .badge-area{
     width:calc(100% - 16px);
@@ -1734,23 +1741,9 @@ window.addEventListener('afterprint',function(){document.body.style.display='';}
     flex:1;
     min-width:0;
     font-size:clamp(11px,2.8vw,13px);
-    font-weight:700;
     padding:8px 4px;
     border-radius:6px;
-    line-height:1;
-    white-space:nowrap;
-    border:1px solid rgba(255,255,255,0.3);
-    color:#fff;
-    box-sizing:border-box;
-    display:flex;
-    align-items:center;
     justify-content:center;
-  }
-  .badge-dark{
-    background:rgba(40,40,40,0.75);
-  }
-  .badge-gold{
-    background:var(--brand-color);
   }
 }
 </style>

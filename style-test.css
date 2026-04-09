@@ -993,7 +993,7 @@ body{font-size:18px!important;}
 .calc-section-label div{flex:1;height:1.5px;}
 
 /* 깜박임 애니메이션 */
-@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.25;}}
+@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.2;}}
 .blink-text{animation:blink-highlight 1s ease-in-out infinite!important;display:inline-block;}
 
 /* 시세 테이블 폰트 확대 */

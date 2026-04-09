@@ -239,7 +239,7 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
   .lp-urgency-bottom{font-size:15px;word-break:keep-all;line-height:1.5;padding:0 8px;}
 }
 
-.lp-benefits{margin:56px auto;padding:48px 0 0;border-top:none;border-bottom:none;}
+.lp-benefits{margin:56px auto;padding:48px 0 0;border-top:none;border-bottom:none;margin-bottom:120px;}
 .lp-benefits-title{font-size:28px;font-weight:800;text-align:center;color:#111;letter-spacing:-1.5px;margin:0 0 6px;}
 .lp-benefits-sub{text-align:center;font-size:14px;color:#888;margin-bottom:20px;letter-spacing:-.5px;}
 
@@ -262,7 +262,7 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .p6-panel-text .p6-sub{display:block;margin-top:8px;font-size:13px;color:#888;line-height:1.7;}
 
 @media(max-width:1023px){
-  .lp-benefits{margin:40px auto;padding:36px 0 0;}
+  .lp-benefits{margin:40px auto;padding:36px 0 0;margin-bottom:80px;}
   .lp-benefits-title{font-size:22px;}
   .p6-tabs{grid-template-columns:repeat(3,1fr);gap:6px;}
   .p6-tab{padding:12px 4px 10px;border-radius:10px 10px 0 0;}

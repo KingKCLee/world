@@ -1258,8 +1258,7 @@ function validateForm(id){
 <!-- VH 보정 + 스크롤 텍스트 -->
 <script>
 (function(){
-  function setVH(){document.documentElement.style.setProperty('--vh',(window.innerHeight*0.01)+'px');}
-  setVH();window.addEventListener('resize',setVH);
+  /* --vh removed: using 100dvh instead */
   var stEl=document.querySelector('.scroll-text');
   if(stEl){
     var txt=stEl.getAttribute('data-text')||'SCROLL DOWN · ';

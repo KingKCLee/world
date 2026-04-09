@@ -833,19 +833,100 @@
   </section>
 
   <section class="lp-benefit-cta lp-market-cta" data-aos="fade-up">
-    <h3 class="lp-benefit-cta-title">지금 시장이 말해주는 것</h3>
-    <p class="lp-benefit-cta-sub">고민하는 사이, 기회는 줄어들고 있습니다</p>
-    <div class="market-point">
-      <em>강남3구가 정부 규제에 2년 만에 하락 전환</em>했습니다. 그러면 자금은 어디로 갑니까? 서울 외곽과 경기·인천으로 풍선효과가 시작되고 있습니다. 실제로 경기 남부는 이미 상승률이 서울을 넘어서고 있습니다.<br><br>
-      동탄·수원·과천 등 <em>GTX 관련 지역은 연일 신고가</em>입니다. 다음 차례는 인천, 그 시작은 당연히 송도입니다.<br><br>
-      송도는 올해 12월 <em>KTX 개통</em>, 2031년 <em>GTX-B 개통</em>이 예정되어 있고, 향후 2년간 <em>신규 입주 물량은 제로</em>입니다.<br><br>
-      지금 이 가격, 이 조건이 기회인 이유입니다.
-    </div>
-    <div class="lp-benefit-cta-bottom">
-      <p>동탄에서 GTX 착공 전에 잡으신 분들은 지금 약 4배 가까운 시세를 보고 있습니다</p>
+    <h3 class="lp-benefit-cta-title" id="marketTitle"></h3>
+    <p class="lp-benefit-cta-sub" id="marketSub"></p>
+    <div class="market-point" id="marketBody"></div>
+    <div id="marketClosing" style="margin-top:24px;padding:20px 24px;border-left:4px solid #b8960c;background:rgba(184,150,12,0.08);border-radius:0 8px 8px 0;font-size:16px;color:#f6c90e;font-weight:700;line-height:1.9;opacity:0;transition:opacity 0.6s;"></div>
+    <div class="lp-benefit-cta-bottom" id="marketCta" style="opacity:0;transition:opacity 0.6s;">
       <button type="button" class="lp-submit-btn js-scroll-to-register">동·호수 함께 확인하기</button>
     </div>
   </section>
+
+  <script>
+  (function(){
+    var titleEl=document.getElementById('marketTitle');
+    var subEl=document.getElementById('marketSub');
+    var bodyEl=document.getElementById('marketBody');
+    var closingEl=document.getElementById('marketClosing');
+    var ctaEl=document.getElementById('marketCta');
+
+    var TITLE='지금 이 순간을 놓치면, 당신은 5년 후 후회합니다';
+    var SUB='숫자가 말합니다. 감이 아닙니다.';
+    var BODY=[
+      '동탄역 롯데캐슬을 분양가 4.7억에 잡은 사람들, 지금 19억을 받습니다.',
+      ' 그들이 특별히 용감했을까요? 아닙니다.',
+      ' 단지 GTX 착공 직후에 샀을 뿐입니다.\n\n',
+      '지금 송도는 그 시점입니다.\n\n',
+      'GTX-B 착공 완료. 올해 12월 KTX 개통.',
+      ' 매년 ',
+      '1만 2천 명',
+      '이 유입되는 도시에 2026년 신규 입주 물량은 ',
+      '0세대',
+      '. 수요는 쌓이고 공급은 없습니다.\n\n',
+      '강남 규제로 밀려난 자금이 경기·인천으로 향하고 있습니다.',
+      ' 동탄·수원·과천이 이미 신고가입니다.',
+      ' 다음은 인천, 그 시작점은 송도입니다.\n\n',
+      '3공구 G5블록 분양 예정가가 11~12억입니다.',
+      ' 지금 월드메르디앙은 ',
+      '6억대',
+      '입니다.'
+    ];
+    var BOLD_WORDS=['1만 2천 명','0세대','6억대'];
+    var CLOSING='3공구 분양 시작되는 순간 6억대는 사라집니다.\n동탄 4.7억 시절 망설였던 사람들은 지금 무슨 생각을 할까요?\n기회는 항상 "그때 살걸" 하고 나서야 보입니다.';
+
+    var started=false;
+
+    function renderChar(el, text, i, speed, onDone){
+      if(i>=text.length){if(onDone)onDone();return;}
+      if(text[i]==='\n'){el.innerHTML+='<br>';}
+      else{el.innerHTML+=text[i];}
+      setTimeout(function(){renderChar(el,text,i+1,speed,onDone);},speed);
+    }
+
+    function renderSegs(el, segs, si, onDone){
+      if(si>=segs.length){if(onDone)onDone();return;}
+      var seg=segs[si];
+      var isBold=BOLD_WORDS.indexOf(seg)>-1;
+      var span=document.createElement(isBold?'strong':'span');
+      if(isBold)span.style.color='#f6c90e';
+      el.appendChild(span);
+      var plain=seg.replace(/\n/g,'');
+      var hasNl=seg.indexOf('\n')>-1;
+      renderChar(span,plain,0,16,function(){
+        if(hasNl){el.innerHTML+='<br><br>';}
+        var delay=hasNl?200:30;
+        setTimeout(function(){renderSegs(el,segs,si+1,onDone);},delay);
+      });
+    }
+
+    function startTyping(){
+      renderChar(titleEl,TITLE,0,35,function(){
+        setTimeout(function(){
+          renderChar(subEl,SUB,0,25,function(){
+            setTimeout(function(){
+              renderSegs(bodyEl,BODY,0,function(){
+                closingEl.style.opacity='1';
+                renderChar(closingEl,CLOSING,0,22,function(){
+                  ctaEl.style.opacity='1';
+                });
+              });
+            },300);
+          });
+        },200);
+      });
+    }
+
+    var observer=new IntersectionObserver(function(entries){
+      if(!started&&entries[0].isIntersecting){
+        started=true;
+        observer.disconnect();
+        setTimeout(startTyping,400);
+      }
+    },{threshold:0.3});
+    var section=document.querySelector('.lp-market-cta');
+    if(section)observer.observe(section);
+  })();
+  </script>
 </div>
 
 <div class="blk-section blk-dark" id="blkQuiz" data-aos="fade-up">

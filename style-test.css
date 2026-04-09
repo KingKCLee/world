@@ -993,10 +993,10 @@ body{font-size:18px!important;}
 .calc-section-label div{flex:1;height:1.5px;}
 
 /* 깜박임 애니메이션 */
-@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.3;}}
-.blink-text{animation:blink-highlight 1.2s ease-in-out infinite;}
+@keyframes blink-highlight{0%,100%{opacity:1;}50%{opacity:0.25;}}
+.blink-text{animation:blink-highlight 1s ease-in-out infinite!important;display:inline-block;}
 
 /* 시세 테이블 폰트 확대 */
-.lp-price-table td,.lp-price-table th{font-size:18px!important;}
-@media(max-width:1023px){.lp-price-table td,.lp-price-table th{font-size:15px!important;}}
+.lp-price-table td,.lp-price-table th{font-size:20px!important;padding:16px 12px!important;}
+@media(max-width:1023px){.lp-price-table th,.lp-price-table td,.blk-price-table th,.blk-price-table td,[class*="price"] th,[class*="price"] td{font-size:16px!important;padding:12px 10px!important;}}
 

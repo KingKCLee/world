@@ -1560,14 +1560,22 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
 
   var PAUSE_MS = 300;
 
-  function makePausedAnimator(line, totalLen, pts, dists, duration, bubbles, lineKey, onDone){
+  function makePausedAnimator(line, totalLen, pts, dists, duration, bubbles, lineKey, customPauses, onDone){
+    if(typeof customPauses === 'function'){
+      onDone = customPauses;
+      customPauses = null;
+    }
     var pauseQueue = [];
-    bubbles.forEach(function(b){
-      if(b.line === lineKey && !b.isFuture){
-        pauseQueue.push(b.ratio);
-      }
-    });
-    pauseQueue.sort(function(a,b){ return a-b; });
+    if(customPauses && customPauses.length){
+      pauseQueue = customPauses.slice();
+    } else {
+      bubbles.forEach(function(b){
+        if(b.line === lineKey && !b.isFuture){
+          pauseQueue.push(b.ratio);
+        }
+      });
+      pauseQueue.sort(function(a,b){ return a-b; });
+    }
 
     var startT = null;
     var pausedUntil = null;
@@ -1622,7 +1630,14 @@ document.getElementById('reserveSuccessModal').addEventListener('click', functio
   function startAnimation(){
     makePausedAnimator(dtLine, dtLen, dtPts, dtDists, ANIM_DT, allBubbles, 'dt', function(){
       setTimeout(function(){
-        makePausedAnimator(sdLine, sdLen, sdPts, sdDists, ANIM_SD, allBubbles, 'sd', function(){
+        var sdPauseRatios = [];
+        sdPts.forEach(function(pt, i){
+          if(Math.abs(pt[0]-300)<2 || Math.abs(pt[0]-675)<2){
+            sdPauseRatios.push(sdDists[i]/sdDists[sdDists.length-1]);
+          }
+        });
+        sdPauseRatios.sort(function(a,b){ return a-b; });
+        makePausedAnimator(sdLine, sdLen, sdPts, sdDists, ANIM_SD, allBubbles, 'sd', sdPauseRatios, function(){
           setTimeout(function(){
             var futureStart = performance.now();
             var futureTotal = 10000;

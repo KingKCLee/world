@@ -448,20 +448,18 @@
     <h3 class="blk-title">🏙️ 동탄 vs 송도 — 미래가치 비교</h3>
     <p class="blk-sub">GTX 수혜 + 분양가 격차 = <strong>폭발적 상승 여력</strong></p>
     <div class="blk-vs-chart-wrap" id="blkVsChartWrap" style="padding:20px 12px 12px;">
-      <div class="blk-vs-chart-legend" style="font-size:15px;margin-bottom:16px;">
+      <div class="blk-vs-chart-legend" style="font-size:16px;margin-bottom:16px;font-weight:600;">
         <span><i class="dot-dt"></i> 동탄역 롯데캐슬 84㎡</span>
         <span><i class="dot-sd"></i> 송도 아파트 평균 84㎡</span>
       </div>
       <div style="position:relative;width:100%;">
-        <!-- Y축 라벨 (절대위치) -->
-        <div style="position:absolute;left:0;top:0;bottom:30px;width:36px;display:flex;flex-direction:column;justify-content:space-between;font-size:12px;color:#999;text-align:right;padding-right:6px;">
+        <div style="position:absolute;left:0;top:0;bottom:30px;width:40px;display:flex;flex-direction:column;justify-content:space-between;font-size:14px;color:#999;text-align:right;padding-right:6px;">
           <span>20억</span><span>15억</span><span>10억</span><span>5억</span><span>0</span>
         </div>
-        <!-- SVG 차트 -->
-        <div style="margin-left:40px;position:relative;">
-          <svg viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:520px;display:block;">
+        <div style="margin-left:44px;position:relative;">
+          <svg id="chartSvg" viewBox="0 -80 1000 660" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:560px;display:block;">
 
-            <!-- 그리드 라인 -->
+            <!-- 그리드 -->
             <line x1="0" y1="0"   x2="1000" y2="0"   stroke="rgba(0,0,0,.07)" stroke-width="1"/>
             <line x1="0" y1="150" x2="1000" y2="150" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
             <line x1="0" y1="300" x2="1000" y2="300" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
@@ -469,106 +467,105 @@
             <line x1="0" y1="580" x2="1000" y2="580" stroke="rgba(0,0,0,.07)" stroke-width="1"/>
 
             <!-- y = 580 - (가격/20)*580 -->
-            <!-- 3.5억=479, 4억=464, 4.5억=449, 5억=435 -->
-            <!-- 6억=406, 7억=377, 8억=348, 9억=319, 10억=290 -->
-            <!-- 12억=232, 14억=174, 15억=145, 19억=29, 20억=0 -->
+            <!-- 4.5억=449, 4.7억=444, 5억=435, 5.5억=421, 6억=406, 6.5억=392 -->
+            <!-- 7억=377, 7.5억=362, 8억=348, 9억=319, 10억=290, 11억=261 -->
+            <!-- 13억=203, 14억=174, 15억=145, 16.5억=100, 19억=29 -->
 
-            <!-- GTX-A 착공 점선 (2018) x=125 -->
-            <line x1="125" y1="0" x2="125" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.45"/>
-            <text x="125" y="-22" text-anchor="middle" font-size="22" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif" textLength="110" lengthAdjust="spacing">GTX-A 착공</text>
-            <text x="125" y="-4"  text-anchor="middle" font-size="18" fill="#d4145a" font-family="Pretendard,sans-serif">(2018)</text>
+            <!-- GTX-A 착공 (2018) x=125 -->
+            <line x1="125" y1="-80" x2="125" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.4"/>
+            <text x="125" y="-52" text-anchor="middle" font-size="26" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A 착공</text>
+            <text x="125" y="-28" text-anchor="middle" font-size="22" fill="#d4145a" font-family="Pretendard,sans-serif">(2018)</text>
 
-            <!-- GTX-A 개통 점선 (2024) x=700 -->
-            <line x1="700" y1="0" x2="700" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.7"/>
-            <text x="700" y="-22" text-anchor="middle" font-size="22" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif" textLength="110" lengthAdjust="spacing">GTX-A 개통</text>
-            <text x="700" y="-4"  text-anchor="middle" font-size="18" fill="#d4145a" font-family="Pretendard,sans-serif">(2024)</text>
+            <!-- GTX-A 개통 (2024) x=700 -->
+            <line x1="700" y1="-80" x2="700" y2="580" stroke="#d4145a" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.7"/>
+            <text x="700" y="-52" text-anchor="middle" font-size="26" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">GTX-A 개통</text>
+            <text x="700" y="-28" text-anchor="middle" font-size="22" fill="#d4145a" font-family="Pretendard,sans-serif">(2024)</text>
 
-            <!-- GTX-B 착공 점선 (2025) x=812 -->
-            <line x1="812" y1="0" x2="812" y2="580" stroke="#b39b00" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.6"/>
-            <text x="875" y="-22" text-anchor="middle" font-size="22" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif" textLength="110" lengthAdjust="spacing">GTX-B 착공</text>
-            <text x="875" y="-4"  text-anchor="middle" font-size="18" fill="#b39b00" font-family="Pretendard,sans-serif">(2025)</text>
+            <!-- GTX-B 착공 (2025) x=812 -->
+            <line x1="812" y1="-80" x2="812" y2="580" stroke="#b39b00" stroke-width="1.5" stroke-dasharray="8,5" opacity="0.55"/>
+            <text x="870" y="-52" text-anchor="middle" font-size="26" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B 착공</text>
+            <text x="870" y="-28" text-anchor="middle" font-size="22" fill="#b39b00" font-family="Pretendard,sans-serif">(2025)</text>
 
-            <!-- GTX-B 개통 점선 (2031) x=987 -->
-            <line x1="987" y1="0" x2="987" y2="580" stroke="#b39b00" stroke-width="2" stroke-dasharray="8,5" opacity="0.9"/>
-            <text x="987" y="-22" text-anchor="middle" font-size="22" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif" textLength="110" lengthAdjust="spacing">GTX-B 개통</text>
-            <text x="987" y="-4"  text-anchor="middle" font-size="18" fill="#b39b00" font-family="Pretendard,sans-serif">(2031)</text>
+            <!-- GTX-B 개통 (2031) x=987 -->
+            <line x1="987" y1="-80" x2="987" y2="580" stroke="#b39b00" stroke-width="2" stroke-dasharray="8,5" opacity="0.85"/>
+            <text x="987" y="-52" text-anchor="middle" font-size="26" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B 개통</text>
+            <text x="987" y="-28" text-anchor="middle" font-size="22" fill="#b39b00" font-family="Pretendard,sans-serif">(2031)</text>
 
-            <!-- ① 동탄 라인 먼저 (하단 레이어) -->
-            <!-- 2017=3.5억(479), 2018=4억(464), 2019=4.5억(449), 2020=5.5억(420) -->
-            <!-- 2021=9억(319), 2022=8억(348), 2023=7억(377), 2024=12억(232) -->
-            <!-- 2025=15억(145), 2026=19억(29) -->
-            <polyline class="blk-line-dt"
-              points="0,479 125,464 237,449 350,420 462,319 575,348 637,377 700,232 812,145 875,29"
-              stroke="#d4145a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="0"   cy="479" r="5" fill="#d4145a"/>
-            <circle cx="875" cy="29"  r="7" fill="#d4145a"/>
+            <!-- 동탄 라인 (먼저) -->
+            <polyline id="dtLine" class="blk-line-dt"
+              points="0,444 125,421 237,392 350,319 462,319 575,174 637,174 700,130 812,100 875,29"
+              stroke="#d4145a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"
+              stroke-dasharray="2000" stroke-dashoffset="2000"/>
+            <circle cx="0"   cy="444" r="6" fill="#d4145a" opacity="0"/>
+            <circle cx="875" cy="29"  r="8" fill="#d4145a" opacity="0" id="dtEndDot"/>
 
-            <!-- ② 송도 라인 나중에 (상단 레이어) -->
-            <!-- 2017=4.5억(449), 2018=5억(435), 2019=6억(406), 2020=7억(377) -->
-            <!-- 2021=10억(290), 2022=7억(377), 2023=6.5억(392), 2024=7.5억(362) -->
-            <!-- 2025=8억(348), 2026=8억(348) -->
-            <polyline class="blk-line-sd"
-              points="0,449 125,435 237,406 350,377 462,290 575,377 637,392 700,362 812,348 875,348"
-              stroke="#b39b00" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- 송도 미래 예상 (2026→2031) -->
-            <polyline class="blk-line-sd-future"
-              points="875,348 987,174"
-              stroke="#b39b00" stroke-width="3" fill="none" stroke-dasharray="12,8" stroke-linecap="round" opacity="0.9"/>
-            <circle cx="0"   cy="449" r="5" fill="#b39b00"/>
-            <circle cx="462" cy="290" r="6" fill="#b39b00" opacity="0.7"/>
-            <circle cx="875" cy="348" r="5" fill="#b39b00"/>
-            <circle cx="987" cy="174" r="6" fill="#b39b00" opacity="0.7"/>
+            <!-- 송도 실선 (동탄 후) -->
+            <polyline id="sdLine" class="blk-line-sd"
+              points="0,449 125,421 237,392 350,362 462,261 575,377 637,392 700,377 812,362 875,348"
+              stroke="#b39b00" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"
+              stroke-dasharray="2000" stroke-dashoffset="2000"/>
+            <circle cx="0"   cy="449" r="6" fill="#b39b00" opacity="0" id="sdStartDot"/>
+            <circle cx="462" cy="261" r="7" fill="#b39b00" opacity="0" id="sdPeakDot"/>
+            <circle cx="875" cy="348" r="6" fill="#b39b00" opacity="0" id="sdEndDot"/>
 
-            <!-- 라벨들 (SVG 내부 - 겹침 없도록 위치 조정) -->
-            <!-- 동탄 시작 라벨 -->
-            <rect x="2" y="490" width="120" height="40" rx="5" fill="white" fill-opacity="0.9" stroke="#d4145a" stroke-width="1"/>
-            <text x="10" y="506" font-size="13" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">동탄 평균</text>
-            <text x="10" y="523" font-size="12" fill="#666" font-family="Pretendard,sans-serif">3.5억 (2017)</text>
+            <!-- 송도 예상 점선 (실선 끝난 후) -->
+            <polyline id="sdFutureLine" class="blk-line-sd-future"
+              points="875,348 987,203"
+              stroke="#b39b00" stroke-width="4" fill="none" stroke-dasharray="12,8"
+              stroke-linecap="round" opacity="0"
+              style="transition:opacity 0.3s;"/>
+            <circle cx="987" cy="203" r="7" fill="#b39b00" opacity="0" id="sdFutureDot"/>
 
-            <!-- 송도 시작 라벨 -->
-            <rect x="2" y="390" width="120" height="40" rx="5" fill="white" fill-opacity="0.9" stroke="#b39b00" stroke-width="1"/>
-            <text x="10" y="406" font-size="13" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">송도 평균</text>
-            <text x="10" y="423" font-size="12" fill="#666" font-family="Pretendard,sans-serif">4.5억 (2017)</text>
+            <!-- 라벨들 (초기 opacity=0) -->
+            <g id="lbl-dt-start" opacity="0" style="transition:opacity 0.4s">
+              <rect x="2" y="455" width="136" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#d4145a" stroke-width="1.5"/>
+              <text x="10" y="472" font-size="15" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">동탄 분양가</text>
+              <text x="10" y="491" font-size="14" fill="#555" font-family="Pretendard,sans-serif">4.7억 (2017)</text>
+            </g>
 
-            <!-- 불장 고점 라벨 -->
-            <rect x="390" y="250" width="130" height="40" rx="5" fill="white" fill-opacity="0.9" stroke="#b39b00" stroke-width="1"/>
-            <text x="398" y="266" font-size="13" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">불장 고점</text>
-            <text x="398" y="283" font-size="12" fill="#666" font-family="Pretendard,sans-serif">10억+ (2021)</text>
+            <g id="lbl-sd-start" opacity="0" style="transition:opacity 0.4s">
+              <rect x="2" y="400" width="136" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#b39b00" stroke-width="1.5"/>
+              <text x="10" y="417" font-size="15" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">송도 평균</text>
+              <text x="10" y="436" font-size="14" fill="#555" font-family="Pretendard,sans-serif">4.5억 (2017)</text>
+            </g>
 
-            <!-- 동탄 신고가 라벨 -->
-            <rect x="720" y="0" width="140" height="40" rx="5" fill="white" fill-opacity="0.9" stroke="#d4145a" stroke-width="1"/>
-            <text x="728" y="16" font-size="13" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">동탄 신고가</text>
-            <text x="728" y="33" font-size="12" fill="#666" font-family="Pretendard,sans-serif">19억 (2026)</text>
+            <g id="lbl-sd-peak" opacity="0" style="transition:opacity 0.4s">
+              <rect x="390" y="218" width="145" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#b39b00" stroke-width="1.5"/>
+              <text x="398" y="235" font-size="15" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">불장 고점</text>
+              <text x="398" y="254" font-size="14" fill="#555" font-family="Pretendard,sans-serif">11억 (2021)</text>
+            </g>
 
-            <!-- 송도 현재 라벨 -->
-            <rect x="720" y="360" width="120" height="40" rx="5" fill="white" fill-opacity="0.9" stroke="#b39b00" stroke-width="1"/>
-            <text x="728" y="376" font-size="13" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">송도 현재</text>
-            <text x="728" y="393" font-size="12" fill="#666" font-family="Pretendard,sans-serif">8억 (2026)</text>
+            <g id="lbl-dt-now" opacity="0" style="transition:opacity 0.4s">
+              <rect x="718" y="0" width="155" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#d4145a" stroke-width="1.5"/>
+              <text x="726" y="17" font-size="15" fill="#d4145a" font-weight="700" font-family="Pretendard,sans-serif">동탄 신고가</text>
+              <text x="726" y="36" font-size="14" fill="#555" font-family="Pretendard,sans-serif">19억 (2026)</text>
+            </g>
 
-            <!-- GTX-B 개통 후 예상 라벨 -->
-            <rect x="840" y="130" width="155" height="40" rx="5" fill="rgba(179,155,0,0.1)" fill-opacity="0.95" stroke="#b39b00" stroke-width="1"/>
-            <text x="848" y="146" font-size="13" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B 개통 후</text>
-            <text x="848" y="163" font-size="12" fill="#666" font-family="Pretendard,sans-serif">12~15억 예상</text>
+            <g id="lbl-sd-now" opacity="0" style="transition:opacity 0.4s">
+              <rect x="718" y="358" width="136" height="44" rx="6" fill="white" fill-opacity="0.93" stroke="#b39b00" stroke-width="1.5"/>
+              <text x="726" y="375" font-size="15" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">송도 현재</text>
+              <text x="726" y="394" font-size="14" fill="#555" font-family="Pretendard,sans-serif">8억 (2026)</text>
+            </g>
+
+            <g id="lbl-sd-future" opacity="0" style="transition:opacity 0.4s">
+              <rect x="838" y="158" width="168" height="44" rx="6" fill="rgba(179,155,0,0.08)" fill-opacity="0.95" stroke="#b39b00" stroke-width="1.5"/>
+              <text x="846" y="175" font-size="15" fill="#b39b00" font-weight="700" font-family="Pretendard,sans-serif">GTX-B 개통 후</text>
+              <text x="846" y="194" font-size="14" fill="#555" font-family="Pretendard,sans-serif">13억 예상 (2031)</text>
+            </g>
 
           </svg>
 
-          <!-- X축 라벨 -->
-          <div style="display:flex;justify-content:space-between;padding:6px 0 0;font-size:12px;color:#999;">
-            <span>2017</span>
-            <span>2018</span>
-            <span>2019</span>
-            <span>2020</span>
-            <span>2021</span>
-            <span>2022~23</span>
-            <span>2024~25</span>
+          <div style="display:flex;justify-content:space-between;padding:6px 0 0;font-size:14px;color:#999;">
+            <span>2017</span><span>2018</span><span>2019</span><span>2020</span>
+            <span>2021</span><span>2022~23</span><span>2024~25</span>
             <span style="color:#b39b00;font-weight:700;">2031<br><small>예상</small></span>
           </div>
         </div>
       </div>
     </div>
     <p class="blk-vs-chart-note">
-      ※ 동탄 평균: GTX-A 착공 전 3.5억(2017) → GTX-A 개통 후 신고가 19억(2026) · 약 5배 상승<br>
-      ※ 송도 평균: 4.5억(2017) → 불장 고점 10억+(2021) → 조정 후 현재 8억 · GTX-B 개통(2031) 후 12~15억 예상<br>
+      ※ 동탄 롯데캐슬: 분양가 4.7억(2017) → GTX-A 개통 후 신고가 19억(2026) · 약 4배 상승<br>
+      ※ 송도 평균: 4.5억(2017) → 불장 고점 11억(2021) → 조정 후 현재 8억 · GTX-B 개통(2031) 후 13억 예상<br>
       ※ 실거래가 기반 추정치 | 미래 예측은 시나리오 기반 참고자료
     </p>
     <div class="blk-vs-grid">
@@ -1213,7 +1210,76 @@ closeBtn.addEventListener('click',closeForm);dim.addEventListener('click',closeF
 
 <!-- 동탄 vs 송도 SVG 차트 애니메이션 -->
 <script>
-(function(){var wrap=document.getElementById('blkVsChartWrap');if(!wrap)return;var observer=new IntersectionObserver(function(entries){if(entries[0].isIntersecting){wrap.classList.add('animated');observer.disconnect();}},{threshold:0.3});observer.observe(wrap);})();
+(function(){
+  var wrap = document.getElementById('blkVsChartWrap');
+  if(!wrap) return;
+
+  var dtLine = document.getElementById('dtLine');
+  var sdLine = document.getElementById('sdLine');
+  var sdFutureLine = document.getElementById('sdFutureLine');
+
+  function getLen(el){ try{ return el.getTotalLength(); } catch(e){ return 1500; } }
+
+  var ANIM_DT = 1800;
+  var ANIM_SD = 1600;
+  var DELAY_SD = 400;
+  var DELAY_FUTURE = 300;
+  var ANIM_FUTURE = 800;
+
+  var labels = [
+    { id:'lbl-dt-start',  delay: 0 },
+    { id:'lbl-sd-start',  delay: DELAY_SD },
+    { id:'lbl-sd-peak',   delay: DELAY_SD + Math.round(462/875 * ANIM_SD) },
+    { id:'lbl-dt-now',    delay: Math.round(875/875 * ANIM_DT) - 200 },
+    { id:'lbl-sd-now',    delay: DELAY_SD + ANIM_SD - 100 },
+    { id:'lbl-sd-future', delay: DELAY_SD + ANIM_SD + DELAY_FUTURE + ANIM_FUTURE },
+  ];
+
+  var observed = false;
+  var observer = new IntersectionObserver(function(entries){
+    if(observed || !entries[0].isIntersecting) return;
+    observed = true;
+    observer.disconnect();
+
+    var dtLen = getLen(dtLine);
+    var sdLen = getLen(sdLine);
+    var sdFutureLen = getLen(sdFutureLine);
+
+    dtLine.style.strokeDasharray = dtLen;
+    dtLine.style.strokeDashoffset = dtLen;
+
+    setTimeout(function(){
+      dtLine.style.transition = 'stroke-dashoffset '+ANIM_DT+'ms ease-out';
+      dtLine.style.strokeDashoffset = '0';
+    }, 100);
+
+    sdLine.style.strokeDasharray = sdLen;
+    sdLine.style.strokeDashoffset = sdLen;
+    setTimeout(function(){
+      sdLine.style.transition = 'stroke-dashoffset '+ANIM_SD+'ms ease-out';
+      sdLine.style.strokeDashoffset = '0';
+    }, 100 + ANIM_DT + DELAY_SD);
+
+    sdFutureLine.style.strokeDasharray = sdFutureLen + ','+sdFutureLen;
+    sdFutureLine.style.strokeDashoffset = sdFutureLen;
+    setTimeout(function(){
+      sdFutureLine.style.opacity = '1';
+      sdFutureLine.style.transition = 'stroke-dashoffset '+ANIM_FUTURE+'ms ease-out, opacity 0.3s';
+      sdFutureLine.style.strokeDashoffset = '0';
+    }, 100 + ANIM_DT + DELAY_SD + ANIM_SD + DELAY_FUTURE);
+
+    labels.forEach(function(item){
+      var el = document.getElementById(item.id);
+      if(!el) return;
+      setTimeout(function(){
+        el.style.opacity = '1';
+      }, 100 + item.delay);
+    });
+
+  }, {threshold: 0.3});
+
+  observer.observe(wrap);
+})();
 </script>
 
 <!-- 자가진단 퀴즈 -->

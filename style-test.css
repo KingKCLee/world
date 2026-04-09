@@ -258,7 +258,7 @@ input[type="text"],input[type="tel"],select,textarea{-webkit-appearance:none;-mo
 .p6-panel-icon{flex:0 0 auto;font-size:48px;width:80px;height:80px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#fdf6e3,#fff8dc);border-radius:50%;border:2px solid #e8e0c8;}
 .p6-panel-text{flex:1 1 auto;}
 .p6-panel-text h3{font-size:22px;font-weight:700;color:#8a6d00;margin:0 0 12px;}
-.p6-panel-text p{font-size:15px;line-height:1.9;color:#444;margin:0;}
+.p6-panel-text p{font-size:15px;line-height:1.8;color:#444;margin:0;min-height:5em;}
 .p6-panel-text .p6-sub{display:block;margin-top:8px;font-size:13px;color:#888;line-height:1.7;}
 
 @media(max-width:1023px){

@@ -1750,6 +1750,26 @@ window.addEventListener('afterprint',function(){document.body.style.display='';}
   .lp-body{ margin-top:0!important; padding-top:0!important; }
   .section-images{ margin-top:0!important; padding-top:0!important; border-top:none!important; }
   .section-images.no-border-top{ margin-top:0!important; padding-top:0!important; }
+  /* 히어로 다음 섹션 PC 반응형 height/animation 완전 제거 */
+  .top-visual ~ *,
+  .lp-body > *:first-child,
+  .lp-urgency{
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    transition:none!important;
+    animation:none!important;
+    transform:none!important;
+  }
+  .lp-body > *:first-child{
+    margin-top:0!important;
+    padding-top:0!important;
+  }
+  /* AOS 모바일 비활성화 — 히어로 다음 첫 섹션 */
+  .lp-urgency[data-aos]{
+    opacity:1!important;
+    transform:none!important;
+  }
 }
 </style>
 

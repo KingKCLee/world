@@ -699,12 +699,12 @@ function scrollToForm(id){var t=document.getElementById(id);if(!t)return;var rec
     nameEl.textContent=m.name;
 
     var typingRow=document.createElement('div');
-    typingRow.style.cssText='display:flex;align-items:flex-end;gap:8px;'+(m.side==='right'?'flex-direction:row-reverse;':'');
+    typingRow.style.cssText='display:flex;align-items:flex-end;gap:8px;'+(m.side==='right'?'justify-content:flex-end;':'');
     var av=document.createElement('div');
     av.style.cssText='width:36px;height:36px;border-radius:50%;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;';
     av.textContent=m.avatar;
     var typing=document.createElement('div');
-    typing.style.cssText='display:flex;gap:4px;padding:10px 14px;background:#fff;border-radius:18px;border-top-left-radius:4px;width:52px;align-items:center;';
+    typing.style.cssText='display:flex;gap:4px;padding:10px 14px;border-radius:18px;width:52px;align-items:center;'+(m.side==='left'?'background:#fff;border-top-left-radius:4px;':'background:#fee500;border-top-right-radius:4px;');
     typing.innerHTML='<div style="width:6px;height:6px;background:#aaa;border-radius:50%;animation:kkb 1s infinite;"></div><div style="width:6px;height:6px;background:#aaa;border-radius:50%;animation:kkb 1s 0.15s infinite;"></div><div style="width:6px;height:6px;background:#aaa;border-radius:50%;animation:kkb 1s 0.3s infinite;"></div>';
     if(m.side==='left'){typingRow.appendChild(av);typingRow.appendChild(typing);}
     else{typingRow.appendChild(typing);typingRow.appendChild(av);}
@@ -722,7 +722,7 @@ function scrollToForm(id){var t=document.getElementById(id);if(!t)return;var rec
       body.appendChild(nameEl2);
 
       var row=document.createElement('div');
-      row.style.cssText='display:flex;align-items:flex-end;gap:8px;'+(m.side==='right'?'flex-direction:row-reverse;':'');
+      row.style.cssText='display:flex;align-items:flex-end;gap:8px;'+(m.side==='right'?'justify-content:flex-end;':'');
       var av2=document.createElement('div');
       av2.style.cssText='width:36px;height:36px;border-radius:50%;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;';
       av2.textContent=m.avatar;

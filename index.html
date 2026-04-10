@@ -704,7 +704,7 @@ function scrollToForm(id){var t=document.getElementById(id);if(!t)return;var rec
     av.style.cssText='width:36px;height:36px;border-radius:50%;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;';
     av.textContent=m.avatar;
     var typing=document.createElement('div');
-    typing.style.cssText='display:flex;gap:4px;padding:10px 14px;border-radius:18px;width:52px;align-items:center;'+(m.side==='left'?'background:#fff;border-top-left-radius:4px;':'background:#fee500;border-top-right-radius:4px;');
+    typing.style.cssText='display:flex;gap:4px;padding:10px 14px;border-radius:18px;width:52px;align-items:center;'+(m.side==='left'?'background:#fff;border-bottom-left-radius:4px;':'background:#fee500;border-bottom-right-radius:4px;');
     typing.innerHTML='<div style="width:6px;height:6px;background:#aaa;border-radius:50%;animation:kkb 1s infinite;"></div><div style="width:6px;height:6px;background:#aaa;border-radius:50%;animation:kkb 1s 0.15s infinite;"></div><div style="width:6px;height:6px;background:#aaa;border-radius:50%;animation:kkb 1s 0.3s infinite;"></div>';
     if(m.side==='left'){typingRow.appendChild(av);typingRow.appendChild(typing);}
     else{typingRow.appendChild(typing);typingRow.appendChild(av);}
@@ -727,7 +727,7 @@ function scrollToForm(id){var t=document.getElementById(id);if(!t)return;var rec
       av2.style.cssText='width:36px;height:36px;border-radius:50%;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;';
       av2.textContent=m.avatar;
       var bubble=document.createElement('div');
-      bubble.style.cssText='max-width:210px;padding:10px 13px;border-radius:18px;font-size:15px;line-height:1.6;color:#111;'+(m.side==='left'?'background:#fff;border-top-left-radius:4px;':'background:#fee500;border-top-right-radius:4px;');
+      bubble.style.cssText='max-width:210px;padding:10px 13px;border-radius:18px;font-size:15px;line-height:1.6;color:#111;'+(m.side==='left'?'background:#fff;border-bottom-left-radius:4px;':'background:#fee500;border-bottom-right-radius:4px;');
       bubble.textContent=m.text;
       var time=document.createElement('div');
       time.style.cssText='font-size:10px;color:#666;white-space:nowrap;';

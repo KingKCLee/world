@@ -1744,6 +1744,13 @@ window.addEventListener('afterprint',function(){document.body.style.display='';}
 .blink-price{
   animation:blink-price 1.2s ease-in-out infinite;
 }
+@media(max-width:768px){
+  .top-visual{ margin-bottom:0!important; }
+  .top-visual + *{ margin-top:0!important; padding-top:0!important; }
+  .lp-body{ margin-top:0!important; padding-top:0!important; }
+  .section-images{ margin-top:0!important; padding-top:0!important; border-top:none!important; }
+  .section-images.no-border-top{ margin-top:0!important; padding-top:0!important; }
+}
 </style>
 
 <script>

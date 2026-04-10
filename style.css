@@ -1205,7 +1205,7 @@ div[style*="text-align: center"]{
 .top-visual{margin-bottom:0!important;padding-bottom:70px!important;}
 .lp-body{margin-top:0!important;padding-top:0!important;}
 .lp-reserve-wrap:first-child{margin-top:0!important;}
-.lp-urgency{margin-top:0!important;padding-top:16px!important;}
+.lp-urgency{margin-top:0!important;padding-top:0!important;}
 .lp-privacy-layer{margin:0!important;padding:0!important;}
 }
 

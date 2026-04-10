@@ -1067,7 +1067,8 @@ table th{font-size:18px!important;}
     min-height:0!important;
     max-height:none!important;
     overflow:hidden!important;
-    padding-bottom:70px!important;
+    padding-bottom:0!important;
+    margin-bottom:0!important;
     box-sizing:border-box!important;
   }
   /* 슬라이더 100% */

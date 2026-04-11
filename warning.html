@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>접근 제한 안내</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{min-height:100vh;background:#0d0d0d;display:flex;align-items:center;justify-content:center;font-family:'Malgun Gothic',sans-serif;padding:20px}
+.wrap{max-width:620px;width:100%}
+.header{text-align:center;margin-bottom:32px}
+.shield{font-size:64px;margin-bottom:16px}
+.title{font-size:26px;font-weight:bold;color:#ff3333;margin-bottom:8px}
+.subtitle{font-size:15px;color:#999}
+.ip-badge{display:inline-block;background:#1a0000;border:1px solid #ff3333;color:#ff6666;padding:8px 20px;border-radius:4px;font-size:13px;font-family:monospace;margin-top:12px}
+.box{background:#111;border:1px solid #222;border-radius:8px;padding:24px;margin-bottom:16px}
+.box-title{font-size:13px;font-weight:bold;color:#666;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.evidence-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:14px}
+.evidence-row:last-child{border-bottom:none}
+.ev-label{color:#555}
+.ev-value{color:#ccc;font-family:monospace}
+.law-box{background:#0a0000;border:1px solid #330000;border-left:3px solid #ff3333;border-radius:8px;padding:24px;margin-bottom:16px}
+.law-title{color:#ff4444;font-size:15px;font-weight:bold;margin-bottom:16px}
+.law-item{display:flex;gap:12px;margin-bottom:14px;font-size:14px;line-height:1.6}
+.law-num{background:#ff3333;color:#fff;font-size:11px;font-weight:bold;padding:2px 8px;border-radius:3px;height:fit-content;white-space:nowrap;margin-top:2px}
+.law-text{color:#aaa}
+.law-text strong{color:#fff}
+.warn-box{background:#0d0800;border:1px solid #332200;border-radius:8px;padding:20px;margin-bottom:16px;font-size:14px;color:#aa8833;line-height:1.8}
+.contact{text-align:center;font-size:13px;color:#444;margin-top:24px}
+.contact a{color:#555;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="shield">🚫</div>
+    <div class="title">접근이 차단되었습니다</div>
+    <div class="subtitle">귀하의 IP 주소에서 비정상적인 광고 클릭 행위가 감지되었습니다</div>
+    <div class="ip-badge" id="ip-display">IP: 감지 중...</div>
+  </div>
+
+  <div class="box">
+    <div class="box-title">📋 수집된 증거 기록</div>
+    <div class="evidence-row">
+      <span class="ev-label">감지 IP</span>
+      <span class="ev-value" id="ev-ip">-</span>
+    </div>
+    <div class="evidence-row">
+      <span class="ev-label">유입 경로</span>
+      <span class="ev-value">네이버 유료광고 (파워링크)</span>
+    </div>
+    <div class="evidence-row">
+      <span class="ev-label">반복 클릭 횟수</span>
+      <span class="ev-value" id="ev-count" style="color:#ff4444;font-weight:bold">-</span>
+    </div>
+    <div class="evidence-row">
+      <span class="ev-label">최초 감지 일시</span>
+      <span class="ev-value" id="ev-first">-</span>
+    </div>
+    <div class="evidence-row">
+      <span class="ev-label">최근 클릭 일시</span>
+      <span class="ev-value" id="ev-last">-</span>
+    </div>
+    <div class="evidence-row">
+      <span class="ev-label">증거 보존 상태</span>
+      <span class="ev-value" style="color:#ff4444">🔴 수사기관 제출 대기</span>
+    </div>
+  </div>
+
+  <div class="law-box">
+    <div class="law-title">⚖️ 법적 고지</div>
+    <div class="law-item">
+      <span class="law-num">형사</span>
+      <span class="law-text">
+        경쟁 광고의 반복 클릭 행위는 <strong>형법 제314조 업무방해죄</strong>에 해당합니다.
+        대법원 판례(2019도14620)에서 유죄가 확정되었으며
+        <strong>5년 이하 징역 또는 1,500만원 이하 벌금</strong>에 처해집니다.
+      </span>
+    </div>
+    <div class="law-item">
+      <span class="law-num">민사</span>
+      <span class="law-text">
+        <strong>민법 제750조 불법행위</strong>에 따라
+        발생한 광고비 전액에 대한 손해배상 청구가 가능합니다.
+        클릭 1회당 광고단가 기준으로 산정됩니다.
+      </span>
+    </div>
+    <div class="law-item">
+      <span class="law-num">증거</span>
+      <span class="law-text">
+        IP 주소, 클릭 일시, 유입 경로, 체류 시간 등
+        <strong>모든 접속 기록이 서버에 저장</strong>되어 있으며
+        수사기관 요청 시 즉시 제공됩니다.
+      </span>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    ⚠️ 당사는 이미 관련 기관에 신고를 준비 중입니다.
+    본 경고를 확인한 시각도 기록됩니다.
+    정상적인 방문자라면 아래 고객센터로 즉시 연락해 주십시오.
+  </div>
+
+  <div class="contact">
+    정상 방문자 문의: <a href="tel:0323303828">032-330-3828</a>
+    &nbsp;|&nbsp;
+    <a href="https://viphome.kr">viphome.kr 홈으로</a>
+  </div>
+</div>
+
+<script>
+const params = new URLSearchParams(location.search)
+const ip = params.get('ip') || '감지됨'
+const count = params.get('count') || '3'
+const first = params.get('first') || new Date().toLocaleString('ko-KR')
+const last = params.get('last') || new Date().toLocaleString('ko-KR')
+
+document.getElementById('ip-display').textContent = 'IP: ' + ip
+document.getElementById('ev-ip').textContent = ip
+document.getElementById('ev-count').textContent = count + '회'
+document.getElementById('ev-first').textContent = first
+document.getElementById('ev-last').textContent = last
+</script>
+</body>
+</html>

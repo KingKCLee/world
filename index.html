@@ -1209,16 +1209,16 @@ function validateForm(id){
   }
   // 히트AD 전환 픽셀 (conversion_logs 기록)
   try{
-    var p=new URLSearchParams(location.search);
-    var isNaverAd=!!(p.get('n_media')||p.get('n_ad_group')||(p.get('utm_source')==='naver'&&p.get('utm_medium')==='cpc'));
-    var kw=(window.__lpKeyword||p.get('n_query')||p.get('utm_term')||'');
-    var src=isNaverAd?'naver_ad':(window.__lpSource||'direct');
-    var pixelUrl='https://srlkttykxpbmrusbavzi.supabase.co/functions/v1/ct-pixel'
-      +'?id=viphome_reservation'
-      +'&keyword='+encodeURIComponent(kw)
-      +'&source='+encodeURIComponent(src)
-      +'&referrer='+encodeURIComponent(document.referrer||'');
-    new Image().src=pixelUrl;
+    var formEl=document.getElementById('form-'+id)||document.querySelector('form[data-form="'+id+'"]')||document.forms[0];
+    var nameVal=formEl?(formEl.querySelector('[name="entry.1019098426"]')||{}).value||'':'';
+    var phoneVal=formEl?(formEl.querySelector('[name="entry.929183790"]')||{}).value||'':'';
+    var phoneLast4=phoneVal.replace(/[^0-9]/g,'').slice(-4);
+    var up={};new URLSearchParams(location.search).forEach(function(v,k){up[k]=v});
+    var kw=up.n_query||up.utm_term||window.__lpKeyword||'';
+    fetch('https://srlkttykxpbmrusbavzi.supabase.co/functions/v1/ct-pixel',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({type:'form_submit',conversion_id:'viphome_reservation',value:1,page:'viphome',name:nameVal,phone_last4:phoneLast4,keyword:kw,source:window.__lpSource||'direct',referrer:document.referrer||'',url_params:up,landing_url:location.href})
+    }).catch(function(){});
   }catch(e){}
   submitted=true;return true;
 }

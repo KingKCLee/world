@@ -1641,7 +1641,8 @@ window.addEventListener('afterprint',function(){document.body.style.display='';}
   function send(d){try{if(navigator.sendBeacon){navigator.sendBeacon(T,JSON.stringify(d))}else{fetch(T,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){})}}catch(e){}}
   // visit 이벤트는 fetch로 보내고 warningUrl 응답 처리
   try{
-    fetch(T,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event:'visit',sessionId:sid,page:location.pathname,referrer:document.referrer,keyword:kw,device:dev,source:window.__lpSource||document.referrer||'direct',timestamp:Date.now()}),keepalive:true})
+    var up={};new URLSearchParams(location.search).forEach(function(v,k){up[k]=v});
+    fetch(T,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event:'visit',sessionId:sid,page:location.pathname,referrer:document.referrer,keyword:kw,device:dev,source:window.__lpSource||document.referrer||'direct',urlParams:up,isAd:!!(up.n_media||up.gclid||up.fbclid||up.kakao_adid||(up.utm_medium==='cpc')),timestamp:Date.now()}),keepalive:true})
       .then(function(r){return r.json()})
       .then(function(data){
         if(data&&data.warningUrl){window.location.href=data.warningUrl}

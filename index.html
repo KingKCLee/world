@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  
+
+  <!-- AdConcent 부정클릭 수집 픽셀 -->
+  <script>
+  (function(){
+    var p=new URLSearchParams(location.search);
+    fetch('https://adconcent-worker.noble-kclee.workers.dev/collect',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        site_id:'hitbunyang',
+        keyword:p.get('nk')||p.get('keyword')||'',
+        device:/Mobi|Android/i.test(navigator.userAgent)?'mobile':'pc',
+        referrer:document.referrer,
+        landing_url:location.href
+      }),
+      keepalive:true
+    });
+  })();
+  </script>
+
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11324266200"></script>
 <script>

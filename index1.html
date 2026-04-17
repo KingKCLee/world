@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+
+  <!-- ============================================ -->
+  <!-- ★ 테스트 전용 페이지 (index1.html)            -->
+  <!-- 보안 차단 스크립트 제거 / 전환 추적 강화     -->
+  <!-- F12 사용 가능 / 광고 집행 후 삭제 예정       -->
+  <!-- ============================================ -->
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11324266200"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-11324266200');
+    
+    // 디버그 로그
+    console.log('%c✅ Google Ads 태그 로드됨', 'color:#4CAF50;font-size:14px;font-weight:bold;');
+    console.log('%c📊 전환 ID: AW-11324266200', 'color:#2196F3;');
+  </script>
+
+  <!-- ★ 전화 클릭 전환 추적 (자동 감지) -->
+  <script>
+  function gtag_report_conversion(url) {
+    console.log('%c📞 전화 클릭 감지! 전환 이벤트 발송 중...', 'color:#FF9800;font-size:14px;font-weight:bold;');
+    console.log('  → send_to: AW-11324266200/45F5CP-R850cENit6pcq');
+    console.log('  → url: ' + (url || 'none'));
+    
+    var callback = function () {
+      console.log('%c✅ Google Ads 전환 전송 완료!', 'color:#4CAF50;font-size:14px;font-weight:bold;');
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    
+    gtag('event', 'conversion', {
+        'send_to': 'AW-11324266200/45F5CP-R850cENit6pcq',
+        'event_callback': callback
+    });
+    
+    return false;
+  }
+
+  // 페이지 로드 후 모든 tel: 링크에 자동으로 전환 추적 연결
+  document.addEventListener('DOMContentLoaded', function(){
+    var telLinks = document.querySelectorAll('a[href^="tel:"]');
+    console.log('%c🔗 tel: 링크 ' + telLinks.length + '개 발견', 'color:#9C27B0;font-size:14px;font-weight:bold;');
+    
+    telLinks.forEach(function(link, idx){
+      console.log('  [' + (idx+1) + '] ' + link.href + ' (' + (link.textContent.trim().substr(0,20) || 'no text') + ')');
+      
+      link.addEventListener('click', function(e){
+        console.log('%c📞 전화 링크 클릭됨: ' + this.href, 'color:#FF5722;font-size:14px;font-weight:bold;');
+        
+        if(typeof gtag === 'function'){
+          gtag('event', 'conversion', {
+            'send_to': 'AW-11324266200/45F5CP-R850cENit6pcq',
+            'value': 1.0,
+            'currency': 'KRW'
+          });
+          console.log('%c✅ 전환 이벤트 발송 완료', 'color:#4CAF50;font-size:14px;font-weight:bold;');
+        } else {
+          console.error('❌ gtag 함수를 찾을 수 없음');
+        }
+      });
+    });
+  });
+  </script>
+
+  <!-- 방문예약 폼 전환도 동일하게 유지 -->
+  <script>
+  function submitFormConversion() {
+    console.log('%c📝 방문예약 폼 제출 전환 발송', 'color:#FF9800;font-size:14px;font-weight:bold;');
+    if(typeof gtag === 'function'){
+      gtag('event','conversion',{
+        'send_to':'AW-11324266200/91H7CM_CgIocENit6pcq',
+        'value':1.0,
+        'currency':'KRW'
+      });
+      console.log('%c✅ 방문예약 전환 전송 완료', 'color:#4CAF50;');
+    }
+    return true;
+  }
+  </script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>[테스트] 송도 월드메르디앙 | 전환 추적 테스트 페이지</title>
+<meta name="description" content="송도 월드메르디앙 전환 추적 테스트 페이지 - F12 사용 가능">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#b39b00">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  background: #f5f5f5;
+  color: #222;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.test-banner {
+  background: linear-gradient(135deg, #093687, #0d47a1);
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.test-banner h1 {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  color: #f6c90e;
+}
+
+.test-banner p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #093687;
+  margin-bottom: 12px;
+  margin-top: 30px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #b39b00;
+}
+
+.info-box {
+  background: #f8f6f0;
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #555;
+}
+
+.info-box strong {
+  color: #093687;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.phone-btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.phone-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, #b8960c, #d4ab0f);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 800;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.phone-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(184,150,12,0.4);
+}
+
+.phone-btn-compact {
+  background: #093687;
+  padding: 14px 20px;
+  font-size: 17px;
+}
+
+.phone-btn-compact:hover {
+  background: #0d47a1;
+}
+
+.phone-icon {
+  font-size: 24px;
+}
+
+.debug-panel {
+  background: #1e1e1e;
+  color: #4CAF50;
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 13px;
+  margin-top: 20px;
+  border: 1px solid #333;
+}
+
+.debug-panel h3 {
+  color: #f6c90e;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.debug-log {
+  margin-top: 8px;
+  padding: 10px;
+  background: #000;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.check-item:last-child {
+  border: none;
+}
+
+.check-icon {
+  font-size: 20px;
+}
+
+.check-ok {
+  color: #4CAF50;
+}
+
+.check-warn {
+  color: #FF9800;
+}
+
+.steps {
+  list-style: none;
+  counter-reset: step-counter;
+}
+
+.steps li {
+  counter-increment: step-counter;
+  padding: 12px 0 12px 40px;
+  position: relative;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.steps li:last-child {
+  border: none;
+}
+
+.steps li::before {
+  content: counter(step-counter);
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 28px;
+  height: 28px;
+  background: #093687;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.code-box {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  padding: 16px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 12px;
+  overflow-x: auto;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.warning {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin: 15px 0;
+  font-size: 14px;
+}
+
+.success {
+  background: #d4edda;
+  border-left: 4px solid #28a745;
+  padding: 12px 16px;
+  border-radius: 4px;
+  margin: 15px 0;
+  font-size: 14px;
+  color: #155724;
+}
+
+.footer-info {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
+
+.live-counter {
+  display: inline-block;
+  background: #FF5722;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- 테스트 배너 -->
+  <div class="test-banner">
+    <h1>🧪 전환 추적 테스트 페이지</h1>
+    <p>송도 월드메르디앙 | index1.html (F12 사용 가능)</p>
+  </div>
+
+  <!-- 현재 상태 -->
+  <h2>🔍 설치된 전환 추적</h2>
+  <div class="info-box">
+    <strong>1️⃣ viphome 전화 클릭 전환 (신규)</strong>
+    ID: AW-11324266200/45F5CP-R850cENit6pcq<br>
+    상태: tel: 링크 클릭 시 자동 발송
+  </div>
+  <div class="info-box">
+    <strong>2️⃣ 방문예약 폼 제출 전환 (기존)</strong>
+    ID: AW-11324266200/91H7CM_CgIocENit6pcq<br>
+    상태: 폼 제출 시 자동 발송
+  </div>
+
+  <!-- 전화 클릭 테스트 버튼 -->
+  <h2>📞 전화 클릭 테스트 (여러 번 클릭해서 테스트)</h2>
+  <div class="info-box">
+    아래 버튼을 클릭하시면 <strong>전환 이벤트가 즉시 발송</strong>됩니다.<br>
+    F12 개발자 도구 Console 탭을 열어놓으시면 실시간 로그를 확인할 수 있습니다.
+  </div>
+
+  <div class="phone-btn-group">
+    <a href="tel:1533-9077" class="phone-btn">
+      <span class="phone-icon">📞</span>
+      <span>1533-9077 (메인 CTA)</span>
+      <span class="live-counter" id="count1">0회</span>
+    </a>
+    
+    <a href="tel:1533-9077" class="phone-btn phone-btn-compact">
+      <span class="phone-icon">☎️</span>
+      <span>1533-9077 (작은 버튼)</span>
+      <span class="live-counter" id="count2">0회</span>
+    </a>
+    
+    <a href="tel:15339077" class="phone-btn phone-btn-compact">
+      <span class="phone-icon">📱</span>
+      <span>15339077 (하이픈 없음 테스트)</span>
+      <span class="live-counter" id="count3">0회</span>
+    </a>
+  </div>
+
+  <!-- 실시간 로그 -->
+  <h2>🖥️ 실시간 전환 로그</h2>
+  <div class="debug-panel">
+    <h3>Console 로그 미리보기</h3>
+    <div class="debug-log" id="debugLog">
+      <div style="color:#999;">// F12 Console 탭에서 더 자세한 로그 확인 가능</div>
+      <div style="color:#4CAF50;">// 페이지 로드됨 ✓</div>
+    </div>
+  </div>
+
+  <!-- 확인 체크리스트 -->
+  <h2>✅ 전환 작동 확인 체크리스트</h2>
+  <div style="padding: 10px 0;">
+    <div class="check-item">
+      <span class="check-icon check-ok" id="check-gtag">⏳</span>
+      <span>Google 태그(gtag.js) 로드 여부</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon check-ok" id="check-tellinks">⏳</span>
+      <span>tel: 링크 자동 감지 여부</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon check-warn" id="check-click">⏳</span>
+      <span>전화 클릭 이벤트 발송 여부 (클릭 후 확인)</span>
+    </div>
+    <div class="check-item">
+      <span class="check-icon check-ok">ℹ️</span>
+      <span>F12 Network 탭에서 "googleads.g.doubleclick.net" 요청 확인</span>
+    </div>
+  </div>
+
+  <!-- 테스트 단계 -->
+  <h2>📋 테스트 방법</h2>
+  <ol class="steps">
+    <li>
+      <strong>F12 키를 눌러 개발자 도구 열기</strong><br>
+      <span style="color:#666;font-size:13px;">이 페이지는 F12 사용 가능합니다 (보안 차단 없음)</span>
+    </li>
+    <li>
+      <strong>Console 탭 선택</strong><br>
+      <span style="color:#666;font-size:13px;">실시간 로그 확인용</span>
+    </li>
+    <li>
+      <strong>Network 탭도 같이 열기</strong><br>
+      <span style="color:#666;font-size:13px;">필터에 "google" 입력</span>
+    </li>
+    <li>
+      <strong>위의 전화번호 버튼 클릭</strong><br>
+      <span style="color:#666;font-size:13px;">전화 걸기 팝업 뜨면 "취소" 해도 됨</span>
+    </li>
+    <li>
+      <strong>Console 로그에서 "전환 이벤트 발송 완료" 확인</strong>
+    </li>
+    <li>
+      <strong>Network 탭에서 google 요청 확인</strong><br>
+      <span style="color:#666;font-size:13px;">googleads.g.doubleclick.net 또는 google.com/pagead 요청이 보여야 함</span>
+    </li>
+    <li>
+      <strong>15~30분 후 Google Ads → 목표 → 전환 확인</strong><br>
+      <span style="color:#666;font-size:13px;">"viphome 전화 클릭" 전환 수 증가 확인</span>
+    </li>
+  </ol>
+
+  <div class="warning">
+    <strong>⚠️ 주의:</strong> 이 페이지는 테스트용입니다. Google 검색에 노출되지 않도록 <code>noindex</code> 설정되어 있습니다. 검증 완료 후 본 페이지(index.html)에 전환 스크립트 추가 후 이 파일은 삭제하시는 걸 권장드립니다.
+  </div>
+
+  <div class="success">
+    <strong>✅ 검증 성공 후:</strong> index.html에 동일한 전환 추적 스크립트를 추가하시면 본 페이지에서도 작동합니다. 보안 스크립트는 유지되지만, 전환 추적은 독립적으로 작동합니다.
+  </div>
+
+  <!-- 본 페이지로 이동 -->
+  <h2>🔗 관련 링크</h2>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:15px 0;">
+    <a href="https://viphome.kr/" style="background:#093687;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;">🏠 본 페이지 (viphome.kr)</a>
+    <a href="https://ads.google.com/aw/conversions/summary" target="_blank" style="background:#4CAF50;color:#fff;padding:10px 16px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;">📊 Google Ads 전환 대시보드</a>
+  </div>
+
+  <div class="footer-info">
+    송도 월드메르디앙 | 더블유부동산 (대표: 이광철) | 사업자등록번호 589-24-01721<br>
+    테스트 페이지 생성일: 2026-04-18
+  </div>
+
+</div>
+
+<!-- 클릭 카운터 + 실시간 로그 -->
+<script>
+(function(){
+  var clickCounts = { count1: 0, count2: 0, count3: 0 };
+  var btns = document.querySelectorAll('.phone-btn');
+  var debugLog = document.getElementById('debugLog');
+  
+  function addLog(msg, color){
+    color = color || '#4CAF50';
+    var div = document.createElement('div');
+    div.style.color = color;
+    var time = new Date().toLocaleTimeString('ko-KR');
+    div.innerHTML = '[' + time + '] ' + msg;
+    debugLog.appendChild(div);
+    debugLog.scrollTop = debugLog.scrollHeight;
+  }
+  
+  btns.forEach(function(btn, idx){
+    btn.addEventListener('click', function(e){
+      var counterId = 'count' + (idx + 1);
+      clickCounts[counterId]++;
+      var counterEl = document.getElementById(counterId);
+      if(counterEl) counterEl.textContent = clickCounts[counterId] + '회';
+      
+      addLog('📞 버튼 ' + (idx+1) + ' 클릭됨 (총 ' + clickCounts[counterId] + '회)', '#FF9800');
+      addLog('✅ 전환 이벤트 발송: AW-11324266200/45F5CP-R850cENit6pcq', '#4CAF50');
+    });
+  });
+  
+  // 초기 상태 체크
+  setTimeout(function(){
+    if(typeof gtag === 'function'){
+      document.getElementById('check-gtag').textContent = '✅';
+      addLog('✅ Google 태그(gtag) 로드 완료', '#4CAF50');
+    } else {
+      document.getElementById('check-gtag').textContent = '❌';
+      addLog('❌ Google 태그 로드 실패', '#f44336');
+    }
+    
+    var telLinks = document.querySelectorAll('a[href^="tel:"]');
+    if(telLinks.length > 0){
+      document.getElementById('check-tellinks').textContent = '✅';
+      addLog('✅ tel: 링크 ' + telLinks.length + '개 감지됨', '#4CAF50');
+    } else {
+      document.getElementById('check-tellinks').textContent = '❌';
+    }
+    
+    // 클릭 시 업데이트
+    document.querySelectorAll('a[href^="tel:"]').forEach(function(link){
+      link.addEventListener('click', function(){
+        document.getElementById('check-click').textContent = '✅';
+        document.getElementById('check-click').className = 'check-icon check-ok';
+      });
+    });
+  }, 1000);
+  
+})();
+</script>
+
+</body>
+</html>

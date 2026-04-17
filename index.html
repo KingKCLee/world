@@ -30,6 +30,24 @@
   gtag('config', 'AW-11324266200');
 </script>
 
+  <!-- Event snippet for viphome 전화 클릭 conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-11324266200/45F5CP-R850cENit6pcq',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
+
   <!-- ★ 네이버 프리미엄로그분석 공통 스크립트 (PV + 유입분석) -->
   <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
   <script type="text/javascript">

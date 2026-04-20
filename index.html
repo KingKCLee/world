@@ -6,23 +6,37 @@
   <script async src="https://adconcent-worker.noble-kclee.workers.dev/pixel.js?site_id=viphome"></script>
   <!-- ↑ 신 픽셀 실측 통과 후 아래 구 픽셀 블록 제거 예정 -->
 
-  <!-- AdConcent 부정클릭 수집 픽셀 -->
+  <!-- AdConcent 부정클릭 수집 픽셀 v2 (site_id=viphome + 네이버 파라미터 7종) -->
   <script>
-  (function(){
+  (function(){try{
     var p=new URLSearchParams(location.search);
-    fetch('https://adconcent-worker.noble-kclee.workers.dev/collect',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        site_id:'hitbunyang',
-        keyword:p.get('nk')||p.get('keyword')||'',
-        device:/Mobi|Android/i.test(navigator.userAgent)?'mobile':'pc',
-        referrer:document.referrer,
-        landing_url:location.href
-      }),
-      keepalive:true
-    });
-  })();
+    var kw=p.get('n_keyword')||p.get('nk')||p.get('keyword')||p.get('n_query')||p.get('utm_term')||'';
+    var d={
+      site_id:'viphome',
+      keyword:kw,
+      query:p.get('n_query')||'',
+      n_rank:p.get('n_rank')||'',
+      n_ad_group:p.get('n_ad_group')||'',
+      n_ad:p.get('n_ad')||'',
+      n_keyword_id:p.get('n_keyword_id')||'',
+      n_media:p.get('n_media')||'',
+      device:/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)?'mobile':'pc',
+      referrer:document.referrer||'',
+      landing_url:location.href,
+      ts:Date.now()
+    };
+    var body=JSON.stringify(d);
+    if(navigator.sendBeacon){
+      navigator.sendBeacon('https://adconcent-worker.noble-kclee.workers.dev/collect',new Blob([body],{type:'application/json'}));
+    } else {
+      fetch('https://adconcent-worker.noble-kclee.workers.dev/collect',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:body,
+        keepalive:true
+      }).catch(function(){});
+    }
+  }catch(e){}})();
   </script>
 
   <!-- Google tag (gtag.js) -->
